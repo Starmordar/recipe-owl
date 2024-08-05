@@ -5,7 +5,6 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -15,12 +14,7 @@ import { SlidersHorizontal, X } from 'lucide-react';
 import FilterCard from './filter-card';
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-
-interface Categoty {
-  id: number;
-  name: string;
-  options: Array<{ id: number; title: string }>;
-}
+import UrlParamsService from '@/lib/service/url-params.service';
 
 const categories = [
   {
@@ -43,27 +37,38 @@ const categories = [
   },
 ];
 
+const categoryIds = categories.map((c) => c.id.toString());
+
 type SelectedFilters = Record<number, Array<string>>;
 
 export default function FiltersList() {
-  const [filters, setFilters] = React.useState<SelectedFilters>({});
-
   const searchParams = useSearchParams();
+  const [filters, setFilters] = React.useState<SelectedFilters>(getInitialFilters());
+
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  function handleFiltersChange(categoryId: number, newFilters: Array<string>) {
-    setFilters({ ...filters, [categoryId]: newFilters });
+  function getInitialFilters() {
+    const params = new UrlParamsService(searchParams);
+    return params.fromKeys(categoryIds);
   }
 
-  function handleFiltersApply() {
-    const params = new URLSearchParams(searchParams);
+  function handleFiltersChange(categoryId: number, values: Array<string>) {
+    setFilters({ ...filters, [categoryId]: values });
+  }
 
-    for (const [categoryId, values] of Object.entries(filters)) {
-      values.forEach((value) => params.append(categoryId.toString(), value));
-    }
+  function handleFiltersApply(filters: SelectedFilters) {
+    const params = new UrlParamsService(searchParams);
+
+    params.clear(categoryIds);
+    params.insert(filters);
 
     replace(`${pathname}?${params.toString()}`);
+  }
+
+  function handleResetFilters() {
+    setFilters({});
+    handleFiltersApply({});
   }
 
   return (
@@ -91,12 +96,17 @@ export default function FiltersList() {
           </div>
 
           <DrawerFooter className="flex flex-row w-full">
-            <Button className="flex-1" variant="outline">
-              Reset
-            </Button>
-            <Button className="flex-1" onClick={handleFiltersApply}>
-              Apply
-            </Button>
+            <DrawerClose className="flex-1">
+              <Button className="w-full" variant="outline" onClick={handleResetFilters}>
+                Reset
+              </Button>
+            </DrawerClose>
+
+            <DrawerClose className="flex-1">
+              <Button className="w-full" onClick={() => handleFiltersApply(filters)}>
+                Apply
+              </Button>
+            </DrawerClose>
           </DrawerFooter>
         </div>
       </DrawerContent>

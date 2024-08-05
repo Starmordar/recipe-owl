@@ -14,6 +14,9 @@ interface SearchProps {
   placeholder: string;
   data: Array<{ id: number; name: string }>;
 
+  open: boolean;
+  setOpen: (value: boolean) => void;
+
   selected: string;
   setSelected: (value: string) => void;
   searchTerm: string;
@@ -26,10 +29,10 @@ export default function Search({
   setSearchTerm,
   selected,
   setSelected,
+  open,
+  setOpen,
   data,
 }: SearchProps) {
-  const [open, setOpen] = React.useState(false);
-
   function handleValueChange(value: string) {
     setSearchTerm(value);
     setOpen(!!value);

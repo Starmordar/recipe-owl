@@ -6,12 +6,14 @@ import { useDebounce } from '@uidotdev/usehooks';
 
 import Search from '@/components/ui/search';
 import SearchExit from './search-exit';
-import FiltersList from './filters-list';
+import FiltersList from '../recipes-filters/filters-list';
 
 import { getRecipes } from '@/lib/data';
 
 export default function SearchBar() {
+  const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState('');
+
   const [searchTerm, setSearchTerm] = React.useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 250);
 
@@ -23,7 +25,7 @@ export default function SearchBar() {
 
   return (
     <div className="flex items-center">
-      <SearchExit hidden={false} onExit={() => {}} />
+      <SearchExit hidden={!open} onExit={() => setOpen(false)} />
 
       <Search
         placeholder="Search for recipes"
@@ -32,6 +34,8 @@ export default function SearchBar() {
         setSearchTerm={setSearchTerm}
         selected={selected}
         setSelected={setSelected}
+        open={open}
+        setOpen={setOpen}
       />
 
       <FiltersList />
