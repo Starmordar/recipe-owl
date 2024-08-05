@@ -49,13 +49,18 @@ export default function CustomFilters() {
     setFilters({ ...filters, [categoryId]: values });
   }
 
+  function handleOpenDrawer(open: boolean) {
+    if (!open) return;
+    setFilters(valuesFromPathname(categoryIds));
+  }
+
   const filtersCount = Object.values(valuesFromPathname(categoryIds)).reduce(
     (acc, filter) => acc + filter.length,
     0
   );
 
   return (
-    <Drawer>
+    <Drawer onOpenChange={handleOpenDrawer}>
       <DrawerTrigger asChild>
         <Button className="relative min-h-10 min-w-10 rounded-full" variant="ghost" size="icon">
           <SlidersHorizontal className="h-4 w-4 opacity-50" />
