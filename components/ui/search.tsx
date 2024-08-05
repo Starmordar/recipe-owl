@@ -17,7 +17,6 @@ interface SearchProps {
   open: boolean;
   setOpen: (value: boolean) => void;
 
-  selected: string;
   setSelected: (value: string) => void;
   searchTerm: string;
   setSearchTerm: (value: string) => void;
@@ -27,7 +26,6 @@ export default function Search({
   placeholder,
   searchTerm,
   setSearchTerm,
-  selected,
   setSelected,
   open,
   setOpen,
@@ -39,10 +37,8 @@ export default function Search({
   }
 
   function handleValueSelect(value: string) {
-    const nextValue = value === selected ? '' : value;
-
-    setSelected(nextValue);
-    setSearchTerm(nextValue);
+    setSelected(value);
+    setSearchTerm(value);
     setOpen(false);
   }
 

@@ -1,22 +1,17 @@
-import React from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-
-interface Categoty {
-  id: number;
-  name: string;
-  options: Array<{ id: number; title: string }>;
-}
+import type { Category } from '../types';
 
 interface FiltersOpenProps {
-  data: Categoty;
+  data: Category;
   selected: Array<string>;
   onChange: (values: Array<string>) => void;
 }
 
-export default function FilterCard({ selected, data, onChange }: FiltersOpenProps) {
+export default function CategorySection({ data, selected, onChange }: FiltersOpenProps) {
   return (
     <section>
-      <h6 className="my-2">{data.name}</h6>
+      <h6 className="mb-2">{data.name}</h6>
+
       <ToggleGroup
         value={selected}
         onValueChange={onChange}
@@ -25,7 +20,12 @@ export default function FilterCard({ selected, data, onChange }: FiltersOpenProp
         className="flex justify-start gap-2"
       >
         {data.options.map((option) => (
-          <ToggleGroupItem key={option.id} value={option.title} aria-label="Toggle bold">
+          <ToggleGroupItem
+            key={option.id}
+            value={option.title}
+            size="sm"
+            className="data-[state=on]:bg-primary data-[state=on]:text-white"
+          >
             {option.title}
           </ToggleGroupItem>
         ))}

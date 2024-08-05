@@ -3,18 +3,23 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
+import { useRouter } from 'next/navigation';
+
+import useValueToPathname from '@/hooks/useValueToPathname';
 
 import Search from '@/components/ui/search';
-import SearchExit from './search-exit';
-import FiltersList from '../recipes-filters/filters-list';
+// import SearchExit from './search-exit';
+import CustomFilters from '../custom-filters';
 
 import { getRecipes } from '@/lib/data';
+import { searchKey } from '@/constants/query';
 
 export default function SearchBar() {
-  const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState('');
+  const { replace } = useRouter();
+  const { valueToPathname, valueFromPathname } = useValueToPathname();
 
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState(valueFromPathname(searchKey));
   const debouncedSearchTerm = useDebounce(searchTerm, 250);
 
   const { data: recipes } = useQuery({
@@ -23,22 +28,26 @@ export default function SearchBar() {
     select: (data) => data.recipes,
   });
 
+  function handleSearch(value: string) {
+    const pathname = valueToPathname(searchKey, value);
+    replace(pathname);
+  }
+
   return (
     <div className="flex items-center">
-      <SearchExit hidden={!open} onExit={() => setOpen(false)} />
+      {/* <SearchExit hidden={!open} onExit={() => setOpen(false)} /> */}
 
       <Search
         placeholder="Search for recipes"
         data={recipes ?? []}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        selected={selected}
-        setSelected={setSelected}
+        setSelected={handleSearch}
         open={open}
         setOpen={setOpen}
       />
 
-      <FiltersList />
+      <CustomFilters />
     </div>
   );
 }
