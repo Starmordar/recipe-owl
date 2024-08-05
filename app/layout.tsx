@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
+import BottomNavbar from '@/components/layout/bottom-navbar';
+import RecipesSearch from '@/components/layout/recipes-search';
+import QueryClientProvider from '@/components/query-client-provider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -26,8 +30,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <QueryClientProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <RecipesSearch />
+
+          {children}
+
+          <div className="fixed bottom-0 mx-0 w-full">
+            <BottomNavbar />
+          </div>
+        </body>
+      </html>
+    </QueryClientProvider>
   );
 }
