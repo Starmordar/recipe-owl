@@ -10,8 +10,12 @@ export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   return response.json();
 }
 
-export async function getRecipesPreview(search: string): Promise<GetRecipesResponse> {
+export async function getRecipesPreview(
+  search: string,
+  filters: { [key: string]: string | string[] | undefined }
+): Promise<GetRecipesResponse> {
   const response = await fetch('https://dummyjson.com/recipes');
+  console.log('re-trigger', search, filters);
 
   //   if (response.ok) {
   //     throw new Error('Failed to fetch data');

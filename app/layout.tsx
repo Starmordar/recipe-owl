@@ -5,6 +5,7 @@ import './globals.css';
 import BottomNavbar from '@/components/layout/bottom-navbar';
 import SearchBar from '@/components/layout/search-bar';
 import QueryClientProvider from '@/components/query-client-provider';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,15 +34,22 @@ export default function RootLayout({
     <QueryClientProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="fixed top-0 mx-0 w-full bg-white">
-            <SearchBar />
-          </div>
-          <div className="h-10"></div>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="fixed top-0 mx-0 w-full bg-white">
+              <SearchBar />
+            </div>
+            <div className="h-10"></div>
+            {children}
 
-          <div className="fixed bottom-0 mx-0 w-full">
-            <BottomNavbar />
-          </div>
+            <div className="fixed bottom-0 mx-0 w-full">
+              <BottomNavbar />
+            </div>
+          </ThemeProvider>
         </body>
       </html>
     </QueryClientProvider>

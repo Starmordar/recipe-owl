@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { DrawerClose, DrawerFooter } from '@/components/ui/drawer';
+import { DrawerClose } from '@/components/ui/drawer';
 
 import useValueToPathname from '@/hooks/useValueToPathname';
 import type { SelectedFilters } from '../types';

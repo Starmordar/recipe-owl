@@ -1,7 +1,5 @@
-import React from 'react';
-
 import Image from 'next/image';
-import picture from '../public/test.jpg';
+import picture from '@/public/test.jpg';
 
 import type { Recipe } from '@/types/recipe';
 

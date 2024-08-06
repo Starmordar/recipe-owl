@@ -1,18 +1,22 @@
-import React from 'react';
+import { Suspense } from 'react';
+import RecipePreviewCards from '@/components/recipe-preview-cards';
+import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skeleton';
 
-import { getRecipesPreview } from '@/lib/data';
-import RecipePreviewCard from '@/components/recipe-preview-card';
+interface PageProps {
+  searchParams: {
+    search?: string;
+    [key: string]: string | string[] | undefined;
+  };
+}
 
-export default async function Page() {
-  const data = await getRecipesPreview('');
+export default function Page({ searchParams }: PageProps) {
+  const search = searchParams?.search ?? '';
 
   return (
-    <React.Fragment>
-      <div className="px-2 py-4 grid grid-cols-2 gap-4">
-        {(data.recipes ?? []).map((recipe) => (
-          <RecipePreviewCard key={recipe.id} recipe={recipe} />
-        ))}
-      </div>
-    </React.Fragment>
+    <section>
+      <Suspense key={JSON.stringify(searchParams)} fallback={<RecipePreviewCardsSkeleton />}>
+        <RecipePreviewCards search={search} filters={searchParams} />
+      </Suspense>
+    </section>
   );
 }

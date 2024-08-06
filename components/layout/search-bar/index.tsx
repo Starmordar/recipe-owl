@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import useValueToPathname from '@/hooks/useValueToPathname';
 
 import Search from '@/components/ui/search';
-// import SearchExit from './search-exit';
 import CustomFilters from '../custom-filters';
 
 import { getRecipes } from '@/lib/data';
@@ -35,8 +34,6 @@ export default function SearchBar() {
 
   return (
     <div className="flex items-center">
-      {/* <SearchExit hidden={!open} onExit={() => setOpen(false)} /> */}
-
       <Search
         placeholder="Search for recipes"
         data={recipes ?? []}
