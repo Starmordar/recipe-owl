@@ -33,7 +33,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="container flex items-center pt-2 pb-1">
       <Search
         placeholder="Search for recipes"
         data={recipes ?? []}
