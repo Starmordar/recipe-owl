@@ -27,7 +27,7 @@ export default function BottomNavbar() {
         {/* <NavigationMenuItem></NavigationMenuItem>
         <NavigationMenuItem></NavigationMenuItem> */}
         {menuItems.map((item) => (
-          <NavigationMenuItem className="flex-1">
+          <NavigationMenuItem key={item.href} className="flex-1">
             <Link href={item.href} legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 {item.icon}

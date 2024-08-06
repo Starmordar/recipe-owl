@@ -1,4 +1,4 @@
-import type { GetRecipesResponse } from '@/types/api';
+import type { GetRecipeResponse, GetRecipesResponse } from '@/types/api';
 
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   const response = await fetch('https://dummyjson.com/recipes');
@@ -22,4 +22,15 @@ export async function getRecipesPreview(
   //   }
 
   return response.json();
+}
+
+export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
+  const response = await fetch('https://dummyjson.com/recipes');
+  const json: GetRecipesResponse = await response.json();
+
+  //   if (response.ok) {
+  //     throw new Error('Failed to fetch data');
+  //   }
+
+  return json.recipes.find((recipe) => recipeId === recipe.id);
 }
