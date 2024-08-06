@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import picture from '@/public/test.jpg';
 
 import type { Recipe } from '@/types/recipe';
@@ -9,7 +10,7 @@ interface RecipePreviewCardProps {
 
 export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
   return (
-    <div className="flex flex-col basis-1/2">
+    <Link href={`/recipes/${recipe.id}`} className="flex flex-col basis-1/2">
       <Image
         className="rounded-lg"
         src={picture}
@@ -22,6 +23,6 @@ export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
       <div>
         <p>{recipe.name}</p>
       </div>
-    </div>
+    </Link>
   );
 }
