@@ -11,7 +11,7 @@ export default async function RecipePreviewCards({ search, filters }: RecipePrev
   await new Promise<void>((resolve) => setTimeout(() => resolve(), 5000));
 
   return (
-    <div className="px-2 py-4 grid grid-cols-2 gap-2">
+    <div className="container grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4">
       {(data.recipes ?? []).map((recipe) => (
         <RecipePreviewCard key={recipe.id} recipe={recipe} />
       ))}

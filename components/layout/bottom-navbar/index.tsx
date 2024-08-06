@@ -16,7 +16,7 @@ import { ShoppingCart, User, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
-  { title: 'Discover', href: '/recipes', icon: <Search /> },
+  { title: 'Discover', href: '/discover', icon: <Search /> },
   { title: 'My Cart', href: '/cart', icon: <ShoppingCart /> },
   { title: 'Profile', href: '/profile', icon: <User /> },
 ];

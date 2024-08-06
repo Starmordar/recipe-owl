@@ -40,10 +40,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="fixed top-0 mx-0 w-full bg-white">
+            <div className="fixed top-0 mx-0 w-full z-50 bg-white">
               <SearchBar />
             </div>
-            <div className="h-10"></div>
+            <div className="h-[55px]"></div>
             {children}
 
             <div className="h-10"></div>

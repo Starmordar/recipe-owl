@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import picture from '@/public/test.jpg';
 
 import type { Recipe } from '@/types/recipe';
 
@@ -10,19 +9,19 @@ interface RecipePreviewCardProps {
 
 export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
   return (
-    <Link href={`/recipes/${recipe.id}`} className="flex flex-col basis-1/2">
-      <Image
-        className="rounded-lg"
-        src={picture}
-        alt="Picture of the author"
-        // width={500} automatically provided
-        // height={500} automatically provided
-        // blurDataURL="data:..." automatically provided
-        // placeholder="blur" // Optional blur-up while loading
-      />
-      <div>
-        <p>{recipe.name}</p>
+    <Link href={`/recipes/${recipe.id}`}>
+      <div className="relative h-[20vh]">
+        <Image
+          className="rounded-lg"
+          src={recipe.image}
+          alt={`${recipe.name} Image`}
+          fill
+          sizes="(max-width: 768px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
+        />
       </div>
+
+      <p className="text-base font-medium leading-5 mt-1">{recipe.name}</p>
     </Link>
   );
 }
