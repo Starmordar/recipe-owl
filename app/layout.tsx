@@ -41,8 +41,8 @@ export default function RootLayout({
           >
             {children}
 
-            <div className="h-10"></div>
-            <div className="fixed -bottom-2 mx-0 w-full">
+            <div className="h-16"></div>
+            <div className="fixed bottom-0 mx-0 w-full">
               <BottomNavbar />
             </div>
           </ThemeProvider>
