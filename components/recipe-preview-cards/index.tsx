@@ -8,7 +8,6 @@ interface RecipePreviewCardsProps {
 
 export default async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {
   const data = await getRecipesPreview(search, filters);
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 5000));
 
   return (
     <div className="container grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4">

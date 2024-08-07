@@ -1,5 +1,13 @@
-import { DataTable } from '@/components/ui/data-table';
-import { ColumnDef } from '@tanstack/react-table';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 export interface Ingredient {
   name: string;
@@ -10,15 +18,26 @@ interface IngredientsTableProps {
   ingredients: Array<Ingredient>;
 }
 
-export const columns: Array<ColumnDef<Ingredient>> = [
-  { accessorKey: 'name', header: 'Name' },
-  { accessorKey: 'amount', header: 'Amount' },
-];
-
 export default function IngredientsTable({ ingredients }: IngredientsTableProps) {
   return (
-    <div className="">
-      <DataTable columns={columns} data={ingredients} />
-    </div>
+    <section className="flex flex-col">
+      <Table>
+        <TableHeader className="hidden">
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+
+        <TableBody>
+          {ingredients.map((ingredient) => (
+            <TableRow key={ingredient.name} className="[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4">
+              <TableCell>{ingredient.name}</TableCell>
+              <TableCell className="font-medium text-right">{ingredient.amount}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </section>
   );
 }

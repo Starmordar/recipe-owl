@@ -14,7 +14,7 @@ export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
         <Image
           className="rounded-lg"
           src={recipe.image}
-          alt={`${recipe.name} Image`}
+          alt={recipe.name}
           fill
           sizes="(max-width: 768px) 50vw, 33vw"
           style={{ objectFit: 'cover' }}

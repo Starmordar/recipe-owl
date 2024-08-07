@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 
 import BottomNavbar from '@/components/layout/bottom-navbar';
-import SearchBar from '@/components/layout/search-bar';
 import QueryClientProvider from '@/components/query-client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 
@@ -40,10 +39,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="fixed top-0 mx-0 w-full z-50 bg-white">
-              <SearchBar />
-            </div>
-            <div className="h-[55px]"></div>
             {children}
 
             <div className="h-10"></div>
