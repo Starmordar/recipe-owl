@@ -9,7 +9,7 @@ export default function RecipeMethod({ recipe }: MethodProps) {
     <div className="flex flex-col gap-5">
       {recipe.instructions.map((instruction, index) => {
         return (
-          <div className="flex items-start">
+          <div key={index} className="flex items-start">
             <div className="min-w-10 w-10 pt-1 pl-1">
               <div className="flex justify-center items-center bg-primary opacity-80 w-[22px] h-[22px] rounded-full text-primary-foreground text-sm">
                 <span>{index + 1}</span>

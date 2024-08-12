@@ -17,8 +17,8 @@ export default async function RecipeSkeleton() {
         <Skeleton className="h-7 mb-2 w-[200px]" />
 
         <div className="flex flex-col gap-2">
-          {ingredients.map(() => (
-            <div className="flex justify-between">
+          {ingredients.map((_, index) => (
+            <div key={index} className="flex justify-between">
               <Skeleton className="h-4 w-[65vw]" />
               <Skeleton className="h-4 w-[20vw]" />
             </div>

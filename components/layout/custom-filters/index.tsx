@@ -82,6 +82,7 @@ export default function CustomFilters() {
           <div className="flex flex-col gap-4">
             {categories.map((category) => (
               <CategorySection
+                key={category.id}
                 selected={filters[category.id]}
                 data={category}
                 onChange={(values) => handleFiltersChange(category.id, values)}
