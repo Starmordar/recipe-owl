@@ -9,11 +9,11 @@ import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import schema from '../shema';
 
-interface StepsFieldset {
+interface StepsFieldsetProps {
   form: UseFormReturn<z.infer<typeof schema>>;
 }
 
-export default function StepsFieldset({ form }: StepsFieldset) {
+export default function StepsFieldset({ form }: StepsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
     name: 'steps',
     control: form.control,
@@ -47,6 +47,7 @@ export default function StepsFieldset({ form }: StepsFieldset) {
               className="rounded-full"
               variant="ghost"
               size="icon"
+              type="button"
               disabled={fields.length < 2}
               onClick={() => handleRemove(index)}
             >
@@ -57,7 +58,7 @@ export default function StepsFieldset({ form }: StepsFieldset) {
       })}
 
       <div className="flex justify-center">
-        <Button variant="ghost" onClick={() => append({ description: '' })}>
+        <Button variant="ghost" type="button" onClick={() => append({ description: '' })}>
           <Plus className="h-5 w-5 opacity-80 mr-2" />
           Step
         </Button>

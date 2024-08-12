@@ -8,10 +8,10 @@ export default async function NewRecipeHeader() {
       <ReturnBackBtn />
 
       <div className="flex items-center  gap-3">
-        <Button size="xss" variant="outline">
+        {/* <Button size="xss" variant="outline">
           Save
-        </Button>
-        <Button size="xss" variant="default">
+        </Button> */}
+        <Button form="create-recipe-form" size="xss" variant="default">
           Publish
         </Button>
         <EllipsisVertical className="h-4 w-4 opacity-50" />

@@ -64,6 +64,7 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
               className="rounded-full"
               variant="ghost"
               size="icon"
+              type="button"
               disabled={fields.length < 2}
               onClick={() => handleRemove(index)}
             >
@@ -74,7 +75,7 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
       })}
 
       <div className="flex justify-center">
-        <Button variant="ghost" onClick={() => append({ name: '', quantity: '' })}>
+        <Button variant="ghost" type="button" onClick={() => append({ name: '', quantity: '' })}>
           <Plus className="h-5 w-5 opacity-80 mr-2" />
           Ingredient
         </Button>

@@ -1,18 +1,14 @@
 import { z } from 'zod';
 
+const ACCEPTED_IMAGE_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+const imageSchema = z.any().refine((file) => ACCEPTED_IMAGE_MIME_TYPES.includes(file.type), {
+  message: 'Only .jpg, .jpeg, .png and .webp formats are supported.',
+});
+
 const ingredientSchema = z.object({
   name: z.string().min(2, { message: 'Ingredient name must be at least 2 characters.' }),
   quantity: z.string().min(2, { message: 'Quantity must be at least 2 characters.' }),
-});
-
-const ingredientsSchema = z.object({
-  ingredients: z.array(ingredientSchema),
-  // .min(MIN_STUDENTS_LENGTH, {
-  //   message: `You need to add at least ${MIN_STUDENTS_LENGTH} student`,
-  // })
-  // .max(MAX_STUDENTS_LENGTH, {
-  //   message: `You can add at most ${MAX_STUDENTS_LENGTH} students`,
-  // }),
 });
 
 const stepSchema = z.object({
@@ -20,6 +16,7 @@ const stepSchema = z.object({
 });
 
 const schema = z.object({
+  image: imageSchema,
   title: z.string().min(2, { message: 'Title must be at least 2 characters.' }),
   description: z.string().max(300, { message: 'Description must be at 300 characters at most.' }),
   ingredients: z.array(ingredientSchema),
