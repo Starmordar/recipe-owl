@@ -1,5 +1,5 @@
 import { Heart, Share2 } from 'lucide-react';
-import ReturnBackBtn from './components/return-back-btn';
+import ReturnBackBtn from '../components/return-back-btn';
 
 import { getRecipe } from '@/lib/data';
 
