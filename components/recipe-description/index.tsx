@@ -5,6 +5,7 @@ import IngredientsTable from './components/ingredients-table';
 import RecipeDescription from './components/recipe-description';
 import RecipeImage from './components/recipe-image';
 import RecipeMethod from './components/recipe-method';
+import { getIngredients } from '@/app/actions';
 
 interface RecipeProps {
   recipeId: number;
@@ -13,6 +14,9 @@ interface RecipeProps {
 export default async function Recipe({ recipeId }: RecipeProps) {
   const recipe = await getRecipe(recipeId);
   if (!recipe) return null; // TODO: Custom Handler
+
+  const ingredients = await getIngredients();
+  console.log('ingredients :>> ', ingredients);
 
   console.log('recipe :>> ', recipe);
 

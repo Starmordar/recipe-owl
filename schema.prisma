@@ -11,12 +11,7 @@ datasource db {
 model Ingredient {
     id          Int    @id @default(autoincrement())
     name        String
-}
- 
-model IngredientInRecipe {
-    id          Int    @id @default(autoincrement())
-    name        String
-    quantity    String
+    unit        String?
     recipes     Recipe[]
 }
 
@@ -24,6 +19,7 @@ model Recipe {
     id          Int @id @default(autoincrement())
     title       String
     description String?
-    ingredients IngredientInRecipe[]
+
     steps       String[]
+    ingredients Ingredient[]
 }

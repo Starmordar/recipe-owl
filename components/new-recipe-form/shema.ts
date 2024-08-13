@@ -16,7 +16,7 @@ const stepSchema = z.object({
 });
 
 const schema = z.object({
-  image: imageSchema,
+  // image: imageSchema,
   title: z.string().min(2, { message: 'Title must be at least 2 characters.' }),
   description: z.string().max(300, { message: 'Description must be at 300 characters at most.' }),
   ingredients: z.array(ingredientSchema),

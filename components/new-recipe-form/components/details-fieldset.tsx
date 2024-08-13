@@ -16,7 +16,7 @@ interface DetailsFieldsetProps {
 export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
   return (
     <fieldset className="flex flex-col gap-y-4">
-      <FormField
+      {/* <FormField
         control={form.control}
         name="image"
         render={({ field: { value, onChange, ...fieldProps } }) => (
@@ -33,7 +33,7 @@ export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
             <FormMessage />
           </FormItem>
         )}
-      />
+      /> */}
 
       <FormField
         control={form.control}

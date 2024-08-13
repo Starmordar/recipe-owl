@@ -2,21 +2,39 @@
 
 import { z } from 'zod';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
-import { GripVertical, Plus, Trash2 } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { Plus, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import schema from '../shema';
+import { getIngredients } from '@/app/actions';
 
 interface IngredientsFieldsetProps {
   form: UseFormReturn<z.infer<typeof schema>>;
 }
 
+const fetchIngredients = async () => {
+  return await getIngredients();
+};
+
 export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
     name: 'ingredients',
     control: form.control,
+  });
+
+  const { data: ingredients } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: () => fetchIngredients(),
   });
 
   function handleRemove(index: number) {
@@ -41,9 +59,22 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
                 name={`ingredients.${index}.name`}
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormControl>
-                      <Input placeholder="Name" {...field} />
-                    </FormControl>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Ingredient" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {(ingredients ?? []).map((ingredient) => {
+                          return (
+                            <SelectItem key={ingredient.name} value={ingredient.name}>
+                              {ingredient.name}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
                   </FormItem>
                 )}
               />

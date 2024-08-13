@@ -9,12 +9,13 @@ import { Form } from '@/components/ui/form';
 import IngredientsFieldset from './components/ingredients-fieldset';
 import StepsFieldset from './components/steps-fieldset';
 import DetailsFieldset from './components/details-fieldset';
+import { createRecipe } from '@/app/actions';
 
 export function NewRecipeForm() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      image: undefined,
+      // image: undefined,
       title: '',
       description: '',
       ingredients: [{ name: '', quantity: '' }],
@@ -22,9 +23,10 @@ export function NewRecipeForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof schema>) {
+  async function onSubmit(values: z.infer<typeof schema>) {
+    const recipe = await createRecipe(values);
+    console.log('recipe :>>', recipe);
     console.log('values :>> ', values);
-    console.log(values);
   }
 
   return (

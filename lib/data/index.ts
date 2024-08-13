@@ -1,4 +1,5 @@
 import type { GetRecipeResponse, GetRecipesResponse } from '@/types/api';
+import prisma from '../prisma';
 
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   const response = await fetch('https://dummyjson.com/recipes');
