@@ -1,15 +1,14 @@
 'use client';
 
 import { z } from 'zod';
-import { type UseFormReturn } from 'react-hook-form';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 
-import schema from '../shema';
-import { acceptedImageMimeTypes } from '@/constants/image';
 import ImageUploadField from './image-upload-field';
+import schema from '../shema';
 
 interface DetailsFieldsetProps {
   form: UseFormReturn<z.infer<typeof schema>>;
@@ -26,7 +25,7 @@ export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input placeholder="Title: My best-ever Mochi" {...field} />
+              <Input placeholder="Title: My best-ever Quiche Pie" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -40,7 +39,7 @@ export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
           <FormItem>
             <FormControl>
               <Textarea
-                placeholder="Tell us a little bit about this dish"
+                placeholder="Share a little more about this dist."
                 className="resize-none"
                 {...field}
               />

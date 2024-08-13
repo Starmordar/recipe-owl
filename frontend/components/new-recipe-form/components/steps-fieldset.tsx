@@ -5,7 +5,7 @@ import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import schema from '../shema';
 
@@ -39,6 +39,7 @@ export default function StepsFieldset({ form }: StepsFieldsetProps) {
                   <FormControl>
                     <Textarea placeholder="Mix..." className="resize-none" {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
