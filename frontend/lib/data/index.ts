@@ -16,19 +16,19 @@ export async function getRecipesPreview(
   search: string,
   filters: { [key: string]: string | string[] | undefined }
 ): Promise<GetRecipesResponse> {
-  const testRequest = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
-  console.log('testRequest :>> ', testRequest);
   // const test = await testRequest.json();
   // console.log('test :>> ', test);
 
-  const response = await fetch('https://dummyjson.com/recipes');
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {});
+  const data = await response.json();
+  // const response = await fetch('https://dummyjson.com/recipes');
   console.log('re-trigger', search, filters);
 
   //   if (response.ok) {
   //     throw new Error('Failed to fetch data');
   //   }
 
-  return response.json();
+  return { recipes: data };
 }
 
 export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
@@ -50,17 +50,18 @@ export async function getIngredients() {
 }
 
 export async function createRecipe(recipe: z.infer<typeof schema>) {
-  const tr = {
-    ...recipe,
-    ingredients: recipe.ingredients.map((i) => ({ name: i.name, unit: i.quantity })),
-    steps: recipe.steps.map((step) => step.description),
-  };
+  const edited = { ...recipe, steps: recipe.steps.map((s) => s.description) };
+  const { image, ...data } = edited;
 
-  console.log('recipe :>> ', tr);
-  const testRequest = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('data', JSON.stringify(data));
+  console.log('formData :>> ', formData);
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(tr),
+    body: formData,
   });
-  console.log('testRequest :>> ', testRequest);
+
+  console.log('response :>> ', response);
 }

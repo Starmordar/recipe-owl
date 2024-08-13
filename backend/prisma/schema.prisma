@@ -19,6 +19,7 @@ model Recipe {
   id          Int     @id @default(autoincrement())
   title       String
   description String?
+  image       Bytes @db.ByteA
 
   steps       String[]
   ingredients Ingredient[]

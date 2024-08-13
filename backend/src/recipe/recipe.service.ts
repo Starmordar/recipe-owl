@@ -1,14 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@app/database/prisma/prisma.service';
-import type { Prisma, Recipe } from '@prisma/client';
+import type { Recipe } from '@prisma/client';
 
 @Injectable()
 export class RecipeService {
   constructor(private prisma: PrismaService) {}
 
-  async createRecipe(data: any): Promise<Recipe> {
+  async getRecipes() {
+    return this.prisma.recipe.findMany();
+  }
+
+  async createRecipe({
+    data,
+    file,
+  }: {
+    data: any;
+    file: Express.Multer.File;
+  }): Promise<Recipe> {
     return this.prisma.recipe.create({
-      data: { ...data, ingredients: { create: data.ingredients } },
+      data: {
+        ...data,
+        image: file.buffer,
+        ingredients: { create: data.ingredients },
+      },
     });
   }
 }

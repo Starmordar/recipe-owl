@@ -1,15 +1,30 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UploadedFile,
+  UseInterceptors,
+  Get,
+} from '@nestjs/common';
 import { RecipeService } from './recipe.service';
-import type { Recipe } from '@prisma/client';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 export class RecipeController {
   constructor(private readonly recipeService: RecipeService) {}
 
+  @Get('recipe')
+  async getRecipes(): Promise<any> {
+    return this.recipeService.getRecipes();
+  }
+
   @Post('recipe')
-  async createRecipe(@Body() data: any): Promise<any> {
+  @UseInterceptors(FileInterceptor('image'))
+  async createRecipe(
+    @Body() { data }: { data: any },
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<any> {
     console.log('data :>> ', data);
-    delete data.image;
-    return this.recipeService.createRecipe(data);
+    return this.recipeService.createRecipe({ file, data: JSON.parse(data) });
   }
 }
