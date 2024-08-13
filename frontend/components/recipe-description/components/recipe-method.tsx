@@ -7,7 +7,7 @@ interface MethodProps {
 export default function RecipeMethod({ recipe }: MethodProps) {
   return (
     <div className="flex flex-col gap-5">
-      {recipe.instructions.map((instruction, index) => {
+      {recipe.steps.map((instruction, index) => {
         return (
           <div key={index} className="flex items-start">
             <div className="min-w-10 w-10 pt-1 pl-1">

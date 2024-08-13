@@ -14,8 +14,6 @@ export default async function Recipe({ recipeId }: RecipeProps) {
   const recipe = await getRecipe(recipeId);
   if (!recipe) return null; // TODO: Custom Handler
 
-  console.log('recipe :>> ', recipe);
-
   return (
     <div className="container flex flex-col gap-4">
       <section>
@@ -26,7 +24,7 @@ export default async function Recipe({ recipeId }: RecipeProps) {
       <section>
         <h2 className="text-xl font-bold mb-2">Ingredients</h2>
         <IngredientsTable
-          ingredients={recipe.ingredients.map((i) => ({ name: `${i}`, amount: '2tbsp' }))}
+          ingredients={recipe?.ingredients?.map((i) => ({ name: `${i}`, amount: '2tbsp' })) ?? []}
         />
       </section>
 

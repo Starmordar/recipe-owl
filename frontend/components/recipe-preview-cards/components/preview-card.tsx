@@ -8,8 +8,6 @@ interface RecipePreviewCardProps {
 }
 
 export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
-  console.log('recipe.image.data :>> ', recipe.image);
-
   const base64Image = Buffer.from(recipe.image.data).toString('base64');
   const mimeType = 'image/jpeg';
   const dataUri = `data:${mimeType};base64,${base64Image}`;

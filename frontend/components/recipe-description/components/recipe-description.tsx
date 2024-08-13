@@ -8,8 +8,6 @@ interface RecipeDescriptionProps {
 }
 
 export default function RecipeDescription({ recipe }: RecipeDescriptionProps) {
-  console.log('recipe :>> ', recipe);
-
   return (
     <div className="mb-4">
       <h1 className="text-xl font-bold mb-1">{recipe.name}</h1>

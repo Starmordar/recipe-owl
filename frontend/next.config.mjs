@@ -7,6 +7,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV !== 'development',
   },
+  cacheMaxMemorySize: 0,
   images: {
     remotePatterns: [
       {
