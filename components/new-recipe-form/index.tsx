@@ -15,7 +15,7 @@ export function NewRecipeForm() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      // image: undefined,
+      image: undefined,
       title: '',
       description: '',
       ingredients: [{ name: '', quantity: '' }],

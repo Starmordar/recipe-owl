@@ -8,6 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 
 import schema from '../shema';
+import { acceptedImageMimeTypes } from '@/constants/image';
+import ImageUploadField from './image-upload-field';
 
 interface DetailsFieldsetProps {
   form: UseFormReturn<z.infer<typeof schema>>;
@@ -16,24 +18,7 @@ interface DetailsFieldsetProps {
 export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
   return (
     <fieldset className="flex flex-col gap-y-4">
-      {/* <FormField
-        control={form.control}
-        name="image"
-        render={({ field: { value, onChange, ...fieldProps } }) => (
-          <FormItem>
-            <FormControl>
-              <Input
-                {...fieldProps}
-                placeholder="Recipe Image"
-                type="file"
-                accept="image/*"
-                onChange={(event) => onChange(event.target.files && event.target.files[0])}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      /> */}
+      <ImageUploadField form={form} />
 
       <FormField
         control={form.control}

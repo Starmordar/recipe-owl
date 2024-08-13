@@ -12,7 +12,7 @@ export async function getIngredients() {
   return ingredients;
 }
 
-export async function createRecipes(recipe: z.infer<typeof schema>) {
+export async function createRecipe(recipe: z.infer<typeof schema>) {
   const result = await prisma.recipe.create({
     data: {
       title: recipe.title,
