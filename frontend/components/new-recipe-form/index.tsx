@@ -9,7 +9,7 @@ import { Form } from '@/components/ui/form';
 import IngredientsFieldset from './components/ingredients-fieldset';
 import StepsFieldset from './components/steps-fieldset';
 import DetailsFieldset from './components/details-fieldset';
-import { createRecipe } from '@/app/actions';
+import { createRecipe } from '@/lib/data';
 
 export function NewRecipeForm() {
   const form = useForm<z.infer<typeof schema>>({
@@ -18,9 +18,10 @@ export function NewRecipeForm() {
   });
 
   async function onSubmit(values: z.infer<typeof schema>) {
-    // const recipe = await createRecipe(values);
-    // console.log('recipe :>>', recipe);
     console.log('values :>> ', values);
+
+    const recipe = await createRecipe(values);
+    // console.log('recipe :>>', recipe);
   }
 
   return (

@@ -16,15 +16,11 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import schema from '../shema';
-import { getIngredients } from '@/app/actions';
+import { getIngredients } from '@/lib/data';
 
 interface IngredientsFieldsetProps {
   form: UseFormReturn<z.infer<typeof schema>>;
 }
-
-const fetchIngredients = async () => {
-  return await getIngredients();
-};
 
 export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
@@ -34,7 +30,7 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
 
   const { data: ingredients } = useQuery({
     queryKey: ['ingredients'],
-    queryFn: () => fetchIngredients(),
+    queryFn: () => getIngredients(),
   });
 
   function handleRemove(index: number) {
