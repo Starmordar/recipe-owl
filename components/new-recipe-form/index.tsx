@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import schema from './shema';
+import schema, { defaultValues } from './shema';
 
 import { Form } from '@/components/ui/form';
 import IngredientsFieldset from './components/ingredients-fieldset';
@@ -14,18 +14,12 @@ import { createRecipe } from '@/app/actions';
 export function NewRecipeForm() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      image: undefined,
-      title: '',
-      description: '',
-      ingredients: [{ name: '', quantity: '' }],
-      steps: [{ description: '' }],
-    },
+    defaultValues,
   });
 
   async function onSubmit(values: z.infer<typeof schema>) {
-    const recipe = await createRecipe(values);
-    console.log('recipe :>>', recipe);
+    // const recipe = await createRecipe(values);
+    // console.log('recipe :>>', recipe);
     console.log('values :>> ', values);
   }
 

@@ -1,9 +1,14 @@
 import { z } from 'zod';
 import { acceptedImageMimeTypes } from '@/constants/image';
 
-const imageSchema = z.any().refine((file) => acceptedImageMimeTypes.includes(file.type), {
-  message: 'Only .jpg, .jpeg, .png .avif and .webp formats are supported.',
-});
+const imageSchema = z
+  .any()
+  .refine((file) => file !== undefined && file !== null, {
+    message: 'Please upload an image of your recipe',
+  })
+  .refine((file) => acceptedImageMimeTypes.includes(file?.type), {
+    message: 'Only .jpg, .jpeg, .png .avif and .webp formats are supported.',
+  });
 
 const ingredientSchema = z.object({
   name: z.string().min(2, { message: 'Ingredient name must be at least 2 characters.' }),

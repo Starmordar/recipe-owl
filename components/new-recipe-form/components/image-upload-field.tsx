@@ -17,34 +17,30 @@ interface ImageUploadFieldProps {
 }
 
 export default function ImageUploadField({ form }: ImageUploadFieldProps) {
-  const [selectedImage, setSelectedImage] = React.useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
     onChange: (...value: Array<any>) => void
   ) {
     const file = event.target.files?.[0] ?? null;
+    if (file === null) return;
 
     onChange(file);
-    setSelectedImage(file);
+    setSelectedImage(URL.createObjectURL(file));
   }
 
   return (
     <div className="relative flex w-full h-[25vh] bg-muted rounded-lg">
       {selectedImage ? (
         <>
-          <NextImage
-            src={URL.createObjectURL(selectedImage)}
-            alt="Uploaded Image"
-            fill
-            style={{ objectFit: 'cover' }}
-          />
+          <NextImage src={selectedImage} alt="Uploaded Image" fill style={{ objectFit: 'cover' }} />
           <FormField
             control={form.control}
             name="image"
             render={({ field: { value, onChange, ...fieldProps } }) => (
-              <FormLabel htmlFor="fileInput" className="absolute bottom-3 right-3 cursor-pointer">
-                <FormItem>
+              <FormItem>
+                <FormLabel htmlFor="fileInput" className="absolute bottom-3 right-3 cursor-pointer">
                   <FormControl>
                     <div className="flex w-full justify-center items-center">
                       <UploadInput
@@ -58,8 +54,10 @@ export default function ImageUploadField({ form }: ImageUploadFieldProps) {
                       </div>
                     </div>
                   </FormControl>
-                </FormItem>
-              </FormLabel>
+                </FormLabel>
+
+                <FormMessage className="absolute bottom-1 text-center" />
+              </FormItem>
             )}
           />
         </>
@@ -68,11 +66,8 @@ export default function ImageUploadField({ form }: ImageUploadFieldProps) {
           control={form.control}
           name="image"
           render={({ field: { value, onChange, ...fieldProps } }) => (
-            <FormLabel
-              htmlFor="fileInput"
-              className="flex w-full justify-center items-center cursor-pointer"
-            >
-              <FormItem>
+            <FormItem className="flex w-full justify-center items-center cursor-pointer">
+              <FormLabel className="w-full" htmlFor="fileInput">
                 <FormControl>
                   <div className="flex w-full justify-center items-center">
                     <UploadInput
@@ -81,14 +76,16 @@ export default function ImageUploadField({ form }: ImageUploadFieldProps) {
                     />
                     <Image className="h-20 w-20 opacity-50" strokeWidth={1} />
 
-                    <div className="absolute bottom-4 mx-auto flex items-center gap-x-4">
+                    <div className="absolute bottom-6 mx-auto flex items-center gap-x-4">
                       <Camera className="h-5 w-5 text-muted-foreground" strokeWidth={1} />
                       <p className="text-muted-foreground">Upload recipe photo</p>
                     </div>
                   </div>
                 </FormControl>
-              </FormItem>
-            </FormLabel>
+              </FormLabel>
+
+              <FormMessage className="absolute bottom-1 text-center" />
+            </FormItem>
           )}
         />
       )}
