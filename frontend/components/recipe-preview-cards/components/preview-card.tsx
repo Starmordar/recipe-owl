@@ -8,16 +8,12 @@ interface RecipePreviewCardProps {
 }
 
 export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
-  const base64Image = Buffer.from(recipe.image.data).toString('base64');
-  const mimeType = 'image/jpeg';
-  const dataUri = `data:${mimeType};base64,${base64Image}`;
-
   return (
     <Link href={`/recipes/${recipe.id}`}>
       <div className="relative h-[20vh]">
         <Image
           className="rounded-lg"
-          src={dataUri}
+          src={recipe.imageUrl}
           alt={recipe.title ?? ''}
           fill
           sizes="(max-width: 768px) 50vw, 33vw"

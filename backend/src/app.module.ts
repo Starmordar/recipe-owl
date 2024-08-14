@@ -2,9 +2,17 @@ import { Module } from '@nestjs/common';
 import { RecipeModule } from './recipe/recipe.module';
 import { PrismaModule } from './database/prisma/prisma.module';
 import { IngredientModule } from './ingredient/ingredient.module';
+import { ConfigModule } from '@nestjs/config';
+import { MinioModule } from './minio/minio.module';
 
 @Module({
-  imports: [PrismaModule, RecipeModule, IngredientModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
+    MinioModule,
+    RecipeModule,
+    IngredientModule,
+  ],
   controllers: [],
   providers: [],
 })

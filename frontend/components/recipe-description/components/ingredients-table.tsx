@@ -1,18 +1,12 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
-export interface Ingredient {
-  name: string;
-  amount: string;
-}
+import type { Ingredient } from '@/types/recipe';
 
 interface IngredientsTableProps {
   ingredients: Array<Ingredient>;
@@ -33,7 +27,7 @@ export default function IngredientsTable({ ingredients }: IngredientsTableProps)
           {ingredients.map((ingredient) => (
             <TableRow key={ingredient.name} className="[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4">
               <TableCell>{ingredient.name}</TableCell>
-              <TableCell className="font-medium text-right">{ingredient.amount}</TableCell>
+              <TableCell className="font-medium text-right">{ingredient.unit}</TableCell>
             </TableRow>
           ))}
         </TableBody>

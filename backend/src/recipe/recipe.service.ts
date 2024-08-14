@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@app/database/prisma/prisma.service';
+import { MinioService } from '@app/minio/minio.service';
+
 import type { Recipe } from '@prisma/client';
 
 @Injectable()
 export class RecipeService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private minio: MinioService,
+  ) {}
 
   async getRecipeById(id: string) {
     return this.prisma.recipe.findFirst({
@@ -24,12 +29,11 @@ export class RecipeService {
     data: any;
     file: Express.Multer.File;
   }): Promise<Recipe> {
+    const imageUrl = await this.minio.uploadFile(file);
+    console.log('Uploaded file URL :>> ', imageUrl);
+
     return this.prisma.recipe.create({
-      data: {
-        ...data,
-        image: file.buffer,
-        ingredients: { create: data.ingredients },
-      },
+      data: { ...data, imageUrl, ingredients: { create: data.ingredients } },
     });
   }
 }
