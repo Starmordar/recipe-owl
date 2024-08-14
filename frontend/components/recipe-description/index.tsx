@@ -23,9 +23,7 @@ export default async function Recipe({ recipeId }: RecipeProps) {
 
       <section>
         <h2 className="text-xl font-bold mb-2">Ingredients</h2>
-        <IngredientsTable
-          ingredients={recipe?.ingredients?.map((i) => ({ name: `${i}`, amount: '2tbsp' })) ?? []}
-        />
+        <IngredientsTable ingredients={recipe.ingredients} />
       </section>
 
       <section>

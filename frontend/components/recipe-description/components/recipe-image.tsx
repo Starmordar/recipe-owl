@@ -6,7 +6,6 @@ interface RecipeImageProps {
 }
 
 export default function RecipeImage({ recipe }: RecipeImageProps) {
-  console.log('recipe :>> ', recipe);
   return (
     <div className="relative h-[40vh]">
       <Image

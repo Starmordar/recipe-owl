@@ -15,7 +15,7 @@ export default async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHea
     <div className="container flex items-center justify-between pt-2 pb-1 h-12">
       <ReturnBackBtn />
 
-      <p>{recipe?.name}</p>
+      <p>{recipe?.title}</p>
 
       <div className="flex gap-3">
         <Share2 className="h-4 w-4 opacity-50" />

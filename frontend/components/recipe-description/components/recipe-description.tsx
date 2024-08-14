@@ -10,8 +10,8 @@ interface RecipeDescriptionProps {
 export default function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
     <div className="mb-4">
-      <h1 className="text-xl font-bold mb-1">{recipe.name}</h1>
-      <p className="text-sm leading-5">{text}</p>
+      <h1 className="text-xl font-bold mb-1">{recipe.title}</h1>
+      <p className="text-sm leading-5">{recipe.description}</p>
     </div>
   );
 }
