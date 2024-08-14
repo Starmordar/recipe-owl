@@ -1,22 +1,14 @@
 'use client';
 
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
-import { useQuery } from '@tanstack/react-query';
 import { Plus, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 
-import { getIngredients } from '@/lib/data';
 import type { FormValues } from '../shema';
+import { IngredientsSelect } from './ingredients-select';
 
 interface IngredientsFieldsetProps {
   form: UseFormReturn<FormValues>;
@@ -26,11 +18,6 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
     name: 'ingredients',
     control: form.control,
-  });
-
-  const { data: ingredients } = useQuery({
-    queryKey: ['ingredients'],
-    queryFn: () => getIngredients(),
   });
 
   function handleRemoveField(index: number) {
@@ -45,35 +32,14 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
       {fields.map((field, index) => {
         return (
           <div key={field.id} className="flex">
-            <div className="flex gap-x-2">
-              <FormField
-                control={form.control}
-                name={`ingredients.${index}.name`}
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Ingredient" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {ingredients?.map((ingredient) => (
-                          <SelectItem key={ingredient.name} value={ingredient.name}>
-                            {ingredient.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="flex flex-1 gap-x-2">
+              <IngredientsSelect form={form} fieldIndex={index} />
+
               <FormField
                 control={form.control}
                 name={`ingredients.${index}.unit`}
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="basis-1/3">
                     <FormControl>
                       <Input placeholder="Quantity" {...field} />
                     </FormControl>

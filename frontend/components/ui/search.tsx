@@ -11,7 +11,7 @@ import {
 
 interface SearchProps {
   placeholder: string;
-  data: Array<{ id: number; name: string }>;
+  data: Array<{ id: number; title: string }>;
 
   open: boolean;
   setOpen: (value: boolean) => void;
@@ -74,7 +74,7 @@ export default function Search({
                       }}
                       onSelect={handleValueSelect}
                     >
-                      {item.name}
+                      {item.title}
                     </CommandItem>
                   ))}
                 </CommandGroup>

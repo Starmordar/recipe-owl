@@ -18,6 +18,7 @@ function RecipeDetailsForm() {
   });
 
   async function onSubmit(values: FormValues) {
+    console.log('values :>> ', values);
     await createRecipe(values);
   }
 

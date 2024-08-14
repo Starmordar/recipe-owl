@@ -16,18 +16,12 @@ export class RecipeController {
 
   @Get('recipe')
   async getRecipes(): Promise<any> {
-    const recipe = await this.recipeService.getRecipeById('1');
-    console.log('recipe :>> ', recipe);
-    const recipes = await this.recipeService.getRecipes();
-    console.log('trigger', recipes);
     return this.recipeService.getRecipes();
   }
 
   @Get('recipe/:id')
   async getRecipeById(@Param('id') id: string): Promise<any> {
-    console.log('trigger 2');
     const recipe = await this.recipeService.getRecipeById(id);
-    console.log('recipe :>> ', recipe);
     return recipe;
   }
 

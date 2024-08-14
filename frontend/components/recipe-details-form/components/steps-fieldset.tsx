@@ -36,7 +36,11 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
               render={({ field }) => (
                 <FormItem className="flex-1">
                   <FormControl>
-                    <Textarea placeholder="Mix..." className="resize-none" {...field} />
+                    <Textarea
+                      placeholder="Mix..."
+                      className="min-h-[40px] resize-none"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

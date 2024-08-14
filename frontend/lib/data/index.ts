@@ -47,8 +47,10 @@ export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
   return data;
 }
 
-export async function getIngredients(): Promise<GetIngredientsResponse> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ingredients`);
+export async function getIngredients(searchTerm: string): Promise<GetIngredientsResponse> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/ingredients/?search=${searchTerm}`
+  );
   const ingredients = await response.json();
 
   return ingredients;
