@@ -1,27 +1,24 @@
 'use client';
 
-import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import schema, { defaultValues } from './shema';
+import schema, { defaultValues, type FormValues } from './shema';
 
 import { Form } from '@/components/ui/form';
 import IngredientsFieldset from './components/ingredients-fieldset';
 import StepsFieldset from './components/steps-fieldset';
 import DetailsFieldset from './components/details-fieldset';
+
 import { createRecipe } from '@/lib/data';
 
-export function NewRecipeForm() {
-  const form = useForm<z.infer<typeof schema>>({
+function RecipeDetailsForm() {
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues,
   });
 
-  async function onSubmit(values: z.infer<typeof schema>) {
-    console.log('values :>> ', values);
-
-    const recipe = await createRecipe(values);
-    // console.log('recipe :>>', recipe);
+  async function onSubmit(values: FormValues) {
+    await createRecipe(values);
   }
 
   return (
@@ -34,3 +31,5 @@ export function NewRecipeForm() {
     </Form>
   );
 }
+
+export default RecipeDetailsForm;

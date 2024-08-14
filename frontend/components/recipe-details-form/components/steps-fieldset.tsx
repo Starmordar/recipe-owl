@@ -1,25 +1,24 @@
 'use client';
 
-import { z } from 'zod';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import schema from '../shema';
+import type { FormValues } from '../shema';
 
 interface StepsFieldsetProps {
-  form: UseFormReturn<z.infer<typeof schema>>;
+  form: UseFormReturn<FormValues>;
 }
 
-export default function StepsFieldset({ form }: StepsFieldsetProps) {
+function StepsFieldset({ form }: StepsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
     name: 'steps',
     control: form.control,
   });
 
-  function handleRemove(index: number) {
+  function handleRemoveField(index: number) {
     if (fields.length < 2) return;
     remove(index);
   }
@@ -50,7 +49,7 @@ export default function StepsFieldset({ form }: StepsFieldsetProps) {
               size="icon"
               type="button"
               disabled={fields.length < 2}
-              onClick={() => handleRemove(index)}
+              onClick={() => handleRemoveField(index)}
             >
               <Trash2 className="h-4 w-4 opacity-50" />
             </Button>
@@ -67,3 +66,5 @@ export default function StepsFieldset({ form }: StepsFieldsetProps) {
     </fieldset>
   );
 }
+
+export default StepsFieldset;

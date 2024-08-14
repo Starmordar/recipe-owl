@@ -1,6 +1,5 @@
 'use client';
 
-import { z } from 'zod';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { Plus, Trash2 } from 'lucide-react';
@@ -15,14 +14,15 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import schema from '../shema';
+
 import { getIngredients } from '@/lib/data';
+import type { FormValues } from '../shema';
 
 interface IngredientsFieldsetProps {
-  form: UseFormReturn<z.infer<typeof schema>>;
+  form: UseFormReturn<FormValues>;
 }
 
-export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
+function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   const { fields, append, remove } = useFieldArray({
     name: 'ingredients',
     control: form.control,
@@ -33,7 +33,7 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
     queryFn: () => getIngredients(),
   });
 
-  function handleRemove(index: number) {
+  function handleRemoveField(index: number) {
     if (fields.length < 2) return;
     remove(index);
   }
@@ -89,7 +89,7 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
               size="icon"
               type="button"
               disabled={fields.length < 2}
-              onClick={() => handleRemove(index)}
+              onClick={() => handleRemoveField(index)}
             >
               <Trash2 className="h-4 w-4 opacity-50" />
             </Button>
@@ -106,3 +106,5 @@ export default function IngredientsFieldset({ form }: IngredientsFieldsetProps) 
     </fieldset>
   );
 }
+
+export default IngredientsFieldset;

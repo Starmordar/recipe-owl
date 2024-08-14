@@ -1,20 +1,18 @@
 'use client';
 
-import { z } from 'zod';
-import type { UseFormReturn } from 'react-hook-form';
-
+import ImageUploadField from './image-upload-field';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 
-import ImageUploadField from './image-upload-field';
-import schema from '../shema';
+import { type FormValues } from '../shema';
+import type { UseFormReturn } from 'react-hook-form';
 
 interface DetailsFieldsetProps {
-  form: UseFormReturn<z.infer<typeof schema>>;
+  form: UseFormReturn<FormValues>;
 }
 
-export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
+function DetailsFieldset({ form }: DetailsFieldsetProps) {
   return (
     <fieldset className="flex flex-col gap-y-4">
       <ImageUploadField form={form} />
@@ -51,3 +49,5 @@ export default function DetailsFieldset({ form }: DetailsFieldsetProps) {
     </fieldset>
   );
 }
+
+export default DetailsFieldset;

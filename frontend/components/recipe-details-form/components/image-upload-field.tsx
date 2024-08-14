@@ -1,22 +1,21 @@
 'use client';
 
 import React from 'react';
-import { z } from 'zod';
-import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
-
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input, type InputProps } from '@/components/ui/input';
 import NextImage from 'next/image';
-
-import schema from '../shema';
-import { acceptedImageMimeTypes } from '@/constants/image';
 import { Camera, Image } from 'lucide-react';
 
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import { acceptedImageMimeTypes } from '@/constants/image';
+import type { FormValues } from '../shema';
+import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
+
 interface ImageUploadFieldProps {
-  form: UseFormReturn<z.infer<typeof schema>>;
+  form: UseFormReturn<FormValues>;
 }
 
-export default function ImageUploadField({ form }: ImageUploadFieldProps) {
+function ImageUploadField({ form }: ImageUploadFieldProps) {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
 
   function handleFileUpload(
@@ -34,7 +33,13 @@ export default function ImageUploadField({ form }: ImageUploadFieldProps) {
     <div className="relative flex w-full h-[25vh] bg-muted rounded-lg">
       {selectedImage ? (
         <>
-          <NextImage src={selectedImage} alt="Uploaded Image" fill style={{ objectFit: 'cover' }} />
+          <NextImage
+            className="rounded-lg"
+            src={selectedImage}
+            alt="Uploaded Image"
+            fill
+            style={{ objectFit: 'cover' }}
+          />
           <FormField
             control={form.control}
             name="image"
@@ -111,3 +116,5 @@ function UploadInput({ onUpload, fieldProps }: UploadInputProps) {
     />
   );
 }
+
+export default ImageUploadField;

@@ -1,6 +1,5 @@
-import schema from '@/components/new-recipe-form/shema';
-import type { GetRecipeResponse, GetRecipesResponse } from '@/types/api';
-import { z } from 'zod';
+import type { GetIngredientsResponse, GetRecipeResponse, GetRecipesResponse } from '@/types/api';
+import type { FormValues as RecipeFormValues } from '@/components/recipe-details-form/shema';
 
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {});
@@ -48,26 +47,23 @@ export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
   return data;
 }
 
-export async function getIngredients() {
+export async function getIngredients(): Promise<GetIngredientsResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ingredients`);
   const ingredients = await response.json();
-  console.log('ingredients :>> ', ingredients);
+
   return ingredients;
 }
 
-export async function createRecipe(recipe: z.infer<typeof schema>) {
+export async function createRecipe(recipe: RecipeFormValues) {
   const edited = { ...recipe, steps: recipe.steps.map((s) => s.description) };
   const { image, ...data } = edited;
 
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));
-  console.log('formData :>> ', formData);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
     method: 'POST',
     body: formData,
   });
-
-  console.log('response :>> ', response);
 }
