@@ -5,6 +5,7 @@ import './globals.css';
 import BottomNavbar from '@/components/layout/bottom-navbar';
 import QueryClientProvider from '@/components/query-client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             <div className="fixed bottom-0 mx-0 w-full">
               <BottomNavbar />
             </div>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

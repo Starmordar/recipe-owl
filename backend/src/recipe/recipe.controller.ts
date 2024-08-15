@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import type { Recipe } from '@prisma/client';
 
 @Controller()
 export class RecipeController {
@@ -30,8 +31,7 @@ export class RecipeController {
   async createRecipe(
     @Body() { data }: { data: any },
     @UploadedFile() file: Express.Multer.File,
-  ): Promise<any> {
-    console.log('data :>> ', data);
+  ): Promise<Recipe> {
     return this.recipeService.createRecipe({ file, data: JSON.parse(data) });
   }
 }

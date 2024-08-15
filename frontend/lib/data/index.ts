@@ -1,5 +1,6 @@
 import type { GetIngredientsResponse, GetRecipeResponse, GetRecipesResponse } from '@/types/api';
 import type { FormValues as RecipeFormValues } from '@/components/recipe-details-form/shema';
+import type { Recipe } from '@/types/recipe';
 
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {});
@@ -56,16 +57,19 @@ export async function getIngredients(searchTerm: string): Promise<GetIngredients
   return ingredients;
 }
 
-export async function createRecipe(recipe: RecipeFormValues) {
-  const edited = { ...recipe, steps: recipe.steps.map((s) => s.description) };
+export async function createRecipe(formValues: RecipeFormValues): Promise<Recipe> {
+  const edited = { ...formValues, steps: formValues.steps.map((s) => s.description) };
   const { image, ...data } = edited;
 
   const formData = new FormData();
   formData.append('image', image);
   formData.append('data', JSON.stringify(data));
 
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
     method: 'POST',
     body: formData,
   });
+
+  const recipe = await response.json();
+  return recipe;
 }
