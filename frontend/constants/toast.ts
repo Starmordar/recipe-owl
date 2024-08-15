@@ -5,4 +5,5 @@ export const errorToast: Toast = {
   variant: 'destructive',
   title: 'Something went wrong.',
   description: 'There was a problem with your request.',
+  duration: 2000,
 };

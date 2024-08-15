@@ -6,6 +6,7 @@ import {
   UseInterceptors,
   Get,
   Param,
+  Put,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -33,5 +34,19 @@ export class RecipeController {
     @UploadedFile() file: Express.Multer.File,
   ): Promise<Recipe> {
     return this.recipeService.createRecipe({ file, data: JSON.parse(data) });
+  }
+
+  @Put('recipe/:id')
+  @UseInterceptors(FileInterceptor('image'))
+  async updateRecipe(
+    @Param('id') id: string,
+    @Body() { data }: { data: any },
+    @UploadedFile() file: Express.Multer.File | undefined,
+  ): Promise<Recipe | undefined> {
+    return this.recipeService.updateRecipe({
+      id,
+      file,
+      data: JSON.parse(data),
+    });
   }
 }

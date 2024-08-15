@@ -33,7 +33,9 @@ export async function getRecipesPreview(
 }
 
 export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`, {
+    cache: 'no-cache',
+  });
   console.log(
     '`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}` :>> ',
     `${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`
@@ -70,6 +72,32 @@ export async function createRecipe(formValues: RecipeFormValues): Promise<Recipe
     body: formData,
   });
 
-  const recipe = await response.json();
-  return recipe;
+  if (!response.ok) {
+    throw new Error('Failed to Create Recipe');
+  }
+
+  return response.json();
+}
+
+export async function updateRecipe(
+  recipeId: number,
+  formValues: RecipeFormValues
+): Promise<Recipe> {
+  const edited = { ...formValues, steps: formValues.steps.map((s) => s.description) };
+  const { image, ...data } = edited;
+
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('data', JSON.stringify(data));
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`, {
+    method: 'PUT',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to Update Recipe');
+  }
+
+  return response.json();
 }

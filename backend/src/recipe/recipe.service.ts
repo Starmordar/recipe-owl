@@ -36,4 +36,25 @@ export class RecipeService {
       data: { ...data, imageUrl, ingredients: { create: data.ingredients } },
     });
   }
+
+  async updateRecipe({
+    id,
+    data,
+    file,
+  }: {
+    id: string;
+    data: any;
+    file: Express.Multer.File | undefined;
+  }): Promise<Recipe> {
+    const imageUrl = file ? await this.imageService.upload(file) : undefined;
+    const dataWithoutImage = {
+      ...data,
+      ingredients: { deleteMany: {}, create: data.ingredients },
+    };
+
+    return this.prisma.recipe.update({
+      where: { id: Number(id) },
+      data: imageUrl ? { ...dataWithoutImage, imageUrl } : dataWithoutImage,
+    });
+  }
 }

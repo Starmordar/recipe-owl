@@ -13,6 +13,7 @@ import DetailsFieldset from './components/details-fieldset';
 import { createRecipe } from '@/lib/data';
 import { useToast } from '@/components/ui/use-toast';
 import { errorToast } from '@/constants/toast';
+import useRecipeForm from './hooks/useRecipeForm';
 
 interface RecipeDetailsFromProps {
   recipeId?: number;
@@ -21,20 +22,7 @@ interface RecipeDetailsFromProps {
 
 function RecipeDetailsForm({ recipeId, initialValues }: RecipeDetailsFromProps) {
   const { toast } = useToast();
-  const router = useRouter();
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: initialValues ?? defaultValues,
-  });
-
-  async function onSubmit(values: FormValues) {
-    console.log('values :>> ', values);
-    if (recipeId) console.log('update all');
-
-    const recipe = await createRecipe(values).catch(() => toast(errorToast));
-    // if (recipe) router.push(`/recipes/${recipe.id}`);
-  }
+  const { form, onSubmit } = useRecipeForm({ recipeId, initialValues });
 
   return (
     <Form {...form}>

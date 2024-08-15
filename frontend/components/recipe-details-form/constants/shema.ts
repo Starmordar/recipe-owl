@@ -16,7 +16,7 @@ const schema = z.object({
     .refine((file) => file !== undefined && file !== null, {
       message: 'Please upload an image of your recipe',
     })
-    .refine((file) => acceptedImageMimeTypes.includes(file?.type), {
+    .refine((file) => typeof file === 'string' || acceptedImageMimeTypes.includes(file?.type), {
       message: 'Only .jpg, .jpeg, .png .avif and .webp formats are supported.',
     }),
   title: z
