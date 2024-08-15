@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as Minio from 'minio';
+import type { Storage } from '../types';
 
 @Injectable()
-export class MinioService {
+export class MinioService implements Storage {
   private minioClient: Minio.Client;
   private bucketName: string;
 
@@ -17,6 +18,7 @@ export class MinioService {
     });
 
     this.bucketName = this.configService.get('MINIO_BUCKET_NAME')!;
+    this.createBucketIfNotExists();
   }
 
   async createBucketIfNotExists() {
@@ -26,14 +28,14 @@ export class MinioService {
     await this.minioClient.makeBucket(this.bucketName, 'eu-west-1');
   }
 
-  async uploadFile(file: Express.Multer.File) {
-    const fileName = `${Date.now()}-${file.originalname}`;
+  async upload(originalname: string, buffer: Buffer): Promise<string> {
+    const fileName = `${Date.now()}-${originalname}`;
 
     await this.minioClient.putObject(
       this.bucketName,
       fileName,
-      file.buffer,
-      file.size,
+      buffer,
+      buffer.byteLength,
     );
 
     return this.getPublicUrl(fileName);

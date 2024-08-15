@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@app/database/prisma/prisma.service';
-import { MinioService } from '@app/minio/minio.service';
+import { ImageService } from '@app/image/image.service';
 
 import type { Recipe } from '@prisma/client';
 
@@ -8,7 +8,7 @@ import type { Recipe } from '@prisma/client';
 export class RecipeService {
   constructor(
     private prisma: PrismaService,
-    private minio: MinioService,
+    private imageService: ImageService,
   ) {}
 
   async getRecipeById(id: string) {
@@ -29,7 +29,7 @@ export class RecipeService {
     data: any;
     file: Express.Multer.File;
   }): Promise<Recipe> {
-    const imageUrl = await this.minio.uploadFile(file);
+    const imageUrl = await this.imageService.upload(file);
     console.log('Uploaded file URL :>> ', imageUrl);
 
     return this.prisma.recipe.create({

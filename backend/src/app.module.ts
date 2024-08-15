@@ -3,7 +3,8 @@ import { RecipeModule } from './recipe/recipe.module';
 import { PrismaModule } from './database/prisma/prisma.module';
 import { IngredientModule } from './ingredient/ingredient.module';
 import { ConfigModule } from '@nestjs/config';
-import { MinioModule } from './minio/minio.module';
+import { MinioModule } from './storage/minio/minio.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MinioModule } from './minio/minio.module';
     PrismaModule,
     MinioModule,
     RecipeModule,
+    ImageModule,
     IngredientModule,
   ],
   controllers: [],

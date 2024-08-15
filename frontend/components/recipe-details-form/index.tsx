@@ -33,7 +33,7 @@ function RecipeDetailsForm({ recipeId, initialValues }: RecipeDetailsFromProps) 
     if (recipeId) console.log('update all');
 
     const recipe = await createRecipe(values).catch(() => toast(errorToast));
-    if (recipe) router.push(`/recipes/${recipe.id}`);
+    // if (recipe) router.push(`/recipes/${recipe.id}`);
   }
 
   return (
