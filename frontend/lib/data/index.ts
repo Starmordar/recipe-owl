@@ -1,5 +1,5 @@
 import type { GetIngredientsResponse, GetRecipeResponse, GetRecipesResponse } from '@/types/api';
-import type { FormValues as RecipeFormValues } from '@/components/recipe-details-form/shema';
+import type { FormValues as RecipeFormValues } from '@/components/recipe-details-form/constants/shema';
 import type { Recipe } from '@/types/recipe';
 
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {

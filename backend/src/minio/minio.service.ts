@@ -36,7 +36,7 @@ export class MinioService {
       file.size,
     );
 
-    return this.getFileUrl(fileName);
+    return this.getPublicUrl(fileName);
   }
 
   async getFileUrl(fileName: string) {
@@ -45,6 +45,20 @@ export class MinioService {
       this.bucketName,
       fileName,
       100000,
+    );
+  }
+
+  async getPublicUrl(fileName: string) {
+    return (
+      'http:' +
+      '//' +
+      this.configService.get('MINIO_ENDPOINT') +
+      ':' +
+      Number(this.configService.get('MINIO_PORT')) +
+      '/' +
+      this.bucketName +
+      '/' +
+      fileName
     );
   }
 

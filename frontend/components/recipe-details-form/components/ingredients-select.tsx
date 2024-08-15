@@ -20,7 +20,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 
 import { getIngredients } from '@/lib/data';
 import type { UseFormReturn } from 'react-hook-form';
-import type { FormValues } from '../shema';
+import type { FormValues } from '../constants/shema';
 
 interface IngredientsSelectProps {
   form: UseFormReturn<FormValues>;

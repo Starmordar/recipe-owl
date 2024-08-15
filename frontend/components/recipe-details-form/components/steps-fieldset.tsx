@@ -6,7 +6,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import type { FormValues } from '../shema';
+import type { FormValues } from '../constants/shema';
 
 interface StepsFieldsetProps {
   form: UseFormReturn<FormValues>;

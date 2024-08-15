@@ -1,7 +1,9 @@
-import { Heart, Share2 } from 'lucide-react';
+import Link from 'next/link';
+import { Pencil } from 'lucide-react';
 import ReturnBackBtn from '../components/return-back-btn';
 
 import { getRecipe } from '@/lib/data';
+import { Button } from '@/components/ui/button';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
@@ -17,9 +19,12 @@ export default async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHea
 
       <p>{recipe?.title}</p>
 
-      <div className="flex gap-3">
-        <Share2 className="h-4 w-4 opacity-50" />
-        <Heart className="h-4 w-4 opacity-50" />
+      <div className="flex items-center gap-3">
+        <Link href={`/recipes/${recipe.id}/edit`}>
+          <Button variant="ghost" size="xss">
+            <Pencil className="h-4 w-4 opacity-50" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

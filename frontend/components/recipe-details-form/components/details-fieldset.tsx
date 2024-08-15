@@ -5,7 +5,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 
-import { type FormValues } from '../shema';
+import { type FormValues } from '../constants/shema';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface DetailsFieldsetProps {

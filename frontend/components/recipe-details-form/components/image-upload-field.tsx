@@ -8,7 +8,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/comp
 import { Input } from '@/components/ui/input';
 
 import { acceptedImageMimeTypes } from '@/constants/image';
-import type { FormValues } from '../shema';
+import type { FormValues } from '../constants/shema';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
 interface ImageUploadFieldProps {
@@ -16,7 +16,8 @@ interface ImageUploadFieldProps {
 }
 
 function ImageUploadField({ form }: ImageUploadFieldProps) {
-  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
+  const initialImage = form.getValues('image') || null;
+  const [selectedImage, setSelectedImage] = React.useState<string | null>(initialImage);
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
