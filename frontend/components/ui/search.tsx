@@ -55,8 +55,12 @@ export default function Search({
           placeholder={placeholder}
           value={searchTerm}
           onValueChange={handleValueChange}
-          onBlur={() => setOpen(false)}
-          onFocus={() => setOpen(true)}
+          onBlur={() => {
+            setOpen(false);
+          }}
+          onFocus={() => {
+            setOpen(true);
+          }}
           showClear={!!searchTerm}
           onClear={handleClear}
         />

@@ -21,7 +21,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
-    onChange: (...value: Array<any>) => void,
+    onChange: (...value: Array<unknown>) => void,
   ) {
     const file = event.target.files?.[0] ?? null;
     if (file === null) return;
@@ -50,7 +50,9 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
                   <FormControl>
                     <div className='flex w-full justify-center items-center'>
                       <UploadInput
-                        onUpload={event => handleFileUpload(event, onChange)}
+                        onUpload={event => {
+                          handleFileUpload(event, onChange);
+                        }}
                         fieldProps={fieldProps}
                       />
 
@@ -77,7 +79,9 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
                 <FormControl>
                   <div className='flex w-full justify-center items-center'>
                     <UploadInput
-                      onUpload={event => handleFileUpload(event, onChange)}
+                      onUpload={event => {
+                        handleFileUpload(event, onChange);
+                      }}
                       fieldProps={fieldProps}
                     />
                     <LucideImage className='h-20 w-20 opacity-50' strokeWidth={1} />

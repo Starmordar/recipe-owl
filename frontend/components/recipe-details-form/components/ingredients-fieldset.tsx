@@ -56,7 +56,9 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
               size='icon'
               type='button'
               disabled={fields.length < 2}
-              onClick={() => handleRemoveField(index)}
+              onClick={() => {
+                handleRemoveField(index);
+              }}
             >
               <Trash2 className='h-4 w-4 opacity-50' />
             </Button>
@@ -65,7 +67,13 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
       })}
 
       <div className='flex justify-center'>
-        <Button variant='ghost' type='button' onClick={() => append({ name: '', unit: '' })}>
+        <Button
+          variant='ghost'
+          type='button'
+          onClick={() => {
+            append({ name: '', unit: '' });
+          }}
+        >
           <Plus className='h-5 w-5 opacity-80 mr-2' />
           Ingredient
         </Button>

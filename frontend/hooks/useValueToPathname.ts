@@ -15,15 +15,15 @@ function useValueToPathname() {
 
   function valuesToPathname(
     keyValuesMap: Record<string, Array<string>>,
-    prevKeys?: Array<string>
+    prevKeys?: Array<string>,
   ): string {
     const params = new URLSearchParams(searchParams);
 
-    if (prevKeys) prevKeys.forEach((key) => params.delete(key));
+    if (prevKeys) prevKeys.forEach(key => params.delete(key));
 
     for (const [key, values] of Object.entries(keyValuesMap)) {
       params.delete(key);
-      values.forEach((value) => params.append(key, value));
+      values.forEach(value => params.append(key, value));
     }
 
     return `${pathname}?${params.toString()}`;

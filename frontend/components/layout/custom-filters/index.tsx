@@ -84,7 +84,9 @@ export default function CustomFilters() {
                 key={category.id}
                 selected={filters[category.id]}
                 data={category}
-                onChange={values => handleFiltersChange(category.id, values)}
+                onChange={values => {
+                  handleFiltersChange(category.id, values);
+                }}
               />
             ))}
           </div>

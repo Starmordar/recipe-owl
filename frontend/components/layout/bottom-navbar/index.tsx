@@ -7,7 +7,11 @@ import { cloneElement } from 'react';
 
 import { cn } from '@/lib/utils';
 
-type MenuItem = { title?: string; href: string; icon: React.JSX.Element };
+interface MenuItem {
+  title?: string;
+  href: string;
+  icon: React.JSX.Element;
+}
 
 const menuItems: Array<MenuItem> = [
   { title: 'Home', href: '/home', icon: <House /> },

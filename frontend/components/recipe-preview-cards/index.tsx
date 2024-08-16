@@ -4,7 +4,7 @@ import RecipePreviewCard from './components/preview-card';
 
 interface RecipePreviewCardsProps {
   search: string;
-  filters: { [key: string]: string | string[] | undefined };
+  filters: Record<string, string | Array<string> | undefined>;
 }
 
 export default async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {

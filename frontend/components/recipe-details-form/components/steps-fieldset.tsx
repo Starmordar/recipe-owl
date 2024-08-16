@@ -54,7 +54,9 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
               size='icon'
               type='button'
               disabled={fields.length < 2}
-              onClick={() => handleRemoveField(index)}
+              onClick={() => {
+                handleRemoveField(index);
+              }}
             >
               <Trash2 className='h-4 w-4 opacity-50' />
             </Button>
@@ -63,7 +65,13 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
       })}
 
       <div className='flex justify-center'>
-        <Button variant='ghost' type='button' onClick={() => append({ description: '' })}>
+        <Button
+          variant='ghost'
+          type='button'
+          onClick={() => {
+            append({ description: '' });
+          }}
+        >
           <Plus className='h-5 w-5 opacity-80 mr-2' />
           Step
         </Button>

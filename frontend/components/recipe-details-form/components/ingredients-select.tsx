@@ -91,7 +91,9 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                   <CommandEmpty>
                     <Button
                       variant='outline'
-                      onClick={() => handleValueSelect(field.value, searchTerm, field.onChange)}
+                      onClick={() => {
+                        handleValueSelect(field.value, searchTerm, field.onChange);
+                      }}
                     >
                       Add &quot;{addPlaceholder}&quot; <Plus className='ml-2 w-4 h-4' />
                     </Button>
@@ -101,9 +103,9 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                       <CommandItem
                         key={name}
                         value={name}
-                        onSelect={nextValue =>
-                          handleValueSelect(field.value, nextValue, field.onChange)
-                        }
+                        onSelect={nextValue => {
+                          handleValueSelect(field.value, nextValue, field.onChange);
+                        }}
                       >
                         {name}
                         <Check

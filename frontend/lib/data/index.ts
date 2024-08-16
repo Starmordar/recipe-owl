@@ -5,7 +5,7 @@ import type { Recipe } from '@/types/recipe';
 export async function getRecipes(search: string): Promise<GetRecipesResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {});
   const data = await response.json();
-  console.log('response :>> ', response);
+  console.log('response :>> ', response, search);
   //   if (response.ok) {
   //     throw new Error('Failed to fetch data');
   //   }
@@ -15,7 +15,7 @@ export async function getRecipes(search: string): Promise<GetRecipesResponse> {
 
 export async function getRecipesPreview(
   search: string,
-  filters: { [key: string]: string | string[] | undefined },
+  filters: Record<string, string | Array<string> | undefined>,
 ): Promise<GetRecipesResponse> {
   // const test = await testRequest.json();
   // console.log('test :>> ', test);

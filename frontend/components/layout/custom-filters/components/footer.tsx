@@ -35,7 +35,12 @@ export default function Footer({ filters, setFilters, categoryIds }: FooterProps
       </DrawerClose>
 
       <DrawerClose className='flex-1'>
-        <Button className='w-full' onClick={() => handleFiltersApply(filters)}>
+        <Button
+          className='w-full'
+          onClick={() => {
+            handleFiltersApply(filters);
+          }}
+        >
           Apply
         </Button>
       </DrawerClose>

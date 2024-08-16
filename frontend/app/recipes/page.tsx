@@ -7,7 +7,7 @@ import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skelet
 interface PageProps {
   searchParams: {
     search?: string;
-    [key: string]: string | string[] | undefined;
+    [key: string]: string | Array<string> | undefined;
   };
 }
 
