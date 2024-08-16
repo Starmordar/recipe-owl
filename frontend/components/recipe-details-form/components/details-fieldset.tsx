@@ -1,11 +1,13 @@
 'use client';
 
-import ImageUploadField from './image-upload-field';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 import { type FormValues } from '../constants/shema';
+
+import ImageUploadField from './image-upload-field';
+
 import type { UseFormReturn } from 'react-hook-form';
 
 interface DetailsFieldsetProps {

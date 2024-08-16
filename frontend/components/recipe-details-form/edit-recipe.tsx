@@ -1,6 +1,8 @@
-import RecipeDetailsForm from '.';
 import { getRecipe } from '@/lib/data';
+
 import { recipeToFormValues } from './utils/recipeToFormValues';
+
+import RecipeDetailsForm from '.';
 
 interface RecipeProps {
   recipeId: number;

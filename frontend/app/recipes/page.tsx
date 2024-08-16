@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
+
+import SearchBar from '@/components/layout/search-bar';
 import RecipePreviewCards from '@/components/recipe-preview-cards';
 import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skeleton';
-import SearchBar from '@/components/layout/search-bar';
 
 interface PageProps {
   searchParams: {

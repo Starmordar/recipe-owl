@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { acceptedImageMimeTypes } from '@/constants/image';
 
+import { acceptedImageMimeTypes } from '@/constants/image';
+ 
 const ingredientSchema = z.object({
   name: z.string().min(1, { message: 'Ingredient is required.' }),
   unit: z.string().min(1, { message: 'Quantity is required.' }),

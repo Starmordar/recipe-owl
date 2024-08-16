@@ -1,24 +1,23 @@
 'use client';
 
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useRouter } from 'next/navigation';
-
-import useValueToPathname from '@/hooks/useValueToPathname';
+import { useState } from 'react';
 
 import Search from '@/components/ui/search';
-import CustomFilters from '../custom-filters';
-
-import { getRecipes } from '@/lib/data';
 import { searchKey } from '@/constants/query';
+import useValueToPathname from '@/hooks/useValueToPathname';
+import { getRecipes } from '@/lib/data';
+
+import CustomFilters from '../custom-filters';
 
 export default function SearchBar() {
   const { replace } = useRouter();
   const { valueToPathname, valueFromPathname } = useValueToPathname();
 
-  const [open, setOpen] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState(valueFromPathname(searchKey));
+  const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(valueFromPathname(searchKey));
   const debouncedSearchTerm = useDebounce(searchTerm, 250);
 
   const { data: recipes } = useQuery({

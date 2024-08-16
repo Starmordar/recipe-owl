@@ -1,9 +1,11 @@
-import Link from 'next/link';
 import { Pencil } from 'lucide-react';
+import Link from 'next/link';
+
+import { Button } from '@/components/ui/button';
+import { getRecipe } from '@/lib/data';
+
 import ReturnBackBtn from '../components/return-back-btn';
 
-import { getRecipe } from '@/lib/data';
-import { Button } from '@/components/ui/button';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;

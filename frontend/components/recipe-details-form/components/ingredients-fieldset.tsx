@@ -1,14 +1,15 @@
 'use client';
 
-import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
+import { useFieldArray, UseFormReturn } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import type { FormValues } from '../constants/shema';
 import { IngredientsSelect } from './ingredients-select';
+
+import type { FormValues } from '../constants/shema';
 
 interface IngredientsFieldsetProps {
   form: UseFormReturn<FormValues>;

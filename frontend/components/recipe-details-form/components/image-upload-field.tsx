@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import { Camera, Image as LucideImage } from 'lucide-react';
 import NextImage from 'next/image';
-import { Camera, Image } from 'lucide-react';
+import { useState } from 'react';
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
 import { acceptedImageMimeTypes } from '@/constants/image';
+
 import type { FormValues } from '../constants/shema';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
@@ -17,7 +17,7 @@ interface ImageUploadFieldProps {
 
 function ImageUploadField({ form }: ImageUploadFieldProps) {
   const initialImage = form.getValues('image') || null;
-  const [selectedImage, setSelectedImage] = React.useState<string | null>(initialImage);
+  const [selectedImage, setSelectedImage] = useState<string | null>(initialImage);
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -80,7 +80,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
                       onUpload={(event) => handleFileUpload(event, onChange)}
                       fieldProps={fieldProps}
                     />
-                    <Image className="h-20 w-20 opacity-50" strokeWidth={1} />
+                    <LucideImage className="h-20 w-20 opacity-50" strokeWidth={1} />
 
                     <div className="absolute bottom-6 mx-auto flex items-center gap-x-4">
                       <Camera className="h-5 w-5 text-muted-foreground" strokeWidth={1} />

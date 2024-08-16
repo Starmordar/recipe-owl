@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { SlidersHorizontal } from 'lucide-react';
+import * as React from 'react';
 
-import useValueToPathname from '@/hooks/useValueToPathname';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -12,10 +11,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
+import useValueToPathname from '@/hooks/useValueToPathname';
 
 import CategorySection from './components/category-section';
-
 import Footer from './components/footer';
+
 import type { SelectedFilters } from './types';
 
 const categories = [

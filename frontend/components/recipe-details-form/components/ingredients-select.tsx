@@ -1,11 +1,10 @@
 'use client';
 
-import React from 'react';
-import { Check, Plus } from 'lucide-react';
-import { useDebounce } from '@uidotdev/usehooks';
 import { useQuery } from '@tanstack/react-query';
+import { useDebounce } from '@uidotdev/usehooks';
+import { Check, Plus } from 'lucide-react';
+import { useState } from 'react';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Command,
@@ -15,12 +14,13 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { getIngredients } from '@/lib/data';
-import type { UseFormReturn } from 'react-hook-form';
+import { cn } from '@/lib/utils';
+
 import type { FormValues } from '../constants/shema';
+import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsSelectProps {
   form: UseFormReturn<FormValues>;
@@ -28,8 +28,8 @@ interface IngredientsSelectProps {
 }
 
 export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
-  const [open, setOpen] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 250);
 
   const { data: ingredients } = useQuery({
@@ -93,7 +93,7 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                       variant="outline"
                       onClick={() => handleValueSelect(field.value, searchTerm, field.onChange)}
                     >
-                      Add "{addPlaceholder}" <Plus className="ml-2 w-4 h-4" />
+                      Add &quot;{addPlaceholder}&quot; <Plus className="ml-2 w-4 h-4" />
                     </Button>
                   </CommandEmpty>
                   <CommandGroup>

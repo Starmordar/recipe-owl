@@ -1,5 +1,6 @@
-import RecipePreviewCard from './components/preview-card';
 import { getRecipesPreview } from '@/lib/data';
+
+import RecipePreviewCard from './components/preview-card';
 
 interface RecipePreviewCardsProps {
   search: string;

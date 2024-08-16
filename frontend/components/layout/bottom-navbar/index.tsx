@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
-import Link from 'next/link';
-
 import { ShoppingCart, User, Search, CirclePlus, House } from 'lucide-react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { cloneElement } from 'react';
+
 import { cn } from '@/lib/utils';
 
 type MenuItem = { title?: string; href: string; icon: React.JSX.Element };
@@ -36,7 +36,7 @@ export default function BottomNavbar() {
           )}
         >
           <div className="flex flex-col justify-center items-center">
-            {React.cloneElement(item.icon, { size: item.title ? 20 : 28 })}
+            {cloneElement(item.icon, { size: item.title ? 20 : 28 })}
             <span className="text-xs">{item.title}</span>
           </div>
         </Link>

@@ -1,4 +1,5 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+
 import type { Category } from '../types';
 
 interface FiltersOpenProps {

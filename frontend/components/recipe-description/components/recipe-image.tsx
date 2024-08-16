@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import type { Recipe } from '@/types/recipe';
 
 interface RecipeImageProps {
