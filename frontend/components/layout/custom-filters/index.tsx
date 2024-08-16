@@ -1,7 +1,6 @@
 import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
-
 import { Button } from '@/components/ui/button';
 import {
   Drawer,
@@ -39,7 +38,7 @@ const categories = [
   },
 ];
 
-const categoryIds = categories.map((c) => c.id.toString());
+const categoryIds = categories.map(c => c.id.toString());
 
 export default function CustomFilters() {
   const { valuesFromPathname } = useValueToPathname();
@@ -56,17 +55,17 @@ export default function CustomFilters() {
 
   const filtersCount = Object.values(valuesFromPathname(categoryIds)).reduce(
     (acc, filter) => acc + filter.length,
-    0
+    0,
   );
 
   return (
     <Drawer onOpenChange={handleOpenDrawer}>
       <DrawerTrigger asChild>
-        <Button className="relative min-h-10 min-w-10 rounded-full" variant="ghost" size="icon">
-          <SlidersHorizontal className="h-4 w-4 opacity-50" />
+        <Button className='relative min-h-10 min-w-10 rounded-full' variant='ghost' size='icon'>
+          <SlidersHorizontal className='h-4 w-4 opacity-50' />
 
           {filtersCount > 0 && (
-            <div className="flex justify-center items-center absolute w-3.5 h-3.5 top-1.5 right-1.5 bg-primary text-[#fff] rounded-full text-xs">
+            <div className='flex justify-center items-center absolute w-3.5 h-3.5 top-1.5 right-1.5 bg-primary text-[#fff] rounded-full text-xs'>
               {filtersCount}
             </div>
           )}
@@ -74,23 +73,23 @@ export default function CustomFilters() {
       </DrawerTrigger>
 
       <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
+        <div className='mx-auto w-full max-w-sm'>
           <DrawerHeader>
             <DrawerTitle>Filters</DrawerTitle>
           </DrawerHeader>
 
-          <div className="flex flex-col gap-4">
-            {categories.map((category) => (
+          <div className='flex flex-col gap-4'>
+            {categories.map(category => (
               <CategorySection
                 key={category.id}
                 selected={filters[category.id]}
                 data={category}
-                onChange={(values) => handleFiltersChange(category.id, values)}
+                onChange={values => handleFiltersChange(category.id, values)}
               />
             ))}
           </div>
 
-          <DrawerFooter className="flex flex-row w-full">
+          <DrawerFooter className='flex flex-row w-full'>
             <Footer filters={filters} setFilters={setFilters} categoryIds={categoryIds} />
           </DrawerFooter>
         </div>

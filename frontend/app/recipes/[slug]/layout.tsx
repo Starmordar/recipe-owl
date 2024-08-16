@@ -8,11 +8,11 @@ interface LayoutProps {
 export default function Layout({ children, params }: LayoutProps) {
   return (
     <>
-      <div className="fixed top-0 mx-0 w-full z-50 bg-white">
+      <div className='fixed top-0 mx-0 w-full z-50 bg-white'>
         <TopHeader recipeId={Number(params.slug)} />
       </div>
 
-      <div className="h-[55px]"></div>
+      <div className='h-[55px]'></div>
 
       {children}
     </>

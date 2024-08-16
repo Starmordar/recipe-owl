@@ -50,7 +50,7 @@ export default function Search({
 
   return (
     <React.Fragment>
-      <Command onKeyDown={() => {}} className="overflow-visible bg-transparent">
+      <Command onKeyDown={() => {}} className='overflow-visible bg-transparent'>
         <CommandInput
           placeholder={placeholder}
           value={searchTerm}
@@ -61,15 +61,15 @@ export default function Search({
           onClear={handleClear}
         />
 
-        <div className="relative">
+        <div className='relative'>
           <CommandList>
             {open && searchTerm && (
-              <div className="absolute w-full top-0 rounded-md bg-popover text-popover-foreground shadow-md outline-none animate-in">
+              <div className='absolute w-full top-0 rounded-md bg-popover text-popover-foreground shadow-md outline-none animate-in'>
                 <CommandGroup>
-                  {data.map((item) => (
+                  {data.map(item => (
                     <CommandItem
                       key={item.id}
-                      onMouseDown={(evt) => {
+                      onMouseDown={evt => {
                         evt.preventDefault();
                         evt.stopPropagation();
                       }}

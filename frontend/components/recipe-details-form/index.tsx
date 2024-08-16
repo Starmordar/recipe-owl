@@ -19,7 +19,7 @@ function RecipeDetailsForm({ recipeId, initialValues }: RecipeDetailsFromProps) 
 
   return (
     <Form {...form}>
-      <form id="create-recipe-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form id='create-recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
         <DetailsFieldset form={form} />
         <IngredientsFieldset form={form} />
         <StepsFieldset form={form} />

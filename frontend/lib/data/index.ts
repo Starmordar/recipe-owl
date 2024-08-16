@@ -15,7 +15,7 @@ export async function getRecipes(search: string): Promise<GetRecipesResponse> {
 
 export async function getRecipesPreview(
   search: string,
-  filters: { [key: string]: string | string[] | undefined }
+  filters: { [key: string]: string | string[] | undefined },
 ): Promise<GetRecipesResponse> {
   // const test = await testRequest.json();
   // console.log('test :>> ', test);
@@ -38,7 +38,7 @@ export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
   });
   console.log(
     '`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}` :>> ',
-    `${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`,
   );
   const data = await response.json();
   console.log('object :>> ', data);
@@ -52,7 +52,7 @@ export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
 
 export async function getIngredients(searchTerm: string): Promise<GetIngredientsResponse> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/ingredients/?search=${searchTerm}`
+    `${process.env.NEXT_PUBLIC_API_URL}/ingredients/?search=${searchTerm}`,
   );
   const ingredients = await response.json();
 
@@ -60,7 +60,10 @@ export async function getIngredients(searchTerm: string): Promise<GetIngredients
 }
 
 export async function createRecipe(formValues: RecipeFormValues): Promise<Recipe> {
-  const edited = { ...formValues, steps: formValues.steps.map((s) => s.description) };
+  const edited = {
+    ...formValues,
+    steps: formValues.steps.map(s => s.description),
+  };
   const { image, ...data } = edited;
 
   const formData = new FormData();
@@ -81,9 +84,12 @@ export async function createRecipe(formValues: RecipeFormValues): Promise<Recipe
 
 export async function updateRecipe(
   recipeId: number,
-  formValues: RecipeFormValues
+  formValues: RecipeFormValues,
 ): Promise<Recipe> {
-  const edited = { ...formValues, steps: formValues.steps.map((s) => s.description) };
+  const edited = {
+    ...formValues,
+    steps: formValues.steps.map(s => s.description),
+  };
   const { image, ...data } = edited;
 
   const formData = new FormData();

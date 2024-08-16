@@ -35,13 +35,13 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
   const { data: ingredients } = useQuery({
     queryKey: ['ingredients', debouncedSearchTerm],
     queryFn: () => getIngredients(debouncedSearchTerm),
-    placeholderData: (prev) => prev,
+    placeholderData: prev => prev,
   });
 
   function handleValueSelect(
     currentValue: string,
     nextValue: string,
-    onChange: (v: string) => void
+    onChange: (v: string) => void,
   ) {
     onChange(nextValue === currentValue ? '' : nextValue);
     handleOpenChange(false);
@@ -59,30 +59,30 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
       control={form.control}
       name={`ingredients.${fieldIndex}.name`}
       render={({ field }) => (
-        <FormItem className="flex flex-col min-w-0 basis-2/3">
+        <FormItem className='flex flex-col min-w-0 basis-2/3'>
           <Popover open={open} onOpenChange={handleOpenChange}>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
-                  variant="outline"
-                  role="combobox"
+                  variant='outline'
+                  role='combobox'
                   aria-expanded={open}
                   className={cn(
                     'w-full px-3 justify-start',
-                    !field.value && 'text-muted-foreground'
+                    !field.value && 'text-muted-foreground',
                   )}
                 >
-                  <span className="truncate">{field.value || 'Select ingredient...'}</span>
+                  <span className='truncate'>{field.value || 'Select ingredient...'}</span>
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]">
+            <PopoverContent className='p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]'>
               <Command shouldFilter={false}>
                 <CommandInput
                   value={searchTerm}
                   onValueChange={setSearchTerm}
-                  placeholder="Search..."
-                  className="h-9"
+                  placeholder='Search...'
+                  className='h-9'
                   showClear={false}
                   onClear={() => {}}
                 />
@@ -90,10 +90,10 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                 <CommandList>
                   <CommandEmpty>
                     <Button
-                      variant="outline"
+                      variant='outline'
                       onClick={() => handleValueSelect(field.value, searchTerm, field.onChange)}
                     >
-                      Add &quot;{addPlaceholder}&quot; <Plus className="ml-2 w-4 h-4" />
+                      Add &quot;{addPlaceholder}&quot; <Plus className='ml-2 w-4 h-4' />
                     </Button>
                   </CommandEmpty>
                   <CommandGroup>
@@ -101,7 +101,7 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                       <CommandItem
                         key={name}
                         value={name}
-                        onSelect={(nextValue) =>
+                        onSelect={nextValue =>
                           handleValueSelect(field.value, nextValue, field.onChange)
                         }
                       >
@@ -109,7 +109,7 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
                         <Check
                           className={cn(
                             'ml-auto h-4 w-4',
-                            field.value === name ? 'opacity-100' : 'opacity-0'
+                            field.value === name ? 'opacity-100' : 'opacity-0',
                           )}
                         />
                       </CommandItem>

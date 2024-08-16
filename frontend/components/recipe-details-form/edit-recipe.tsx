@@ -13,7 +13,7 @@ async function EditRecipe({ recipeId }: RecipeProps) {
   if (!recipe) return null; // TODO: Custom Handler
 
   return (
-    <div className="container flex flex-col gap-4">
+    <div className='container flex flex-col gap-4'>
       <RecipeDetailsForm recipeId={recipe.id} initialValues={recipeToFormValues(recipe)} />
     </div>
   );

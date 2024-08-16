@@ -28,14 +28,14 @@ export default function Footer({ filters, setFilters, categoryIds }: FooterProps
 
   return (
     <>
-      <DrawerClose className="flex-1">
-        <Button className="w-full" variant="outline" onClick={handleResetFilters}>
+      <DrawerClose className='flex-1'>
+        <Button className='w-full' variant='outline' onClick={handleResetFilters}>
           Reset
         </Button>
       </DrawerClose>
 
-      <DrawerClose className="flex-1">
-        <Button className="w-full" onClick={() => handleFiltersApply(filters)}>
+      <DrawerClose className='flex-1'>
+        <Button className='w-full' onClick={() => handleFiltersApply(filters)}>
           Apply
         </Button>
       </DrawerClose>

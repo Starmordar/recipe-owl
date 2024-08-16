@@ -16,10 +16,10 @@ export default function Page({ searchParams }: PageProps) {
 
   return (
     <>
-      <div className="fixed top-0 mx-0 w-full z-50 bg-white">
+      <div className='fixed top-0 mx-0 w-full z-50 bg-white'>
         <SearchBar />
       </div>
-      <div className="h-[55px]"></div>
+      <div className='h-[55px]'></div>
 
       <section>
         <Suspense key={JSON.stringify(searchParams)} fallback={<RecipePreviewCardsSkeleton />}>

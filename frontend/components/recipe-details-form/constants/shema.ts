@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { acceptedImageMimeTypes } from '@/constants/image';
- 
+
 const ingredientSchema = z.object({
   name: z.string().min(1, { message: 'Ingredient is required.' }),
   unit: z.string().min(1, { message: 'Quantity is required.' }),
@@ -14,10 +14,10 @@ const stepSchema = z.object({
 const schema = z.object({
   image: z
     .any()
-    .refine((file) => file !== undefined && file !== null, {
+    .refine(file => file !== undefined && file !== null, {
       message: 'Please upload an image of your recipe',
     })
-    .refine((file) => typeof file === 'string' || acceptedImageMimeTypes.includes(file?.type), {
+    .refine(file => typeof file === 'string' || acceptedImageMimeTypes.includes(file?.type), {
       message: 'Only .jpg, .jpeg, .png .avif and .webp formats are supported.',
     }),
   title: z

@@ -33,18 +33,18 @@ export default function RootLayout({
 }>) {
   return (
     <QueryClientProvider>
-      <html lang="en">
+      <html lang='en'>
         <body className={inter.className}>
           <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
+            attribute='class'
+            defaultTheme='system'
             enableSystem
             disableTransitionOnChange
           >
             {children}
 
-            <div className="h-16"></div>
-            <div className="fixed bottom-0 mx-0 w-full">
+            <div className='h-16'></div>
+            <div className='fixed bottom-0 mx-0 w-full'>
               <BottomNavbar />
             </div>
             <Toaster />

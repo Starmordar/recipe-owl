@@ -21,7 +21,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
-    onChange: (...value: Array<any>) => void
+    onChange: (...value: Array<any>) => void,
   ) {
     const file = event.target.files?.[0] ?? null;
     if (file === null) return;
@@ -31,38 +31,38 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
   }
 
   return (
-    <div className="relative flex w-full h-[25vh] bg-muted rounded-lg">
+    <div className='relative flex w-full h-[25vh] bg-muted rounded-lg'>
       {selectedImage ? (
         <>
           <NextImage
-            className="rounded-lg"
+            className='rounded-lg'
             src={selectedImage}
-            alt="Uploaded Image"
+            alt='Uploaded Image'
             fill
             style={{ objectFit: 'cover' }}
           />
           <FormField
             control={form.control}
-            name="image"
+            name='image'
             render={({ field: { value, onChange, ...fieldProps } }) => (
               <FormItem>
-                <FormLabel htmlFor="fileInput" className="absolute bottom-3 right-3 cursor-pointer">
+                <FormLabel htmlFor='fileInput' className='absolute bottom-3 right-3 cursor-pointer'>
                   <FormControl>
-                    <div className="flex w-full justify-center items-center">
+                    <div className='flex w-full justify-center items-center'>
                       <UploadInput
-                        onUpload={(event) => handleFileUpload(event, onChange)}
+                        onUpload={event => handleFileUpload(event, onChange)}
                         fieldProps={fieldProps}
                       />
 
-                      <div className="relative bg-primary/80 border rounded-md px-3 py-1 flex items-center gap-x-4">
-                        <Camera className="h-5 w-5 text-primary-foreground" />
-                        <p className="text-primary-foreground">Edit</p>
+                      <div className='relative bg-primary/80 border rounded-md px-3 py-1 flex items-center gap-x-4'>
+                        <Camera className='h-5 w-5 text-primary-foreground' />
+                        <p className='text-primary-foreground'>Edit</p>
                       </div>
                     </div>
                   </FormControl>
                 </FormLabel>
 
-                <FormMessage className="absolute bottom-1 text-center" />
+                <FormMessage className='absolute bottom-1 text-center' />
               </FormItem>
             )}
           />
@@ -70,27 +70,27 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
       ) : (
         <FormField
           control={form.control}
-          name="image"
+          name='image'
           render={({ field: { value, onChange, ...fieldProps } }) => (
-            <FormItem className="flex w-full justify-center items-center cursor-pointer">
-              <FormLabel className="w-full" htmlFor="fileInput">
+            <FormItem className='flex w-full justify-center items-center cursor-pointer'>
+              <FormLabel className='w-full' htmlFor='fileInput'>
                 <FormControl>
-                  <div className="flex w-full justify-center items-center">
+                  <div className='flex w-full justify-center items-center'>
                     <UploadInput
-                      onUpload={(event) => handleFileUpload(event, onChange)}
+                      onUpload={event => handleFileUpload(event, onChange)}
                       fieldProps={fieldProps}
                     />
-                    <LucideImage className="h-20 w-20 opacity-50" strokeWidth={1} />
+                    <LucideImage className='h-20 w-20 opacity-50' strokeWidth={1} />
 
-                    <div className="absolute bottom-6 mx-auto flex items-center gap-x-4">
-                      <Camera className="h-5 w-5 text-muted-foreground" strokeWidth={1} />
-                      <p className="text-muted-foreground">Upload recipe photo</p>
+                    <div className='absolute bottom-6 mx-auto flex items-center gap-x-4'>
+                      <Camera className='h-5 w-5 text-muted-foreground' strokeWidth={1} />
+                      <p className='text-muted-foreground'>Upload recipe photo</p>
                     </div>
                   </div>
                 </FormControl>
               </FormLabel>
 
-              <FormMessage className="absolute bottom-1 text-center" />
+              <FormMessage className='absolute bottom-1 text-center' />
             </FormItem>
           )}
         />
@@ -108,10 +108,10 @@ function UploadInput({ onUpload, fieldProps }: UploadInputProps) {
   return (
     <Input
       {...fieldProps}
-      className="hidden"
-      type="file"
-      placeholder="Recipe Image"
-      id="fileInput"
+      className='hidden'
+      type='file'
+      placeholder='Recipe Image'
+      id='fileInput'
       accept={acceptedImageMimeTypes.join(', ')}
       onChange={onUpload}
     />

@@ -15,9 +15,9 @@ interface IngredientsTableProps {
 
 export default function IngredientsTable({ ingredients }: IngredientsTableProps) {
   return (
-    <section className="flex flex-col">
+    <section className='flex flex-col'>
       <Table>
-        <TableHeader className="hidden">
+        <TableHeader className='hidden'>
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Amount</TableHead>
@@ -25,10 +25,10 @@ export default function IngredientsTable({ ingredients }: IngredientsTableProps)
         </TableHeader>
 
         <TableBody>
-          {ingredients.map((ingredient) => (
-            <TableRow key={ingredient.name} className="[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4">
+          {ingredients.map(ingredient => (
+            <TableRow key={ingredient.name} className='[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4'>
               <TableCell>{ingredient.name}</TableCell>
-              <TableCell className="font-medium text-right">{ingredient.unit}</TableCell>
+              <TableCell className='font-medium text-right'>{ingredient.unit}</TableCell>
             </TableRow>
           ))}
         </TableBody>

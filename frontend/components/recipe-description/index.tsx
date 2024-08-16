@@ -17,19 +17,19 @@ export default async function Recipe({ recipeId }: RecipeProps) {
   if (!recipe) return null; // TODO: Custom Handler
 
   return (
-    <div className="container flex flex-col gap-4">
+    <div className='container flex flex-col gap-4'>
       <section>
         <RecipeDescription recipe={recipe} />
         <RecipeImage recipe={recipe} />
       </section>
 
       <section>
-        <h2 className="text-xl font-bold mb-2">Ingredients</h2>
+        <h2 className='text-xl font-bold mb-2'>Ingredients</h2>
         <IngredientsTable ingredients={recipe.ingredients} />
       </section>
 
       <section>
-        <h2 className="text-xl font-bold mb-2">Method</h2>
+        <h2 className='text-xl font-bold mb-2'>Method</h2>
         <RecipeMethod recipe={recipe} />
       </section>
     </div>

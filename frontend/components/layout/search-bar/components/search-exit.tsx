@@ -12,8 +12,8 @@ export default function SearchExit({ hidden, onExit }: SearchExitProps) {
   if (hidden) return null;
 
   return (
-    <Button className="min-h-10 min-w-10 rounded-full" variant="ghost" size="icon" onClick={onExit}>
-      <ArrowLeft className="h-4 w-4 opacity-50" />
+    <Button className='min-h-10 min-w-10 rounded-full' variant='ghost' size='icon' onClick={onExit}>
+      <ArrowLeft className='h-4 w-4 opacity-50' />
     </Button>
   );
 }

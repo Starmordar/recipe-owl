@@ -25,19 +25,19 @@ export default function BottomNavbar() {
   }
 
   return (
-    <div className="flex bg-background border-t">
-      {menuItems.map((item) => (
+    <div className='flex bg-background border-t'>
+      {menuItems.map(item => (
         <Link
           key={item.href}
           href={item.href}
           className={cn(
             'flex-1 flex justify-center items-center py-1 text-primary opacity-50',
-            isActiveLink(item.href) ? 'opacity-100' : ''
+            isActiveLink(item.href) ? 'opacity-100' : '',
           )}
         >
-          <div className="flex flex-col justify-center items-center">
+          <div className='flex flex-col justify-center items-center'>
             {cloneElement(item.icon, { size: item.title ? 20 : 28 })}
-            <span className="text-xs">{item.title}</span>
+            <span className='text-xs'>{item.title}</span>
           </div>
         </Link>
       ))}

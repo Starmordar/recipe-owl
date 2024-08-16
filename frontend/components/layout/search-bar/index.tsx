@@ -23,7 +23,7 @@ export default function SearchBar() {
   const { data: recipes } = useQuery({
     queryKey: ['recipes', debouncedSearchTerm],
     queryFn: () => getRecipes(debouncedSearchTerm),
-    select: (data) => data.recipes,
+    select: data => data.recipes,
   });
 
   function handleSearch(value: string) {
@@ -32,9 +32,9 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="container flex items-center pt-2 pb-1">
+    <div className='container flex items-center pt-2 pb-1'>
       <Search
-        placeholder="Search for recipes"
+        placeholder='Search for recipes'
         data={recipes ?? []}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
