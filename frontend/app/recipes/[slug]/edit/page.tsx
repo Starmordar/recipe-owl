@@ -1,12 +1,22 @@
 import { Suspense } from 'react';
 
-import RecipeSkeleton from '@/components/recipe-description/skeleton';
-import EditRecipe from '@/components/recipe-details-form/edit-recipe';
+import RecipeDetailsFormHeader from '@/components/layout/recipe-details-form-header';
+import RecipeDetailsForm from '@/components/recipe-details-form';
+import RecipeDetailsFormSkeleton from '@/components/recipe-details-form/skeleton';
+import { publicUrls } from '@/config/url';
 
-export default async function Page({ params }: { params: { slug: string } }) {
+function Page({ params }: { params: { slug: string } }) {
   return (
-    <Suspense key={params.slug} fallback={<RecipeSkeleton />}>
-      <EditRecipe recipeId={Number(params.slug)} />
-    </Suspense>
+    <>
+      <RecipeDetailsFormHeader title='Update Recipe' prevUrl={publicUrls.recipe(params.slug)} />
+
+      <main className='page-container'>
+        <Suspense key={params.slug} fallback={<RecipeDetailsFormSkeleton />}>
+          <RecipeDetailsForm recipeId={Number(params.slug)} />
+        </Suspense>
+      </main>
+    </>
   );
 }
+
+export default Page;

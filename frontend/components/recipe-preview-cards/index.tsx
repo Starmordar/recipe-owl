@@ -7,7 +7,7 @@ interface RecipePreviewCardsProps {
   filters: Record<string, string | Array<string> | undefined>;
 }
 
-export default async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {
+async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {
   const data = await getRecipesPreview(search, filters);
 
   return (
@@ -18,3 +18,5 @@ export default async function RecipePreviewCards({ search, filters }: RecipePrev
     </div>
   );
 }
+
+export default RecipePreviewCards;

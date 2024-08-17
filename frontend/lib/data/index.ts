@@ -36,18 +36,14 @@ export async function getRecipe(recipeId: number): Promise<GetRecipeResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`, {
     cache: 'no-cache',
   });
-  console.log(
-    '`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}` :>> ',
-    `${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`,
-  );
-  const data = await response.json();
-  console.log('object :>> ', data);
+  const recipe = await response.json();
+  console.log('object :>> ', recipe);
 
   //   if (response.ok) {
   //     throw new Error('Failed to fetch data');
   //   }
 
-  return data;
+  return recipe;
 }
 
 export async function getIngredients(searchTerm: string): Promise<GetIngredientsResponse> {

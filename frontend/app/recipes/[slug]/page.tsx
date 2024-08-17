@@ -1,16 +1,21 @@
 import { Suspense } from 'react';
 
-import Recipe from '@/components/recipe-description';
-import RecipeSkeleton from '@/components/recipe-description/skeleton';
+import RecipeDetailsHeader from '@/components/layout/recipe-details-header';
+import RecipeDetails from '@/components/recipe-details';
+import RecipeDetailsSkeleton from '@/components/recipe-details/skeleton';
 
-export const dynamic = 'force-dynamic';
-
-export default function Page({ params }: { params: { slug: string } }) {
+function Page({ params }: { params: { slug: string } }) {
   return (
     <>
-      <Suspense key={params.slug} fallback={<RecipeSkeleton />}>
-        <Recipe recipeId={Number(params.slug)} />
-      </Suspense>
+      <RecipeDetailsHeader recipeId={Number(params.slug)} />
+
+      <main className='page-container'>
+        <Suspense key={params.slug} fallback={<RecipeDetailsSkeleton />}>
+          <RecipeDetails recipeId={Number(params.slug)} />
+        </Suspense>
+      </main>
     </>
   );
 }
+
+export default Page;

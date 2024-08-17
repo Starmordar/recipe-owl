@@ -13,7 +13,7 @@ interface IngredientsTableProps {
   ingredients: Array<Ingredient>;
 }
 
-export default function IngredientsTable({ ingredients }: IngredientsTableProps) {
+function IngredientsTable({ ingredients }: IngredientsTableProps) {
   return (
     <section className='flex flex-col'>
       <Table>
@@ -36,3 +36,5 @@ export default function IngredientsTable({ ingredients }: IngredientsTableProps)
     </section>
   );
 }
+
+export default IngredientsTable;

@@ -12,7 +12,7 @@ interface FooterProps {
   categoryIds: Array<string>;
 }
 
-export default function Footer({ filters, setFilters, categoryIds }: FooterProps) {
+function Footer({ filters, setFilters, categoryIds }: FooterProps) {
   const { replace } = useRouter();
   const { valuesToPathname } = useValueToPathname();
 
@@ -47,3 +47,5 @@ export default function Footer({ filters, setFilters, categoryIds }: FooterProps
     </>
   );
 }
+
+export default Footer;

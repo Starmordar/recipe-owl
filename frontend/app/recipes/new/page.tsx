@@ -1,9 +1,17 @@
+import RecipeDetailsFormHeader from '@/components/layout/recipe-details-form-header';
 import RecipeDetailsForm from '@/components/recipe-details-form';
+import { publicUrls } from '@/config/url';
 
-export default function Page() {
+function Page() {
   return (
-    <div className='container flex flex-col gap-4'>
-      <RecipeDetailsForm />
-    </div>
+    <>
+      <RecipeDetailsFormHeader title='Create Recipe' prevUrl={publicUrls.recipes} />
+
+      <main className='page-container'>
+        <RecipeDetailsForm />
+      </main>
+    </>
   );
 }
+
+export default Page;

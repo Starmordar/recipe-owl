@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function RecipePreviewCardsSkeleton() {
-  const cards = new Array(20).fill(0);
+function RecipePreviewCardsSkeleton() {
+  const cards = new Array<number>(20).fill(0);
 
   return (
     <div className='container grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
@@ -16,3 +16,5 @@ export default function RecipePreviewCardsSkeleton() {
     </div>
   );
 }
+
+export default RecipePreviewCardsSkeleton;

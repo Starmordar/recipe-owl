@@ -27,7 +27,7 @@ interface IngredientsSelectProps {
   fieldIndex: number;
 }
 
-export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
+function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 250);
@@ -127,3 +127,5 @@ export function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) 
     />
   );
 }
+
+export default IngredientsSelect;

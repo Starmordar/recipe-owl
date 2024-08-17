@@ -8,7 +8,7 @@ interface SearchExitProps {
   onExit: () => void;
 }
 
-export default function SearchExit({ hidden, onExit }: SearchExitProps) {
+function SearchExit({ hidden, onExit }: SearchExitProps) {
   if (hidden) return null;
 
   return (
@@ -17,3 +17,5 @@ export default function SearchExit({ hidden, onExit }: SearchExitProps) {
     </Button>
   );
 }
+
+export default SearchExit;

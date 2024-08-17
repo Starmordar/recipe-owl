@@ -1,14 +1,15 @@
 import { Skeleton } from '../ui/skeleton';
 
-export default async function RecipeSkeleton() {
-  const ingredients = new Array(10).fill(null);
+function RecipeSkeleton() {
+  const ingredients = new Array<number>(10).fill(0);
 
   return (
-    <div className='container flex flex-col gap-4'>
+    <>
       <section>
         <Skeleton className='h-7 w-[200px] mb-1' />
         <Skeleton className='h-20 mb-1' />
       </section>
+
       <section>
         <Skeleton className='h-[40vh] rounded-lg' />
       </section>
@@ -25,6 +26,8 @@ export default async function RecipeSkeleton() {
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }
+
+export default RecipeSkeleton;

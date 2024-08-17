@@ -1,3 +1,5 @@
+'use client';
+
 import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
@@ -40,7 +42,7 @@ const categories = [
 
 const categoryIds = categories.map(c => c.id.toString());
 
-export default function CustomFilters() {
+function RecipeFilters() {
   const { valuesFromPathname } = useValueToPathname();
   const [filters, setFilters] = React.useState<SelectedFilters>(valuesFromPathname(categoryIds));
 
@@ -99,3 +101,5 @@ export default function CustomFilters() {
     </Drawer>
   );
 }
+
+export default RecipeFilters;

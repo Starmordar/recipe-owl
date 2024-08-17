@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { IngredientsSelect } from './ingredients-select';
+import IngredientsSelect from './ingredients-select';
 
 import type { FormValues } from '../constants/shema';
 

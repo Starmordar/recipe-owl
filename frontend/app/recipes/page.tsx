@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import SearchBar from '@/components/layout/search-bar';
+import RecipesHeader from '@/components/layout/recipes-header';
 import RecipePreviewCards from '@/components/recipe-preview-cards';
 import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skeleton';
 
@@ -11,15 +11,12 @@ interface PageProps {
   };
 }
 
-export default function Page({ searchParams }: PageProps) {
+function Page({ searchParams }: PageProps) {
   const search = searchParams?.search ?? '';
 
   return (
     <>
-      <div className='fixed top-0 mx-0 w-full z-50 bg-white'>
-        <SearchBar />
-      </div>
-      <div className='h-[55px]'></div>
+      <RecipesHeader />
 
       <section>
         <Suspense key={JSON.stringify(searchParams)} fallback={<RecipePreviewCardsSkeleton />}>
@@ -29,3 +26,5 @@ export default function Page({ searchParams }: PageProps) {
     </>
   );
 }
+
+export default Page;

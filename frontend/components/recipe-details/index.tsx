@@ -12,12 +12,12 @@ interface RecipeProps {
   recipeId: number;
 }
 
-export default async function Recipe({ recipeId }: RecipeProps) {
+async function RecipeDetails({ recipeId }: RecipeProps) {
   const recipe = await getRecipe(recipeId);
   if (!recipe) return null; // TODO: Custom Handler
 
   return (
-    <div className='container flex flex-col gap-4'>
+    <>
       <section>
         <RecipeDescription recipe={recipe} />
         <RecipeImage recipe={recipe} />
@@ -32,6 +32,8 @@ export default async function Recipe({ recipeId }: RecipeProps) {
         <h2 className='text-xl font-bold mb-2'>Method</h2>
         <RecipeMethod recipe={recipe} />
       </section>
-    </div>
+    </>
   );
 }
+
+export default RecipeDetails;

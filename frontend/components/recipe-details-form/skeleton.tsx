@@ -1,18 +1,33 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function RecipePreviewCardsSkeleton() {
-  const cards = new Array(20).fill(0);
-
+function RecipeDetailsFormSkeleton() {
   return (
-    <div className='container grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
-      {cards.map((_, index) => (
-        <div key={index} className='flex flex-col gap-2'>
-          <Skeleton className='h-[20vh] rounded-lg' />
-          <div className='space-y-2'>
-            <Skeleton className='h-5' />
-          </div>
-        </div>
-      ))}
+    <div className='container flex flex-col gap-4'>
+      {/* Main Section */}
+      <Skeleton className='h-[25vh] w-full' />
+
+      <Skeleton className='h-10 w-full' />
+      <Skeleton className='h-20 w-full' />
+
+      {/* Ingredients Section */}
+      <Skeleton className='h-7 w-[200px]' />
+      <div className='flex w-full gap-x-4 pr-10'>
+        <Skeleton className='h-10 basis-1/3' />
+        <Skeleton className='h-10 basis-2/3' />
+      </div>
+      <div className='flex w-full gap-x-4 pr-10'>
+        <Skeleton className='h-10 basis-1/3' />
+        <Skeleton className='h-10 basis-2/3' />
+      </div>
+
+      {/* Method Section */}
+      <Skeleton className='h-7 w-[200px]' />
+
+      <div className='flex w-full gap-x-4 pr-10'>
+        <Skeleton className='h-20 w-full' />
+      </div>
     </div>
   );
 }
+
+export default RecipeDetailsFormSkeleton;

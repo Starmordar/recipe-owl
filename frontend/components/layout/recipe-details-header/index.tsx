@@ -1,32 +1,30 @@
 import { Pencil } from 'lucide-react';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { publicUrls } from '@/config/url';
 import { getRecipe } from '@/lib/data';
 
-import ReturnBackBtn from '../components/return-back-btn';
+import AppHeader from '../app-header';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
 }
 
-export default async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
+async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   const recipe = await getRecipe(recipeId);
   if (!recipe) return null;
 
   return (
-    <div className='container flex items-center justify-between pt-2 pb-1 h-12'>
-      <ReturnBackBtn />
-
-      <p>{recipe?.title}</p>
+    <AppHeader prevUrl={publicUrls.recipes}>
+      <h1 className='text-lg font-semibold leading-none'>{recipe?.title}</h1>
 
       <div className='flex items-center gap-3'>
         <Link href={`/recipes/${recipe.id}/edit`}>
-          <Button variant='ghost' size='xss'>
-            <Pencil className='h-4 w-4 opacity-50' />
-          </Button>
+          <Pencil className='h-4 w-4 opacity-50' />
         </Link>
       </div>
-    </div>
+    </AppHeader>
   );
 }
+
+export default RecipeDetailsHeader;

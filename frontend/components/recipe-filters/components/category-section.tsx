@@ -8,7 +8,7 @@ interface FiltersOpenProps {
   onChange: (values: Array<string>) => void;
 }
 
-export default function CategorySection({ data, selected, onChange }: FiltersOpenProps) {
+function CategorySection({ data, selected, onChange }: FiltersOpenProps) {
   return (
     <section>
       <h6 className='mb-2'>{data.name}</h6>
@@ -34,3 +34,5 @@ export default function CategorySection({ data, selected, onChange }: FiltersOpe
     </section>
   );
 }
+
+export default CategorySection;

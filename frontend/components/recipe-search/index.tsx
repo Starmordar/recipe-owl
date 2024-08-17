@@ -10,9 +10,7 @@ import { searchKey } from '@/constants/query';
 import useValueToPathname from '@/hooks/useValueToPathname';
 import { getRecipes } from '@/lib/data';
 
-import CustomFilters from '../custom-filters';
-
-export default function SearchBar() {
+function RecipeSearch() {
   const { replace } = useRouter();
   const { valueToPathname, valueFromPathname } = useValueToPathname();
 
@@ -32,18 +30,16 @@ export default function SearchBar() {
   }
 
   return (
-    <div className='container flex items-center pt-2 pb-1'>
-      <Search
-        placeholder='Search for recipes'
-        data={recipes ?? []}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setSelected={handleSearch}
-        open={open}
-        setOpen={setOpen}
-      />
-
-      <CustomFilters />
-    </div>
+    <Search
+      placeholder='Search for recipes'
+      data={recipes ?? []}
+      searchTerm={searchTerm}
+      setSearchTerm={setSearchTerm}
+      setSelected={handleSearch}
+      open={open}
+      setOpen={setOpen}
+    />
   );
 }
+
+export default RecipeSearch;

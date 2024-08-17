@@ -4,7 +4,7 @@ interface MethodProps {
   recipe: Recipe;
 }
 
-export default function RecipeMethod({ recipe }: MethodProps) {
+function RecipeMethod({ recipe }: MethodProps) {
   return (
     <div className='flex flex-col gap-5'>
       {recipe.steps.map((instruction, index) => {
@@ -23,3 +23,5 @@ export default function RecipeMethod({ recipe }: MethodProps) {
     </div>
   );
 }
+
+export default RecipeMethod;

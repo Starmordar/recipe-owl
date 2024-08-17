@@ -22,7 +22,7 @@ interface SearchProps {
   setSearchTerm: (value: string) => void;
 }
 
-export default function Search({
+function Search({
   placeholder,
   searchTerm,
   setSearchTerm,
@@ -91,3 +91,5 @@ export default function Search({
     </React.Fragment>
   );
 }
+
+export default Search;

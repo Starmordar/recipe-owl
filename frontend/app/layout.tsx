@@ -1,10 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
-import BottomNavbar from '@/components/layout/bottom-navbar';
 import QueryClientProvider from '@/components/query-client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { cn } from '@/lib/utils';
 
 import type { Metadata } from 'next';
 
@@ -26,15 +26,11 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <QueryClientProvider>
       <html lang='en'>
-        <body className={inter.className}>
+        <body className={cn('flex flex-col min-h-[100vh]', inter.className)}>
           <ThemeProvider
             attribute='class'
             defaultTheme='system'
@@ -43,10 +39,6 @@ export default function RootLayout({
           >
             {children}
 
-            <div className='h-16'></div>
-            <div className='fixed bottom-0 mx-0 w-full'>
-              <BottomNavbar />
-            </div>
             <Toaster />
           </ThemeProvider>
         </body>
@@ -54,3 +46,5 @@ export default function RootLayout({
     </QueryClientProvider>
   );
 }
+
+export default RootLayout;

@@ -7,7 +7,7 @@ interface RecipePreviewCardProps {
   recipe: Recipe;
 }
 
-export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
+function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
   return (
     <Link href={`/recipes/${recipe.id}`}>
       <div className='relative h-[20vh]'>
@@ -25,3 +25,5 @@ export default function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
     </Link>
   );
 }
+
+export default RecipePreviewCard;

@@ -1,31 +1,25 @@
-'use client';
+import { getRecipe } from '@/lib/data';
 
-import { Form } from '@/components/ui/form';
+import RecipeForm, { RecipeFormProps } from './components/recipe-form';
+import { recipeToFormValues } from './utils/recipeToFormValues';
 
-import DetailsFieldset from './components/details-fieldset';
-import IngredientsFieldset from './components/ingredients-fieldset';
-import StepsFieldset from './components/steps-fieldset';
-import useRecipeForm from './hooks/useRecipeForm';
-
-import type { FormValues } from './constants/shema';
-
-interface RecipeDetailsFromProps {
+interface RecipeProps {
   recipeId?: number;
-  initialValues?: FormValues;
 }
 
-function RecipeDetailsForm({ recipeId, initialValues }: RecipeDetailsFromProps) {
-  const { form, onSubmit } = useRecipeForm({ recipeId, initialValues });
+async function RecipeDetailsForm({ recipeId }: RecipeProps) {
+  const formProps = await getFormProps();
 
-  return (
-    <Form {...form}>
-      <form id='create-recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
-        <DetailsFieldset form={form} />
-        <IngredientsFieldset form={form} />
-        <StepsFieldset form={form} />
-      </form>
-    </Form>
-  );
+  async function getFormProps(): Promise<RecipeFormProps> {
+    if (typeof recipeId !== 'number') return {};
+
+    const recipe = await getRecipe(recipeId);
+    if (!recipe) return {};
+
+    return { recipeId: recipe.id, initialValues: recipeToFormValues(recipe) };
+  }
+
+  return <RecipeForm {...formProps} />;
 }
 
 export default RecipeDetailsForm;

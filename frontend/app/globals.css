@@ -58,3 +58,10 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+
+@layer components {
+  .page-container {
+    @apply container flex flex-1 flex-col gap-4 pt-2 pb-4
+  }
+}
