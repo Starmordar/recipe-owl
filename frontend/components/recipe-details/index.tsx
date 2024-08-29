@@ -1,7 +1,4 @@
-import { Clock1 } from 'lucide-react';
-import Image from 'next/image';
-
-import { getRecipe } from '@/lib/data';
+import { getRecipe } from '@/lib/data/recipe';
 
 import IngredientsTable from './components/ingredients-table';
 import RecipeDescription from './components/recipe-description';

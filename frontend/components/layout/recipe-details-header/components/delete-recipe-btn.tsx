@@ -1,7 +1,9 @@
 'use client';
 
 import { Trash2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
+import { deleteRecipe } from '@/app/recipes/actions';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,15 +15,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { deleteRecipe } from '@/lib/data';
 
 interface DeleteRecipeBtnProps {
   recipeId: number;
 }
 
 function DeleteRecipeBtn({ recipeId }: DeleteRecipeBtnProps) {
+  const router = useRouter();
+
   async function handleDeleteRecipe() {
     await deleteRecipe(recipeId);
+    router.push(`/recipes`);
     console.log('delete recipe');
   }
 

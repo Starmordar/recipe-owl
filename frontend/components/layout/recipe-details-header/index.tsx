@@ -2,7 +2,7 @@ import { Pencil } from 'lucide-react';
 import Link from 'next/link';
 
 import { publicUrls } from '@/config/url';
-import { getRecipe } from '@/lib/data';
+import { getRecipe } from '@/lib/data/recipe';
 
 import AppHeader from '../app-header';
 

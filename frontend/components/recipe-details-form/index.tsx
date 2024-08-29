@@ -1,4 +1,4 @@
-import { getRecipe } from '@/lib/data';
+import { getRecipe } from '@/lib/data/recipe';
 
 import RecipeForm, { RecipeFormProps } from './components/recipe-form';
 import { recipeToFormValues } from './utils/recipeToFormValues';
