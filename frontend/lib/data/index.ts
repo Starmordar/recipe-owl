@@ -103,3 +103,15 @@ export async function updateRecipe(
 
   return response.json();
 }
+
+export async function deleteRecipe(recipeId: number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/${recipeId}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to Update Recipe');
+  }
+
+  return response.json();
+}

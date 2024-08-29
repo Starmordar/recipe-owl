@@ -7,6 +7,7 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -48,5 +49,10 @@ export class RecipeController {
       file,
       data: JSON.parse(data),
     });
+  }
+
+  @Delete('recipe/:id')
+  async deleteRecipe(@Param('id') id: string): Promise<any> {
+    return this.recipeService.deleteRecipe(id);
   }
 }

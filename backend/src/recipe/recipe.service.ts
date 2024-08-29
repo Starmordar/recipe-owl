@@ -57,4 +57,14 @@ export class RecipeService {
       data: imageUrl ? { ...dataWithoutImage, imageUrl } : dataWithoutImage,
     });
   }
+
+  async deleteRecipe(recipeId: string) {
+    const deleteRecipe = await this.prisma.recipe.delete({
+      where: {
+        id: parseInt(recipeId, 10),
+      },
+    });
+
+    return deleteRecipe;
+  }
 }
