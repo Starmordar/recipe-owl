@@ -18,11 +18,11 @@ function Page({ searchParams }: PageProps) {
     <>
       <RecipesHeader />
 
-      <section>
+      <main className='page-container'>
         <Suspense key={JSON.stringify(searchParams)} fallback={<RecipePreviewCardsSkeleton />}>
           <RecipePreviewCards search={search} filters={searchParams} />
         </Suspense>
-      </section>
+      </main>
     </>
   );
 }

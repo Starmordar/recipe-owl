@@ -11,7 +11,7 @@ async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) 
   const data = await getRecipesPreview(search, filters);
 
   return (
-    <div className='container grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
+    <div className='grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
       {(data.recipes ?? []).map(recipe => (
         <RecipePreviewCard key={recipe.id} recipe={recipe} />
       ))}
