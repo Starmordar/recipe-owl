@@ -79,6 +79,7 @@ function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
             <PopoverContent
               align='start'
               side='bottom'
+              avoidCollisions={false}
               className='p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]'
             >
               <Command shouldFilter={false}>
