@@ -76,7 +76,11 @@ function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className='p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]'>
+            <PopoverContent
+              align='start'
+              side='bottom'
+              className='p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]'
+            >
               <Command shouldFilter={false}>
                 <CommandInput
                   value={searchTerm}
