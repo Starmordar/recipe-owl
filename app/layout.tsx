@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'PWA NextJS',
+  title: 'Recipe OWL',
   description: "It's a simple progressive web application made with NextJS",
   generator: 'Next.js',
   manifest: '/manifest.json',
