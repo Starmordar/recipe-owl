@@ -2,6 +2,8 @@ import { getRecipesPreview } from '@/lib/data/recipe';
 
 import RecipePreviewCard from './components/preview-card';
 
+import type { Recipe } from '@/types/recipe';
+
 interface RecipePreviewCardsProps {
   search: string;
   filters: Record<string, string | Array<string> | undefined>;
@@ -13,7 +15,7 @@ async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) 
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
-      {(data.recipes ?? []).map(recipe => (
+      {(data.recipes ?? []).map((recipe: Recipe) => (
         <RecipePreviewCard key={recipe.id} recipe={recipe} />
       ))}
     </div>

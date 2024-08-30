@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Search from '@/components/ui/search';
 import { searchKey } from '@/constants/query';
 import useValueToPathname from '@/hooks/useValueToPathname';
-import { getRecipes } from '@/lib/data';
+import { getRecipes } from '@/lib/data/recipe';
 
 function RecipeSearch() {
   const { replace } = useRouter();
