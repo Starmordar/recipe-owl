@@ -39,6 +39,7 @@ class MinioStorage implements ImageStorage {
   }
 
   async getPublicUrl(fileName: string) {
+    console.log('filename', fileName);
     return (
       'https:' +
       '//' +
