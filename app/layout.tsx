@@ -33,7 +33,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
         <body className={cn('flex flex-col min-h-[100vh]', inter.className)}>
           <ThemeProvider
             attribute='class'
-            defaultTheme='system'
+            defaultTheme='light'
             enableSystem
             disableTransitionOnChange
           >
