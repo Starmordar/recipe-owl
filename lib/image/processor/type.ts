@@ -1,6 +1,6 @@
 export interface ImageProcessOptions {
   maxWidth: number;
-  format: 'avif' | 'webp';
+  format: 'avif' | 'webp' | 'jpeg';
   quality: number;
 }
 

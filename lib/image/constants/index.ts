@@ -10,6 +10,6 @@ export const acceptedImageMimeTypes = [
 
 export const imageProcessOptions: ImageProcessOptions = {
   maxWidth: 1000,
-  format: 'webp',
+  format: 'jpeg',
   quality: 75,
 };
