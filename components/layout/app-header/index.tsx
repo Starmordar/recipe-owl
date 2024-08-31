@@ -12,7 +12,7 @@ function AppHeader({ children, prevUrl }: AppHeaderProps) {
       <div className='container flex items-center justify-between py-2.5'>
         {prevUrl && (
           <Link href={prevUrl}>
-            <ArrowLeft className='h-4 w-4 opacity-50' />
+            <ArrowLeft className='h-5 w-5 opacity-50' />
           </Link>
         )}
 

@@ -21,11 +21,11 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
       {/* <h1 className='text-lg font-semibold leading-none'>{recipe?.title}</h1> */}
 
       <div className='flex items-center gap-3'>
-        <DeleteRecipeBtn recipeId={recipe.id} />
-
         <Link href={`/recipes/${recipe.id}/edit`}>
-          <Pencil className='h-4 w-4 opacity-50' />
+          <Pencil className='h-5 w-5 opacity-50' />
         </Link>
+
+        <DeleteRecipeBtn recipeId={recipe.id} />
       </div>
     </AppHeader>
   );

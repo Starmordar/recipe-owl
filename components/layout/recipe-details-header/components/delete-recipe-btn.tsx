@@ -26,13 +26,12 @@ function DeleteRecipeBtn({ recipeId }: DeleteRecipeBtnProps) {
   async function handleDeleteRecipe() {
     await deleteRecipe(recipeId);
     router.push(`/recipes`);
-    console.log('delete recipe');
   }
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Trash2 className='h-4 w-4 opacity-50' />
+        <Trash2 className='h-5 w-5 opacity-50' />
       </AlertDialogTrigger>
 
       <AlertDialogContent>

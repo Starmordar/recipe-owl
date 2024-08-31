@@ -31,7 +31,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
   }
 
   return (
-    <div className='relative flex w-full h-[25vh] bg-muted rounded-lg'>
+    <div className='relative flex w-full h-[40vh] bg-muted rounded-lg'>
       {selectedImage ? (
         <>
           <NextImage
