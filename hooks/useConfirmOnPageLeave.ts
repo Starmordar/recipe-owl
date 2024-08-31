@@ -22,7 +22,7 @@ function useConfirmOnPageLeave({ message, shouldTrigger }: UseConfirmOnPageLeave
     return () => {
       router.push = originalPush;
     };
-  });
+  }, [shouldTrigger, message, router]);
 }
 
 export default useConfirmOnPageLeave;

@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/app/recipes/actions';
@@ -35,18 +36,18 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
     return formData;
   }
 
-  async function applyChanges(values: FormValues): Promise<{ id: number } | void> {
+  async function applyChanges(values: FormValues): Promise<{ id: number } | null> {
     const formData = valuesToFormData(values);
 
-    if (recipeId) {
-      return updateRecipe(recipeId, formData).catch(() => {
-        toast(errorToast);
-      });
-    }
-
-    return createRecipe(formData).catch(() => {
+    try {
+      const recipe = await (recipeId ? updateRecipe(recipeId, formData) : createRecipe(formData));
+      // Update the form immediately to ensure the redirect after creation does not trigger the unsaved changes confirmation dialog.
+      flushSync(() => form.reset({}, { keepValues: true }));
+      return recipe;
+    } catch {
       toast(errorToast);
-    });
+      return null;
+    }
   }
 
   async function onSubmit(values: FormValues) {
