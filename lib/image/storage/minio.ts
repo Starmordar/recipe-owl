@@ -28,8 +28,10 @@ class MinioStorage implements ImageStorage {
 
   async upload(originalname: string, buffer: Buffer): Promise<string> {
     const fileName = `${Date.now()}-${originalname}`;
-
-    await this.minioClient.putObject(this.bucketName, fileName, buffer, buffer.byteLength);
+    console.log('fileName :>> ', fileName);
+    await this.minioClient
+      .putObject(this.bucketName, fileName, buffer, buffer.byteLength)
+      .catch(err => console.log('err :>> ', err));
 
     return this.getPublicUrl(fileName);
   }
