@@ -11,8 +11,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '**',
+        protocol: 'https',
+        hostname: 'recipe-owl-s3.cloud',
         port: '9000',
         pathname: '/test/**',
       },
