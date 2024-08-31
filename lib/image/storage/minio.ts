@@ -40,7 +40,7 @@ class MinioStorage implements ImageStorage {
 
   async getPublicUrl(fileName: string) {
     return (
-      'http:' +
+      'https:' +
       '//' +
       process.env.MINIO_ENDPOINT +
       ':' +
