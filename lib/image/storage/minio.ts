@@ -28,7 +28,7 @@ class MinioStorage implements ImageStorage {
 
   async upload(originalname: string, buffer: Buffer): Promise<string> {
     const fileName = `${Date.now()}-${originalname}`;
-    console.log('fileName :>> ', fileName);
+
     await this.minioClient
       .putObject(this.bucketName, fileName, buffer, buffer.byteLength)
       .catch(err => console.log('err :>> ', err));
@@ -41,7 +41,6 @@ class MinioStorage implements ImageStorage {
   }
 
   async getPublicUrl(fileName: string) {
-    console.log('filename', fileName);
     return (
       'https:' +
       '//' +
