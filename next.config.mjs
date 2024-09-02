@@ -7,7 +7,6 @@ const nextConfig = {
   compiler: {
     removeConsole: false,
   },
-  cacheMaxMemorySize: 0,
   images: {
     remotePatterns: [
       {
