@@ -12,9 +12,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'recipe-owl-s3.cloud',
-        port: '9000',
-        pathname: '/test/**',
+        hostname: 'storage.googleapis.com',
+        pathname: '/recipe-owl/**',
       },
     ],
   },
