@@ -41,6 +41,7 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
               <Textarea
                 placeholder='Share a little more about this dist.'
                 className='resize-none'
+                autoResize
                 {...field}
               />
             </FormControl>

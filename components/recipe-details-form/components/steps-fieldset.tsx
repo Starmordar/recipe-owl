@@ -40,6 +40,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
                     <Textarea
                       placeholder='Mix...'
                       className='min-h-[40px] resize-none'
+                      autoResize
                       {...field}
                     />
                   </FormControl>
