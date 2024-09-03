@@ -80,9 +80,9 @@ function IngredientsSelect({ form, fieldIndex }: IngredientsSelectProps) {
               align='start'
               side='bottom'
               avoidCollisions={false}
-              className='p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]'
+              className='p-0 w-[--radix-popover-trigger-width]'
             >
-              <Command shouldFilter={false}>
+              <Command shouldFilter={false} className='max-h-[200px]'>
                 <CommandInput
                   value={searchTerm}
                   onValueChange={setSearchTerm}

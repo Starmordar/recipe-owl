@@ -75,7 +75,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
           name='image'
           render={({ field: { value, onChange, ...fieldProps } }) => (
             <FormItem className='flex w-full justify-center items-center cursor-pointer'>
-              <FormLabel className='w-full' htmlFor='fileInput'>
+              <FormLabel className='flex h-full w-full cursor-pointer' htmlFor='fileInput'>
                 <FormControl>
                   <div className='flex w-full justify-center items-center'>
                     <UploadInput
