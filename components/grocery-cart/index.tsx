@@ -12,6 +12,8 @@ async function GroceryCart() {
   return (
     <div className='flex flex-col gap-4'>
       {cart.map(({ recipe, ingredients }) => {
+        if (recipe === null || ingredients === null) return null;
+
         return (
           <Card key={recipe.id}>
             <CardHeader className='flex flex-row p-4 space-y-0 gap-4'>
@@ -32,6 +34,8 @@ async function GroceryCart() {
 
             <CardContent className='grid p-4 gap-2'>
               {ingredients.map(ingredient => {
+                if (ingredient === null) return null;
+
                 return (
                   <div key={ingredient.name}>
                     <div className='space-y-1'>

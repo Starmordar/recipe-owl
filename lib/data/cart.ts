@@ -2,7 +2,14 @@ import { prisma } from '@/prisma/prisma-client';
 
 import { groupBy } from '../utils';
 
-export async function getCart(): Promise<any> {
+import type { Prisma, Ingredient, Recipe } from '@prisma/client';
+
+interface CartItem {
+  recipe: Prisma.RecipeGetPayload<{ select: { id: true; title: true; imageUrl: true } }> | null;
+  ingredients: Array<Ingredient | null> | null;
+}
+
+export async function getCart(): Promise<Array<CartItem>> {
   const cart = await prisma.cart.findFirst({
     include: {
       items: {
