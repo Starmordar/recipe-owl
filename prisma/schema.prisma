@@ -9,10 +9,11 @@ datasource db {
 }
 
 model Ingredient {
-  id      Int      @id @default(autoincrement())
-  name    String
-  unit    String?
-  recipes Recipe[]
+  id       Int        @id @default(autoincrement())
+  name     String
+  unit     String?
+  recipes  Recipe[]
+  CartItem CartItem[]
 }
 
 model Recipe {
@@ -23,4 +24,26 @@ model Recipe {
 
   steps       String[]
   ingredients Ingredient[]
+  CartItem    CartItem[]
+}
+
+model Cart {
+  id    Int        @id @default(autoincrement())
+  items CartItem[]
+}
+
+model CartItem {
+  id     Int  @id @default(autoincrement())
+  cartId Int
+  cart   Cart @relation(fields: [cartId], references: [id])
+
+  recipeId     Int?
+  ingredientId Int?
+
+  recipe     Recipe?     @relation(fields: [recipeId], references: [id])
+  ingredient Ingredient? @relation(fields: [ingredientId], references: [id])
+
+  quantity Int @default(1)
+
+  @@unique([cartId, recipeId, ingredientId])
 }

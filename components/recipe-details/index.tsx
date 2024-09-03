@@ -1,5 +1,6 @@
 import { getRecipe } from '@/lib/data/recipe';
 
+import AddToCart from './components/add-to-cart';
 import IngredientsTable from './components/ingredients-table';
 import RecipeDescription from './components/recipe-description';
 import RecipeImage from './components/recipe-image';
@@ -21,7 +22,10 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
       </section>
 
       <section>
-        <h2 className='text-xl font-bold mb-2'>Ingredients</h2>
+        <div className='flex justify-between mb-2'>
+          <h2 className='text-xl font-bold'>Ingredients</h2>
+          <AddToCart recipe={recipe} />
+        </div>
         <IngredientsTable ingredients={recipe.ingredients} />
       </section>
 

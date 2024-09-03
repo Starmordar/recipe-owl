@@ -6,6 +6,7 @@ import { getCart } from '@/lib/data/cart';
 
 async function GroceryCart() {
   const cart = await getCart();
+  console.log('cart :>> ', cart);
   if (!cart) return null;
 
   return (

@@ -1,9 +1,36 @@
 import { prisma } from '@/prisma/prisma-client';
 
-import type { GetCartResponse } from '@/types/api';
+import { groupBy } from '../utils';
 
-export async function getCart(): Promise<GetCartResponse> {
-  const recipes = await prisma.recipe.findMany({ include: { ingredients: true } });
+export async function getCart(): Promise<any> {
+  const cart = await prisma.cart.findFirst({
+    include: {
+      items: {
+        include: {
+          recipe: { select: { id: true, title: true, imageUrl: true } },
+          ingredient: true,
+        },
+      },
+    },
+  });
 
-  return recipes.map(recipe => ({ recipe, ingredients: recipe.ingredients })) as GetCartResponse;
+  if (cart === null) return [];
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const groupedItems = groupBy(cart.items, ({ recipe }) => recipe!.id);
+
+  const items = Object.entries(groupedItems).flatMap(([recipeId, data]) => {
+    if (!data) return [];
+    return { recipe: data[0].recipe, ingredients: data.map(d => d.ingredient) };
+  });
+
+  return items;
+}
+
+export async function ingredientsInCart(): Promise<number> {
+  const cart = await prisma.cart.findFirst();
+  if (cart === null) return 0;
+
+  const itemsCount = await prisma.cartItem.count({ where: { cartId: cart.id } });
+  return itemsCount;
 }

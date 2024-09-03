@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client';
+
 import { prisma } from '@/prisma/prisma-client';
 import { GetRecipesResponse } from '@/types/api';
 
@@ -13,6 +15,7 @@ export async function getRecipesPreview(
   filters: Record<string, string | Array<string> | undefined>,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
+  // type T = Prisma.RecipeGetPayload<{ include: { ingredients: true } }>;
   const recipes = await prisma.recipe.findMany({ include: { ingredients: true } });
   console.log('search and filter', search, filters);
 
