@@ -3,7 +3,7 @@
 import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import { deleteRecipe } from '@/app/recipes/actions';
+import { deleteRecipe } from '@/app/(main)/recipes/actions';
 import {
   AlertDialog,
   AlertDialogAction,

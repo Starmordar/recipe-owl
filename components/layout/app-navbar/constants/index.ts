@@ -7,7 +7,10 @@ import type { NavbarItem } from '../types';
 const navbarItems: Array<NavbarItem> = [
   {
     title: 'Home',
-    href: '/home',
+    href: '/',
+    match: (pathname: string) => {
+      return pathname === publicUrls.home;
+    },
     Icon: House,
   },
   {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
-import { createRecipe, updateRecipe } from '@/app/recipes/actions';
+import { createRecipe, updateRecipe } from '@/app/(main)/recipes/actions';
 import { useToast } from '@/components/ui/use-toast';
 import { errorToast } from '@/constants/toast';
 
