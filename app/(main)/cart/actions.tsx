@@ -30,3 +30,28 @@ export async function addRecipeToCart(
   revalidatePath(publicUrls.cart);
   return cart;
 }
+
+export async function removeRecipeFromCart(recipeId: number): Promise<void> {
+  const existingCart = await prisma.cart.findFirst();
+  if (existingCart === null) return;
+
+  await prisma.cartItem.deleteMany({
+    where: { cartId: existingCart.id, recipeId: recipeId },
+  });
+
+  revalidatePath(publicUrls.cart);
+}
+
+export async function removeIngredientFromCart(
+  recipeId: number,
+  ingredientId: number,
+): Promise<void> {
+  const existingCart = await prisma.cart.findFirst();
+  if (existingCart === null) return;
+
+  await prisma.cartItem.deleteMany({
+    where: { cartId: existingCart.id, recipeId, ingredientId },
+  });
+
+  revalidatePath(publicUrls.cart);
+}
