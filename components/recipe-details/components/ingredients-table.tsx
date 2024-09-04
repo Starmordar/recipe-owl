@@ -7,10 +7,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import type { Ingredient } from '@/types/recipe';
+import type { RecipeDetails } from '@/types/api';
 
 interface IngredientsTableProps {
-  ingredients: Array<Ingredient>;
+  ingredients: Array<RecipeDetails['ingredients'][number]>;
 }
 
 function IngredientsTable({ ingredients }: IngredientsTableProps) {

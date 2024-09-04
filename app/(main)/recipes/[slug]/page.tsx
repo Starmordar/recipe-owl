@@ -11,9 +11,9 @@ interface PageProps {
   params: { slug: string };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const recipeId = Number(params.slug);
-  const recipe = await getRecipe(recipeId);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata | null> {
+  const recipe = await getRecipe(Number(params.slug));
+  if (!recipe) return null;
 
   return {
     title: recipe.title,

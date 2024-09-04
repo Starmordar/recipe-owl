@@ -1,11 +1,6 @@
-import type { Ingredient, Recipe } from './recipe';
+import type { Prisma } from '@prisma/client';
 
-export interface GetRecipesResponse {
-  recipes: Array<Recipe>;
-}
+export type RecipePreview = Prisma.RecipeGetPayload<null>;
+export type RecipeDetails = Prisma.RecipeGetPayload<{ include: { ingredients: true } }>;
 
-export type GetRecipeResponse = Recipe | undefined;
-
-export type GetIngredientsResponse = Array<Ingredient>;
-
-export type GetCartResponse = Array<{ recipe: Recipe; ingredients: Array<Ingredient> }>;
+export type IngredientDetails = Prisma.IngredientGetPayload<null>;

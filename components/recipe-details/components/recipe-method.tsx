@@ -1,7 +1,7 @@
-import type { Recipe } from '@/types/recipe';
+import type { RecipeDetails } from '@/types/api';
 
 interface MethodProps {
-  recipe: Recipe;
+  recipe: RecipeDetails;
 }
 
 function RecipeMethod({ recipe }: MethodProps) {

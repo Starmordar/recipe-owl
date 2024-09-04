@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get('search') ?? '';
 
   console.log('query :>> ', query);
-  const recipes = prisma.recipe.findMany({ include: { ingredients: true } });
+  const recipes = prisma.recipe.findMany();
 
   return NextResponse.json(recipes);
 }

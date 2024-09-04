@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { Recipe } from '@/types/recipe';
+import type { RecipePreview } from '@/types/api';
 
 interface RecipePreviewCardProps {
-  recipe: Recipe;
+  recipe: RecipePreview;
 }
 
 function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {

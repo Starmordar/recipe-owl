@@ -1,8 +1,7 @@
 import type { FormValues } from '../constants/shema';
-import type { Recipe } from '@/types/recipe';
+import type { RecipeDetails } from '@/types/api';
 
-export function recipeToFormValues(recipe: Recipe): FormValues {
+export function recipeToFormValues(recipe: RecipeDetails): FormValues {
   const steps = recipe.steps.map(step => ({ description: step }));
-
-  return { ...recipe, image: recipe.imageUrl, steps };
+  return { ...recipe, image: recipe.imageUrl, steps } as FormValues;
 }

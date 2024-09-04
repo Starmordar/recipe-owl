@@ -1,9 +1,8 @@
-import { Prisma } from '@prisma/client';
-
 import { prisma } from '@/prisma/prisma-client';
-import { GetRecipesResponse } from '@/types/api';
 
-export async function getRecipes(searchTerm: string): Promise<GetRecipesResponse> {
+import type { RecipeDetails, RecipePreview } from '@/types/api';
+
+export async function getRecipes(searchTerm: string): Promise<{ recipes: Array<RecipePreview> }> {
   const response = await fetch(`/api/recipes/?search=${searchTerm}`);
   const recipes = await response.json();
 
@@ -13,17 +12,14 @@ export async function getRecipes(searchTerm: string): Promise<GetRecipesResponse
 export async function getRecipesPreview(
   search: string,
   filters: Record<string, string | Array<string> | undefined>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Promise<any> {
-  // type T = Prisma.RecipeGetPayload<{ include: { ingredients: true } }>;
-  const recipes = await prisma.recipe.findMany({ include: { ingredients: true } });
+): Promise<{ recipes: Array<RecipePreview> }> {
+  const recipes = await prisma.recipe.findMany();
   console.log('search and filter', search, filters);
 
   return { recipes };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getRecipe(recipeId: number): Promise<any> {
+export async function getRecipe(recipeId: number): Promise<RecipeDetails | null> {
   const recipe = prisma.recipe.findFirst({
     where: { id: recipeId },
     include: { ingredients: true },

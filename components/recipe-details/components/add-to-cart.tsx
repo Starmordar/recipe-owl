@@ -5,9 +5,10 @@ import { CirclePlus } from 'lucide-react';
 import { addRecipeToCart } from '@/app/(main)/cart/actions';
 import { Button } from '@/components/ui/button';
 
+import type { RecipeDetails } from '@/types/api';
+
 interface AddToCartProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  recipe: any;
+  recipe: RecipeDetails;
 }
 
 function AddToCart({ recipe }: AddToCartProps) {

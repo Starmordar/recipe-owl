@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import type { Recipe } from '@/types/recipe';
+import type { RecipeDetails } from '@/types/api';
 
 interface RecipeImageProps {
-  recipe: Recipe;
+  recipe: RecipeDetails;
 }
 
 function RecipeImage({ recipe }: RecipeImageProps) {
