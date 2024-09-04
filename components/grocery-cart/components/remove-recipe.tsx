@@ -4,18 +4,23 @@ import { X } from 'lucide-react';
 
 import { removeRecipeFromCart } from '@/app/(main)/cart/actions';
 import { Button } from '@/components/ui/button';
+import { useServerAction } from '@/hooks/useServerAction';
 
 interface RemoveRecipeProps {
   recipeId: number;
 }
 
 function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
+  const [removeRecipeAction, isPending] = useServerAction(removeRecipeFromCart);
+
   return (
     <Button
       className='px-1'
-      variant='outline'
+      variant='ghost'
       size='xss'
-      onClick={() => removeRecipeFromCart(recipeId)}
+      onClick={() => removeRecipeAction(recipeId)}
+      loading={isPending}
+      loadingText=''
     >
       <X className='h-5 w-5' />
     </Button>

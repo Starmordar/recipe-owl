@@ -6,7 +6,7 @@ import GroceryCartSekeleton from '@/components/grocery-cart/skeleton';
 function Page() {
   return (
     <main className='page-container'>
-      <h1 className='text-xl font-bold mb-1'>Grocery Cart</h1>
+      <h1 className='text-xl font-bold'>Grocery Cart</h1>
 
       <Suspense fallback={<GroceryCartSekeleton />}>
         <GroceryCart />

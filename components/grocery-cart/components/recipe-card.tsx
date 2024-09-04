@@ -17,7 +17,7 @@ function RecipeCard({ cartItem }: RecipeCardProps) {
         <RecipeCardHeader recipe={cartItem.recipe} />
       </CardHeader>
 
-      <CardContent className='grid p-4 gap-2'>
+      <CardContent className='grid p-4 pt-0 gap-2'>
         <RecipeCardIngredients recipe={cartItem.recipe} ingredients={cartItem.ingredients} />
       </CardContent>
     </Card>
