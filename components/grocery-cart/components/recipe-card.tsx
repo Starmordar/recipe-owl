@@ -14,11 +14,15 @@ function RecipeCard({ cartItem }: RecipeCardProps) {
   return (
     <Card>
       <CardHeader className='flex flex-row p-4 space-y-0 gap-4'>
-        <RecipeCardHeader recipe={cartItem.recipe} />
+        <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </CardHeader>
 
       <CardContent className='grid p-4 pt-0 gap-2'>
-        <RecipeCardIngredients recipe={cartItem.recipe} ingredients={cartItem.ingredients} />
+        <RecipeCardIngredients
+          recipe={cartItem.recipe}
+          ingredients={cartItem.ingredients}
+          quantity={cartItem.quantity}
+        />
       </CardContent>
     </Card>
   );

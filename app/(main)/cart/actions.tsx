@@ -55,3 +55,15 @@ export async function removeIngredientFromCart(
 
   revalidatePath(publicUrls.cart);
 }
+
+export async function updateServings(recipeId: number, quantity: number): Promise<void> {
+  const existingCart = await prisma.cart.findFirst();
+  if (existingCart === null) return;
+
+  await prisma.cartItem.updateMany({
+    where: { cartId: existingCart.id, recipeId },
+    data: { quantity },
+  });
+
+  revalidatePath(publicUrls.cart);
+}

@@ -7,6 +7,7 @@ import type { Prisma, Ingredient } from '@prisma/client';
 export interface CartRecipe {
   recipe: Prisma.RecipeGetPayload<{ select: { id: true; title: true; imageUrl: true } }> | null;
   ingredients: Array<Ingredient | null> | null;
+  quantity: number;
 }
 
 export async function getCart(): Promise<Array<CartRecipe>> {
@@ -28,7 +29,11 @@ export async function getCart(): Promise<Array<CartRecipe>> {
 
   const items = Object.entries(groupedItems).flatMap(([recipeId, data]) => {
     if (!data) return [];
-    return { recipe: data[0].recipe, ingredients: data.map(d => d.ingredient) };
+    return {
+      recipe: data[0].recipe,
+      ingredients: data.map(d => d.ingredient),
+      quantity: data[0].quantity,
+    };
   });
 
   return items;
