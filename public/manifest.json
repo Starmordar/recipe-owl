@@ -1,27 +1,47 @@
 {
   "name": "Recipe OWL",
-  "short_name": "ROWL",
-  "theme_color": "#00ff00",
+  "short_name": "Recipe OWL",
+  "description": "Discover, organize, and manage your favorite recipes with ease. Recipe OWL lets you add personal recipes, create grocery lists, and bring your culinary ideas to life—all in one place!",
+  "start_url": "/recipes",
+  "display": "standalone",
+  "theme_color": "#ffdab9",
   "background_color": "#ffffff",
-  "display": "browser",
-  "orientation": "any",
-  "scope": "/",
-  "start_url": "/",
   "icons": [
     {
-      "src": "/icons-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "maskable",
+      "sizes": "48x48",
+      "src": "maskable_icon_x48.png",
+      "type": "image/png"
     },
     {
-      "src": "/icons-256.png",
-      "type": "image/png",
-      "sizes": "256x256"
+      "purpose": "maskable",
+      "sizes": "72x72",
+      "src": "maskable_icon_x72.png",
+      "type": "image/png"
     },
     {
-      "src": "/icons-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "maskable",
+      "sizes": "96x96",
+      "src": "maskable_icon_x96.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "128x128",
+      "src": "maskable_icon_x128.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "192x192",
+      "src": "maskable_icon_x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "maskable_icon_x512.png",
+      "type": "image/png"
     }
   ]
 }
