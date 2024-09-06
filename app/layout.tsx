@@ -12,18 +12,20 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Recipe OWL',
-  description: "It's a simple progressive web application made with NextJS",
+  description:
+    'Discover, organize, and manage your favorite recipes with ease. Recipe OWL lets you add personal recipes, create grocery lists, and bring your culinary ideas to life—all in one place!',
   generator: 'Next.js',
   manifest: '/manifest.json',
-  keywords: ['nextjs', 'next14', 'pwa', 'next-pwa'],
-  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#fff' }],
-  authors: [],
-  viewport:
-    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
+  keywords:
+    'Recipe OWL, recipe manager, personal recipes, grocery list, organize recipes, cooking app, save recipes, recipe book',
+  authors: [{ name: 'Roman Borovik', url: 'https://github.com/Starmordar' }],
   icons: [
-    { rel: 'apple-touch-icon', url: 'icons/icon-128x128.png' },
-    { rel: 'icon', url: 'icons/icon-128x128.png' },
+    { rel: 'apple-touch-icon', url: 'icons/icon_x128.png' },
+    { rel: 'icon', url: 'icons/icon_x128.png' },
   ],
+  openGraph: {
+    images: ['icons/icon_x128.png'],
+  },
 };
 
 function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
