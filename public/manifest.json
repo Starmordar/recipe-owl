@@ -45,30 +45,30 @@
   ],
   "screenshots": [
     {
-      "src": "screenshots/image1.png",
+      "src": "screenshots/image1.jpg",
       "sizes": "576x1146",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Recipe Details"
     },
     {
-      "src": "screenshots/image2.png",
+      "src": "screenshots/image2.jpg",
       "sizes": "576x1146",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Grocery Card"
     },
     {
-      "src": "screenshots/image1.png",
+      "src": "screenshots/image1.jpg",
       "sizes": "576x1146",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "Recipe Details"
     },
     {
-      "src": "screenshots/image2.png",
+      "src": "screenshots/image2.jpg",
       "sizes": "576x1146",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "Grocery Card"
     }
