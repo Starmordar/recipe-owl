@@ -38,10 +38,25 @@
       "type": "image/png"
     },
     {
-      "purpose": "maskable",
       "sizes": "512x512",
       "src": "maskable_icon_x512.png",
       "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/image1.png",
+      "sizes": "576x1146",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Recipe Details"
+    },
+    {
+      "src": "screenshots/image2.png",
+      "sizes": "576x1146",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Grocery Card"
     }
   ]
 }
