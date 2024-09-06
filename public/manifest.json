@@ -10,36 +10,36 @@
     {
       "purpose": "maskable",
       "sizes": "48x48",
-      "src": "maskable_icon_x48.png",
+      "src": "icons/maskable_icon_x48.png",
       "type": "image/png"
     },
     {
       "purpose": "maskable",
       "sizes": "72x72",
-      "src": "maskable_icon_x72.png",
+      "src": "icons/maskable_icon_x72.png",
       "type": "image/png"
     },
     {
       "purpose": "maskable",
       "sizes": "96x96",
-      "src": "maskable_icon_x96.png",
+      "src": "icons/maskable_icon_x96.png",
       "type": "image/png"
     },
     {
       "purpose": "maskable",
       "sizes": "128x128",
-      "src": "maskable_icon_x128.png",
+      "src": "icons/maskable_icon_x128.png",
       "type": "image/png"
     },
     {
       "purpose": "maskable",
       "sizes": "192x192",
-      "src": "maskable_icon_x192.png",
+      "src": "icons/maskable_icon_x192.png",
       "type": "image/png"
     },
     {
       "sizes": "512x512",
-      "src": "maskable_icon_x512.png",
+      "src": "icons/icon_x512.png",
       "type": "image/png"
     }
   ],
@@ -56,6 +56,20 @@
       "sizes": "576x1146",
       "type": "image/png",
       "form_factor": "wide",
+      "label": "Grocery Card"
+    },
+    {
+      "src": "screenshots/image1.png",
+      "sizes": "576x1146",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Recipe Details"
+    },
+    {
+      "src": "screenshots/image2.png",
+      "sizes": "576x1146",
+      "type": "image/png",
+      "form_factor": "narrow",
       "label": "Grocery Card"
     }
   ]
