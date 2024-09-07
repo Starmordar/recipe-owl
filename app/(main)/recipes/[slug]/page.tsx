@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import RecipeDetailsHeader from '@/components/layout/recipe-details-header';
@@ -13,7 +14,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata | null> {
   const recipe = await getRecipe(Number(params.slug));
-  if (!recipe) return null;
+  if (!recipe) return notFound();
 
   return {
     title: recipe.title,

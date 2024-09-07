@@ -37,8 +37,10 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+
   loading?: boolean;
   loadingText?: string;
+  loadingClassName?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -46,6 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       className,
       loading = false,
+      loadingClassName,
       loadingText,
       disabled,
       variant,
@@ -65,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Slottable>{loading ? `${loadingText ?? 'Loading...'}` : children}</Slottable>
-        {loading && <LoaderCircle className='h-4 w-4 animate-spin' />}
+        {loading && <LoaderCircle className={cn('h-4 w-4 animate-spin', loadingClassName)} />}
       </Comp>
     );
   },

@@ -22,6 +22,7 @@ function RemoveIngredient({ recipeId, ingredientId }: RemoveIngredientProps) {
       onClick={() => removeIngredientAction(recipeId, ingredientId)}
       loading={isPending}
       loadingText=''
+      loadingClassName='h-5 w-5'
     >
       <Trash2 className='h-5 w-5' />
     </Button>

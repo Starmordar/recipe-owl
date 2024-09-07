@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 function RecipeDetailsFormSkeleton() {
   return (
-    <div className='container flex flex-col gap-4'>
+    <div className='flex flex-col gap-4'>
       {/* Main Section */}
       <Skeleton className='h-[25vh] w-full' />
 

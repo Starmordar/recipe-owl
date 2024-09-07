@@ -21,6 +21,7 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
       onClick={() => removeRecipeAction(recipeId)}
       loading={isPending}
       loadingText=''
+      loadingClassName='h-5 w-5'
     >
       <X className='h-5 w-5' />
     </Button>
