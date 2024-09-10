@@ -11,5 +11,8 @@ namespace NodeJS {
     GOOGLE_CLIENT_EMAIL: string;
     GOOGLE_PROJECT_ID: string;
     GOOGLE_BUCKET_NAME: string;
+
+    AUTH_GOOGLE_ID: string;
+    AUTH_GOOGLE_SECRET: string;
   }
 }
