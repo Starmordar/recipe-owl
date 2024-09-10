@@ -1,6 +1,7 @@
 import { signIn } from '@/auth';
 
 export default function SignIn() {
+  console.log('render');
   return (
     <form
       action={async () => {
