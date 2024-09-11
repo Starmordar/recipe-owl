@@ -10,8 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.4.2",
     "@google-cloud/storage": "^7.12.1",
     "@hookform/resolvers": "^3.9.0",
+    "@neondatabase/serverless": "^0.9.5",
+    "@prisma/adapter-neon": "^5.19.1",
     "@prisma/client": "^5.19.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",

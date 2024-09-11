@@ -1,8 +1,9 @@
 import { auth } from '@/auth';
 import SignIn from '@/components/profile/signIn';
 
-export default async function Page() {
+async function Profile() {
   const session = await auth();
+
   console.log('session :>> ', session);
 
   return (
@@ -11,3 +12,5 @@ export default async function Page() {
     </main>
   );
 }
+
+export default Profile;
