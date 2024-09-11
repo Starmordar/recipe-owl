@@ -38,7 +38,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
                 <FormItem className='flex-1'>
                   <FormControl>
                     <Textarea
-                      placeholder='Mix...'
+                      placeholder='e.g., Mix ingredients in a bowl'
                       className='min-h-[40px] resize-none'
                       autoResize
                       {...field}

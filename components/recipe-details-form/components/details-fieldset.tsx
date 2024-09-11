@@ -25,7 +25,7 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input placeholder='Title: My best-ever Quiche Pie' {...field} />
+              <Input placeholder='e.g., Ultimate Chocolate Chip Cookies' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -39,11 +39,24 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
           <FormItem>
             <FormControl>
               <Textarea
-                placeholder='Share a little more about this dist.'
+                placeholder='Share a bit more about the origin or inspiration behind this dish.'
                 className='resize-none'
                 autoResize
                 {...field}
               />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name='source'
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <Input placeholder='Source or link to the original recipe' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

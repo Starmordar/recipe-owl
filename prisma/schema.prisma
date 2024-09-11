@@ -21,6 +21,7 @@ model Recipe {
   id          Int     @id @default(autoincrement())
   title       String
   description String?
+  source      String?
   imageUrl    String
 
   steps       String[]
