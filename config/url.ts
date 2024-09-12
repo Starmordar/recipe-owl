@@ -10,7 +10,7 @@ const publicUrls = {
   registerWithEmail: '/registration/email',
 
   signUp: '/signUp',
-  signIn: '/signIn',
+  signIn: '/signin',
 };
 
 export { publicUrls };
