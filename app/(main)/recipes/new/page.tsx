@@ -2,7 +2,7 @@ import RecipeDetailsFormHeader from '@/components/layout/recipe-details-form-hea
 import RecipeDetailsForm from '@/components/recipe-details-form';
 import { publicUrls } from '@/config/url';
 
-function Page() {
+async function Page() {
   return (
     <>
       <RecipeDetailsFormHeader title='Create Recipe' prevUrl={publicUrls.recipes} />

@@ -2,6 +2,10 @@ import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config) => {
+    config.externals.push('@node-rs/argon2', '@node-rs/bcrypt');
+    return config;
+  },
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
