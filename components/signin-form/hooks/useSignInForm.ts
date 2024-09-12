@@ -19,7 +19,7 @@ function useSignInForm() {
   async function onSubmit(values: FormValues) {
     setPending(true);
     const result = await signIn(values).finally(() => setPending(false));
-    if (result.error) form.setError('email', { message: result.error });
+    if (result?.error) form.setError('email', { message: result.error });
   }
 
   return { form, pending, onSubmit };

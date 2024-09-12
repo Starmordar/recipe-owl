@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/ui/password-input';
 
 import useSignupForm from './hooks/useSignupForm';
 
@@ -24,7 +25,6 @@ function SignupForm() {
           name='fullName'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Full Name</FormLabel>
               <FormControl>
                 <Input placeholder='Enter a full name' {...field} />
               </FormControl>
@@ -37,7 +37,6 @@ function SignupForm() {
           name='email'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Email Address</FormLabel>
               <FormControl>
                 <Input placeholder='Enter your email address' {...field} />
               </FormControl>
@@ -51,9 +50,8 @@ function SignupForm() {
           name='password'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder='Create a password' {...field} />
+                <PasswordInput placeholder='Create a password' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -64,9 +62,8 @@ function SignupForm() {
           name='confirmPassword'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your password again' {...field} />
+                <PasswordInput placeholder='Enter your password again' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

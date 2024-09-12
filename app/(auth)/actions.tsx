@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 import { cache } from 'react';
 
+import { publicUrls } from '@/config/url';
 import { lucia } from '@/lib/lucia';
 import { prisma } from '@/prisma/prisma-client';
 
@@ -32,7 +33,7 @@ export async function signUp(values: SignUpFormValues): Promise<ActionResult> {
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  redirect('/recipes');
+  redirect(publicUrls.profile);
 }
 
 export async function signIn(values: SignInFormValues) {
@@ -46,7 +47,7 @@ export async function signIn(values: SignInFormValues) {
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  redirect('/recipes');
+  redirect(publicUrls.profile);
 }
 
 export const validateRequest = cache(
@@ -75,11 +76,11 @@ export const validateRequest = cache(
 export async function signOut() {
   const { session } = await validateRequest();
 
-  if (!session) redirect('/sign-in');
+  if (!session) redirect(publicUrls.signIn);
 
   await lucia.invalidateSession(session.id);
   const sessionCookie = lucia.createBlankSessionCookie();
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  redirect('/sign-in');
+  redirect(publicUrls.signIn);
 }

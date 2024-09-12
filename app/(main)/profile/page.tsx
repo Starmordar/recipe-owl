@@ -1,3 +1,11 @@
+import { redirect } from 'next/navigation';
+
+import { validateRequest } from '@/app/(auth)/actions';
+import { publicUrls } from '@/config/url';
+
 export default async function Page() {
-  return <main className='page-container'></main>;
+  const { user } = await validateRequest();
+  if (user === null) redirect(publicUrls.signIn);
+
+  return <p>Profile Page</p>;
 }

@@ -64,4 +64,11 @@
   .page-container {
     @apply container flex flex-1 flex-col gap-4 pt-2 pb-4
   }
+
+  .hide-password-toggle::-ms-reveal,
+	.hide-password-toggle::-ms-clear {
+		visibility: hidden;
+		pointer-events: none;
+		display: none;
+	}
 }

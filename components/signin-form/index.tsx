@@ -24,7 +24,6 @@ function SignInForm() {
           name='email'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Email Address</FormLabel>
               <FormControl>
                 <Input placeholder='Enter your email address' {...field} />
               </FormControl>
@@ -38,7 +37,6 @@ function SignInForm() {
           name='password'
           render={({ field }) => (
             <FormItem className='space-y-0'>
-              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input placeholder='Enter your password' {...field} />
               </FormControl>
