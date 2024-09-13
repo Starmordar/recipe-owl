@@ -1,4 +1,6 @@
+import { User as SessionUser } from 'lucia';
 import { ShoppingCart, User, Search, CirclePlus, House } from 'lucide-react';
+import Image from 'next/image';
 
 import { publicUrls } from '@/config/url';
 
@@ -11,7 +13,7 @@ const navbarItems: Array<NavbarItem> = [
     match: (pathname: string) => {
       return pathname === publicUrls.home;
     },
-    Icon: House,
+    render: () => <House size={20} />,
   },
   {
     title: 'Discover',
@@ -19,22 +21,33 @@ const navbarItems: Array<NavbarItem> = [
     match: (pathname: string) => {
       return pathname.startsWith(publicUrls.recipes) && pathname !== publicUrls.newRecipe;
     },
-    Icon: Search,
+    render: () => <Search size={20} />,
   },
   {
     title: '',
     href: publicUrls.newRecipe,
-    Icon: CirclePlus,
+    render: () => <CirclePlus size={28} />,
   },
   {
     title: 'My Cart',
     href: '/cart',
-    Icon: ShoppingCart,
+    render: () => <ShoppingCart size={20} />,
   },
   {
     title: 'Profile',
     href: '/profile',
-    Icon: User,
+    render: (user?: null | SessionUser) => {
+      if (!user?.picture) return <User />;
+      return (
+        <Image
+          className='rounded-full'
+          height={20}
+          width={20}
+          src={user.picture}
+          alt='Profile Picture'
+        />
+      );
+    },
   },
 ];
 

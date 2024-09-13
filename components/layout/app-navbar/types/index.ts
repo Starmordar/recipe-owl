@@ -1,8 +1,9 @@
-import { House } from 'lucide-react';
+import type { User } from 'lucia';
+import type { ReactElement } from 'react';
 
 export interface NavbarItem {
   title: string;
   href: string;
   match?: (pathname: string) => boolean;
-  Icon: typeof House;
+  render: (user?: User | null) => null | ReactElement;
 }

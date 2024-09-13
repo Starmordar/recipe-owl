@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'storage.googleapis.com',
         pathname: '/recipe-owl/**',
       },
+      {
+        protocol: "https",
+        hostname: "*.googleusercontent.com",
+        pathname: "**",
+      },
     ],
   },
 };
