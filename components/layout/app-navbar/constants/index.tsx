@@ -13,7 +13,7 @@ const navbarItems: Array<NavbarItem> = [
     match: (pathname: string) => {
       return pathname === publicUrls.home;
     },
-    render: () => <House size={20} />,
+    render: (_, className) => <House size={20} className={className} />,
   },
   {
     title: 'Discover',
@@ -21,23 +21,23 @@ const navbarItems: Array<NavbarItem> = [
     match: (pathname: string) => {
       return pathname.startsWith(publicUrls.recipes) && pathname !== publicUrls.newRecipe;
     },
-    render: () => <Search size={20} />,
+    render: (_, className) => <Search size={20} className={className} />,
   },
   {
     title: '',
     href: publicUrls.newRecipe,
-    render: () => <CirclePlus size={28} />,
+    render: (_, className) => <CirclePlus size={28} className={className} />,
   },
   {
     title: 'My Cart',
     href: '/cart',
-    render: () => <ShoppingCart size={20} />,
+    render: (_, className) => <ShoppingCart size={20} className={className} />,
   },
   {
     title: 'Profile',
     href: '/profile',
-    render: (user?: null | SessionUser) => {
-      if (!user?.picture) return <User />;
+    render: (user, className) => {
+      if (!user?.picture) return <User className={className} />;
       return (
         <Image
           className='rounded-full'

@@ -29,14 +29,16 @@ function AppNavbar() {
         <Link
           key={href}
           href={href}
-          className={cn(
-            'flex-1 flex justify-center items-center py-1 text-primary opacity-50',
-            isActiveLink(href, match) ? 'opacity-100' : '',
-          )}
+          className={cn('flex-1 flex justify-center items-center py-1 text-primary')}
         >
           <div className='flex flex-col justify-center items-center'>
-            {render(user)}
-            <span className='text-xs'>{title}</span>
+            {render(user, isActiveLink(href, match) ? 'opacity-100' : 'opacity-60')}
+
+            <span
+              className={cn('text-xs', isActiveLink(href, match) ? 'opacity-100' : 'opacity-60')}
+            >
+              {title}
+            </span>
           </div>
         </Link>
       ))}
