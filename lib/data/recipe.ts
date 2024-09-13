@@ -38,7 +38,10 @@ export async function savedRecipes(userId: string): Promise<Array<RecipePreview>
   return response.map(({ recipe }) => recipe);
 }
 
-export async function isRecipeSaved(userId: string | undefined, recipeId: number): Promise<boolean> {
+export async function isRecipeSaved(
+  userId: string | undefined,
+  recipeId: number,
+): Promise<boolean> {
   if (!userId) return false;
 
   const savedRecipe = await prisma.savedRecipe.findFirst({
