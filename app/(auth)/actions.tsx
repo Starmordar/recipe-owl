@@ -39,6 +39,9 @@ export async function signUp(values: SignUpFormValues): Promise<ActionResult> {
 export async function signIn(values: SignInFormValues) {
   const user = await prisma.user.findUnique({ where: { email: values.email } });
   if (!user) return { error: 'Incorrect username' };
+  if (!user.hashedPassword) {
+    return { error: 'This email is linked to a Google account. Please log in with Google.' };
+  }
 
   const validPassword = await new Argon2id().verify(user.hashedPassword, values.password);
   if (!validPassword) return { error: 'Incorrect password' };

@@ -55,7 +55,10 @@ model User {
   sessions       Session[]
   fullName       String
   email          String    @unique
-  hashedPassword String
+  picture        String?
+  hashedPassword String?
+  provider       String?
+  providerId     String?
 }
 
 model Session {
