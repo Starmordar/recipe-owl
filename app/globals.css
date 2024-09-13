@@ -65,6 +65,10 @@
     @apply container flex flex-1 flex-col gap-4 pt-2 pb-4
   }
 
+  .outer-link {
+    @apply text-sky-600 underline
+  }
+
   .hide-password-toggle::-ms-reveal,
 	.hide-password-toggle::-ms-clear {
 		visibility: hidden;

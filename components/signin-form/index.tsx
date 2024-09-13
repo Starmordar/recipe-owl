@@ -1,15 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/ui/password-input';
 
 import useSignInForm from './hooks/useSignInForm';
 
@@ -38,7 +32,7 @@ function SignInForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <Input placeholder='Enter your password' {...field} />
+                <PasswordInput placeholder='Enter your password' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

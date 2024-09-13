@@ -1,20 +1,20 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import SignInForm from '@/components/signin-form';
-import { Button } from '@/components/ui/button';
 import { publicUrls } from '@/config/url';
-import googleIcon from '@/public/google-logo.svg';
+
+import ChangeOption from '../_components/change-option';
+import FormHeader from '../_components/from-header';
+import LoginWithGoogle from '../_components/login-with-google';
 
 function Page() {
   return (
-    <main className='page-container pt-[5vh] px-10'>
-      <div className='flex flex-col text-center text-sm'>
-        <h1 className='text-2xl font-semibold mb-2'>Log in to your account</h1>
+    <>
+      <FormHeader title='Log in to your account'>
         <p>
           Access your Recipe OWL account to continue exploring and managing your favorite recipes!
         </p>
-      </div>
+      </FormHeader>
 
       <SignInForm />
 
@@ -25,19 +25,15 @@ function Page() {
       </div>
 
       <div className='flex flex-col w-full gap-y-2'>
-        <Button className='relative' variant='outline'>
-          <Image className='absolute left-4' priority src={googleIcon} alt='' /> Sign in with Google
-        </Button>
+        <LoginWithGoogle title='Sign in with Google' />
       </div>
 
-      <div className='flex justify-center w-full gap-2 text-sm pt-2'>
-        <p>Don&apos;t have an account?</p>
-
-        <Link href={publicUrls.register} className='text-sky-600 underline'>
-          Sign Up
-        </Link>
-      </div>
-    </main>
+      <ChangeOption
+        title="Don't have an account?"
+        linkTitle='Sign Up'
+        redirectTo={publicUrls.register}
+      />
+    </>
   );
 }
 

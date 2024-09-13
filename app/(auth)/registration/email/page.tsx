@@ -1,26 +1,24 @@
-import Link from 'next/link';
-
 import SignupForm from '@/components/signup-form';
 import { publicUrls } from '@/config/url';
 
+import ChangeOption from '../../_components/change-option';
+import FormHeader from '../../_components/from-header';
+
 function Page() {
   return (
-    <main className='page-container pt-[5vh] px-10'>
-      <div className='flex flex-col text-center text-sm'>
-        <h1 className='text-2xl font-semibold mb-2'>Sign Up with email</h1>
+    <>
+      <FormHeader title='Sign Up with email'>
         <p>Please add your name, email and password.</p>
-      </div>
+      </FormHeader>
 
       <SignupForm />
 
-      <div className='flex justify-center w-full gap-2 text-sm pt-2'>
-        <p>Already have an account?</p>
-
-        <Link href={publicUrls.signIn} className='text-sky-600 underline'>
-          Sign In
-        </Link>
-      </div>
-    </main>
+      <ChangeOption
+        title='Already have an account?'
+        linkTitle='Sign In'
+        redirectTo={publicUrls.signIn}
+      />
+    </>
   );
 }
 
