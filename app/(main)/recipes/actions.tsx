@@ -48,3 +48,19 @@ export async function deleteRecipe(recipeId: number): Promise<void> {
   revalidatePath(publicUrls.recipe(recipe.id));
   revalidatePath(publicUrls.recipes);
 }
+
+export async function saveRecipe(userId: string, recipeId: number): Promise<void> {
+  await prisma.savedRecipe.create({
+    data: { userId, recipeId },
+  });
+
+  revalidatePath(publicUrls.recipe(recipeId));
+}
+
+export async function removeSavedRecipe(userId: string, recipeId: number): Promise<void> {
+  await prisma.savedRecipe.deleteMany({
+    where: { userId, recipeId },
+  });
+
+  revalidatePath(publicUrls.recipe(recipeId));
+}

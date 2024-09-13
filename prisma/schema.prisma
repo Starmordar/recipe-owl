@@ -27,6 +27,7 @@ model Recipe {
   steps       String[]
   ingredients Ingredient[]
   CartItem    CartItem[]
+  SavedRecipe SavedRecipe[]
 }
 
 model Cart {
@@ -51,14 +52,15 @@ model CartItem {
 }
 
 model User {
-  id             String    @id
+  id             String        @id
   sessions       Session[]
   fullName       String
-  email          String    @unique
+  email          String        @unique
   picture        String?
   hashedPassword String?
   provider       String?
   providerId     String?
+  SavedRecipe    SavedRecipe[]
 }
 
 model Session {
@@ -66,4 +68,15 @@ model Session {
   expiresAt DateTime
   userId    String
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model SavedRecipe {
+  id       Int    @id @default(autoincrement())
+  userId   String
+  recipeId Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, recipeId])
 }

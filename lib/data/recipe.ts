@@ -27,3 +27,23 @@ export async function getRecipe(recipeId: number): Promise<RecipeDetails | null>
 
   return recipe;
 }
+
+export async function savedRecipes(userId: string): Promise<Array<RecipePreview>> {
+  const response = await prisma.savedRecipe.findMany({
+    where: { userId },
+    include: { recipe: true },
+  });
+
+  if (response === null) return [];
+  return response.map(({ recipe }) => recipe);
+}
+
+export async function isRecipeSaved(userId: string | undefined, recipeId: number): Promise<boolean> {
+  if (!userId) return false;
+
+  const savedRecipe = await prisma.savedRecipe.findFirst({
+    where: { userId, recipeId },
+  });
+
+  return !!savedRecipe;
+}
