@@ -12,7 +12,7 @@ import {
 
 interface SearchProps {
   placeholder: string;
-  data: Array<{ id: number; title: string }>;
+  data: Array<{ id: number | string; title: string }>;
 
   open: boolean;
   setOpen: (value: boolean) => void;
@@ -20,6 +20,9 @@ interface SearchProps {
   setSelected: (value: string) => void;
   searchTerm: string;
   setSearchTerm: (value: string) => void;
+
+  showSearch?: boolean;
+  showClear?: boolean;
 }
 
 function Search({
@@ -30,6 +33,8 @@ function Search({
   open,
   setOpen,
   data,
+  showSearch,
+  showClear,
 }: SearchProps) {
   function handleValueChange(value: string) {
     setSearchTerm(value);
@@ -52,6 +57,7 @@ function Search({
     <React.Fragment>
       <Command onKeyDown={() => {}} className='overflow-visible bg-transparent'>
         <CommandInput
+          className='h-[2.35rem]'
           placeholder={placeholder}
           value={searchTerm}
           onValueChange={handleValueChange}
@@ -61,14 +67,15 @@ function Search({
           onFocus={() => {
             setOpen(true);
           }}
-          showClear={!!searchTerm}
+          showClear={showClear ?? !!searchTerm}
           onClear={handleClear}
+          showSearch={showSearch ?? true}
         />
 
         <div className='relative'>
           <CommandList>
             {open && searchTerm && (
-              <div className='absolute w-full top-0 rounded-md bg-popover text-popover-foreground shadow-md outline-none animate-in'>
+              <div className='absolute w-full top-0 z-50 rounded-md bg-popover text-popover-foreground shadow-md outline-none animate-in'>
                 <CommandGroup>
                   {data.map(item => (
                     <CommandItem

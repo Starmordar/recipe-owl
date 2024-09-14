@@ -34,7 +34,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
         return (
           <div key={field.id} className='flex'>
             <div className='flex flex-1 gap-x-2'>
-              <IngredientsSelect form={form} fieldIndex={index} />
+              <IngredientsSelect form={form} fieldIndex={index} initialValue={field.name} />
 
               <FormField
                 control={form.control}

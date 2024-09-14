@@ -50,16 +50,11 @@ export async function deleteRecipe(recipeId: number): Promise<void> {
 }
 
 export async function saveRecipe(userId: string, recipeId: number): Promise<void> {
-  const t0 = performance.now();
   await prisma.savedRecipe.create({
     data: { userId, recipeId },
   });
-  const t1 = performance.now();
-  console.log('timing :>>', (t1 - t0) / 1000);
 
   revalidatePath(publicUrls.recipe(recipeId));
-  const t2 = performance.now();
-  console.log('timing :>>', (t2 - t1) / 1000);
 }
 
 export async function removeSavedRecipe(userId: string, recipeId: number): Promise<void> {
