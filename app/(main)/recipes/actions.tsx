@@ -2,20 +2,25 @@
 
 import { revalidatePath } from 'next/cache';
 
+import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
+import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { imageUpload } from '@/lib/image';
 import { prisma } from '@/prisma/prisma-client';
 
 import type { Recipe } from '@prisma/client';
 
 export async function createRecipe(formData: FormData): Promise<Recipe> {
+  const { user } = await validateRequest();
+  if (user === null) throw new UnauthorizedError();
+
   const image = formData.get('image') as File;
   const data = JSON.parse(formData.get('data') as string);
 
   const imageUrl = await imageUpload.upload(image);
 
   const recipe = await prisma.recipe.create({
-    data: { ...data, imageUrl, ingredients: { create: data.ingredients } },
+    data: { ...data, imageUrl, createdById: user.id, ingredients: { create: data.ingredients } },
   });
 
   revalidatePath(publicUrls.recipes);
@@ -23,6 +28,9 @@ export async function createRecipe(formData: FormData): Promise<Recipe> {
 }
 
 export async function updateRecipe(recipeId: number, formData: FormData): Promise<Recipe> {
+  const { user } = await validateRequest();
+  if (user === null) throw new UnauthorizedError();
+
   const image = formData.get('image') as File;
   const data = JSON.parse(formData.get('data') as string);
 

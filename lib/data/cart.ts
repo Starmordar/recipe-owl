@@ -1,5 +1,7 @@
+import { validateRequest } from '@/app/(auth)/actions';
 import { prisma } from '@/prisma/prisma-client';
 
+import { UnauthorizedError } from '../errors/UnauthorizedError';
 import { groupBy } from '../utils';
 
 import type { Prisma, Ingredient } from '@prisma/client';
@@ -11,7 +13,11 @@ export interface CartRecipe {
 }
 
 export async function getCart(): Promise<Array<CartRecipe>> {
+  const { user } = await validateRequest();
+  if (user === null) return [];
+
   const cart = await prisma.cart.findFirst({
+    where: { userId: user.id },
     include: {
       items: {
         include: {
@@ -40,7 +46,10 @@ export async function getCart(): Promise<Array<CartRecipe>> {
 }
 
 export async function ingredientsInCart(): Promise<number> {
-  const cart = await prisma.cart.findFirst();
+  const { user } = await validateRequest();
+  if (user === null) return 0;
+
+  const cart = await prisma.cart.findFirst({ where: { userId: user.id } });
   if (cart === null) return 0;
 
   const itemsCount = await prisma.cartItem.count({ where: { cartId: cart.id } });

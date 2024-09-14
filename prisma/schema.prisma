@@ -9,14 +9,6 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-model Ingredient {
-  id       Int        @id @default(autoincrement())
-  name     String
-  unit     String?
-  recipes  Recipe[]
-  CartItem CartItem[]
-}
-
 model Recipe {
   id          Int     @id @default(autoincrement())
   title       String
@@ -24,43 +16,84 @@ model Recipe {
   source      String?
   imageUrl    String
 
-  steps       String[]
-  ingredients Ingredient[]
-  CartItem    CartItem[]
-  SavedRecipe SavedRecipe[]
+  steps        String[]
+  ingredients  Ingredient[]
+  savedRecipes SavedRecipe[]
+  cartItems    CartItem[]
+
+  createdById String
+  user        User   @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ingredient {
+  id   Int    @id @default(autoincrement())
+  name String
+  unit String
+
+  recipeId  Int
+  recipe    Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  cartItems CartItem[]
 }
 
 model Cart {
   id    Int        @id @default(autoincrement())
   items CartItem[]
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model CartItem {
-  id     Int  @id @default(autoincrement())
+  id       Int @id @default(autoincrement())
+  quantity Int @default(1)
+
   cartId Int
   cart   Cart @relation(fields: [cartId], references: [id])
 
-  recipeId     Int?
-  ingredientId Int?
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
 
-  recipe     Recipe?     @relation(fields: [recipeId], references: [id])
-  ingredient Ingredient? @relation(fields: [ingredientId], references: [id])
-
-  quantity Int @default(1)
+  ingredientId Int
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
 
   @@unique([cartId, recipeId, ingredientId])
 }
 
+model SavedRecipe {
+  id Int @id @default(autoincrement())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, recipeId])
+}
+
 model User {
-  id             String        @id
-  sessions       Session[]
+  id       String    @id
+  sessions Session[]
+
   fullName       String
-  email          String        @unique
+  email          String  @unique
   picture        String?
   hashedPassword String?
-  provider       String?
-  providerId     String?
-  SavedRecipe    SavedRecipe[]
+
+  provider   String?
+  providerId String?
+
+  savedRecipes SavedRecipe[]
+  recipes      Recipe[]
+  Cart         Cart?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Session {
@@ -68,15 +101,4 @@ model Session {
   expiresAt DateTime
   userId    String
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
-}
-
-model SavedRecipe {
-  id       Int    @id @default(autoincrement())
-  userId   String
-  recipeId Int
-
-  user   User   @relation(fields: [userId], references: [id])
-  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, recipeId])
 }

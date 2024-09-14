@@ -25,6 +25,7 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
   const { data: ingredients } = useQuery({
     queryKey: ['ingredients', debouncedSearchTerm],
     queryFn: () => searchIngredients(debouncedSearchTerm),
+    placeholderData: prev => prev,
   });
 
   function handleSearch(nextValue: string, onChange: (v: string) => void) {

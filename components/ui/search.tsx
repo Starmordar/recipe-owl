@@ -76,7 +76,7 @@ function Search({
           <CommandList>
             {open && searchTerm && (
               <div className='absolute w-full top-0 z-50 rounded-md bg-popover text-popover-foreground shadow-md outline-none animate-in'>
-                <CommandGroup>
+                <CommandGroup className='max-h-[200px] overflow-y-scroll'>
                   {data.map(item => (
                     <CommandItem
                       key={item.id}
