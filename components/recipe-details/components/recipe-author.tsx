@@ -8,20 +8,20 @@ interface RecipeAuthorProps {
 
 function RecipeAuthor({ recipe }: RecipeAuthorProps) {
   return (
-    <div className='flex items-center justify-center gap-x-2 mt-2'>
+    <div className='flex items-center gap-x-2'>
       {recipe.user.picture ? (
         <Image
           className='rounded-full'
-          height={20}
-          width={20}
+          height={24}
+          width={24}
           src={recipe.user.picture}
           alt='Profile Picture'
         />
       ) : (
-        <div className='h-5 w-5 rounded-full bg-purple-600'></div>
+        <div className='h-6 w-6 rounded-full bg-purple-600'></div>
       )}
 
-      <p className='text-sm'>{recipe.user.fullName}</p>
+      <p className='text-md'>{recipe.user.fullName}</p>
     </div>
   );
 }

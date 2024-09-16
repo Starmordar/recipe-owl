@@ -1,5 +1,7 @@
 import { isValidURL } from '../utils/isValidUrl';
 
+import RecipeAuthor from './recipe-author';
+
 import type { RecipeDetails } from '@/types/api';
 
 interface RecipeDescriptionProps {
@@ -9,8 +11,10 @@ interface RecipeDescriptionProps {
 function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
     <div className='w-full mb-2'>
-      <h1 className='text-xl font-bold mb-1'>{recipe.title}</h1>
-      <p className='text-sm leading-5'>{recipe.description}</p>
+      <h1 className='text-xl font-bold'>{recipe.title}</h1>
+      <RecipeAuthor recipe={recipe} />
+
+      <p className='text-sm leading-5 mt-2'>{recipe.description}</p>
 
       <RecipeSource source={recipe.source} />
     </div>
