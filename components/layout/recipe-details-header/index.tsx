@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
-import { getRecipe, isRecipeSaved } from '@/lib/data/recipe';
+import { getRecipeDetails, isRecipeSaved } from '@/lib/data/recipe';
 
 import AppHeader from '../app-header';
 
@@ -17,7 +17,7 @@ interface RecipeDetailsHeaderProps {
 async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   const { user } = await validateRequest();
 
-  const recipe = await getRecipe(recipeId);
+  const recipe = await getRecipeDetails(recipeId);
   if (!recipe) return null;
 
   const saved = await isRecipeSaved(user?.id, recipeId);

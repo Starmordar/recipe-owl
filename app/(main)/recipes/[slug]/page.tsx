@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import RecipeDetailsHeader from '@/components/layout/recipe-details-header';
 import RecipeDetails from '@/components/recipe-details';
 import RecipeDetailsSkeleton from '@/components/recipe-details/skeleton';
-import { getRecipe } from '@/lib/data/recipe';
+import { getRecipeDetails } from '@/lib/data/recipe';
 
 import type { Metadata } from 'next';
 
@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata | null> {
-  const recipe = await getRecipe(Number(params.slug));
+  const recipe = await getRecipeDetails(Number(params.slug));
   if (!recipe) return notFound();
 
   return {

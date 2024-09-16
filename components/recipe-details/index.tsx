@@ -1,7 +1,8 @@
-import { getRecipe } from '@/lib/data/recipe';
+import { getRecipeDetails } from '@/lib/data/recipe';
 
 import AddToCart from './components/add-to-cart';
 import IngredientsTable from './components/ingredients-table';
+import RecipeAuthor from './components/recipe-author';
 import RecipeDescription from './components/recipe-description';
 import RecipeImage from './components/recipe-image';
 import RecipeMethod from './components/recipe-method';
@@ -11,7 +12,7 @@ interface RecipeProps {
 }
 
 async function RecipeDetails({ recipeId }: RecipeProps) {
-  const recipe = await getRecipe(recipeId);
+  const recipe = await getRecipeDetails(recipeId);
   if (!recipe) return null; // TODO: Custom Handler
 
   return (
@@ -19,6 +20,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
       <section>
         <RecipeDescription recipe={recipe} />
         <RecipeImage recipe={recipe} />
+        <RecipeAuthor recipe={recipe} />
       </section>
 
       <section>

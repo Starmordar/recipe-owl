@@ -1,4 +1,4 @@
-import { getRecipe } from '@/lib/data/recipe';
+import { getRecipeDetails } from '@/lib/data/recipe';
 
 import RecipeForm, { RecipeFormProps } from './components/recipe-form';
 import { recipeToFormValues } from './utils/recipeToFormValues';
@@ -13,7 +13,7 @@ async function RecipeDetailsForm({ recipeId }: RecipeProps) {
   async function getFormProps(): Promise<RecipeFormProps> {
     if (typeof recipeId !== 'number') return {};
 
-    const recipe = await getRecipe(recipeId);
+    const recipe = await getRecipeDetails(recipeId);
     if (!recipe) return {};
 
     return { recipeId: recipe.id, initialValues: recipeToFormValues(recipe) };
