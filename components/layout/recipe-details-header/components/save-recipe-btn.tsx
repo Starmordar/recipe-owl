@@ -1,10 +1,9 @@
 'use client';
 
 import { Bookmark } from 'lucide-react';
-import { useOptimistic } from 'react';
+import { startTransition, useOptimistic } from 'react';
 
 import { removeSavedRecipe, saveRecipe } from '@/app/(main)/recipes/actions';
-import { Button } from '@/components/ui/button';
 
 import HeaderIconButton from '../../app-header/components/icon-button';
 
@@ -19,10 +18,12 @@ function SaveRecipeBtn({ isSaved, userId, recipeId }: SaveRecipeBtnProps) {
 
   async function handleSaveRecipe() {
     if (!userId) return;
-    setIsSavedOptimistic(prevData => !prevData);
+    startTransition(() => setIsSavedOptimistic(prevData => !prevData));
 
     const callback = isSavedOptimistic ? removeSavedRecipe : saveRecipe;
-    await callback(userId, recipeId).catch(() => setIsSavedOptimistic(prev => prev));
+    await callback(userId, recipeId).catch(() =>
+      startTransition(() => setIsSavedOptimistic(prev => prev)),
+    );
   }
 
   const iconOptions = isSavedOptimistic ? { fill: '#000000' } : {};
