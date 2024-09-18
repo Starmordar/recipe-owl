@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 
-import DeleteRecipeAlert from './delete-recipe-btn';
+import DeleteRecipeAlert from './delete-recipe-alert';
 
 interface ActionsDrawerProps {
   recipeId: number;

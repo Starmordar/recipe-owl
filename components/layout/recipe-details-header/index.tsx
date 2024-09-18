@@ -6,6 +6,7 @@ import AppHeader from '../app-header';
 
 import ActionsDrawer from './components/actions-drawer';
 import SaveRecipeBtn from './components/save-recipe-btn';
+import ShareButton from './components/share-action';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
@@ -25,6 +26,7 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
 
       <div className='flex items-center gap-2'>
         <SaveRecipeBtn recipeId={recipe.id} userId={user?.id} isSaved={saved} />
+        <ShareButton />
 
         <ActionsDrawer recipeId={recipeId} />
       </div>
