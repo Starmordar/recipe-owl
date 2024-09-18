@@ -20,9 +20,9 @@ export async function getRecipesPreview(
 }
 
 export async function getRecipeDetails(recipeId: number): Promise<RecipeDetails | null> {
-  const recipe = prisma.recipe.findFirst({
+  const recipe = await prisma.recipe.findFirst({
     where: { id: recipeId },
-    include: { ingredients: true, user: true },
+    include: { ingredients: { orderBy: { order: 'asc' } }, user: true },
   });
 
   return recipe;

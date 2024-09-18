@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { acceptedImageMimeTypes } from '@/constants/image';
 
 const ingredientSchema = z.object({
+  id: z.any(),
   name: z.string().min(1, { message: 'Ingredient is required.' }),
   unit: z.string().min(1, { message: 'Quantity.' }),
 });
@@ -39,6 +40,7 @@ const schema = z.object({
 });
 
 export type FormValues = z.infer<typeof schema>;
+export type FormDataValues = Omit<FormValues, 'image' | 'steps'> & { steps: Array<string> };
 
 export const defaultValues: FormValues = {
   image: undefined,

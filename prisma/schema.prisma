@@ -29,9 +29,10 @@ model Recipe {
 }
 
 model Ingredient {
-  id   Int    @id @default(autoincrement())
-  name String
-  unit String
+  id    Int    @id @default(autoincrement())
+  name  String
+  unit  String
+  order Int    @default(1)
 
   recipeId  Int
   recipe    Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
@@ -53,13 +54,13 @@ model CartItem {
   quantity Int @default(1)
 
   cartId Int
-  cart   Cart @relation(fields: [cartId], references: [id])
+  cart   Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
 
   recipeId Int
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 
   ingredientId Int
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
 
   @@unique([cartId, recipeId, ingredientId])
 }

@@ -6,7 +6,7 @@ import useConfirmOnPageLeave from '@/hooks/useConfirmOnPageLeave';
 import useRecipeForm from '../hooks/useRecipeForm';
 
 import DetailsFieldset from './details-fieldset';
-import IngredientsFieldset from './ingredients-fieldset';
+import IngredientsFieldset from './ingredients-fieldset/index';
 import StepsFieldset from './steps-fieldset';
 
 import type { FormValues } from '../constants/shema';
@@ -26,7 +26,7 @@ function RecipeForm({ recipeId, initialValues }: RecipeFormProps) {
 
   return (
     <Form {...form}>
-      <form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+      <form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
         <DetailsFieldset form={form} />
         <IngredientsFieldset form={form} />
         <StepsFieldset form={form} />
