@@ -4,9 +4,10 @@ import { getRecipeDetails, isRecipeSaved } from '@/lib/data/recipe';
 
 import AppHeader from '../app-header';
 
-import ActionsDrawer from './components/actions-drawer';
-import SaveRecipeBtn from './components/save-recipe-btn';
-import ShareButton from './components/share-action';
+import MoreOptionsAction from './components/actions-drawer';
+import AddToCartAction from './components/add-to-cart-drawer';
+import SaveRecipeAction from './components/save-recipe-btn';
+import ShareAction from './components/share-action';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
@@ -23,10 +24,10 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   return (
     <AppHeader prevUrl={publicUrls.recipes} className='pr-2'>
       <div className='flex items-center gap-x-3'>
-        <SaveRecipeBtn recipeId={recipe.id} userId={user?.id} isSaved={saved} />
-        <ShareButton />
-
-        <ActionsDrawer recipeId={recipeId} />
+        <AddToCartAction recipe={recipe} />
+        <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={saved} />
+        <ShareAction />
+        <MoreOptionsAction recipeId={recipeId} />
       </div>
     </AppHeader>
   );

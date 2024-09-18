@@ -81,3 +81,27 @@ export async function updateServings(recipeId: number, quantity: number): Promis
 
   revalidatePath(publicUrls.cart);
 }
+
+export async function addIngredientsToCart(
+  recipeId: number,
+  ingredientIds: Array<number>,
+  quantity: number,
+): Promise<{ id: number }> {
+  const { user } = await validateRequest();
+  if (user === null) throw new UnauthorizedError();
+
+  const items = ingredientIds.map(ingredientId => ({ recipeId, ingredientId, quantity }));
+
+  const existingCart = await prisma.cart.findFirst({ where: { userId: user.id } });
+  if (existingCart === null) {
+    return prisma.cart.create({ data: { userId: user.id, items: { create: items } } });
+  }
+
+  const cartId = await prisma.cart.update({
+    where: { id: existingCart.id, userId: user.id },
+    data: { items: { create: items } },
+  });
+
+  revalidatePath(publicUrls.cart);
+  return cartId;
+}
