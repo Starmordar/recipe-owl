@@ -2,6 +2,7 @@
 
 import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { PropsWithChildren } from 'react';
 
 import { deleteRecipe } from '@/app/(main)/recipes/actions';
 import {
@@ -16,11 +17,11 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
-interface DeleteRecipeBtnProps {
+interface DeleteRecipeAlertProps extends PropsWithChildren {
   recipeId: number;
 }
 
-function DeleteRecipeBtn({ recipeId }: DeleteRecipeBtnProps) {
+function DeleteRecipeAlert({ children, recipeId }: DeleteRecipeAlertProps) {
   const router = useRouter();
 
   async function handleDeleteRecipe() {
@@ -30,9 +31,7 @@ function DeleteRecipeBtn({ recipeId }: DeleteRecipeBtnProps) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Trash2 className='h-5 w-5 opacity-50' />
-      </AlertDialogTrigger>
+      <AlertDialogTrigger>{children}</AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -51,4 +50,4 @@ function DeleteRecipeBtn({ recipeId }: DeleteRecipeBtnProps) {
   );
 }
 
-export default DeleteRecipeBtn;
+export default DeleteRecipeAlert;

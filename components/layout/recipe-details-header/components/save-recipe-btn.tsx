@@ -1,6 +1,7 @@
 'use client';
 
-import { Heart } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
+import { useOptimistic } from 'react';
 
 import { removeSavedRecipe, saveRecipe } from '@/app/(main)/recipes/actions';
 import { Button } from '@/components/ui/button';
@@ -12,18 +13,21 @@ interface SaveRecipeBtnProps {
 }
 
 function SaveRecipeBtn({ isSaved, userId, recipeId }: SaveRecipeBtnProps) {
-  async function handleDeleteRecipe() {
-    if (!userId) return;
+  const [isSavedOptimistic, setIsSavedOptimistic] = useOptimistic(isSaved);
 
-    if (isSaved) await removeSavedRecipe(userId, recipeId);
-    else await saveRecipe(userId, recipeId);
+  async function handleSaveRecipe() {
+    if (!userId) return;
+    setIsSavedOptimistic(prevData => !prevData);
+
+    const callback = isSavedOptimistic ? removeSavedRecipe : saveRecipe;
+    await callback(userId, recipeId).catch(() => setIsSavedOptimistic(prev => prev));
   }
 
-  const iconOptions = isSaved ? { fill: '#FF4C4C', stroke: '#FF4C4C' } : {};
+  const iconOptions = isSavedOptimistic ? { fill: '#000000' } : {};
 
   return (
-    <Button size='xss' variant='ghost' className='px-0'>
-      <Heart onClick={handleDeleteRecipe} className='h-5 w-5' {...iconOptions} />
+    <Button className='relative rounded-full' variant='ghost' size='icon-xs'>
+      <Bookmark onClick={handleSaveRecipe} className='h-5 w-5' {...iconOptions} />
     </Button>
   );
 }

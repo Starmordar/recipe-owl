@@ -9,7 +9,7 @@ interface AppHeaderProps {
 function AppHeader({ children, prevUrl }: AppHeaderProps) {
   return (
     <header className='sticky top-0 mx-0 w-full z-50 bg-background'>
-      <div className='container flex items-center justify-between py-2.5'>
+      <div className='container flex items-center justify-between py-2'>
         {prevUrl && (
           <Link href={prevUrl}>
             <ArrowLeft className='h-5 w-5 opacity-50' />
