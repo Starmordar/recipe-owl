@@ -6,6 +6,8 @@ import { useOptimistic } from 'react';
 import { removeSavedRecipe, saveRecipe } from '@/app/(main)/recipes/actions';
 import { Button } from '@/components/ui/button';
 
+import HeaderIconButton from '../../app-header/components/icon-button';
+
 interface SaveRecipeBtnProps {
   isSaved: boolean;
   userId: string | undefined;
@@ -24,12 +26,7 @@ function SaveRecipeBtn({ isSaved, userId, recipeId }: SaveRecipeBtnProps) {
   }
 
   const iconOptions = isSavedOptimistic ? { fill: '#000000' } : {};
-
-  return (
-    <Button className='relative rounded-full' variant='ghost' size='icon-xs'>
-      <Bookmark onClick={handleSaveRecipe} className='h-5 w-5' {...iconOptions} />
-    </Button>
-  );
+  return <HeaderIconButton Icon={<Bookmark {...iconOptions} />} onClick={handleSaveRecipe} />;
 }
 
 export default SaveRecipeBtn;

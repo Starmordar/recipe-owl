@@ -1,15 +1,18 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+import { cn } from '@/lib/utils';
+
 interface AppHeaderProps {
   children: React.ReactNode;
   prevUrl?: string;
+  className?: string;
 }
 
-function AppHeader({ children, prevUrl }: AppHeaderProps) {
+function AppHeader({ children, prevUrl, className }: AppHeaderProps) {
   return (
     <header className='sticky top-0 mx-0 w-full z-50 bg-background'>
-      <div className='container flex items-center justify-between py-2'>
+      <div className={cn(className, 'container flex items-center justify-between py-2')}>
         {prevUrl && (
           <Link href={prevUrl}>
             <ArrowLeft className='h-5 w-5' />

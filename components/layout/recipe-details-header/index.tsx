@@ -21,10 +21,8 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   const saved = await isRecipeSaved(user?.id, recipeId);
 
   return (
-    <AppHeader prevUrl={publicUrls.recipes}>
-      {/* <h1 className='text-lg font-semibold leading-none'>{recipe?.title}</h1> */}
-
-      <div className='flex items-center gap-2'>
+    <AppHeader prevUrl={publicUrls.recipes} className='pr-2'>
+      <div className='flex items-center gap-x-3'>
         <SaveRecipeBtn recipeId={recipe.id} userId={user?.id} isSaved={saved} />
         <ShareButton />
 

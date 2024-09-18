@@ -31,7 +31,7 @@ function DeleteRecipeAlert({ children, recipeId }: DeleteRecipeAlertProps) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>{children}</AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>

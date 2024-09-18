@@ -2,22 +2,15 @@
 
 import { Share2 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
 import useWebShare from '@/hooks/useWebShare';
 
+import HeaderIconButton from '../../app-header/components/icon-button';
+
 function ShareAction() {
-  const data = {
-    title: 'RecipeOWL: Discover, Cook, Share – The Wise Way',
-    url: window.location.href,
-  };
+  const data = { title: 'RecipeOWL: Discover, Cook, Share – The Wise Way' };
 
   const { handleShare } = useWebShare({ data });
-
-  return (
-    <Button className='relative rounded-full' variant='ghost' size='icon-xs'>
-      <Share2 onClick={handleShare} className='h-5 w-5' />
-    </Button>
-  );
+  return <HeaderIconButton Icon={<Share2 />} onClick={handleShare} />;
 }
 
 export default ShareAction;

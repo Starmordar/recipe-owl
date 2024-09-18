@@ -1,11 +1,14 @@
 interface UseWebShareOptions {
+  url?: string;
   data: ShareData;
 }
 
-function useWebShare({ data }: UseWebShareOptions) {
+function useWebShare({ url, data }: UseWebShareOptions) {
   function handleShare() {
     if (!navigator.share) return;
-    navigator.share({ ...data });
+
+    const shareUrl = url ?? window.location.href;
+    navigator.share({ ...data, url: shareUrl });
   }
 
   return { handleShare };
