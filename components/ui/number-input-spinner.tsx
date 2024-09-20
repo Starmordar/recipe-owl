@@ -19,7 +19,7 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
         size='xs'
         className='w-8 h-7 p-0 rounded-r-none rounded-l-lg'
         onClick={() => onValueChange(value - 1)}
-        disabled={value === 0}
+        disabled={value === 1}
       >
         <Minus className='w-4 h-4' />
       </Button>
