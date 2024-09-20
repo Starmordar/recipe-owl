@@ -1,13 +1,12 @@
 'use client';
 
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import { CheckCheck, GripVertical, Shuffle } from 'lucide-react';
 import { cloneElement, type PropsWithChildren, type ReactNode } from 'react';
-import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
-import StrictModeDroppable from '@/components/react-beautiful-dnd/strict-mode-droppable';
 import { Button, ButtonProps } from '@/components/ui/button';
 
-import type { DraggableProvidedDragHandleProps } from 'react-beautiful-dnd';
+import type { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
 import type { FieldArrayWithId } from 'react-hook-form';
 
 export interface FieldProps<Field extends FieldArrayWithId> {
@@ -43,7 +42,7 @@ function DraggableFields<Field extends FieldArrayWithId>({
   return (
     <DragDropContext onDragEnd={onDragField}>
       <ul>
-        <StrictModeDroppable droppableId={droppableId}>
+        <Droppable droppableId={droppableId}>
           {provided => (
             <div
               {...provided.droppableProps}
@@ -76,7 +75,7 @@ function DraggableFields<Field extends FieldArrayWithId>({
               {provided.placeholder}
             </div>
           )}
-        </StrictModeDroppable>
+        </Droppable>
       </ul>
     </DragDropContext>
   );

@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import StepField from './components/step-field';
 
 import type { FormValues } from '../../constants/shema';
-import type { DropResult } from 'react-beautiful-dnd';
+import type { DropResult } from '@hello-pangea/dnd';
 
 interface StepsFieldsetProps {
   form: UseFormReturn<FormValues>;
