@@ -10,7 +10,7 @@ async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <RecipeDetailsForm
-      title='Update Recipe'
+      title='Edit Recipe'
       prevUrl={publicUrls.recipe(params.slug)}
       recipe={recipe}
     />

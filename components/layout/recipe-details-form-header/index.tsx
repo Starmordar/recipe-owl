@@ -19,19 +19,20 @@ function RecipeDetailsFormHeader({
 }: RecipeDetailsFormHeader) {
   return (
     <AppHeader prevUrl={prevUrl}>
-      <h1 className='text-lg font-semibold leading-none ml-10'>{title}</h1>
+      <div className='flex justify-between grow items-center ml-5'>
+        <h1 className='text-lg font-semibold leading-none'>{title}</h1>
 
-      <Button
-        form='recipe-form'
-        size='xss'
-        variant='default'
-        className='gap-2 px-3'
-        disabled={!dataChanged}
-        loading={isPending}
-        loadingText='Saving...'
-      >
-        Save <Save className='h-4 w-4' />
-      </Button>
+        <Button
+          form='recipe-form'
+          size='xss'
+          className='px-3'
+          disabled={!dataChanged}
+          loading={isPending}
+          loadingText='Saving...'
+        >
+          Save
+        </Button>
+      </div>
     </AppHeader>
   );
 }
