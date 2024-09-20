@@ -17,7 +17,7 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
     <Button
       className='px-1'
       variant='ghost'
-      size='xss'
+      size='icon-xs'
       onClick={() => removeRecipeAction(recipeId)}
       loading={isPending}
       loadingText=''

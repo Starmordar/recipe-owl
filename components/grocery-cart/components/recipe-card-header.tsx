@@ -27,9 +27,9 @@ function RecipeCardHeader({ recipe, quantity }: RecipeCardHeaderProps) {
         />
       </div>
 
-      <div className='flex flex-col justify-between w-full'>
-        <div className='flex w-full justify-between'>
-          <CardTitle className='text-lg'>{recipe.title}</CardTitle>
+      <div className='flex flex-col justify-between w-full min-w-0'>
+        <div className='flex justify-between w-full min-w-0'>
+          <CardTitle className='line-clamp-3 text-lg'>{recipe.title}</CardTitle>
           <RemoveRecipe recipeId={recipe.id} />
         </div>
 

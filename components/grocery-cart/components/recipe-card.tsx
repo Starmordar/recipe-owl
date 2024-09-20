@@ -12,19 +12,19 @@ function RecipeCard({ cartItem }: RecipeCardProps) {
   if (cartItem.recipe === null || cartItem.ingredients === null) return null;
 
   return (
-    <Card>
-      <CardHeader className='flex flex-row p-4 space-y-0 gap-4'>
+    <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
+      <div className='flex flex-row space-y-0 gap-4'>
         <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
-      </CardHeader>
+      </div>
 
-      <CardContent className='grid p-4 pt-0 gap-2'>
+      <div className='grid gap-2'>
         <RecipeCardIngredients
           recipe={cartItem.recipe}
           ingredients={cartItem.ingredients}
           quantity={cartItem.quantity}
         />
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 

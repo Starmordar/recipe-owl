@@ -8,7 +8,7 @@ async function GroceryCart() {
   if (cart.length === 0) return <EmptyCart />;
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col'>
       {cart.map(cartItem => (
         <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />
       ))}

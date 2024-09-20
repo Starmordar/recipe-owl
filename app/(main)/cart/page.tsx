@@ -15,7 +15,7 @@ async function Page() {
   return (
     <>
       <PageHeader userId={user.id} />
-      <main className='page-container mt-2'>
+      <main className='page-container mt-4'>
         <Suspense fallback={<GroceryCartSekeleton />}>
           <GroceryCart />
         </Suspense>
