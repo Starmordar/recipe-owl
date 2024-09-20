@@ -5,7 +5,7 @@ import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/lib/utils';
 
-import { Button } from './button';
+import { Button, ButtonProps } from './button';
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -42,7 +42,7 @@ const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background',
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background focus:outline-none',
         className,
       )}
       {...props}
@@ -88,7 +88,7 @@ const DrawerDescription = React.forwardRef<
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
-interface ActionButtonProps extends React.PropsWithChildren {}
+interface ActionButtonProps extends React.PropsWithChildren, ButtonProps {}
 
 const DrawerActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
   ({ children, ...props }: ActionButtonProps, ref) => {

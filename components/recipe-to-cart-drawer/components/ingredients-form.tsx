@@ -2,14 +2,7 @@
 
 import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 
 import type { FormValues } from '../constants/schema';
 import type { Ingredient } from '@prisma/client';

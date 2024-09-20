@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { type FormValues } from '../constants/shema';
 
-import ImageUploadField from './image-upload-field';
+import ImageUploadField from './image-field';
 
 import type { UseFormReturn } from 'react-hook-form';
 
