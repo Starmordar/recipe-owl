@@ -27,8 +27,10 @@ function IngredientsTable({ ingredients }: IngredientsTableProps) {
         <TableBody>
           {ingredients.map(ingredient => (
             <TableRow key={ingredient.name} className='[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4'>
-              <TableCell>{ingredient.name}</TableCell>
-              <TableCell className='font-medium text-right'>{ingredient.unit}</TableCell>
+              <TableCell className='max-w-[60vw] truncate'>{ingredient.name}</TableCell>
+              <TableCell className='max-w-[25vw] truncate font-medium text-right'>
+                {ingredient.unit}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
