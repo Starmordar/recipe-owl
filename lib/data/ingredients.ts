@@ -15,8 +15,6 @@ export async function searchIngredients(
   const ingredientsFuse = new Fuse(ingredients, { threshold: 0.3, includeScore: true });
   const result = ingredientsFuse.search(searchTerm);
 
-  console.log('result :>> ', result);
-
   const resultsLimit = 50;
   return result.slice(0, resultsLimit).map(({ item }) => ({ id: item, title: item }));
 }

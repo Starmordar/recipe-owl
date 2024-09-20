@@ -7,7 +7,7 @@ import useRecipeForm from '../hooks/useRecipeForm';
 
 import DetailsFieldset from './details-fieldset';
 import IngredientsFieldset from './ingredients-fieldset/index';
-import StepsFieldset from './steps-fieldset';
+import StepsFieldset from './method-fieldset';
 
 import type { FormValues } from '../constants/shema';
 
