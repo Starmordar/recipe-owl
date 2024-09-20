@@ -1,8 +1,6 @@
 'use client';
 
-import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { PropsWithChildren } from 'react';
 
 import { deleteRecipe } from '@/app/(main)/recipes/actions';
 import {
@@ -16,6 +14,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { publicUrls } from '@/config/url';
+
+import type { PropsWithChildren } from 'react';
 
 interface DeleteRecipeAlertProps extends PropsWithChildren {
   recipeId: number;
@@ -26,7 +27,7 @@ function DeleteRecipeAlert({ children, recipeId }: DeleteRecipeAlertProps) {
 
   async function handleDeleteRecipe() {
     await deleteRecipe(recipeId);
-    router.push(`/recipes`);
+    router.push(publicUrls.recipes);
   }
 
   return (

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import RecipeDetailsHeader from '@/components/layout/recipe-details-header';
+import RecipeDetailsHeader from '@/app/(main)/recipes/[slug]/_components/recipe-details-header';
 import RecipeDetails from '@/components/recipe-details';
 import RecipeDetailsSkeleton from '@/components/recipe-details/skeleton';
 import { getRecipeDetails } from '@/lib/data/recipe';

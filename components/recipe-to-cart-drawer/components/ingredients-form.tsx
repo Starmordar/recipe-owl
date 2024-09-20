@@ -28,7 +28,7 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
       <form
         id='ingredients-to-cart-form'
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-4'
+        className='space-y-4 max-h-[60vh] overflow-scroll px-6'
       >
         <FormField
           control={form.control}
@@ -44,14 +44,14 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
                     return (
                       <FormItem
                         key={item.id}
-                        className='flex flex-row items-start space-x-3 space-y-0'
+                        className='flex justify-between items-start space-x-3 space-y-0 gap-2 w-full'
                       >
-                        <FormLabel className='w-full gap-2 text-base items-start'>
-                          <p className='text-sm font-medium leading-none'>{item.name}</p>
-                          <p className='text-sm text-muted-foreground'>
+                        <div className='flex flex-col gap-y-2 text-sm min-w-0'>
+                          <span className='font-medium leading-none truncate'>{item.name}</span>
+                          <span className='text-muted-foreground truncate'>
                             {applyQuantityToUnit(item.unit, quantity)}
-                          </p>
-                        </FormLabel>
+                          </span>
+                        </div>
 
                         <FormControl>
                           <Checkbox

@@ -1,10 +1,8 @@
 'use client';
 
 import { DialogTitle } from '@radix-ui/react-dialog';
-import { CirclePlus } from 'lucide-react';
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import { Button } from '@/components/ui/button';
 import {
   Drawer,
@@ -16,28 +14,33 @@ import {
 
 import IngredientsForm from './components/ingredients-form';
 import IngredientsFormHeader from './components/ingredients-form-header';
-import { FormValues } from './constants/schema';
 import useIngredientsForm from './hooks/useIngredientsForm';
 
+import type { FormValues } from './constants/schema';
 import type { RecipeDetails } from '@/types/api';
 
-interface AddToCartDrawerProps {
+interface AddToCartDrawerProps extends PropsWithChildren {
   recipe: RecipeDetails;
 }
 
-function AddToCartDrawer({ recipe }: AddToCartDrawerProps) {
+function AddToCartDrawer({ recipe, children }: AddToCartDrawerProps) {
   const { form, onSubmit, isPending } = useIngredientsForm({ recipe });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
+  function handleDrawerToggle(isOpen: boolean) {
+    if (!isOpen) form.reset();
+    setIsDrawerOpen(isOpen);
+  }
+
   async function handleSubmit(values: FormValues) {
-    await onSubmit(values, quantity).finally(() => setIsDrawerOpen(false));
+    await onSubmit(values, quantity).finally(() => handleDrawerToggle(false));
   }
 
   return (
-    <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-      <DrawerTrigger onClick={() => setIsDrawerOpen(true)} asChild>
-        <HeaderIconButton Icon={<CirclePlus className='w-5 h-5' />} />
+    <Drawer open={isDrawerOpen} onOpenChange={handleDrawerToggle}>
+      <DrawerTrigger onClick={() => handleDrawerToggle(true)} asChild>
+        {children}
       </DrawerTrigger>
 
       <DrawerContent>
@@ -45,22 +48,20 @@ function AddToCartDrawer({ recipe }: AddToCartDrawerProps) {
           <DialogTitle>Add to Cart</DialogTitle>
         </DrawerHeader>
 
-        <div className='mx-auto w-full px-6'>
-          <IngredientsFormHeader
-            form={form}
-            recipe={recipe}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-          <IngredientsForm
-            form={form}
-            onSubmit={handleSubmit}
-            quantity={quantity}
-            ingredients={recipe.ingredients}
-          />
-        </div>
+        <IngredientsFormHeader
+          form={form}
+          recipe={recipe}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+        <IngredientsForm
+          form={form}
+          onSubmit={handleSubmit}
+          quantity={quantity}
+          ingredients={recipe.ingredients}
+        />
 
-        <DrawerFooter className='flex flex-row w-full'>
+        <DrawerFooter>
           <Button
             form='ingredients-to-cart-form'
             className='w-full'

@@ -82,7 +82,7 @@ export async function saveRecipe(userId: string, recipeId: number): Promise<void
   revalidatePath(publicUrls.recipe(recipeId));
 }
 
-export async function removeSavedRecipe(userId: string, recipeId: number): Promise<void> {
+export async function unsaveRecipe(userId: string, recipeId: number): Promise<void> {
   await prisma.savedRecipe.deleteMany({
     where: { userId, recipeId },
   });

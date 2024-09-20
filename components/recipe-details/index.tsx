@@ -1,6 +1,8 @@
+import { notFound } from 'next/navigation';
+
 import { getRecipeDetails } from '@/lib/data/recipe';
 
-import AddToCart from './components/add-to-cart';
+import AddToCartAction from './components/add-to-cart-action';
 import IngredientsTable from './components/ingredients-table';
 import RecipeDescription from './components/recipe-description';
 import RecipeImage from './components/recipe-image';
@@ -12,7 +14,7 @@ interface RecipeProps {
 
 async function RecipeDetails({ recipeId }: RecipeProps) {
   const recipe = await getRecipeDetails(recipeId);
-  if (!recipe) return null; // TODO: Custom Handler
+  if (!recipe) return notFound();
 
   return (
     <>
@@ -24,7 +26,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
       <section>
         <div className='flex justify-between mb-2'>
           <h2 className='text-xl font-bold'>Ingredients</h2>
-          <AddToCart recipe={recipe} />
+          <AddToCartAction recipe={recipe} />
         </div>
         <IngredientsTable ingredients={recipe.ingredients} />
       </section>

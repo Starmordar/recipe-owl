@@ -1,17 +1,16 @@
 'use client';
 
-import { useMemo } from 'react';
-import { UseFormReturn } from 'react-hook-form';
-
 import { Button } from '@/components/ui/button';
 import { NumberInputSpinner } from '@/components/ui/number-input-spinner';
 
 import type { FormValues } from '../constants/schema';
 import type { RecipeDetails } from '@/types/api';
+import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsFormHeaderProps {
   form: UseFormReturn<FormValues>;
   recipe: RecipeDetails;
+
   quantity: number;
   setQuantity: (value: number) => void;
 }
@@ -34,18 +33,19 @@ function IngredientsFormHeader({
   }
 
   return (
-    <div className='flex flex-col gap-4'>
-      <div className='flex items-center justify-between'>
-        {recipe.title}
+    <div className='flex flex-col gap-y-4 px-6'>
+      <div className='flex items-center justify-between gap-x-2'>
+        <span className='font-semibold truncate '>{recipe.title}</span>
         <NumberInputSpinner value={quantity} onValueChange={setQuantity} />
       </div>
+
       <div className='flex items-center justify-between mb-2 text-sm'>
-        <p>Items to Add</p>
+        <p className='opacity-70'>Items to Add</p>
 
         <Button
-          size='xss'
+          className='px-0 opacity-70 hover:bg-transparent hover:text-current'
           variant='ghost'
-          className='px-0'
+          size='xss'
           onClick={showDeselect ? handleDeselect : handleSelectAll}
         >
           {showDeselect ? ' Deselect All' : 'Select All'}

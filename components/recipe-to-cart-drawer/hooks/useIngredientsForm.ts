@@ -8,11 +8,11 @@ import { RecipeDetails } from '@/types/api';
 
 import schema, { FormValues } from '../constants/schema';
 
-interface useIngredientsFormOptions {
+interface UseIngredientsFormOptions {
   recipe: RecipeDetails;
 }
 
-function useIngredientsForm({ recipe }: useIngredientsFormOptions) {
+function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
   const [addRecipeAction, isPending] = useServerAction(addIngredientsToCart);
 
   const ingredients = recipe.ingredients.map(ingredient => ingredient.id);

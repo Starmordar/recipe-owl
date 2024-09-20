@@ -5,6 +5,8 @@ import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/lib/utils';
 
+import { Button } from './button';
+
 const Drawer = ({
   shouldScaleBackground = true,
   ...props
@@ -86,6 +88,24 @@ const DrawerDescription = React.forwardRef<
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
+interface ActionButtonProps extends React.PropsWithChildren {}
+
+const DrawerActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
+  ({ children, ...props }: ActionButtonProps, ref) => {
+    return (
+      <Button
+        ref={ref}
+        className='flex gap-4 w-full rounded-none justify-start font-normal text-base h-12'
+        variant='ghost'
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
+DrawerActionButton.displayName = 'DrawerActionButton';
+
 export {
   Drawer,
   DrawerPortal,
@@ -97,4 +117,5 @@ export {
   DrawerFooter,
   DrawerTitle,
   DrawerDescription,
+  DrawerActionButton,
 };
