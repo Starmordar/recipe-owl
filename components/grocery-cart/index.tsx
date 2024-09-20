@@ -8,15 +8,11 @@ async function GroceryCart() {
   if (cart.length === 0) return <EmptyCart />;
 
   return (
-    <>
-      <h1 className='text-xl font-bold'>Grocery Cart</h1>
-
-      <div className='flex flex-col gap-4'>
-        {cart.map(cartItem => (
-          <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />
-        ))}
-      </div>
-    </>
+    <div className='flex flex-col gap-4'>
+      {cart.map(cartItem => (
+        <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />
+      ))}
+    </div>
   );
 }
 

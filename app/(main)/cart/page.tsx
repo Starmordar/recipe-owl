@@ -1,15 +1,26 @@
+import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { validateRequest } from '@/app/(auth)/actions';
 import GroceryCart from '@/components/grocery-cart';
 import GroceryCartSekeleton from '@/components/grocery-cart/skeleton';
+import { publicUrls } from '@/config/url';
 
-function Page() {
+import PageHeader from './_components/page-header';
+
+async function Page() {
+  const { user } = await validateRequest();
+  if (user === null) redirect(publicUrls.signIn);
+
   return (
-    <main className='page-container'>
-      <Suspense fallback={<GroceryCartSekeleton />}>
-        <GroceryCart />
-      </Suspense>
-    </main>
+    <>
+      <PageHeader userId={user.id} />
+      <main className='page-container mt-2'>
+        <Suspense fallback={<GroceryCartSekeleton />}>
+          <GroceryCart />
+        </Suspense>
+      </main>
+    </>
   );
 }
 
