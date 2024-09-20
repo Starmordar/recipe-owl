@@ -17,10 +17,12 @@ function parseFractionOrNumberToFloat(value: string): number | null {
 }
 
 function replaceValuesWithMultipliedValue(str: string, quantity: number): string {
+  if (!str.match(/(\d+\/\d+|\d+(\.\d+)?)/g)) return `${quantity} x ${str}`;
+
   return str.replace(/(\d+\/\d+|\d+(\.\d+)?)/g, match => {
     const value = parseFractionOrNumberToFloat(match);
 
     if (value !== null) return (value * quantity).toString();
-    return `2 x ${match}`;
+    return `${quantity} x ${match}`;
   });
 }
