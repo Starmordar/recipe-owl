@@ -50,9 +50,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
                   <FormControl>
                     <div className='flex w-full justify-center items-center'>
                       <UploadInput
-                        onUpload={event => {
-                          handleFileUpload(event, onChange);
-                        }}
+                        onUpload={event => handleFileUpload(event, onChange)}
                         fieldProps={fieldProps}
                       />
 
@@ -79,9 +77,7 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
                 <FormControl>
                   <div className='flex w-full justify-center items-center'>
                     <UploadInput
-                      onUpload={event => {
-                        handleFileUpload(event, onChange);
-                      }}
+                      onUpload={event => handleFileUpload(event, onChange)}
                       fieldProps={fieldProps}
                     />
                     <LucideImage className='h-20 w-20 opacity-50' strokeWidth={1} />

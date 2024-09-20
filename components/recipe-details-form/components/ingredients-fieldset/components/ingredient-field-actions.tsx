@@ -22,7 +22,7 @@ function IngredientFieldActions({
   const buttonProps = {
     className: 'rounded-full',
     variant: 'ghost',
-    size: 'icon',
+    size: 'icon-xs',
     type: 'button',
   } as ButtonProps;
 
@@ -30,11 +30,11 @@ function IngredientFieldActions({
     <>
       {isDraggable ? (
         <Button {...buttonProps} {...dragHandleProps}>
-          <GripVertical className='h-4 w-4 opacity-50' />
+          <GripVertical className='h-5 w-5' />
         </Button>
       ) : (
         <Button disabled={disabled} onClick={onRemove} {...buttonProps}>
-          <Trash2 className='h-4 w-4 opacity-50' />
+          <Trash2 className='h-5 w-5' />
         </Button>
       )}
     </>

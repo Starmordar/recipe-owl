@@ -61,7 +61,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
                           key={field.id}
                           {...provided.draggableProps}
                           ref={provided.innerRef}
-                          className='flex'
+                          className='flex items-center gap-2'
                         >
                           <IngredientField form={form} field={field} index={index} />
 
