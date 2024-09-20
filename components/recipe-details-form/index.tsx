@@ -1,25 +1,43 @@
-import { getRecipeDetails } from '@/lib/data/recipe';
+'use client';
 
-import RecipeForm, { RecipeFormProps } from './components/recipe-form';
+import { publicUrls } from '@/config/url';
+
+import RecipeDetailsFormHeader from '../layout/recipe-details-form-header';
+
+import RecipeForm from './components/recipe-form';
+import useRecipeForm from './hooks/useRecipeForm';
 import { recipeToFormValues } from './utils/recipeToFormValues';
 
+import type { RecipeDetails } from '@/types/api';
+
 interface RecipeProps {
-  recipeId?: number;
+  title: string;
+  prevUrl: string;
+  recipe?: RecipeDetails;
 }
 
-async function RecipeDetailsForm({ recipeId }: RecipeProps) {
-  const formProps = await getFormProps();
+function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
+  const { form, onSubmit, isPending } = useRecipeForm(getFormProps());
 
-  async function getFormProps(): Promise<RecipeFormProps> {
-    if (typeof recipeId !== 'number') return {};
-
-    const recipe = await getRecipeDetails(recipeId);
+  function getFormProps() {
     if (!recipe) return {};
-
     return { recipeId: recipe.id, initialValues: recipeToFormValues(recipe) };
   }
 
-  return <RecipeForm {...formProps} />;
+  return (
+    <>
+      <RecipeDetailsFormHeader
+        title={title}
+        prevUrl={prevUrl}
+        isPending={isPending}
+        dataChanged={form.formState.isDirty}
+      />
+
+      <main className='page-container'>
+        <RecipeForm form={form} onSubmit={onSubmit} />
+      </main>
+    </>
+  );
 }
 
 export default RecipeDetailsForm;

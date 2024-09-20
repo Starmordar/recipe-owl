@@ -4,8 +4,9 @@ import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/app/(main)/recipes/actions';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from '@/components/ui/use-toast';
 import { errorToast } from '@/constants/toast';
+import { useServerAction } from '@/hooks/useServerAction';
 
 import schema, { defaultValues } from '../constants/shema';
 
@@ -17,7 +18,9 @@ interface UseRecipeFormOptions {
 }
 
 function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
-  const { toast } = useToast();
+  const [createAction, isPendingCreate] = useServerAction(createRecipe);
+  const [updateAction, isPendingUpdate] = useServerAction(updateRecipe);
+
   const router = useRouter();
 
   const form = useForm<FormValues>({
@@ -40,10 +43,10 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
     const formData = valuesToFormData(values);
 
     try {
-      const recipe = await (recipeId ? updateRecipe(recipeId, formData) : createRecipe(formData));
+      const recipe = await (recipeId ? updateAction(recipeId, formData) : createAction(formData));
       // Update the form immediately to ensure the redirect after creation does not trigger the unsaved changes confirmation dialog.
       flushSync(() => form.reset({}, { keepValues: true }));
-      return recipe;
+      return recipe ?? null;
     } catch {
       toast(errorToast);
       return null;
@@ -55,7 +58,7 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
     if (recipe) router.push(`/recipes/${recipe.id}`);
   }
 
-  return { form, onSubmit };
+  return { form, onSubmit, isPending: isPendingCreate || isPendingUpdate };
 }
 
 export default useRecipeForm;

@@ -3,22 +3,19 @@
 import { Form } from '@/components/ui/form';
 import useConfirmOnPageLeave from '@/hooks/useConfirmOnPageLeave';
 
-import useRecipeForm from '../hooks/useRecipeForm';
-
 import DetailsFieldset from './details-fieldset';
 import IngredientsFieldset from './ingredients-fieldset/index';
 import StepsFieldset from './method-fieldset';
 
 import type { FormValues } from '../constants/shema';
+import type { UseFormReturn } from 'react-hook-form';
 
 export interface RecipeFormProps {
-  recipeId?: number;
-  initialValues?: FormValues;
+  form: UseFormReturn<FormValues>;
+  onSubmit: (values: FormValues) => Promise<void>;
 }
 
-function RecipeForm({ recipeId, initialValues }: RecipeFormProps) {
-  const { form, onSubmit } = useRecipeForm({ recipeId, initialValues });
-
+function RecipeForm({ form, onSubmit }: RecipeFormProps) {
   useConfirmOnPageLeave({
     shouldTrigger: form.formState.isDirty,
     message: 'You have unsaved changes. Are you sure you want to leave?',
