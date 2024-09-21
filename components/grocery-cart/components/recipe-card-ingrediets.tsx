@@ -13,6 +13,13 @@ function RecipeCardIngredients<Ingredient extends { name: string }>({
   renderContent,
   ingredients,
 }: RecipeCardProps<Ingredient>) {
+  if (ingredients.length === 0)
+    return (
+      <div className='text-center mt-4'>
+        <p>Ingredients Included in Shared Section</p>
+      </div>
+    );
+
   return (
     <div>
       <AnimatePresence>
