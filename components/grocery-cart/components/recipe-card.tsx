@@ -1,15 +1,21 @@
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+'use client';
+
+import { removeIngredientFromCart } from '@/app/(main)/cart/actions';
+import { useServerAction } from '@/hooks/useServerAction';
 import { CartRecipe } from '@/lib/data/cart';
+
+import { applyQuantityToUnit } from '../utils/applyQuantityToUnit';
 
 import RecipeCardHeader from './recipe-card-header';
 import RecipeCardIngredients from './recipe-card-ingrediets';
+import RemoveIngredient from './remove-ingredient';
 
 interface RecipeCardProps {
   cartItem: CartRecipe;
 }
 
 function RecipeCard({ cartItem }: RecipeCardProps) {
-  if (cartItem.recipe === null || cartItem.ingredients === null) return null;
+  const [removeIngredientAction, isPending] = useServerAction(removeIngredientFromCart);
 
   return (
     <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
@@ -17,13 +23,23 @@ function RecipeCard({ cartItem }: RecipeCardProps) {
         <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </div>
 
-      <div className='grid gap-2'>
-        <RecipeCardIngredients
-          recipe={cartItem.recipe}
-          ingredients={cartItem.ingredients}
-          quantity={cartItem.quantity}
-        />
-      </div>
+      <RecipeCardIngredients<CartRecipe['ingredients'][number]>
+        ingredients={cartItem.ingredients}
+        renderContent={ingredient => (
+          <>
+            <div>
+              <p className='text-sm font-medium leading-none'>{ingredient.name}</p>
+              <p className='text-sm text-muted-foreground'>
+                {applyQuantityToUnit(ingredient.unit, cartItem.quantity)}
+              </p>
+            </div>
+            <RemoveIngredient
+              isPending={isPending}
+              onRemove={() => removeIngredientAction([ingredient.recipeId], [ingredient.id])}
+            />
+          </>
+        )}
+      />
     </div>
   );
 }

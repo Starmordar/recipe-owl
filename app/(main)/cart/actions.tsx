@@ -51,8 +51,8 @@ export async function removeRecipeFromCart(recipeId: number): Promise<void> {
 }
 
 export async function removeIngredientFromCart(
-  recipeId: number,
-  ingredientId: number,
+  recipeIds: Array<number>,
+  ingredientIds: Array<number>,
 ): Promise<void> {
   const { user } = await validateRequest();
   if (user === null) throw new UnauthorizedError();
@@ -61,7 +61,11 @@ export async function removeIngredientFromCart(
   if (existingCart === null) return;
 
   await prisma.cartItem.deleteMany({
-    where: { cartId: existingCart.id, recipeId, ingredientId },
+    where: {
+      cartId: existingCart.id,
+      recipeId: { in: recipeIds },
+      ingredientId: { in: ingredientIds },
+    },
   });
 
   revalidatePath(publicUrls.cart);
