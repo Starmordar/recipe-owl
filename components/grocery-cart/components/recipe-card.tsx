@@ -1,7 +1,5 @@
 'use client';
 
-import { removeIngredientFromCart } from '@/app/(main)/cart/actions';
-import { useServerAction } from '@/hooks/useServerAction';
 import { CartRecipe } from '@/lib/data/cart';
 
 import { applyQuantityToUnit } from '../utils/applyQuantityToUnit';
@@ -15,8 +13,6 @@ interface RecipeCardProps {
 }
 
 function RecipeCard({ cartItem }: RecipeCardProps) {
-  const [removeIngredientAction, isPending] = useServerAction(removeIngredientFromCart);
-
   return (
     <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
       <div className='flex flex-row space-y-0 gap-4'>
@@ -33,10 +29,7 @@ function RecipeCard({ cartItem }: RecipeCardProps) {
                 {applyQuantityToUnit(ingredient.unit, cartItem.quantity)}
               </p>
             </div>
-            <RemoveIngredient
-              isPending={isPending}
-              onRemove={() => removeIngredientAction([ingredient.recipeId], [ingredient.id])}
-            />
+            <RemoveIngredient recipeIds={[ingredient.recipeId]} ingredientIds={[ingredient.id]} />
           </>
         )}
       />

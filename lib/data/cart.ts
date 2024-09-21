@@ -14,7 +14,13 @@ export interface CartRecipe {
 
 export interface SharedIngredient {
   name: string;
-  ingredients: Array<{ id: number; recipeId: number; unit: string; quantity: number }>;
+  ingredients: Array<{
+    id: number;
+    recipeId: number;
+    recipe: CartRecipe['recipe'];
+    unit: string;
+    quantity: number;
+  }>;
 }
 
 export async function getCart(): Promise<{
@@ -78,9 +84,10 @@ function getSharedIngredients(cart: CartDetails): Array<SharedIngredient> {
 
     return {
       name,
-      ingredients: data.map(({ recipeId, ingredient: { id, unit }, quantity }) => ({
+      ingredients: data.map(({ recipeId, ingredient: { id, unit }, quantity, recipe }) => ({
         id,
         recipeId,
+        recipe,
         unit,
         quantity,
       })),

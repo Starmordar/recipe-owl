@@ -1,7 +1,6 @@
 'use client';
 
-import { removeIngredientFromCart } from '@/app/(main)/cart/actions';
-import { useServerAction } from '@/hooks/useServerAction';
+import EditSharedIngredietDrawer from '@/components/edit-shared-ingredient-drawer';
 
 import mergeIngredients from '../utils/mergeIngredients';
 
@@ -16,8 +15,6 @@ interface SharedIngredientsProps {
 }
 
 function SharedIngredients({ sharedIngredients }: SharedIngredientsProps) {
-  const [removeIngredientAction, isPending] = useServerAction(removeIngredientFromCart);
-
   if (sharedIngredients.length === 0) return null;
 
   return (
@@ -31,22 +28,20 @@ function SharedIngredients({ sharedIngredients }: SharedIngredientsProps) {
           ingredients={sharedIngredients}
           renderContent={(item: SharedIngredient) => (
             <>
-              <div className='flex flex-col'>
-                <p className='text-sm font-medium leading-none'>{item.name}</p>
-                {mergeIngredients(item).map((unit, i) => (
-                  <p key={i} className='text-sm text-muted-foreground'>
-                    {unit}
-                  </p>
-                ))}
-              </div>
+              <EditSharedIngredietDrawer item={item}>
+                <div className='flex flex-col grow'>
+                  <p className='text-sm font-medium leading-none'>{item.name}</p>
+                  {mergeIngredients(item).map((unit, i) => (
+                    <p key={i} className='text-sm text-muted-foreground'>
+                      {unit}
+                    </p>
+                  ))}
+                </div>
+              </EditSharedIngredietDrawer>
+
               <RemoveIngredient
-                isPending={isPending}
-                onRemove={() =>
-                  removeIngredientAction(
-                    item.ingredients.map(i => i.recipeId),
-                    item.ingredients.map(i => i.id),
-                  )
-                }
+                recipeIds={item.ingredients.map(i => i.recipeId)}
+                ingredientIds={item.ingredients.map(i => i.id)}
               />
             </>
           )}
