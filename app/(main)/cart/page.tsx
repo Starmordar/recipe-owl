@@ -8,16 +8,21 @@ import { publicUrls } from '@/config/url';
 
 import PageHeader from './_components/page-header';
 
-async function Page() {
+interface PageProps {
+  searchParams: { shareToken?: string };
+}
+
+async function Page({ searchParams }: PageProps) {
   const { user } = await validateRequest();
   if (user === null) redirect(publicUrls.signIn);
 
   return (
     <>
       <PageHeader userId={user.id} />
+
       <main className='page-container mt-4'>
         <Suspense fallback={<GroceryCartSekeleton />}>
-          <GroceryCart />
+          <GroceryCart shareToken={searchParams.shareToken} />
         </Suspense>
       </main>
     </>

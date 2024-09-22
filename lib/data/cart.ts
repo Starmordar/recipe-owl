@@ -23,15 +23,24 @@ export interface SharedIngredient {
   }>;
 }
 
-export async function getCart(): Promise<{
-  items: Array<CartRecipe>;
-  shared: Array<SharedIngredient>;
-}> {
+export async function getCartByUser() {
   const { user } = await validateRequest();
   if (user === null) return { items: [], shared: [] };
 
+  return getCart({ userId: user.id });
+}
+
+export async function getCartByShareToken(shareToken: string) {
+  return getCart({ shareToken });
+}
+
+export async function getCart(where: Prisma.CartWhereInput): Promise<{
+  cart?: { id: number; shareToken: string | null };
+  items: Array<CartRecipe>;
+  shared: Array<SharedIngredient>;
+}> {
   const cart = await prisma.cart.findFirst({
-    where: { userId: user.id },
+    where: where,
     include: {
       items: {
         include: {
@@ -47,7 +56,7 @@ export async function getCart(): Promise<{
   const shared = getSharedIngredients(cart);
   const items = getCartIngredients(cart, shared);
 
-  return { items, shared };
+  return { cart: { id: cart.id, shareToken: cart.shareToken }, items, shared };
 }
 
 export async function ingredientsInCart(): Promise<number> {

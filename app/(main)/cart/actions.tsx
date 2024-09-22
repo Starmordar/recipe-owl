@@ -109,3 +109,8 @@ export async function addIngredientsToCart(
   revalidatePath(publicUrls.cart);
   return cartId;
 }
+
+export async function enableCartSharing(cartId: number, shareToken: string) {
+  await prisma.cart.update({ where: { id: cartId }, data: { shareToken } });
+  return shareToken;
+}

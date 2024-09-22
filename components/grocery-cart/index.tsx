@@ -1,10 +1,15 @@
-import { getCart } from '@/lib/data/cart';
+import useGroceryCart from '@/hooks/useGroceryCart';
 
 import EmptyCart from './components/empty-cart';
 import RecipeCard from './components/recipe-card';
 import SharedIngredients from './components/shared-ingredients';
 
-async function GroceryCart() {
+interface GroceryCartProps {
+  shareToken: string | undefined;
+}
+
+async function GroceryCart({ shareToken }: GroceryCartProps) {
+  const { getCart } = useGroceryCart({ shareToken });
   const { items, shared } = await getCart();
   if (items.length === 0) return <EmptyCart />;
 

@@ -3,13 +3,23 @@
 import { Share2 } from 'lucide-react';
 
 import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
-import { webShareData } from '@/config/share';
-import useWebShare from '@/hooks/useWebShare';
+import useShareCart from '@/hooks/useShareCart';
 
-function ShareAction() {
-  const { handleShare } = useWebShare({ data: webShareData });
+interface ShareActionProps {
+  cart: { id: number; shareToken: string | null };
+}
 
-  return <HeaderIconButton Icon={<Share2 />} onClick={handleShare} />;
+function ShareAction({ cart }: ShareActionProps) {
+  const { handleCartShare, isPending } = useShareCart({ cart });
+  return (
+    <HeaderIconButton
+      Icon={<Share2 />}
+      onClick={handleCartShare}
+      loading={isPending}
+      loadingText=''
+      loadingClassName='h-5 w-5'
+    />
+  );
 }
 
 export default ShareAction;
