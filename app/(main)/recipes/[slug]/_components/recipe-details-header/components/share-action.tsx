@@ -8,8 +8,7 @@ import useWebShare from '@/hooks/useWebShare';
 
 function ShareAction() {
   const { handleShare } = useWebShare({ data: webShareData });
-
-  return <HeaderIconButton Icon={<Share2 />} onClick={handleShare} />;
+  return <HeaderIconButton Icon={<Share2 />} onClick={() => handleShare()} />;
 }
 
 export default ShareAction;
