@@ -16,7 +16,7 @@ function useShareCart({ cart }: UseShareCartOptions) {
 
   async function handleCartShare() {
     const shareToken = cart.shareToken ?? uuidv4();
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cart?shareToken=${shareToken}`;
+    const url = `/cart?shareToken=${shareToken}`;
     if (!shareAllowed(url)) return;
 
     await handleShare(url);
