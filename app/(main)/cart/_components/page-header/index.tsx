@@ -1,15 +1,17 @@
 import AppHeader from '@/components/layout/app-header';
 import { publicUrls } from '@/config/url';
-import { getCart } from '@/lib/data/cart';
+import useGroceryCart from '@/hooks/useGroceryCart';
 
 import MoreOptionsAction from './components/more-options-action';
 import ShareAction from './components/share-action';
 
 interface PageHeaderProps {
+  shareToken: string | undefined;
   userId: string;
 }
 
-async function PageHeader({ userId }: PageHeaderProps) {
+async function PageHeader({ shareToken, userId }: PageHeaderProps) {
+  const { getCart } = useGroceryCart({ shareToken });
   const { cart } = await getCart();
 
   return (

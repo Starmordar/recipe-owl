@@ -18,7 +18,7 @@ async function Page({ searchParams }: PageProps) {
 
   return (
     <>
-      <PageHeader userId={user.id} />
+      <PageHeader shareToken={searchParams.shareToken} userId={user.id} />
 
       <main className='page-container mt-4'>
         <Suspense fallback={<GroceryCartSekeleton />}>
