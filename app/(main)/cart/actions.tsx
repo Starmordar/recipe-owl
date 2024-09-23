@@ -7,6 +7,7 @@ import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { prisma } from '@/prisma/prisma-client';
+import { CartWithUser } from '@/types/api';
 
 async function updateOrCreateCart(
   recipeId: number,
@@ -113,4 +114,31 @@ export async function addIngredientsToCart(
 export async function enableCartSharing(cartId: number, shareToken: string) {
   await prisma.cart.update({ where: { id: cartId }, data: { shareToken } });
   return shareToken;
+}
+
+export async function connectUserWithCart(userId: string, shareToken: string) {
+  const cart = await prisma.cart.findFirst({ where: { shareToken } });
+  if (cart === null || cart.userId === userId) return;
+
+  const sharedCart = await prisma.sharedCart.findFirst({ where: { userId } });
+  if (sharedCart !== null) return;
+
+  await prisma.sharedCart.create({ data: { userId, cartId: cart.id } });
+}
+
+export async function leaveSharedCart(userId: string, cartId: number) {
+  await prisma.sharedCart.deleteMany({ where: { userId, cartId } });
+}
+
+export async function getAllAvailableCarts(userId: string): Promise<Array<CartWithUser>> {
+  const cartSelector = { include: { user: { select: { fullName: true, picture: true } } } };
+
+  const sharedCarts = await prisma.sharedCart.findMany({
+    where: { userId },
+    include: { cart: cartSelector },
+  });
+  const ownCart = await prisma.cart.findFirst({ where: { userId }, ...cartSelector });
+
+  const cartList = ownCart ? [ownCart] : [];
+  return [...cartList, ...sharedCarts.map(({ cart }) => cart)];
 }

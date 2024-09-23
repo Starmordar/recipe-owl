@@ -13,5 +13,10 @@ export type CartDetails = Prisma.CartGetPayload<{
         ingredient: true;
       };
     };
+    user: true;
   };
+}>;
+
+export type CartWithUser = Prisma.CartGetPayload<{
+  include: { user: { select: { fullName: true; picture: true } } };
 }>;

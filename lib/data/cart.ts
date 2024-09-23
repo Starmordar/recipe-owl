@@ -6,6 +6,12 @@ import { groupBy } from '../utils';
 
 import type { Prisma, Ingredient } from '@prisma/client';
 
+export interface CartWithRecipes {
+  cart?: CartDetails;
+  items: Array<CartRecipe>;
+  shared: Array<SharedIngredient>;
+}
+
 export interface CartRecipe {
   recipe: Prisma.RecipeGetPayload<{ select: { id: true; title: true; imageUrl: true } }>;
   ingredients: Array<Ingredient>;
@@ -25,22 +31,20 @@ export interface SharedIngredient {
 
 export async function getCartByUser() {
   const { user } = await validateRequest();
-  if (user === null) return { items: [], shared: [] };
+  if (user === null) return null;
 
-  return getCart({ userId: user.id });
+  return getCartDetails({ userId: user.id });
 }
 
 export async function getCartByShareToken(shareToken: string) {
-  return getCart({ shareToken });
+  return getCartDetails({ shareToken });
 }
 
-export async function getCart(where: Prisma.CartWhereInput): Promise<{
-  cart?: { id: number; shareToken: string | null };
-  items: Array<CartRecipe>;
-  shared: Array<SharedIngredient>;
-}> {
+export async function getCartDetails(
+  where: Prisma.CartWhereInput,
+): Promise<CartWithRecipes | null> {
   const cart = await prisma.cart.findFirst({
-    where: where,
+    where,
     include: {
       items: {
         include: {
@@ -48,15 +52,16 @@ export async function getCart(where: Prisma.CartWhereInput): Promise<{
           ingredient: true,
         },
       },
+      user: true,
     },
   });
 
-  if (cart === null) return { items: [], shared: [] };
+  if (cart === null) return null;
 
   const shared = getSharedIngredients(cart);
   const items = getCartIngredients(cart, shared);
 
-  return { cart: { id: cart.id, shareToken: cart.shareToken }, items, shared };
+  return { cart, items, shared };
 }
 
 export async function ingredientsInCart(): Promise<number> {

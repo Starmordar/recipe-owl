@@ -48,7 +48,21 @@ model Cart {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id])
 
+  sharedCarts SharedCart[]
+
   @@index([userId])
+}
+
+model SharedCart {
+  id Int @id @default(autoincrement())
+
+  cartId Int
+  cart   Cart @relation(fields: [cartId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@unique([cartId, userId])
 }
 
 model CartItem {
@@ -95,8 +109,9 @@ model User {
   recipes      Recipe[]
   Cart         Cart?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  SharedCart SharedCart[]
 }
 
 model Session {
