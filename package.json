@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "analyze": "npx cross-env ANALYZE=true yarn build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -53,6 +54,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^14.2.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-beautiful-dnd": "^13.1.8",
