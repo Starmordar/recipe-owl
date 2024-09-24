@@ -39,50 +39,30 @@ export async function addRecipeToCart(
   return cart;
 }
 
-export async function removeRecipeFromCart(recipeId: number): Promise<void> {
-  const { user } = await validateRequest();
-  if (user === null) throw new UnauthorizedError();
-
-  const existingCart = await prisma.cart.findFirst({ where: { userId: user.id } });
-  if (existingCart === null) return;
-
-  await prisma.cartItem.deleteMany({ where: { cartId: existingCart.id, recipeId: recipeId } });
+export async function removeRecipeFromCart(cartId: number, recipeId: number): Promise<void> {
+  await prisma.cartItem.deleteMany({ where: { cartId: cartId, recipeId: recipeId } });
 
   revalidatePath(publicUrls.cart);
 }
 
 export async function removeIngredientFromCart(
+  cartId: number,
   recipeIds: Array<number>,
   ingredientIds: Array<number>,
 ): Promise<void> {
-  const { user } = await validateRequest();
-  if (user === null) throw new UnauthorizedError();
-
-  const existingCart = await prisma.cart.findFirst({ where: { userId: user.id } });
-  if (existingCart === null) return;
-
   await prisma.cartItem.deleteMany({
-    where: {
-      cartId: existingCart.id,
-      recipeId: { in: recipeIds },
-      ingredientId: { in: ingredientIds },
-    },
+    where: { cartId, recipeId: { in: recipeIds }, ingredientId: { in: ingredientIds } },
   });
 
   revalidatePath(publicUrls.cart);
 }
 
-export async function updateServings(recipeId: number, quantity: number): Promise<void> {
-  const { user } = await validateRequest();
-  if (user === null) throw new UnauthorizedError();
-
-  const existingCart = await prisma.cart.findFirst({ where: { userId: user.id } });
-  if (existingCart === null) return;
-
-  await prisma.cartItem.updateMany({
-    where: { cartId: existingCart.id, recipeId },
-    data: { quantity },
-  });
+export async function updateServings(
+  cartId: number,
+  recipeId: number,
+  quantity: number,
+): Promise<void> {
+  await prisma.cartItem.updateMany({ where: { cartId, recipeId }, data: { quantity } });
 
   revalidatePath(publicUrls.cart);
 }
@@ -116,29 +96,34 @@ export async function enableCartSharing(cartId: number, shareToken: string) {
   return shareToken;
 }
 
-export async function connectUserWithCart(userId: string, shareToken: string) {
-  const cart = await prisma.cart.findFirst({ where: { shareToken } });
-  if (cart === null || cart.userId === userId) return;
+type IsCartExists = boolean;
+export async function assignUserToSharedCart(
+  userId: string,
+  shareToken: string,
+): Promise<IsCartExists> {
+  const existingCart = await prisma.cart.findFirst({ where: { shareToken } });
+  if (existingCart === null) return false;
 
-  const sharedCart = await prisma.sharedCart.findFirst({ where: { userId } });
-  if (sharedCart !== null) return;
+  if (existingCart.userId === userId) return true;
 
-  await prisma.sharedCart.create({ data: { userId, cartId: cart.id } });
+  const existingSharedCart = await prisma.sharedCart.findFirst({
+    where: { userId, cartId: existingCart.id },
+  });
+  if (existingSharedCart !== null) return true;
+
+  await prisma.sharedCart.create({ data: { userId, cartId: existingCart.id } });
+  return true;
 }
 
 export async function leaveSharedCart(userId: string, cartId: number) {
   await prisma.sharedCart.deleteMany({ where: { userId, cartId } });
 }
 
-export async function getAllAvailableCarts(userId: string): Promise<Array<CartWithUser>> {
-  const cartSelector = { include: { user: { select: { fullName: true, picture: true } } } };
-
+export async function getSharedCarts(userId: string): Promise<Array<CartWithUser>> {
   const sharedCarts = await prisma.sharedCart.findMany({
     where: { userId },
-    include: { cart: cartSelector },
+    include: { cart: { include: { user: { select: { fullName: true, picture: true } } } } },
   });
-  const ownCart = await prisma.cart.findFirst({ where: { userId }, ...cartSelector });
 
-  const cartList = ownCart ? [ownCart] : [];
-  return [...cartList, ...sharedCarts.map(({ cart }) => cart)];
+  return sharedCarts.map(({ cart }) => cart);
 }

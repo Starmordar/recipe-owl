@@ -11,11 +11,12 @@ import SharedIngredientsHeader from './shared-ingredients-header';
 import type { SharedIngredient } from '@/lib/data/cart';
 
 interface SharedIngredientsProps {
-  sharedIngredients: Array<SharedIngredient>;
+  ingredients: Array<SharedIngredient>;
+  cartId: number;
 }
 
-function SharedIngredients({ sharedIngredients }: SharedIngredientsProps) {
-  if (sharedIngredients.length === 0) return null;
+function SharedIngredients({ cartId, ingredients }: SharedIngredientsProps) {
+  if (ingredients.length === 0) return null;
 
   return (
     <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
@@ -25,7 +26,7 @@ function SharedIngredients({ sharedIngredients }: SharedIngredientsProps) {
 
       <div className='grid gap-2'>
         <RecipeCardIngredients<SharedIngredient>
-          ingredients={sharedIngredients}
+          ingredients={ingredients}
           renderContent={(item: SharedIngredient) => (
             <>
               <EditSharedIngredietDrawer item={item}>
@@ -40,6 +41,7 @@ function SharedIngredients({ sharedIngredients }: SharedIngredientsProps) {
               </EditSharedIngredietDrawer>
 
               <RemoveIngredient
+                cartId={cartId}
                 recipeIds={item.ingredients.map(i => i.recipeId)}
                 ingredientIds={item.ingredients.map(i => i.id)}
               />

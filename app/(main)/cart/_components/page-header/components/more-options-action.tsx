@@ -6,28 +6,9 @@ import HeaderIconButton from '@/components/layout/app-header/components/icon-but
 
 import CartActionsDrawer from '../../cart-actions-drawer';
 
-import type { CartWithUser } from '@/types/api';
-
-interface MoreOptionsActionProps {
-  isCartOwner: boolean;
-  userId: string;
-  cartId: number;
-  availableCarts: Array<CartWithUser>;
-}
-
-function MoreOptionsAction({
-  isCartOwner,
-  userId,
-  cartId,
-  availableCarts,
-}: MoreOptionsActionProps) {
+function MoreOptionsAction() {
   return (
-    <CartActionsDrawer
-      userId={userId}
-      cartId={cartId}
-      isCartOwner={isCartOwner}
-      availableCarts={availableCarts}
-    >
+    <CartActionsDrawer>
       <HeaderIconButton Icon={<EllipsisVertical />} />
     </CartActionsDrawer>
   );

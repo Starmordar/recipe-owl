@@ -1,21 +1,18 @@
-import NextImage from 'next/image';
-
 import AppHeader from '@/components/layout/app-header';
-import { CartWithRecipes } from '@/lib/data/cart';
+import { UserAvatar } from '@/components/ui/user-avatar';
 
 import MoreOptionsAction from './components/more-options-action';
 import ShareAction from './components/share-action';
 
-import type { CartWithUser } from '@/types/api';
+import type { CartDetails } from '@/types/api';
 
 interface PageHeaderProps {
-  cart: CartWithRecipes['cart'];
+  cart: CartDetails;
   userId: string;
-  availableCarts: Array<CartWithUser>;
 }
 
-async function PageHeader({ cart, userId, availableCarts }: PageHeaderProps) {
-  const isCartOwner = cart?.userId === userId;
+async function PageHeader({ cart, userId }: PageHeaderProps) {
+  const isCartOwner = cart.userId === userId;
 
   return (
     <AppHeader className='pr-2'>
@@ -24,23 +21,10 @@ async function PageHeader({ cart, userId, availableCarts }: PageHeaderProps) {
 
         {cart && (
           <div className='flex items-center gap-x-3'>
-            {!isCartOwner && cart?.user.picture && (
-              <NextImage
-                className='rounded-full'
-                height={28}
-                width={28}
-                src={cart.user.picture}
-                alt='Cart Owner Image'
-              />
-            )}
+            {!isCartOwner && <UserAvatar src={cart.user.picture} />}
 
             <ShareAction cart={cart} />
-            <MoreOptionsAction
-              userId={userId}
-              cartId={cart.id}
-              isCartOwner={isCartOwner}
-              availableCarts={availableCarts}
-            />
+            <MoreOptionsAction />
           </div>
         )}
       </div>

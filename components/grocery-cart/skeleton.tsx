@@ -5,7 +5,7 @@ function GroceryCartSekeleton() {
   const ingredients = new Array<number>(5).fill(0);
 
   return (
-    <main className='page-container mt-2'>
+    <main className='page-container mt-4'>
       <Skeleton className='relative h-6 w-[30vw]' />
 
       {cards.map((_, i) => (

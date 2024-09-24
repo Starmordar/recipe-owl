@@ -2,39 +2,29 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { AlignJustify, Trash2, CircleX } from 'lucide-react';
+import { useState, type PropsWithChildren } from 'react';
 
-import {
-  Drawer,
-  DrawerActionButton,
-  DrawerClose,
-  DrawerContent,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
+import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { useUserCart } from '@/context/userCartProvider';
 import useLeaveSharedCart from '@/hooks/cart/useLeaveSharedCart';
 
-import SwitchListsDrawer from '../switch-lists-drawer';
+import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
 
-import type { CartWithUser } from '@/types/api';
-import type { PropsWithChildren } from 'react';
+interface CartActionsDrawerProps extends PropsWithChildren {}
 
-interface CartActionsDrawerProps extends PropsWithChildren {
-  userId: string;
-  cartId: number;
-  isCartOwner: boolean;
-  availableCarts: Array<CartWithUser>;
-}
+function CartActionsDrawer({ children }: CartActionsDrawerProps) {
+  const { cartId, userId, isCartOwner, sharedCarts } = useUserCart();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-function CartActionsDrawer({
-  children,
-  cartId,
-  userId,
-  isCartOwner,
-  availableCarts,
-}: CartActionsDrawerProps) {
   const { handleLeaveCart, isPending } = useLeaveSharedCart({ userId, cartId });
 
+  async function onLeaveCart() {
+    await handleLeaveCart();
+    setIsDrawerOpen(false);
+  }
+
   return (
-    <Drawer>
+    <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
@@ -49,7 +39,7 @@ function CartActionsDrawer({
           {!isCartOwner && (
             <li>
               <DrawerActionButton
-                onClick={handleLeaveCart}
+                onClick={onLeaveCart}
                 loading={isPending}
                 loadingClassName='h-5 w-5'
               >
@@ -57,13 +47,15 @@ function CartActionsDrawer({
               </DrawerActionButton>
             </li>
           )}
-          <li>
-            <SwitchListsDrawer carts={availableCarts}>
-              <DrawerActionButton>
-                <AlignJustify className='h-5 w-5 opacity-60' /> Switch Lists
-              </DrawerActionButton>
-            </SwitchListsDrawer>
-          </li>
+          {sharedCarts.length > 0 && (
+            <li>
+              <SwitchGroceryCartsDrawer onSelect={() => setIsDrawerOpen(false)}>
+                <DrawerActionButton>
+                  <AlignJustify className='h-5 w-5 opacity-60' /> Switch Lists
+                </DrawerActionButton>
+              </SwitchGroceryCartsDrawer>
+            </li>
+          )}
         </ul>
       </DrawerContent>
     </Drawer>

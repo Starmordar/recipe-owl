@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import { CardTitle } from '@/components/ui/card';
-import { NumberInputSpinner } from '@/components/ui/number-input-spinner';
 
 import RemoveRecipe from './remove-recipe';
 import ServingInput from './servings-input';
@@ -11,6 +10,7 @@ import type { CartRecipe } from '@/lib/data/cart';
 interface RecipeCardHeaderProps {
   recipe: NonNullable<CartRecipe['recipe']>;
   quantity: number;
+  cartId: number | undefined;
 }
 
 function RecipeCardHeader({ recipe, quantity }: RecipeCardHeaderProps) {

@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 
 import { removeRecipeFromCart } from '@/app/(main)/cart/actions';
 import { Button } from '@/components/ui/button';
+import { useUserCart } from '@/context/userCartProvider';
 import { useServerAction } from '@/hooks/useServerAction';
 
 interface RemoveRecipeProps {
@@ -11,6 +12,7 @@ interface RemoveRecipeProps {
 }
 
 function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
+  const { cartId } = useUserCart();
   const [removeRecipeAction, isPending] = useServerAction(removeRecipeFromCart);
 
   return (
@@ -18,7 +20,7 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
       className='px-1'
       variant='ghost'
       size='icon-xs'
-      onClick={() => removeRecipeAction(recipeId)}
+      onClick={() => removeRecipeAction(cartId, recipeId)}
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'

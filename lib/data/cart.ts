@@ -7,7 +7,7 @@ import { groupBy } from '../utils';
 import type { Prisma, Ingredient } from '@prisma/client';
 
 export interface CartWithRecipes {
-  cart?: CartDetails;
+  cart: CartDetails;
   items: Array<CartRecipe>;
   shared: Array<SharedIngredient>;
 }
@@ -29,39 +29,40 @@ export interface SharedIngredient {
   }>;
 }
 
-export async function getCartByUser() {
-  const { user } = await validateRequest();
-  if (user === null) return null;
+const cartDetailsInclude = {
+  items: {
+    include: { recipe: { select: { id: true, title: true, imageUrl: true } }, ingredient: true },
+  },
+  user: true,
+};
 
-  return getCartDetails({ userId: user.id });
+export async function getCartByShareToken(shareToken: string): Promise<CartWithRecipes | null> {
+  const cartDetails = await getCartDetails({ shareToken });
+  if (cartDetails === null) return null;
+
+  return getCartWithItems(cartDetails);
 }
 
-export async function getCartByShareToken(shareToken: string) {
-  return getCartDetails({ shareToken });
+export async function getOrCreateCartByUser(userId: string): Promise<CartWithRecipes> {
+  const cartDetails = await getCartDetails({ userId });
+
+  if (cartDetails === null) {
+    const createdCart = await prisma.cart.create({ data: { userId }, include: cartDetailsInclude });
+    return getCartWithItems(createdCart);
+  }
+
+  return getCartWithItems(cartDetails);
 }
 
-export async function getCartDetails(
-  where: Prisma.CartWhereInput,
-): Promise<CartWithRecipes | null> {
-  const cart = await prisma.cart.findFirst({
-    where,
-    include: {
-      items: {
-        include: {
-          recipe: { select: { id: true, title: true, imageUrl: true } },
-          ingredient: true,
-        },
-      },
-      user: true,
-    },
-  });
+export async function getCartDetails(where: Prisma.CartWhereInput): Promise<CartDetails | null> {
+  return prisma.cart.findFirst({ where, include: cartDetailsInclude });
+}
 
-  if (cart === null) return null;
-
+export async function getCartWithItems(cart: CartDetails) {
   const shared = getSharedIngredients(cart);
   const items = getCartIngredients(cart, shared);
 
-  return { cart, items, shared };
+  return { cart, shared, items };
 }
 
 export async function ingredientsInCart(): Promise<number> {

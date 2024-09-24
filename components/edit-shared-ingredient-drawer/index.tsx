@@ -4,6 +4,7 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import Image from 'next/image';
 
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { useUserCart } from '@/context/userCartProvider';
 import { SharedIngredient } from '@/lib/data/cart';
 
 import RemoveIngredient from '../grocery-cart/components/remove-ingredient';
@@ -16,6 +17,8 @@ interface RecipeActionsDrawerProps extends PropsWithChildren {
 }
 
 function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps) {
+  const { cartId } = useUserCart();
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -45,7 +48,11 @@ function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps)
                 </span>
               </div>
 
-              <RemoveIngredient recipeIds={[ingredient.recipeId]} ingredientIds={[ingredient.id]} />
+              <RemoveIngredient
+                cartId={cartId}
+                recipeIds={[ingredient.recipeId]}
+                ingredientIds={[ingredient.id]}
+              />
             </li>
           ))}
         </ul>

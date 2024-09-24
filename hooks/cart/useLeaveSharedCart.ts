@@ -7,7 +7,7 @@ import { useServerAction } from '../useServerAction';
 
 interface UseLeaveSharedCart {
   userId: string;
-  cartId: number;
+  cartId: number | undefined;
 }
 
 function useLeaveSharedCart({ userId, cartId }: UseLeaveSharedCart) {
@@ -15,7 +15,7 @@ function useLeaveSharedCart({ userId, cartId }: UseLeaveSharedCart) {
   const [leaveCartAction, isPending] = useServerAction(leaveSharedCart);
 
   async function handleLeaveCart() {
-    await leaveCartAction(userId, cartId);
+    if (cartId) await leaveCartAction(userId, cartId);
     router.push(publicUrls.cart);
   }
 

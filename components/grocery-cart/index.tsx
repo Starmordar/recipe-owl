@@ -1,23 +1,23 @@
-import useGroceryCart from '@/hooks/useGroceryCart';
-
 import EmptyCart from './components/empty-cart';
 import RecipeCard from './components/recipe-card';
 import SharedIngredients from './components/shared-ingredients';
 
+import type { CartWithRecipes } from '@/lib/data/cart';
+
 interface GroceryCartProps {
-  shareToken: string | undefined;
+  cartWithRecipes: CartWithRecipes;
 }
 
-async function GroceryCart({ shareToken }: GroceryCartProps) {
-  const { getCart } = useGroceryCart({ shareToken });
-  const cart = await getCart();
-  if (cart?.items.length === 0) return <EmptyCart />;
+async function GroceryCart({ cartWithRecipes }: GroceryCartProps) {
+  if (cartWithRecipes.items.length === 0) return <EmptyCart />;
 
   return (
-    <div className='flex flex-col'>
-      {cart?.items.map(cartItem => <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />)}
+    <div>
+      {cartWithRecipes.items.map(cartItem => (
+        <RecipeCard key={cartItem.recipe.id} cartId={cartWithRecipes.cart.id} cartItem={cartItem} />
+      ))}
 
-      <SharedIngredients sharedIngredients={cart?.shared ?? []} />
+      <SharedIngredients ingredients={cartWithRecipes.shared} cartId={cartWithRecipes.cart.id} />
     </div>
   );
 }

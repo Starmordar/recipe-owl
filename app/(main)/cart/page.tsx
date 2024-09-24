@@ -1,14 +1,13 @@
 import { redirect } from 'next/navigation';
-import { Suspense } from 'react';
 
 import { validateRequest } from '@/app/(auth)/actions';
 import GroceryCart from '@/components/grocery-cart';
-import GroceryCartSekeleton from '@/components/grocery-cart/skeleton';
 import { publicUrls } from '@/config/url';
-import useGroceryCart from '@/hooks/useGroceryCart';
+import { UserCartProvider } from '@/context/userCartProvider';
+import useGroceryCart from '@/hooks/cart/useGroceryCart';
 
 import PageHeader from './_components/page-header';
-import { connectUserWithCart, getAllAvailableCarts } from './actions';
+import { assignUserToSharedCart, getSharedCarts } from './actions';
 
 interface PageProps {
   searchParams: { shareToken?: string };
@@ -19,24 +18,29 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
   if (user === null) redirect(publicUrls.signIn);
 
   if (shareToken) {
-    await connectUserWithCart(user.id, shareToken);
+    const isExists = await assignUserToSharedCart(user.id, shareToken);
+    if (!isExists) redirect(publicUrls.cart);
   }
 
-  const { getCart } = useGroceryCart({ shareToken });
-  const cartDetails = await getCart();
+  const { getCartDetails } = useGroceryCart({ userId: user.id, shareToken });
+  const cartDetails = await getCartDetails();
+  if (cartDetails === null) redirect(publicUrls.cart);
 
-  const availableCarts = await getAllAvailableCarts(user.id);
+  const sharedCarts = await getSharedCarts(user.id);
 
   return (
-    <>
-      <PageHeader userId={user.id} cart={cartDetails?.cart} availableCarts={availableCarts} />
+    <UserCartProvider
+      userId={user.id}
+      cartId={cartDetails.cart.id}
+      isCartOwner={cartDetails.cart.userId === user.id}
+      sharedCarts={sharedCarts}
+    >
+      <PageHeader userId={user.id} cart={cartDetails.cart} />
 
       <main className='page-container mt-4'>
-        <Suspense fallback={<GroceryCartSekeleton />}>
-          <GroceryCart shareToken={shareToken} />
-        </Suspense>
+        <GroceryCart cartWithRecipes={cartDetails} />
       </main>
-    </>
+    </UserCartProvider>
   );
 }
 

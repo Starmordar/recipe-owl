@@ -7,11 +7,12 @@ import { Button } from '@/components/ui/button';
 import { useServerAction } from '@/hooks/useServerAction';
 
 interface RemoveIngredientProps {
+  cartId: number;
   recipeIds: Array<number>;
   ingredientIds: Array<number>;
 }
 
-function RemoveIngredient({ recipeIds, ingredientIds }: RemoveIngredientProps) {
+function RemoveIngredient({ cartId, recipeIds, ingredientIds }: RemoveIngredientProps) {
   const [removeIngredientAction, isPending] = useServerAction(removeIngredientFromCart);
 
   return (
@@ -19,7 +20,7 @@ function RemoveIngredient({ recipeIds, ingredientIds }: RemoveIngredientProps) {
       className='px-1'
       variant='ghost'
       size='icon-xs'
-      onClick={() => removeIngredientAction(recipeIds, ingredientIds)}
+      onClick={() => removeIngredientAction(cartId, recipeIds, ingredientIds)}
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'

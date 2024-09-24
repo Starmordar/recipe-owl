@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { updateServings } from '@/app/(main)/cart/actions';
 import { NumberInputSpinner } from '@/components/ui/number-input-spinner';
+import { useUserCart } from '@/context/userCartProvider';
 import { useServerAction } from '@/hooks/useServerAction';
 
 interface ServingInputProps {
@@ -13,12 +14,13 @@ interface ServingInputProps {
 }
 
 function ServingInput({ recipeId, quantity }: ServingInputProps) {
+  const { cartId } = useUserCart();
   const [updateServingsAction, isPending] = useServerAction(updateServings);
   const [value, setValue] = useState<number>(quantity);
 
   async function handleServingsUpdate(value: number) {
     setValue(value);
-    await updateServingsAction(recipeId, value);
+    await updateServingsAction(cartId, recipeId, value);
   }
 
   return (
