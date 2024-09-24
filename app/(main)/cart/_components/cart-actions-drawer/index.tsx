@@ -7,7 +7,9 @@ import { useState, type PropsWithChildren } from 'react';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { useUserCart } from '@/context/userCartProvider';
 import useLeaveSharedCart from '@/hooks/cart/useLeaveSharedCart';
+import { useServerAction } from '@/hooks/useServerAction';
 
+import { clearCart } from '../../actions';
 import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
 
 interface CartActionsDrawerProps extends PropsWithChildren {}
@@ -17,9 +19,15 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const { handleLeaveCart, isPending } = useLeaveSharedCart({ userId, cartId });
+  const [clearCartAction, isClearPending] = useServerAction(clearCart);
 
   async function onLeaveCart() {
     await handleLeaveCart();
+    setIsDrawerOpen(false);
+  }
+
+  async function onClearCart() {
+    await clearCartAction(cartId);
     setIsDrawerOpen(false);
   }
 
@@ -32,7 +40,11 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
 
         <ul className='my-4'>
           <li>
-            <DrawerActionButton>
+            <DrawerActionButton
+              onClick={onClearCart}
+              loading={isClearPending}
+              loadingClassName='h-5 w-5'
+            >
               <CircleX className='h-5 w-5 opacity-60' /> Remove All Items
             </DrawerActionButton>
           </li>

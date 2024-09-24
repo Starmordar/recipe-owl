@@ -127,3 +127,8 @@ export async function getSharedCarts(userId: string): Promise<Array<CartWithUser
 
   return sharedCarts.map(({ cart }) => cart);
 }
+
+export async function clearCart(cartId: number): Promise<void> {
+  await prisma.cartItem.deleteMany({ where: { cartId } });
+  revalidatePath(publicUrls.cart);
+}
