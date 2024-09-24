@@ -10,16 +10,14 @@ interface GroceryCartProps {
 
 async function GroceryCart({ shareToken }: GroceryCartProps) {
   const { getCart } = useGroceryCart({ shareToken });
-  const { items, shared } = await getCart();
-  if (items.length === 0) return <EmptyCart />;
+  const cart = await getCart();
+  if (cart?.items.length === 0) return <EmptyCart />;
 
   return (
     <div className='flex flex-col'>
-      {items.map(cartItem => (
-        <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />
-      ))}
+      {cart?.items.map(cartItem => <RecipeCard key={cartItem.recipe?.id} cartItem={cartItem} />)}
 
-      <SharedIngredients sharedIngredients={shared} />
+      <SharedIngredients sharedIngredients={cart?.shared ?? []} />
     </div>
   );
 }
