@@ -1,6 +1,7 @@
 'use client';
 
 import { DialogTitle } from '@radix-ui/react-dialog';
+import Cookies from 'js-cookie';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,6 +25,11 @@ interface SwitchGroceryCartsDrawerProps extends PropsWithChildren {
 function SwitchGroceryCartsDrawer({ onSelect, children }: SwitchGroceryCartsDrawerProps) {
   const { sharedCarts } = useUserCart();
 
+  function handleChangeCart(shareToken?: string | null) {
+    Cookies.set('shareToken', shareToken ?? '', { path: '/' });
+    onSelect();
+  }
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -34,7 +40,7 @@ function SwitchGroceryCartsDrawer({ onSelect, children }: SwitchGroceryCartsDraw
         <ul className='my-4'>
           <li>
             <DrawerClose asChild>
-              <Link href={publicUrls.cart} onClick={onSelect}>
+              <Link href={publicUrls.cart} onClick={() => handleChangeCart()}>
                 <DrawerActionButton>
                   <ShoppingCart className='w-7 h-7' />
                   My Grocery Cart
@@ -46,7 +52,10 @@ function SwitchGroceryCartsDrawer({ onSelect, children }: SwitchGroceryCartsDraw
           {sharedCarts.map(cart => (
             <li key={cart.id}>
               <DrawerClose asChild>
-                <Link href={publicUrls.cartWithToken(cart.shareToken)} onClick={onSelect}>
+                <Link
+                  href={publicUrls.cartWithToken(cart.shareToken)}
+                  onClick={() => handleChangeCart(cart.shareToken)}
+                >
                   <DrawerActionButton>
                     <UserAvatar src={cart.user.picture} />
                     <p>{cart.user.fullName}</p>

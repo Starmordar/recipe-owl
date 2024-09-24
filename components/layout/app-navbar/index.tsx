@@ -25,23 +25,26 @@ function AppNavbar() {
 
   return (
     <nav className='sticky bottom-0 w-full flex bg-background border-t'>
-      {navbarItems.map(({ href, title, match, render }) => (
-        <Link
-          key={href}
-          href={href}
-          className={cn('flex-1 flex justify-center items-center py-1 text-primary')}
-        >
-          <div className='flex flex-col justify-center items-center'>
-            {render(user, isActiveLink(href, match) ? 'opacity-100' : 'opacity-60')}
+      {navbarItems.map(({ href, title, match, render }) => {
+        const link = typeof href === 'string' ? href : href();
+        return (
+          <Link
+            key={link}
+            href={link}
+            className={cn('flex-1 flex justify-center items-center py-1 text-primary')}
+          >
+            <div className='flex flex-col justify-center items-center'>
+              {render(user, isActiveLink(link, match) ? 'opacity-100' : 'opacity-60')}
 
-            <span
-              className={cn('text-xs', isActiveLink(href, match) ? 'opacity-100' : 'opacity-60')}
-            >
-              {title}
-            </span>
-          </div>
-        </Link>
-      ))}
+              <span
+                className={cn('text-xs', isActiveLink(link, match) ? 'opacity-100' : 'opacity-60')}
+              >
+                {title}
+              </span>
+            </div>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

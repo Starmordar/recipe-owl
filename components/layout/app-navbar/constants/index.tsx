@@ -1,4 +1,6 @@
-import { User as SessionUser } from 'lucia';
+'use client';
+
+import Cookies from 'js-cookie';
 import { ShoppingCart, User, Search, CirclePlus, House } from 'lucide-react';
 import Image from 'next/image';
 
@@ -30,7 +32,10 @@ const navbarItems: Array<NavbarItem> = [
   },
   {
     title: 'My Cart',
-    href: '/cart',
+    href: () => {
+      const shareToken = Cookies.get('shareToken');
+      return publicUrls.cartWithToken(shareToken);
+    },
     render: (_, className) => <ShoppingCart size={20} className={className} />,
   },
   {

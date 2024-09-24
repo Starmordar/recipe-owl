@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 
 import { addIngredientsToCart } from '@/app/(main)/cart/actions';
@@ -23,7 +24,9 @@ function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
   });
 
   async function onSubmit(values: FormValues, quantity: number) {
-    await addRecipeAction(recipe.id, values.ingredients, quantity)
+    const shareToken = Cookies.get('shareToken');
+
+    await addRecipeAction(recipe.id, values.ingredients, quantity, shareToken)
       .then(() => toast({ title: 'Recipe successfully added to your cart!' }))
       .catch(() =>
         toast({ title: 'This recipe is already in your cart.', variant: 'destructive' }),

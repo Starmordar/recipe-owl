@@ -3,7 +3,7 @@ const publicUrls = {
   profile: '/profile',
 
   cart: '/cart',
-  cartWithToken: (token: string | null) => (!token ? '/cart' : `/cart?shareToken=${token}`),
+  cartWithToken: (token?: string | null) => (!token ? '/cart' : `/cart?shareToken=${token}`),
 
   recipes: '/recipes',
   recipe: (recipeId: number | string) => `/recipes/${recipeId}`,
