@@ -143,3 +143,10 @@ export async function clearCart(cartId: number): Promise<void> {
   await prisma.cartItem.deleteMany({ where: { cartId } });
   revalidatePath(publicUrls.cart);
 }
+
+export async function disableCartSharing(cartId: number): Promise<void> {
+  await prisma.cart.update({ where: { id: cartId }, data: { shareToken: undefined } });
+  await prisma.sharedCart.deleteMany({ where: { cartId } });
+
+  revalidatePath(publicUrls.cart);
+}

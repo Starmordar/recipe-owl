@@ -1,7 +1,7 @@
 'use client';
 
 import { DialogTitle } from '@radix-ui/react-dialog';
-import { AlignJustify, Trash2, CircleX } from 'lucide-react';
+import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
 import { useState, type PropsWithChildren } from 'react';
 
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
@@ -9,7 +9,7 @@ import { useUserCart } from '@/context/userCartProvider';
 import useLeaveSharedCart from '@/hooks/cart/useLeaveSharedCart';
 import { useServerAction } from '@/hooks/useServerAction';
 
-import { clearCart } from '../../actions';
+import { clearCart, disableCartSharing } from '../../actions';
 import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
 
 interface CartActionsDrawerProps extends PropsWithChildren {}
@@ -20,6 +20,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
 
   const { handleLeaveCart, isPending } = useLeaveSharedCart({ userId, cartId });
   const [clearCartAction, isClearPending] = useServerAction(clearCart);
+  const [disableSharingAction, isDisablePending] = useServerAction(disableCartSharing);
 
   async function onLeaveCart() {
     await handleLeaveCart();
@@ -28,6 +29,11 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
 
   async function onClearCart() {
     await clearCartAction(cartId);
+    setIsDrawerOpen(false);
+  }
+
+  async function onDisableSharing() {
+    await disableSharingAction(cartId);
     setIsDrawerOpen(false);
   }
 
@@ -48,6 +54,17 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
               <CircleX className='h-5 w-5 opacity-60' /> Remove All Items
             </DrawerActionButton>
           </li>
+          {isCartOwner && (
+            <li>
+              <DrawerActionButton
+                onClick={onDisableSharing}
+                loading={isDisablePending}
+                loadingClassName='h-5 w-5'
+              >
+                <Lock className='h-5 w-5 opacity-60' /> Disable Sharing
+              </DrawerActionButton>
+            </li>
+          )}
           {!isCartOwner && (
             <li>
               <DrawerActionButton
