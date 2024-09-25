@@ -7,13 +7,12 @@ import ServingInput from './servings-input';
 
 import type { CartRecipe } from '@/lib/data/cart';
 
-interface RecipeCardHeaderProps {
+interface SectionHeaderProps {
   recipe: NonNullable<CartRecipe['recipe']>;
   quantity: number;
-  cartId: number | undefined;
 }
 
-function RecipeCardHeader({ recipe, quantity }: RecipeCardHeaderProps) {
+function SectionHeader({ recipe, quantity }: SectionHeaderProps) {
   return (
     <>
       <div className='relative min-w-[20vw] w-[20vw] h-[20vw]'>
@@ -39,4 +38,4 @@ function RecipeCardHeader({ recipe, quantity }: RecipeCardHeaderProps) {
   );
 }
 
-export default RecipeCardHeader;
+export default SectionHeader;

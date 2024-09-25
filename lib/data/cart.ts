@@ -8,19 +8,22 @@ import type { Prisma, Ingredient } from '@prisma/client';
 
 export interface CartWithRecipes {
   cart: CartDetails;
-  items: Array<CartRecipe>;
+  checked: CartDetails['items'];
   shared: Array<SharedIngredient>;
+
+  items: Array<CartRecipe>;
 }
 
 export interface CartRecipe {
   recipe: Prisma.RecipeGetPayload<{ select: { id: true; title: true; imageUrl: true } }>;
-  ingredients: Array<Ingredient>;
+  ingredients: Array<Ingredient & { itemId: number }>;
   quantity: number;
 }
 
 export interface SharedIngredient {
   name: string;
   ingredients: Array<{
+    itemId: number;
     id: number;
     recipeId: number;
     recipe: CartRecipe['recipe'];
@@ -58,11 +61,15 @@ export async function getCartDetails(where: Prisma.CartWhereInput): Promise<Cart
   return prisma.cart.findFirst({ where, include: cartDetailsInclude });
 }
 
-export async function getCartWithItems(cart: CartDetails) {
-  const shared = getSharedIngredients(cart);
-  const items = getCartIngredients(cart, shared);
+export function getCartWithItems(cart: CartDetails): CartWithRecipes {
+  const checked = getCheckedIngredients(cart);
+  const checkedIds = new Set(checked.map(item => item.id));
 
-  return { cart, shared, items };
+  const uncheckedItems = cart.items.filter(item => !checkedIds.has(item.id));
+  const shared = getSharedIngredients(uncheckedItems);
+  const items = getCartIngredients(uncheckedItems, shared);
+
+  return { cart, shared, checked, items };
 }
 
 export async function ingredientsInCart(): Promise<number> {
@@ -76,36 +83,46 @@ export async function ingredientsInCart(): Promise<number> {
   return itemsCount;
 }
 
-function getCartIngredients(cart: CartDetails, shared: Array<SharedIngredient>) {
+function getCheckedIngredients(cart: CartDetails) {
+  const checked = cart.items.filter(item => item.isChecked);
+  return checked;
+}
+
+function getCartIngredients(items: CartDetails['items'], shared: Array<SharedIngredient>) {
   const sharedNames = new Set(shared.map(s => s.name));
-  const groupedItems = groupBy(cart.items, ({ recipe }) => recipe.id);
+  const groupedItems = groupBy(items, ({ recipe }) => recipe.id);
 
   return Object.entries(groupedItems).flatMap(([recipeId, data]) => {
     if (!data) return [];
 
     return {
       recipe: data[0].recipe,
-      ingredients: data.map(i => i.ingredient).filter(({ name }) => !sharedNames.has(name)),
+      ingredients: data
+        .map(i => ({ ...i.ingredient, itemId: i.id }))
+        .filter(({ name }) => !sharedNames.has(name)),
       quantity: data[0].quantity,
     };
   });
 }
 
-function getSharedIngredients(cart: CartDetails): Array<SharedIngredient> {
-  const groupedByName = groupBy(cart.items, ({ ingredient }) => ingredient.name);
+function getSharedIngredients(items: CartDetails['items']): Array<SharedIngredient> {
+  const groupedByName = groupBy(items, ({ ingredient }) => ingredient.name);
 
   return Object.entries(groupedByName).flatMap(([name, data]) => {
     if (!data || data?.length === 1) return [];
 
     return {
       name,
-      ingredients: data.map(({ recipeId, ingredient: { id, unit }, quantity, recipe }) => ({
-        id,
-        recipeId,
-        recipe,
-        unit,
-        quantity,
-      })),
+      ingredients: data.map(
+        ({ id, recipeId, ingredient: { id: ingredientId, unit }, quantity, recipe }) => ({
+          itemId: id,
+          id: ingredientId,
+          recipeId,
+          recipe,
+          unit,
+          quantity,
+        }),
+      ),
     };
   });
 }

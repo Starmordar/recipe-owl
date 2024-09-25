@@ -7,7 +7,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { useUserCart } from '@/context/userCartProvider';
 import { SharedIngredient } from '@/lib/data/cart';
 
-import RemoveIngredient from '../grocery-cart/components/remove-ingredient';
+import RemoveIngredient from '../grocery-cart/components/ingredients-section/components/remove-ingredient';
 import { applyQuantityToUnit } from '../grocery-cart/utils/applyQuantityToUnit';
 
 import type { PropsWithChildren } from 'react';
@@ -17,8 +17,6 @@ interface RecipeActionsDrawerProps extends PropsWithChildren {
 }
 
 function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps) {
-  const { cartId } = useUserCart();
-
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -27,6 +25,8 @@ function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps)
         <DialogTitle className='sr-only'>Action Buttons</DialogTitle>
 
         <ul className='my-4 space-y-4'>
+          {item.ingredients.length === 0 && 'No Ingredients'}
+
           {item.ingredients.map(ingredient => (
             <li key={ingredient.id} className='flex gap-4 px-4'>
               <div className='relative min-w-[15vw] w-[15vw] h-[15vw]'>
@@ -49,9 +49,9 @@ function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps)
               </div>
 
               <RemoveIngredient
-                cartId={cartId}
-                recipeIds={[ingredient.recipeId]}
+                cartItemIds={[ingredient.itemId]}
                 ingredientIds={[ingredient.id]}
+                defaultChecked={false}
               />
             </li>
           ))}

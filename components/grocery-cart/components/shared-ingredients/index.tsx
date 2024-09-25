@@ -1,31 +1,35 @@
 'use client';
 
+import { Cookie } from 'lucide-react';
+
 import EditSharedIngredietDrawer from '@/components/edit-shared-ingredient-drawer';
+import { useUserCart } from '@/context/userCartProvider';
 
-import mergeIngredients from '../utils/mergeIngredients';
-
-import RecipeCardIngredients from './recipe-card-ingrediets';
-import RemoveIngredient from './remove-ingredient';
-import SharedIngredientsHeader from './shared-ingredients-header';
+import mergeIngredients from '../../utils/mergeIngredients';
+import IngredientsSection from '../ingredients-section';
+import RemoveIngredient from '../ingredients-section/components/remove-ingredient';
+import SectionHeader from '../section-header';
 
 import type { SharedIngredient } from '@/lib/data/cart';
 
-interface SharedIngredientsProps {
-  ingredients: Array<SharedIngredient>;
-  cartId: number;
-}
+function SharedIngredientsSection() {
+  const { cartDetails } = useUserCart();
+  const { shared: ingredients } = cartDetails;
 
-function SharedIngredients({ cartId, ingredients }: SharedIngredientsProps) {
   if (ingredients.length === 0) return null;
 
   return (
     <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
       <div className='flex gap-4'>
-        <SharedIngredientsHeader />
+        <SectionHeader
+          title='Shared Ingredients'
+          subtitle='Ingredients shared between multiple recipes'
+          Icon={<Cookie />}
+        />
       </div>
 
       <div className='grid gap-2'>
-        <RecipeCardIngredients<SharedIngredient>
+        <IngredientsSection<SharedIngredient>
           ingredients={ingredients}
           renderContent={(item: SharedIngredient) => (
             <>
@@ -41,16 +45,17 @@ function SharedIngredients({ cartId, ingredients }: SharedIngredientsProps) {
               </EditSharedIngredietDrawer>
 
               <RemoveIngredient
-                cartId={cartId}
-                recipeIds={item.ingredients.map(i => i.recipeId)}
+                cartItemIds={item.ingredients.map(i => i.itemId)}
                 ingredientIds={item.ingredients.map(i => i.id)}
+                defaultChecked={false}
               />
             </>
           )}
+          checked={false}
         />
       </div>
     </div>
   );
 }
 
-export default SharedIngredients;
+export default SharedIngredientsSection;

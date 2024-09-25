@@ -2,7 +2,6 @@
 
 import { Ingredient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
 
 import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
@@ -148,5 +147,18 @@ export async function disableCartSharing(cartId: number): Promise<void> {
   await prisma.cart.update({ where: { id: cartId }, data: { shareToken: undefined } });
   await prisma.sharedCart.deleteMany({ where: { cartId } });
 
+  revalidatePath(publicUrls.cart);
+}
+
+export async function clearCheckedItems(cartId: number): Promise<void> {
+  await prisma.cartItem.deleteMany({ where: { cartId: cartId, isChecked: true } });
+  revalidatePath(publicUrls.cart);
+}
+
+export async function updateCartItemCheckStatus(
+  cartItemIds: Array<number>,
+  isChecked: boolean,
+): Promise<void> {
+  await prisma.cartItem.updateMany({ where: { id: { in: cartItemIds } }, data: { isChecked } });
   revalidatePath(publicUrls.cart);
 }

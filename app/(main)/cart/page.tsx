@@ -34,6 +34,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
       cartId={cartDetails.cart.id}
       isCartOwner={cartDetails.cart.userId === user.id}
       sharedCarts={sharedCarts}
+      cartDetails={cartDetails}
     >
       <PageHeader userId={user.id} cart={cartDetails.cart} />
 
