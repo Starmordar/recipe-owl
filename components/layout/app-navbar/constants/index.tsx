@@ -36,6 +36,9 @@ const navbarItems: Array<NavbarItem> = [
       const shareToken = Cookies.get('shareToken');
       return publicUrls.cartWithToken(shareToken);
     },
+    match: (pathname: string) => {
+      return pathname.startsWith(publicUrls.cart);
+    },
     render: (_, className) => <ShoppingCart size={20} className={className} />,
   },
   {
