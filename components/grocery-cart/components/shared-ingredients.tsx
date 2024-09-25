@@ -31,7 +31,7 @@ function SharedIngredients({ cartId, ingredients }: SharedIngredientsProps) {
             <>
               <EditSharedIngredietDrawer item={item}>
                 <div className='flex flex-col grow'>
-                  <p className='text-sm font-medium leading-none'>{item.name}</p>
+                  <p className='font-medium leading-none'>{item.name}</p>
                   {mergeIngredients(item).map((unit, i) => (
                     <p key={i} className='text-sm text-muted-foreground'>
                       {unit}

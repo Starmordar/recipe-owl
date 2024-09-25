@@ -29,7 +29,7 @@ function RecipeCardIngredients<Ingredient extends { name: string }>({
           return (
             <motion.div
               key={ingredient.name}
-              className='flex w-full justify-between py-2 border-b'
+              className='flex w-full justify-between py-2 border-b text-base'
               initial={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}

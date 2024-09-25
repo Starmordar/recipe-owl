@@ -27,7 +27,7 @@ function RecipeCard({ cartId, cartItem }: RecipeCardProps) {
         renderContent={ingredient => (
           <>
             <div>
-              <p className='text-sm font-medium leading-none'>{ingredient.name}</p>
+              <p className='font-medium leading-none'>{ingredient.name}</p>
               <p className='text-sm text-muted-foreground'>
                 {applyQuantityToUnit(ingredient.unit, cartItem.quantity)}
               </p>
