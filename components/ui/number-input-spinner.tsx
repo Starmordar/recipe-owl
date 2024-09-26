@@ -17,24 +17,24 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
       <Button
         variant='ghost'
         size='xs'
-        className='w-8 h-7 p-0 rounded-r-none rounded-l-lg'
+        className='w-8 h-6 p-0 rounded-r-none rounded-l-lg'
         onClick={() => onValueChange(value - 1)}
         disabled={value === 1}
       >
-        <Minus className='w-4 h-4' />
+        <Minus className='w-[18px] h-[18px]' />
       </Button>
 
-      <div className='flex justify-center items-center h-7 w-8'>
+      <div className='flex justify-center items-center h-6 w-7'>
         <span className='text-sm'>{value}</span>
       </div>
 
       <Button
         variant='ghost'
         size='xs'
-        className='w-8 h-7 p-0 rounded-l-none rounded-r-lg'
+        className='w-8 h-6 p-0 rounded-l-none rounded-r-lg'
         onClick={() => onValueChange(value + 1)}
       >
-        <Plus className='w-4 h-4' />
+        <Plus className='w-[18px] h-[18px]' />
       </Button>
     </div>
   ),

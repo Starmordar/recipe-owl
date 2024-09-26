@@ -4,25 +4,23 @@ import { CardTitle } from '@/components/ui/card';
 
 interface SectionHeaderProps extends PropsWithChildren {
   title: string;
-  subtitle: string;
   Icon: JSX.Element;
 }
 
-function SectionHeader({ title, subtitle, Icon, children }: SectionHeaderProps) {
+function SectionHeader({ title, Icon, children }: SectionHeaderProps) {
   return (
-    <>
-      <div className='flex items-center justify-center rounded-lg min-w-[15vw] w-[15vw] h-[15vw] bg-muted'>
-        {cloneElement(Icon, { className: 'h-10 w-10 opacity-75', strokeWidth: 1 })}
+    <div className='flex items-center w-full gap-x-4'>
+      <div className='flex items-center justify-center rounded-lg min-w-10 w-10 h-10 bg-muted'>
+        {cloneElement(Icon, { className: 'h-6 w-6 opacity-75', strokeWidth: 1 })}
       </div>
 
       <div className='flex w-full'>
         <div className='flex flex-col w-full'>
-          <CardTitle className='text-lg'>{title}</CardTitle>
-          <p className='text-sm text-muted-foreground'>{subtitle}</p>
+          <CardTitle className='text-base'>{title}</CardTitle>
         </div>
         {children}
       </div>
-    </>
+    </div>
   );
 }
 

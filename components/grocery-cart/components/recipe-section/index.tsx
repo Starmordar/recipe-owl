@@ -1,5 +1,6 @@
 'use client';
 
+import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
 import { CartRecipe } from '@/lib/data/cart';
 
@@ -23,7 +24,7 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
   if (!cartItem) return null;
 
   return (
-    <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
+    <Card className='flex flex-col p-4'>
       <div className='flex flex-row space-y-0 gap-4'>
         <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </div>
@@ -32,9 +33,9 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
         ingredients={cartItem.ingredients}
         renderContent={ingredient => (
           <>
-            <div>
-              <p className='font-medium leading-none'>{ingredient.name}</p>
-              <p className='text-sm text-muted-foreground'>
+            <div className='flex gap-x-2 text-base'>
+              <p className='font-medium'>{ingredient.name}</p>
+              <p className='text-muted-foreground'>
                 {applyQuantityToUnit(ingredient.unit, cartItem.quantity)}
               </p>
             </div>
@@ -47,7 +48,7 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
         )}
         checked={false}
       />
-    </div>
+    </Card>
   );
 }
 

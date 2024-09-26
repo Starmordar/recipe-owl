@@ -27,7 +27,6 @@ function ServingInput({ recipeId, quantity }: ServingInputProps) {
     <div className='flex justify-between items-center gap-4 mr-1'>
       <div className='flex items-center gap-2'>
         <NumberInputSpinner value={value} onValueChange={handleServingsUpdate} />
-        <span className='text-sm'>Servings</span>
       </div>
 
       {isPending && <LoaderCircle className='h-6 w-6 animate-spin' />}

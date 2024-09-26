@@ -10,10 +10,11 @@ interface GroceryCartProps {
 }
 
 function GroceryCart({ cartWithRecipes }: GroceryCartProps) {
-  if (cartWithRecipes.items.length === 0) return <EmptyCart />;
+  const { shared, checked, items } = cartWithRecipes;
+  if (items.length === 0 && checked.length === 0 && shared.length === 0) return <EmptyCart />;
 
   return (
-    <div>
+    <div className='space-y-4'>
       {cartWithRecipes.items.map(cartItem => (
         <RecipeSection key={cartItem.recipe.id} recipeId={cartItem.recipe.id} />
       ))}

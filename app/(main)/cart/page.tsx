@@ -38,7 +38,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
     >
       <PageHeader userId={user.id} cart={cartDetails.cart} />
 
-      <main className='page-container mt-4'>
+      <main className='page-container pt-2'>
         <GroceryCart cartWithRecipes={cartDetails} />
       </main>
     </UserCartProvider>

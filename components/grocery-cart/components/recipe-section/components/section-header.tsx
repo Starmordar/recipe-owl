@@ -15,20 +15,20 @@ interface SectionHeaderProps {
 function SectionHeader({ recipe, quantity }: SectionHeaderProps) {
   return (
     <>
-      <div className='relative min-w-[20vw] w-[20vw] h-[20vw]'>
+      <div className='relative min-w-15 w-15 h-15'>
         <Image
           className='rounded-lg'
           src={recipe.imageUrl}
           alt={`${recipe.title} recipe image`}
           fill
-          sizes='20vw'
+          sizes='10vw'
           style={{ objectFit: 'cover' }}
         />
       </div>
 
-      <div className='flex flex-col justify-between w-full min-w-0'>
-        <div className='flex justify-between w-full min-w-0'>
-          <CardTitle className='line-clamp-2 text-lg'>{recipe.title}</CardTitle>
+      <div className='flex flex-col justify-between w-full min-w-0 gap-y-0'>
+        <div className='flex justify-between items-center w-full min-w-0'>
+          <CardTitle className='line-clamp-1 text-base mr-2'>{recipe.title}</CardTitle>
           <RemoveRecipe recipeId={recipe.id} />
         </div>
 

@@ -1,8 +1,9 @@
 'use client';
 
-import { Cookie } from 'lucide-react';
+import { ClipboardList } from 'lucide-react';
 
 import EditSharedIngredietDrawer from '@/components/edit-shared-ingredient-drawer';
+import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
 
 import mergeIngredients from '../../utils/mergeIngredients';
@@ -19,13 +20,9 @@ function SharedIngredientsSection() {
   if (ingredients.length === 0) return null;
 
   return (
-    <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
+    <Card className='flex flex-col gap-y-2 p-4'>
       <div className='flex gap-4'>
-        <SectionHeader
-          title='Shared Ingredients'
-          subtitle='Ingredients shared between multiple recipes'
-          Icon={<Cookie />}
-        />
+        <SectionHeader title='Shared Ingredients' Icon={<ClipboardList />} />
       </div>
 
       <div className='grid gap-2'>
@@ -35,9 +32,9 @@ function SharedIngredientsSection() {
             <>
               <EditSharedIngredietDrawer item={item}>
                 <div className='flex flex-col grow'>
-                  <p className='font-medium leading-none'>{item.name}</p>
+                  <p className='font-medium'>{item.name}</p>
                   {mergeIngredients(item).map((unit, i) => (
-                    <p key={i} className='text-sm text-muted-foreground'>
+                    <p key={i} className='text-muted-foreground leading-tight'>
                       {unit}
                     </p>
                   ))}
@@ -54,7 +51,7 @@ function SharedIngredientsSection() {
           checked={false}
         />
       </div>
-    </div>
+    </Card>
   );
 }
 

@@ -32,7 +32,7 @@ function IngredientsSection<I extends Ingredient>({
         return (
           <div
             key={ingredient.id ?? ingredient.name}
-            className='flex w-full justify-between py-2 border-b text-base'
+            className='flex w-full justify-between py-2.5 border-b text-base'
           >
             {renderContent(ingredient)}
           </div>

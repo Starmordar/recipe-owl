@@ -2,6 +2,7 @@
 
 import { ClipboardCheck } from 'lucide-react';
 
+import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
 
 import { applyQuantityToUnit } from '../../utils/applyQuantityToUnit';
@@ -22,13 +23,9 @@ function CheckedIngredientsSection() {
   if (ingredients.length === 0) return null;
 
   return (
-    <div className='flex flex-col gap-y-2 pb-4 pt-4 first:pt-0 last:pb-0'>
+    <Card className='flex flex-col gap-y-2 p-4'>
       <div className='flex gap-4'>
-        <SectionHeader
-          title='Checked Ingredients'
-          subtitle='Ingredients you’ve already selected'
-          Icon={<ClipboardCheck />}
-        >
+        <SectionHeader title='Checked Ingredients' Icon={<ClipboardCheck />}>
           <ClearChecked />
         </SectionHeader>
       </div>
@@ -38,9 +35,9 @@ function CheckedIngredientsSection() {
           ingredients={ingredients.map(i => ({ ...i, name: i.ingredient.name }))}
           renderContent={item => (
             <>
-              <div>
-                <p className='font-medium leading-none'>{item.name}</p>
-                <p className='text-sm text-muted-foreground'>
+              <div className='flex gap-x-2 text-base'>
+                <p className='font-medium'>{item.name}</p>
+                <p className='text-muted-foreground'>
                   {applyQuantityToUnit(item.ingredient.unit, item.quantity)}
                 </p>
               </div>
@@ -54,7 +51,7 @@ function CheckedIngredientsSection() {
           checked
         />
       </div>
-    </div>
+    </Card>
   );
 }
 
