@@ -5,12 +5,10 @@ import { ClipboardCheck } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
 
-import { applyQuantityToUnit } from '../../utils/applyQuantityToUnit';
-import IngredientsSection from '../ingredients-section';
-import RemoveIngredient from '../ingredients-section/components/remove-ingredient';
 import SectionHeader from '../section-header';
 
 import ClearChecked from './components/clear-checked';
+import IngredientsList from './components/ingredients-list';
 
 import type { CartWithRecipes } from '@/lib/data/cart';
 
@@ -31,25 +29,7 @@ function CheckedIngredientsSection() {
       </div>
 
       <div className='grid gap-2'>
-        <IngredientsSection<Ingredient>
-          ingredients={ingredients.map(i => ({ ...i, name: i.ingredient.name }))}
-          renderContent={item => (
-            <>
-              <div className='flex gap-x-2 text-base'>
-                <p className='font-medium'>{item.name}</p>
-                <p className='text-muted-foreground'>
-                  {applyQuantityToUnit(item.ingredient.unit, item.quantity)}
-                </p>
-              </div>
-              <RemoveIngredient
-                cartItemIds={[item.id]}
-                ingredientIds={[item.ingredientId]}
-                defaultChecked={true}
-              />
-            </>
-          )}
-          checked
-        />
+        <IngredientsList />
       </div>
     </Card>
   );

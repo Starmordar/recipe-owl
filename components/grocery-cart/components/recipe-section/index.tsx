@@ -2,15 +2,9 @@
 
 import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
-import { CartRecipe } from '@/lib/data/cart';
 
-import { applyQuantityToUnit } from '../../utils/applyQuantityToUnit';
-import IngredientsSection from '../ingredients-section';
-import RemoveIngredient from '../ingredients-section/components/remove-ingredient';
-
+import IngredientsList from './components/ingredients-list';
 import RecipeCardHeader from './components/section-header';
-
-type Ingredient = CartRecipe['ingredients'][number];
 
 interface RecipeSectionProps {
   recipeId: number;
@@ -29,25 +23,7 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
         <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </div>
 
-      <IngredientsSection<Ingredient>
-        ingredients={cartItem.ingredients}
-        renderContent={ingredient => (
-          <>
-            <div className='flex gap-x-2 text-base'>
-              <p className='font-medium'>{ingredient.name}</p>
-              <p className='text-muted-foreground'>
-                {applyQuantityToUnit(ingredient.unit, cartItem.quantity)}
-              </p>
-            </div>
-            <RemoveIngredient
-              cartItemIds={[ingredient.itemId]}
-              ingredientIds={[ingredient.id]}
-              defaultChecked={false}
-            />
-          </>
-        )}
-        checked={false}
-      />
+      <IngredientsList recipeId={recipeId} />
     </Card>
   );
 }

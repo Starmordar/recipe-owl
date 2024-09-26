@@ -7,6 +7,7 @@ import { UserCartProvider } from '@/context/userCartProvider';
 import useGroceryCart from '@/hooks/cart/useGroceryCart';
 
 import PageHeader from './_components/page-header';
+import CartTabs from './_components/tabs';
 import { assignUserToSharedCart, getSharedCarts } from './actions';
 
 interface PageProps {
@@ -38,8 +39,9 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
     >
       <PageHeader userId={user.id} cart={cartDetails.cart} />
 
-      <main className='page-container pt-2'>
-        <GroceryCart cartWithRecipes={cartDetails} />
+      <main className='page-container px-0'>
+        <CartTabs cartWithRecipes={cartDetails} />
+        {/* <GroceryCart cartWithRecipes={cartDetails} /> */}
       </main>
     </UserCartProvider>
   );

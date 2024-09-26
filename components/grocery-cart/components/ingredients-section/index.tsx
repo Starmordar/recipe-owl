@@ -17,13 +17,6 @@ function IngredientsSection<I extends Ingredient>({
   ingredients,
   checked,
 }: IngredientsSectionProps<I>) {
-  if (ingredients.length === 0)
-    return (
-      <div className='text-center mt-4'>
-        <p>Ingredients Included in Shared Section</p>
-      </div>
-    );
-
   return (
     <div className={checked ? 'opacity-40' : 'opacity-100'}>
       {ingredients.map(ingredient => {
