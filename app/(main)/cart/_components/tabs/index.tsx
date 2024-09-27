@@ -10,7 +10,7 @@ interface ProfileTabsProps {
 function CartTabs({ cartWithRecipes }: ProfileTabsProps) {
   return (
     <Tabs defaultValue='saved' className='relative mr-auto w-full'>
-      <TabsList className='inline-flex h-9 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
+      <TabsList className='inline-flex h-10 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
         <TabsTrigger className='flex-1' value='saved'>
           Recipes
         </TabsTrigger>
@@ -22,7 +22,7 @@ function CartTabs({ cartWithRecipes }: ProfileTabsProps) {
       <TabsContent value='saved' className='px-4 pt-2'>
         <GroceryCart cartWithRecipes={cartWithRecipes} />
       </TabsContent>
-      <TabsContent value='yourRecipes' className='px-4 pt-2'>
+      <TabsContent value='yourRecipes' className='px-4'>
         <IngredientsList cartWithRecipes={cartWithRecipes} />
       </TabsContent>
     </Tabs>

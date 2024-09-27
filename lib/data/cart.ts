@@ -32,9 +32,10 @@ export interface SharedIngredient {
   }>;
 }
 
-const cartDetailsInclude = {
+const cartDetailsInclude: Prisma.CartInclude = {
   items: {
     include: { recipe: { select: { id: true, title: true, imageUrl: true } }, ingredient: true },
+    orderBy: { id: 'asc' },
   },
   user: true,
 };
@@ -51,14 +52,17 @@ export async function getOrCreateCartByUser(userId: string): Promise<CartWithRec
 
   if (cartDetails === null) {
     const createdCart = await prisma.cart.create({ data: { userId }, include: cartDetailsInclude });
-    return getCartWithItems(createdCart);
+    return getCartWithItems(createdCart as unknown as CartDetails);
   }
 
   return getCartWithItems(cartDetails);
 }
 
 export async function getCartDetails(where: Prisma.CartWhereInput): Promise<CartDetails | null> {
-  return prisma.cart.findFirst({ where, include: cartDetailsInclude });
+  return prisma.cart.findFirst({
+    where,
+    include: cartDetailsInclude,
+  }) as Promise<CartDetails | null>;
 }
 
 export function getCartWithItems(cart: CartDetails): CartWithRecipes {
