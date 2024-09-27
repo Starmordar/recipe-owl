@@ -1,5 +1,7 @@
 'use client';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 import type { ReactNode } from 'react';
 
 interface Ingredient {
@@ -25,13 +27,17 @@ function IngredientsSection<I extends Ingredient>({
         if (ingredient === null) return null;
 
         return (
-          <div
+          <motion.div
             key={ingredient.id ?? ingredient.name}
             className='flex w-full justify-between py-2.5 border-b text-base'
             onClick={() => onClick(ingredient)}
+            layout
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             {renderContent(ingredient)}
-          </div>
+          </motion.div>
         );
       })}
     </div>
