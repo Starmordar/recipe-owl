@@ -1,6 +1,6 @@
 'use client';
 
-import EditSharedIngredietDrawer from '@/components/edit-shared-ingredient-drawer';
+import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import mergeIngredients from '@/components/grocery-cart/utils/mergeIngredients';
 import { useUserCart } from '@/context/userCartProvider';
 
@@ -10,8 +10,22 @@ import RemoveIngredient from '../../ingredients-section/components/remove-ingred
 import type { SharedIngredient } from '@/lib/data/cart';
 
 function IngredientsList() {
-  const { cartDetails } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useUserCart();
   const { shared: ingredients } = cartDetails;
+
+  function getCartItemIds(item: SharedIngredient) {
+    const cartItemIds = item.ingredients.map(i => i.itemId);
+    const ingredientIds = item.ingredients.map(i => i.id);
+
+    return { cartItemIds, ingredientIds };
+  }
+
+  async function onCheckedChange(item: SharedIngredient, nextChecked = true) {
+    const { cartItemIds, ingredientIds } = getCartItemIds(item);
+
+    handleItemsUpdate(ingredientIds, nextChecked);
+    await updateCartItemCheckStatus(cartItemIds, nextChecked);
+  }
 
   if (ingredients.length === 0) return null;
 
@@ -20,16 +34,18 @@ function IngredientsList() {
       ingredients={ingredients}
       renderContent={(item: SharedIngredient) => (
         <>
-          <EditSharedIngredietDrawer item={item}>
-            <div className='flex flex-col grow'>
-              <p className='font-medium'>{item.name}</p>
-              {mergeIngredients(item).map((unit, i) => (
-                <p key={i} className='text-muted-foreground leading-tight'>
-                  {unit}
-                </p>
-              ))}
-            </div>
-          </EditSharedIngredietDrawer>
+          <div className='flex w-full gap-x-2 text-base whitespace-nowrap flex-grow flex-wrap mr-2'>
+            <span className='font-medium'>{item.name}</span>
+
+            {mergeIngredients(item).map((unit, i) => (
+              <span
+                key={i}
+                className="text-muted-foreground after:content-[','] last:after:content-['']"
+              >
+                {unit}
+              </span>
+            ))}
+          </div>
 
           <RemoveIngredient
             cartItemIds={item.ingredients.map(i => i.itemId)}
@@ -38,6 +54,7 @@ function IngredientsList() {
           />
         </>
       )}
+      onClick={onCheckedChange}
       checked={false}
     />
   );

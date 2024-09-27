@@ -1,5 +1,6 @@
 'use client';
 
+import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { useUserCart } from '@/context/userCartProvider';
 import { CartRecipe } from '@/lib/data/cart';
@@ -14,8 +15,13 @@ interface IngredientsListProps {
 }
 
 function IngredientsList({ recipeId }: IngredientsListProps) {
-  const { cartDetails } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useUserCart();
   const { items } = cartDetails;
+
+  async function onCheckedChange(item: Ingredient, nextChecked = true) {
+    handleItemsUpdate([item.id], nextChecked);
+    await updateCartItemCheckStatus([item.itemId], nextChecked);
+  }
 
   const cartItem = items.find(item => item.recipe.id === recipeId);
   if (!cartItem) return null;
@@ -39,6 +45,7 @@ function IngredientsList({ recipeId }: IngredientsListProps) {
         </>
       )}
       checked={false}
+      onClick={onCheckedChange}
     />
   );
 }

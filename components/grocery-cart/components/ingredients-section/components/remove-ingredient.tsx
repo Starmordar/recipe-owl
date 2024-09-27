@@ -25,6 +25,7 @@ function RemoveIngredient({ cartItemIds, ingredientIds, defaultChecked }: Remove
         id={inputId}
         className='h-5 w-5'
         defaultChecked={defaultChecked}
+        onClick={evt => evt.stopPropagation()}
         onCheckedChange={onCheckedChange}
       />
       <label htmlFor={inputId} className='sr-only'>

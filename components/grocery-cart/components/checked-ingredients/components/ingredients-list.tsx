@@ -1,5 +1,6 @@
 'use client';
 
+import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { useUserCart } from '@/context/userCartProvider';
 
@@ -11,8 +12,13 @@ import type { CartWithRecipes } from '@/lib/data/cart';
 type Ingredient = CartWithRecipes['checked'][number] & { name: string };
 
 function IngredientsList() {
-  const { cartDetails } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useUserCart();
   const { checked: ingredients } = cartDetails;
+
+  async function onCheckedChange(item: Ingredient, nextChecked = false) {
+    handleItemsUpdate([item.ingredientId], nextChecked);
+    await updateCartItemCheckStatus([item.id], nextChecked);
+  }
 
   if (ingredients.length === 0) return null;
 
@@ -34,6 +40,7 @@ function IngredientsList() {
           />
         </>
       )}
+      onClick={onCheckedChange}
       checked
     />
   );
