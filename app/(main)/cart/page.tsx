@@ -39,7 +39,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
     >
       <PageHeader userId={user.id} cart={cartDetails.cart} />
 
-      <main className='page-container px-0'>
+      <main className='page-container px-0 pb-0'>
         <CartTabs cartWithRecipes={cartDetails} />
         {/* <GroceryCart cartWithRecipes={cartDetails} /> */}
       </main>
