@@ -1,5 +1,7 @@
 'use client';
 
+import { LazyMotion } from 'framer-motion';
+
 import GroceryCart from '@/components/grocery-cart';
 import IngredientsList from '@/components/grocery-cart/ingredients-list';
 import SwipableTabs from '@/components/ui/swipable-tabs';
@@ -21,7 +23,12 @@ function CartTabs({ cartWithRecipes }: ProfileTabsProps) {
     },
   };
 
-  return <SwipableTabs tabs={tabs} defaultTab='recipes' />;
+  const loadFeatures = () => import('@/lib/framer-motion/features').then(res => res.default);
+  return (
+    <LazyMotion features={loadFeatures}>
+      <SwipableTabs tabs={tabs} defaultTab='recipes' />
+    </LazyMotion>
+  );
 }
 
 export default CartTabs;

@@ -1,6 +1,6 @@
 'use client';
 import { useDrag } from '@use-gesture/react';
-import { LazyMotion, m, domAnimation, useAnimationControls } from 'framer-motion';
+import { m, useAnimationControls } from 'framer-motion';
 import { useRef, useState, useEffect, ReactNode } from 'react';
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -89,43 +89,41 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
   }
 
   return (
-    <LazyMotion features={domAnimation}>
-      <Tabs
-        value={currentTab}
-        onValueChange={onTabChange}
-        className='flex flex-col relative mr-auto w-full flex-grow'
-      >
-        <TabsList className='inline-flex h-10 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
-          {Object.keys(tabs).map(tab => (
-            <TabsTrigger key={tab} className='flex-1' value={tab}>
-              {tabs[tab].title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+    <Tabs
+      value={currentTab}
+      onValueChange={onTabChange}
+      className='flex flex-col relative mr-auto w-full flex-grow'
+    >
+      <TabsList className='inline-flex h-10 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
+        {Object.keys(tabs).map(tab => (
+          <TabsTrigger key={tab} className='flex-1' value={tab}>
+            {tabs[tab].title}
+          </TabsTrigger>
+        ))}
+      </TabsList>
 
-        <div
-          {...bind()}
-          ref={contentContainerRef}
-          className='relative flex flex-grow overflow-x-hidden'
-        >
-          {Object.keys(tabs).map((tab, i) => {
-            const x = `${(i - currentTabIndex.current) * 100}vw`;
-            // TODO: useLayoutEffect to set initial x value initial = {{ x }}
-            return (
-              <m.div
-                key={tab}
-                className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
-                initial={{ x }}
-                custom={i}
-                animate={controls}
-              >
-                {tabs[tab].content}
-              </m.div>
-            );
-          })}
-        </div>
-      </Tabs>
-    </LazyMotion>
+      <div
+        {...bind()}
+        ref={contentContainerRef}
+        className='relative flex flex-grow overflow-x-hidden'
+      >
+        {Object.keys(tabs).map((tab, i) => {
+          const x = `${(i - currentTabIndex.current) * 100}vw`;
+          // TODO: useLayoutEffect to set initial x value initial = {{ x }}
+          return (
+            <m.div
+              key={tab}
+              className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
+              initial={{ x }}
+              custom={i}
+              animate={controls}
+            >
+              {tabs[tab].content}
+            </m.div>
+          );
+        })}
+      </div>
+    </Tabs>
   );
 }
 

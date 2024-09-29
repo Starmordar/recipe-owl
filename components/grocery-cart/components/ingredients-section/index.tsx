@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 import type { ReactNode } from 'react';
 
@@ -27,7 +27,7 @@ function IngredientsSection<I extends Ingredient>({
         if (ingredient === null) return null;
 
         return (
-          <motion.div
+          <m.div
             key={ingredient.id ?? ingredient.name}
             className='flex w-full justify-between py-2.5 border-b text-base'
             onClick={() => onClick(ingredient)}
@@ -37,7 +37,7 @@ function IngredientsSection<I extends Ingredient>({
             transition={{ duration: 0.3 }}
           >
             {renderContent(ingredient)}
-          </motion.div>
+          </m.div>
         );
       })}
     </div>
