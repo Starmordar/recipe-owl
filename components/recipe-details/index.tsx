@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import React from 'react';
 
 import { getRecipeDetails } from '@/lib/data/recipe';
 
@@ -18,7 +19,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
 
   return (
     <>
-      <section>
+      <section className='flex flex-col w-full'>
         <RecipeDescription recipe={recipe} />
         <RecipeImage recipe={recipe} />
       </section>

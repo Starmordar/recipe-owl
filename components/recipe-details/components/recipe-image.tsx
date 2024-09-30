@@ -16,6 +16,7 @@ function RecipeImage({ recipe }: RecipeImageProps) {
         fill
         sizes='(max-width: 768px) 100vw, 33vw'
         style={{ objectFit: 'cover' }}
+        priority
       />
     </div>
   );

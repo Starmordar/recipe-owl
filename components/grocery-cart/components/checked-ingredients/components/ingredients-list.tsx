@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+
 import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { useUserCart } from '@/context/userCartProvider';
