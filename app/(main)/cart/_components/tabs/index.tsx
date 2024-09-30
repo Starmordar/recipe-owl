@@ -25,7 +25,7 @@ function CartTabs({ cartWithRecipes }: ProfileTabsProps) {
 
   const loadFeatures = () => import('@/lib/framer-motion/features').then(res => res.default);
   return (
-    <LazyMotion features={loadFeatures}>
+    <LazyMotion features={loadFeatures} strict>
       <SwipableTabs tabs={tabs} defaultTab='recipes' />
     </LazyMotion>
   );

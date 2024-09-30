@@ -1,7 +1,8 @@
 'use client';
+
 import { useDrag } from '@use-gesture/react';
 import { m, useAnimationControls } from 'framer-motion';
-import { useRef, useState, useEffect, ReactNode } from 'react';
+import { useRef, useState, ReactNode, useLayoutEffect } from 'react';
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -28,6 +29,7 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
 
   const currentTabIndex = useRef(Object.keys(tabs).indexOf(currentTab));
   const contentContainerRef = useRef<HTMLDivElement>(null);
+  const [initialWidth, setInitialWidth] = useState<number | null>(null);
 
   const tabCount = Object.keys(tabs).length;
 
@@ -66,9 +68,10 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
     },
   );
 
-  useEffect(() => {
-    triggerSwipeAnimation({ stop: false, animate: false });
-  }, [controls]);
+  useLayoutEffect(() => {
+    const containerWidth = contentContainerRef.current?.offsetWidth ?? 0;
+    setInitialWidth(containerWidth);
+  }, []);
 
   function triggerSwipeAnimation({ animate, stop, offsetX }: TriggerSwipeAnimationOptions) {
     const containerWidth = contentContainerRef.current?.offsetWidth ?? 0;
@@ -108,13 +111,13 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
         className='relative flex flex-grow overflow-x-hidden'
       >
         {Object.keys(tabs).map((tab, i) => {
-          const x = `${(i - currentTabIndex.current) * 100}vw`;
-          // TODO: useLayoutEffect to set initial x value initial = {{ x }}
+          if (initialWidth === null) return null;
+
           return (
             <m.div
               key={tab}
               className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
-              initial={{ x }}
+              initial={{ x: (i - currentTabIndex.current) * initialWidth }}
               custom={i}
               animate={controls}
             >
