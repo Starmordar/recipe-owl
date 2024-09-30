@@ -108,7 +108,7 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
       <div
         {...bind()}
         ref={contentContainerRef}
-        className='relative flex flex-grow overflow-x-hidden'
+        className='relative flex flex-grow overflow-x-hidden touch-none'
       >
         {Object.keys(tabs).map((tab, i) => {
           if (initialWidth === null) return null;
