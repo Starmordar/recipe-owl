@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation';
 
 import { validateRequest } from '@/app/(auth)/actions';
-import GroceryCart from '@/components/grocery-cart';
 import { publicUrls } from '@/config/url';
 import { UserCartProvider } from '@/context/userCartProvider';
 import useGroceryCart from '@/hooks/cart/useGroceryCart';
@@ -41,7 +40,6 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
 
       <main className='page-container px-0 pb-0'>
         <CartTabs cartWithRecipes={cartDetails} />
-        {/* <GroceryCart cartWithRecipes={cartDetails} /> */}
       </main>
     </UserCartProvider>
   );

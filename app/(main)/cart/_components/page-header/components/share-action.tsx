@@ -21,6 +21,7 @@ function ShareAction({ cart }: ShareActionProps) {
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'
+      aria-label='Share Recipe With Others'
     />
   );
 }

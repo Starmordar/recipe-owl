@@ -25,22 +25,28 @@ function AppNavbar() {
 
   return (
     <nav className='sticky bottom-0 w-full flex bg-background border-t'>
-      {navbarItems.map(({ href, title, match, render }) => {
+      {navbarItems.map(({ href, title, hideTitle, match, render }) => {
         const link = typeof href === 'string' ? href : href();
         return (
           <Link
             key={link}
             href={link}
             className={cn('flex-1 flex justify-center items-center py-1 text-primary')}
+            aria-label={title}
           >
             <div className='flex flex-col justify-center items-center'>
               {render(user, isActiveLink(link, match) ? 'opacity-100' : 'opacity-60')}
 
-              <span
-                className={cn('text-xs', isActiveLink(link, match) ? 'opacity-100' : 'opacity-60')}
-              >
-                {title}
-              </span>
+              {!hideTitle && (
+                <span
+                  className={cn(
+                    'text-xs',
+                    isActiveLink(link, match) ? 'opacity-100' : 'opacity-60',
+                  )}
+                >
+                  {title}
+                </span>
+              )}
             </div>
           </Link>
         );

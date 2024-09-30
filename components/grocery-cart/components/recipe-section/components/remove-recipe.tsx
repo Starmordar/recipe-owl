@@ -24,6 +24,7 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'
+      aria-label='Remove Recipe from Cart'
     >
       <X className='h-5 w-5' />
     </Button>

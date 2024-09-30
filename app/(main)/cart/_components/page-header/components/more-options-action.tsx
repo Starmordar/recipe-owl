@@ -9,7 +9,7 @@ import CartActionsDrawer from '../../cart-actions-drawer';
 function MoreOptionsAction() {
   return (
     <CartActionsDrawer>
-      <HeaderIconButton Icon={<EllipsisVertical />} />
+      <HeaderIconButton Icon={<EllipsisVertical />} aria-label='More Options' />
     </CartActionsDrawer>
   );
 }

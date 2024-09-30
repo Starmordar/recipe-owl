@@ -26,7 +26,8 @@ const navbarItems: Array<NavbarItem> = [
     render: (_, className) => <Search size={20} className={className} />,
   },
   {
-    title: '',
+    title: 'New Recipe',
+    hideTitle: true,
     href: publicUrls.newRecipe,
     render: (_, className) => <CirclePlus size={28} className={className} />,
   },

@@ -27,6 +27,7 @@ function RemoveIngredient({ cartItemIds, ingredientIds, defaultChecked }: Remove
         defaultChecked={defaultChecked}
         onClick={evt => evt.stopPropagation()}
         onCheckedChange={onCheckedChange}
+        aria-label={defaultChecked ? 'Uncheck item' : 'Check item'}
       />
       <label htmlFor={inputId} className='sr-only'>
         Check item
