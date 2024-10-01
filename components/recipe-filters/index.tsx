@@ -3,7 +3,6 @@
 import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
-import { Button } from '@/components/ui/button';
 import {
   Drawer,
   DrawerContent,
@@ -14,64 +13,52 @@ import {
 } from '@/components/ui/drawer';
 import useValueToPathname from '@/hooks/useValueToPathname';
 
-import CategorySection from './components/category-section';
+import HeaderIconButton from '../layout/app-header/components/icon-button';
+
 import Footer from './components/footer';
+import IngredientsSection from './components/ingredients-section';
+import OnlySavedSection from './components/only-saved-section';
+import {
+  ingredientsCategory,
+  onlySavedCategory,
+  filterCategories,
+} from './constants/filter-categories';
 
 import type { SelectedFilters } from './types';
 
-const categories = [
-  {
-    id: 1,
-    name: 'Ingridients',
-    options: [
-      { id: 4, title: 'Onion' },
-      { id: 5, title: 'Garlic' },
-      { id: 6, title: 'Tomato' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Difficulty',
-    options: [
-      { id: 1, title: 'Under 15 min' },
-      { id: 2, title: 'Under 30 min' },
-      { id: 3, title: 'Under 1 hour' },
-    ],
-  },
-];
-
-const categoryIds = categories.map(c => c.id.toString());
-
 function RecipeFilters() {
   const { valuesFromPathname } = useValueToPathname();
-  const [filters, setFilters] = React.useState<SelectedFilters>(valuesFromPathname(categoryIds));
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [filters, setFilters] = React.useState<SelectedFilters>(
+    valuesFromPathname(filterCategories),
+  );
 
-  function handleFiltersChange(categoryId: number, values: Array<string>) {
-    setFilters({ ...filters, [categoryId]: values });
+  function handleFiltersChange(category: string, values: Array<string>) {
+    setFilters({ ...filters, [category]: values });
   }
 
   function handleOpenDrawer(open: boolean) {
+    setIsDrawerOpen(open);
+
     if (!open) return;
-    setFilters(valuesFromPathname(categoryIds));
+    setFilters(valuesFromPathname(filterCategories));
   }
 
-  const filtersCount = Object.values(valuesFromPathname(categoryIds)).reduce(
+  const filtersCount = Object.values(valuesFromPathname(filterCategories)).reduce(
     (acc, filter) => acc + filter.length,
     0,
   );
 
   return (
-    <Drawer onOpenChange={handleOpenDrawer}>
+    <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
       <DrawerTrigger asChild>
-        <Button className='relative min-h-10 min-w-10 rounded-full' variant='ghost' size='icon'>
-          <SlidersHorizontal className='h-4 w-4 opacity-50' />
-
+        <HeaderIconButton Icon={<SlidersHorizontal />} aria-label='Search Filters'>
           {filtersCount > 0 && (
-            <div className='flex justify-center items-center absolute w-3.5 h-3.5 top-1.5 right-1.5 bg-primary text-[#fff] rounded-full text-xs'>
+            <span className='flex justify-center items-center absolute w-3.5 h-3.5 text-accent top-0 right-0 bg-primary rounded-full text-xs'>
               {filtersCount}
-            </div>
+            </span>
           )}
-        </Button>
+        </HeaderIconButton>
       </DrawerTrigger>
 
       <DrawerContent>
@@ -80,21 +67,25 @@ function RecipeFilters() {
             <DrawerTitle>Filters</DrawerTitle>
           </DrawerHeader>
 
-          <div className='flex flex-col gap-4'>
-            {categories.map(category => (
-              <CategorySection
-                key={category.id}
-                selected={filters[category.id]}
-                data={category}
-                onChange={values => {
-                  handleFiltersChange(category.id, values);
-                }}
-              />
-            ))}
+          <div className='flex flex-col h-[40vh]'>
+            <IngredientsSection
+              category={ingredientsCategory}
+              isSectionOpen={isDrawerOpen}
+              selected={filters[ingredientsCategory] ?? []}
+              onFilterChange={handleFiltersChange}
+            />
+
+            <hr className='h-0.5 border-t-0 bg-muted' />
+
+            <OnlySavedSection
+              category={onlySavedCategory}
+              selected={filters[onlySavedCategory] ?? []}
+              onFilterChange={handleFiltersChange}
+            />
           </div>
 
           <DrawerFooter className='flex flex-row w-full'>
-            <Footer filters={filters} setFilters={setFilters} categoryIds={categoryIds} />
+            <Footer filters={filters} setFilters={setFilters} categoryIds={filterCategories} />
           </DrawerFooter>
         </div>
       </DrawerContent>

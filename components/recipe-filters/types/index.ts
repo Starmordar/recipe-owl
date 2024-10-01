@@ -4,4 +4,4 @@ export interface Category {
   options: Array<{ id: number; title: string }>;
 }
 
-export type SelectedFilters = Record<number, Array<string>>;
+export type SelectedFilters = Record<string, Array<string>>;

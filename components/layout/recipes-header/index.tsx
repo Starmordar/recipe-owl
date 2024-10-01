@@ -5,8 +5,10 @@ import AppHeader from '../app-header';
 function RecipesHeader() {
   return (
     <AppHeader>
-      <RecipeSearch />
-      <RecipeFilters />
+      <div className='flex w-full items-center gap-x-2'>
+        <RecipeSearch />
+        <RecipeFilters />
+      </div>
     </AppHeader>
   );
 }

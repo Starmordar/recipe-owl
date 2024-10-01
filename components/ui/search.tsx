@@ -42,14 +42,14 @@ function Search({
   }
 
   function handleValueSelect(value: string) {
-    setSelected(value);
     setSearchTerm(value);
+    setSelected(value);
     setOpen(false);
   }
 
   function handleClear() {
-    setSelected('');
     setSearchTerm('');
+    setSelected('');
     setOpen(false);
   }
 

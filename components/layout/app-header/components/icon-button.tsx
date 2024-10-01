@@ -1,17 +1,17 @@
 'use client';
 
-import { cloneElement, forwardRef } from 'react';
+import { cloneElement, forwardRef, PropsWithChildren } from 'react';
 
 import { Button, ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-interface HeaderIconButtonProps extends ButtonProps {
+interface HeaderIconButtonProps extends ButtonProps, PropsWithChildren {
   className?: string;
   Icon: JSX.Element;
 }
 
 const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
-  ({ className, Icon, ...props }: HeaderIconButtonProps, ref) => {
+  ({ className, Icon, children, ...props }: HeaderIconButtonProps, ref) => {
     return (
       <Button
         className={cn(className, 'relative rounded-full')}
@@ -21,6 +21,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
         {...props}
       >
         {cloneElement(Icon, { className: 'h-5 w-5' })}
+        {children}
       </Button>
     );
   },
