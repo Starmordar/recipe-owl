@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 import RecipesHeader from '@/components/layout/recipes-header';
 import RecipePreviewCards from '@/components/recipe-preview-cards';
