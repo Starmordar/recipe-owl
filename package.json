@@ -11,6 +11,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.10.0",
     "@google-cloud/storage": "^7.12.1",
     "@hello-pangea/dnd": "^17.0.0",
     "@hookform/resolvers": "^3.9.0",

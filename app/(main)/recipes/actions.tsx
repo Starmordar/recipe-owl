@@ -1,10 +1,10 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { NextResponse } from 'next/server';
 
 import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
+import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { imageUpload } from '@/lib/image';
 import { pickBy } from '@/lib/utils';
@@ -26,6 +26,9 @@ export async function createRecipe(formData: FormData): Promise<Recipe> {
   const recipe = await prisma.recipe.create({
     data: { ...data, imageUrl, createdById: user.id, ingredients: { create: ingredients } },
   });
+
+  const ingredientNames = ingredients.map(i => i.name);
+  await indexRecipe(recipe, ingredientNames);
 
   revalidatePath(publicUrls.recipes);
   return recipe;
@@ -59,6 +62,9 @@ export async function updateRecipe(recipeId: number, formData: FormData): Promis
     },
   });
 
+  const ingredientNames = ingredients.map(i => i.name);
+  await updateRecipeIndex(recipe, ingredientNames);
+
   revalidatePath(publicUrls.recipe(recipe.id));
   revalidatePath(publicUrls.recipes);
 
@@ -69,6 +75,8 @@ export async function deleteRecipe(recipeId: number): Promise<void> {
   const recipe = await prisma.recipe.delete({
     where: { id: recipeId },
   });
+
+  await deleteRecipeIndex(recipe.id);
 
   revalidatePath(publicUrls.recipe(recipe.id));
   revalidatePath(publicUrls.recipes);

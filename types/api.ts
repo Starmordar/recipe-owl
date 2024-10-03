@@ -1,5 +1,11 @@
 import type { Prisma } from '@prisma/client';
 
+export interface RecipeSearchResult {
+  id: string;
+  title: string;
+  imageUrl: string;
+}
+
 export type RecipePreview = Prisma.RecipeGetPayload<null>;
 export type RecipeDetails = Prisma.RecipeGetPayload<{ include: { ingredients: true; user: true } }>;
 

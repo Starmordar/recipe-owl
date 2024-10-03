@@ -1,44 +1,14 @@
-import { Prisma } from '@prisma/client';
-
-import { ingredientsCategory } from '@/components/recipe-filters/constants/filter-categories';
 import { prisma } from '@/prisma/prisma-client';
 
-import type { RecipeDetails, RecipePreview } from '@/types/api';
+import { searchRecipes } from './recipes-search';
 
-export async function getRecipes(searchTerm: string): Promise<{ recipes: Array<RecipePreview> }> {
-  const response = await fetch(`/api/recipes/?search=${searchTerm}`);
-  const recipes = await response.json();
-
-  return { recipes };
-}
+import type { RecipeDetails, RecipePreview, RecipeSearchResult } from '@/types/api';
 
 export async function getRecipesPreview(
-  search: string,
+  searchTerm: string,
   filters: Record<string, string | Array<string> | undefined>,
-): Promise<{ recipes: Array<RecipePreview> }> {
-  const where = buildRecipesFilter(search, filters);
-  const recipes = await prisma.recipe.findMany({ where });
-
-  return { recipes };
-}
-
-function buildRecipesFilter(
-  search: string,
-  filters: Record<string, string | Array<string> | undefined>,
-): Prisma.RecipeWhereInput {
-  const filter: Prisma.RecipeWhereInput = {};
-
-  if (filters[ingredientsCategory]) {
-    let ingredients = filters[ingredientsCategory];
-    if (typeof ingredients === 'string') ingredients = [ingredients];
-    filter['ingredients'] = { some: { name: { in: ingredients, mode: 'insensitive' } } };
-  }
-
-  if (search) {
-    filter['title'] = { contains: search, mode: 'insensitive' };
-  }
-
-  return filter;
+): Promise<Array<RecipeSearchResult>> {
+  return searchRecipes(searchTerm, filters);
 }
 
 export async function getRecipeDetails(recipeId: number): Promise<RecipeDetails | null> {

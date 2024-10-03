@@ -9,12 +9,12 @@ interface RecipePreviewCardsProps {
 }
 
 async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {
-  const data = await getRecipesPreview(search, filters);
-  if (data.recipes.length === 0) return <EmptySearchResults />;
+  const recipes = await getRecipesPreview(search, filters);
+  if (recipes.length === 0) return <EmptySearchResults />;
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
-      {(data.recipes ?? []).map(recipe => (
+      {(recipes ?? []).map(recipe => (
         <RecipePreviewCard key={recipe.id} recipe={recipe} />
       ))}
     </div>
