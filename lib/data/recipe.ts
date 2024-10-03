@@ -8,6 +8,7 @@ export async function getRecipesPreview(
   searchTerm: string,
   filters: Record<string, string | Array<string> | undefined>,
 ): Promise<Array<RecipeSearchResult>> {
+  // TODO: retrive list of liked recipes (ids) and then pass those ids to the search
   return searchRecipes(searchTerm, filters);
 }
 
