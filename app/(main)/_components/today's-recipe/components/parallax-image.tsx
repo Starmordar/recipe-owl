@@ -18,7 +18,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
 
   useLayoutEffect(() => {
     const infoHeight = infoContainerRef.current?.offsetHeight ?? 0;
-    setInfoHeight(infoHeight);
+    setInfoHeight(infoHeight - 40);
   }, []);
 
   const { scrollY } = useScroll({
@@ -27,6 +27,8 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
   });
 
   const backgroundY = useTransform(scrollY, [0, infoHeight + 100], ['0px', `${infoHeight}px`]);
+  const scale = useTransform(scrollY, [0, infoHeight + 100], [1, 1.05]);
+
   // const heightY = useTransform(scrollY, [0, infoHeight], ['100%', '95%']);
 
   return (
@@ -38,9 +40,13 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
             backgroundImage: `url(${recipe.imageUrl})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            willChange: 'transform',
             y: backgroundY,
+            scale: scale,
             // height: heightY,
           }}
+          initial={{ scale: 1 }}
+          whileHover={{ scale: 1.1 }} // Scale up on hover
         ></motion.div>
       </div>
 
