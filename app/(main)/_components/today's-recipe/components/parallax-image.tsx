@@ -26,8 +26,8 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
     offset: ['start start', 'end start'],
   });
 
-  const backgroundY = useTransform(scrollY, [0, infoHeight + 50], ['0px', `${infoHeight}px`]);
-  const heightY = useTransform(scrollY, [0, infoHeight], ['100%', '95%']);
+  const backgroundY = useTransform(scrollY, [0, infoHeight + 100], ['0px', `${infoHeight}px`]);
+  // const heightY = useTransform(scrollY, [0, infoHeight], ['100%', '95%']);
 
   return (
     <>
@@ -39,7 +39,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             y: backgroundY,
-            height: heightY,
+            // height: heightY,
           }}
         ></motion.div>
       </div>
