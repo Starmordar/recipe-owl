@@ -1,4 +1,5 @@
 import LatestRecipes from './_components/latest-recipes';
+import RecipesCategory from './_components/recipes-category';
 import TodaysRecipe from "./_components/today's-recipe";
 
 function Page() {
@@ -7,7 +8,7 @@ function Page() {
       <TodaysRecipe />
       <div className='h-[12vh]'></div>
       <LatestRecipes />
-      <div className='h-[100vh]'></div>
+      <RecipesCategory />
     </main>
   );
 }

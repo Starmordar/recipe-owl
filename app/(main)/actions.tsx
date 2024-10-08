@@ -20,4 +20,14 @@ async function getLatestRecipes(): Promise<Array<LatestRecipe>> {
   return recipes;
 }
 
-export { getTodaysRecipe, getLatestRecipes };
+async function getMostPopularRecipes(): Promise<Array<LatestRecipe>> {
+  const recipes = await prisma.recipe.findMany({
+    orderBy: { createdAt: 'asc' },
+    take: 5,
+    include: { user: true },
+  });
+
+  return recipes;
+}
+
+export { getTodaysRecipe, getLatestRecipes, getMostPopularRecipes };
