@@ -1,12 +1,7 @@
 'use client';
 
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
+import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
@@ -39,24 +34,30 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
 
   return (
     <>
-      <div ref={imageContainerRef} className='relative w-fill h-[45vh]'>
-        <motion.div
-          className='absolute inset-0 z-0 bg-center bg-cover'
-          style={{ backgroundImage: `url(${recipe.imageUrl})`, transform }}
-        ></motion.div>
+      <div ref={imageContainerRef} className='relative w-full h-[45vh]'>
+        <motion.div className='absolute inset-0 z-0 bg-center bg-cover' style={{ transform }}>
+          <Image
+            className='object-cover'
+            src={recipe.imageUrl}
+            alt={`Recipe of the day: ${recipe.title}`}
+            fill
+            sizes='(max-width: 768px) 75vw, 33vw'
+            priority
+          />
+        </motion.div>
       </div>
 
-      <div className='relative'>
-        <div
+      <section className='relative'>
+        <article
           ref={infoContainerRef}
           className='absolute left-1/2 -top-10 transform -translate-x-1/2 flex flex-col p-4 w-[80vw] rounded-lg bg-orange-50 z-100'
         >
-          <span className='text-base mb-2'>Today&apos;s Recipe</span>
-          <h1 className='text-2xl font-semibold mb-4'>{recipe.title}</h1>
+          <span className='text-base'>Recipe of the Day</span>
+          <h1 className='text-2xl font-semibold mb-3'>{recipe.title}</h1>
 
           <RecipeAuthor recipe={recipe} avatarSize={20} />
-        </div>
-      </div>
+        </article>
+      </section>
     </>
   );
 }
