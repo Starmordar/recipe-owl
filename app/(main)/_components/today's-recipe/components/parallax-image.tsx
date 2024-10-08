@@ -1,6 +1,12 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
@@ -18,7 +24,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
 
   useLayoutEffect(() => {
     const infoHeight = infoContainerRef.current?.offsetHeight ?? 0;
-    setInfoHeight(infoHeight - 40);
+    setInfoHeight(infoHeight - 30);
   }, []);
 
   const { scrollY } = useScroll({
@@ -26,27 +32,17 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
     offset: ['start start', 'end start'],
   });
 
-  const backgroundY = useTransform(scrollY, [0, infoHeight + 100], ['0px', `${infoHeight}px`]);
-  const scale = useTransform(scrollY, [0, infoHeight + 100], [1, 1.05]);
-
-  // const heightY = useTransform(scrollY, [0, infoHeight], ['100%', '95%']);
+  const xPadding = 50;
+  const backgroundY = useTransform(scrollY, [0, infoHeight + xPadding], ['0px', `${infoHeight}px`]);
+  const scaleY = useTransform(scrollY, [0, infoHeight + xPadding], [1, 1.05]);
+  const transform = useMotionTemplate`translateY(${backgroundY}) scale(${scaleY})`;
 
   return (
     <>
-      <div ref={imageContainerRef} className='relative w-fill h-[65vh]'>
+      <div ref={imageContainerRef} className='relative w-fill h-[45vh]'>
         <motion.div
-          className='absolute inset-0 z-0'
-          style={{
-            backgroundImage: `url(${recipe.imageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            willChange: 'transform',
-            y: backgroundY,
-            scale: scale,
-            // height: heightY,
-          }}
-          initial={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }} // Scale up on hover
+          className='absolute inset-0 z-0 bg-center bg-cover'
+          style={{ backgroundImage: `url(${recipe.imageUrl})`, transform }}
         ></motion.div>
       </div>
 
