@@ -48,21 +48,17 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
 
   const clipBottom = useTransform(
     scrollY,
-    [infoHeight + xPadding, containerHeight + infoHeight],
-    [`${containerHeight}px`, `${infoHeight}px`],
+    [infoHeight, containerHeight + infoHeight],
+    [`${containerHeight}px`, `${infoHeight - infoHeight}px`],
   );
-
   const clipPath = useMotionTemplate`polygon(0 0, 100% 0, 100% ${clipBottom}, 0 ${clipBottom})`;
 
   useMotionValueEvent(clipPath, 'change', v => console.log(v));
 
   return (
     <>
-      <div ref={imageContainerRef} className='relative w-full h-[45vh]'>
-        <motion.div
-          className='absolute inset-0 z-0 bg-center bg-cover'
-          style={{ transform, clipPath }}
-        >
+      <div ref={imageContainerRef} className='fixed w-full h-[55vh]'>
+        <motion.div className='absolute inset-0 z-0 bg-center bg-cover' style={{ clipPath }}>
           <Image
             className='object-cover'
             src={recipe.imageUrl}
@@ -74,7 +70,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
         </motion.div>
       </div>
 
-      <section aria-label='Recipe of the day details' className='relative'>
+      <section aria-label='Recipe of the day details' className='relative mt-[55vh]'>
         <article
           ref={infoContainerRef}
           className='absolute left-1/2 -top-10 transform -translate-x-1/2 flex flex-col p-4 w-[80vw] rounded-lg bg-orange-50 z-100'
