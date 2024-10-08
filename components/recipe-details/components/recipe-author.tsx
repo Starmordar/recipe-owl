@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import type { RecipeDetails } from '@/types/api';
 
 interface RecipeAuthorProps {
-  recipe: RecipeDetails;
+  recipe: { user: RecipeDetails['user'] };
   avatarSize?: number;
 }
 
