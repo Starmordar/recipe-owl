@@ -1,6 +1,12 @@
 'use client';
 
-import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from 'framer-motion';
 import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
 
@@ -15,10 +21,14 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const infoContainerRef = useRef<HTMLDivElement>(null);
 
+  const [containerHeight, setContainerHeight] = useState(Infinity);
   const [infoHeight, setInfoHeight] = useState(Infinity);
 
   useLayoutEffect(() => {
     const infoHeight = infoContainerRef.current?.offsetHeight ?? 0;
+    const containerHeight = imageContainerRef.current?.offsetHeight ?? 0;
+
+    setContainerHeight(containerHeight);
     setInfoHeight(infoHeight - 30);
   }, []);
 
@@ -28,14 +38,31 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
   });
 
   const xPadding = 50;
-  const backgroundY = useTransform(scrollY, [0, infoHeight + xPadding], ['0px', `${infoHeight}px`]);
-  const scaleY = useTransform(scrollY, [0, infoHeight + xPadding], [1, 1.05]);
+  const backgroundY = useTransform(
+    scrollY,
+    [0, infoHeight + xPadding, containerHeight + infoHeight],
+    ['0px', `${infoHeight}px`, `${containerHeight}px`],
+  );
+  const scaleY = useTransform(scrollY, [0, infoHeight + xPadding], [1, 1]);
   const transform = useMotionTemplate`translateY(${backgroundY}) scale(${scaleY})`;
+
+  const clipBottom = useTransform(
+    scrollY,
+    [infoHeight + xPadding, containerHeight + infoHeight],
+    [`${containerHeight}px`, `${infoHeight}px`],
+  );
+
+  const clipPath = useMotionTemplate`polygon(0 0, 100% 0, 100% ${clipBottom}, 0 ${clipBottom})`;
+
+  useMotionValueEvent(clipPath, 'change', v => console.log(v));
 
   return (
     <>
       <div ref={imageContainerRef} className='relative w-full h-[45vh]'>
-        <motion.div className='absolute inset-0 z-0 bg-center bg-cover' style={{ transform }}>
+        <motion.div
+          className='absolute inset-0 z-0 bg-center bg-cover'
+          style={{ transform, clipPath }}
+        >
           <Image
             className='object-cover'
             src={recipe.imageUrl}
@@ -47,7 +74,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
         </motion.div>
       </div>
 
-      <section className='relative'>
+      <section aria-label='Recipe of the day details' className='relative'>
         <article
           ref={infoContainerRef}
           className='absolute left-1/2 -top-10 transform -translate-x-1/2 flex flex-col p-4 w-[80vw] rounded-lg bg-orange-50 z-100'
