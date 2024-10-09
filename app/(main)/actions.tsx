@@ -1,10 +1,9 @@
 import { revalidatePath } from 'next/cache';
 
 import { publicUrls } from '@/config/url';
-import { createRecipeOfTheDay } from '@/lib/data/recipe';
 import { prisma } from '@/prisma/prisma-client';
 
-import type { LatestRecipe, RecipePreview } from '@/types/api';
+import type { RecipeOfTheDay, LatestRecipe, RecipePreview } from '@/types/api';
 
 async function getRecipeOfTheDay(): Promise<RecipePreview | null> {
   const data = await prisma.recipeOfTheDay.findFirst({
@@ -41,4 +40,34 @@ async function getMostPopularRecipes(): Promise<Array<LatestRecipe>> {
   return recipes;
 }
 
-export { getRecipeOfTheDay as getTodaysRecipe, getLatestRecipes, getMostPopularRecipes };
+async function createRecipeOfTheDay(): Promise<RecipeOfTheDay | null> {
+  const lastRecipesOfTheDay = await prisma.recipeOfTheDay.findMany({
+    select: { recipeId: true },
+    orderBy: { createdAt: 'desc' },
+    take: 3,
+  });
+  const lastRecipesOfTheDayIds = lastRecipesOfTheDay.map(({ recipeId }) => recipeId);
+
+  const recipesCount = await prisma.recipe.count({
+    where: { id: { notIn: lastRecipesOfTheDayIds } },
+  });
+  const skip = Math.floor(Math.random() * recipesCount);
+
+  const nextRecipeOfTheDay = await prisma.recipe.findFirst({
+    where: { id: { notIn: lastRecipesOfTheDayIds } },
+    skip: skip,
+  });
+  if (!nextRecipeOfTheDay) return null;
+
+  const recipe = await prisma.recipeOfTheDay.create({
+    data: { recipeId: nextRecipeOfTheDay?.id },
+    include: { recipe: { include: { user: true } } },
+  });
+
+  if (!recipe) return null;
+
+  revalidatePath(publicUrls.home);
+  return recipe;
+}
+
+export { getRecipeOfTheDay, getLatestRecipes, getMostPopularRecipes, createRecipeOfTheDay };
