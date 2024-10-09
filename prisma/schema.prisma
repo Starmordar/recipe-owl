@@ -16,10 +16,11 @@ model Recipe {
   source      String?
   imageUrl    String
 
-  steps        String[]
-  ingredients  Ingredient[]
-  savedRecipes SavedRecipe[]
-  cartItems    CartItem[]
+  steps          String[]
+  ingredients    Ingredient[]
+  savedRecipes   SavedRecipe[]
+  cartItems      CartItem[]
+  recipeOfTheDay RecipeOfTheDay[]
 
   createdById String
   user        User   @relation(fields: [createdById], references: [id])
@@ -92,6 +93,17 @@ model SavedRecipe {
   recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 
   @@unique([userId, recipeId])
+}
+
+model RecipeOfTheDay {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([recipeId, createdAt])
 }
 
 model User {

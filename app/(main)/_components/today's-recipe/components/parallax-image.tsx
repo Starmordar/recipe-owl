@@ -5,10 +5,11 @@ import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
-import { RecipeDetails } from '@/types/api';
+
+import type { RecipePreview } from '@/types/api';
 
 interface ParallaxImageProps {
-  recipe: RecipeDetails;
+  recipe: RecipePreview;
 }
 
 function ParallaxImage({ recipe }: ParallaxImageProps) {
@@ -69,10 +70,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
           className='absolute left-1/2 -top-10 transform -translate-x-1/2 flex flex-col p-4 w-[80vw] rounded-lg bg-orange-50 z-100'
         >
           <span className='text-base'>Recipe of the Day</span>
-          <h1 className='text-2xl font-semibold mb-3'>
-            {recipe.title}
-            {recipe.title}
-          </h1>
+          <h1 className='text-2xl font-semibold mb-3'>{recipe.title}</h1>
 
           <RecipeAuthor recipe={recipe} avatarSize={20} />
         </article>
