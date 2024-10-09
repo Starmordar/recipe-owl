@@ -37,28 +37,28 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
     offset: ['start start', 'end start'],
   });
 
-  const xPadding = 50;
-  const backgroundY = useTransform(
-    scrollY,
-    [0, infoHeight + xPadding, containerHeight + infoHeight],
-    ['0px', `${infoHeight}px`, `${containerHeight}px`],
-  );
+  const xPadding = 0;
+  const backgroundY = useTransform(scrollY, [0, infoHeight + xPadding], ['0px', `${infoHeight}px`]);
   const scaleY = useTransform(scrollY, [0, infoHeight + xPadding], [1, 1]);
   const transform = useMotionTemplate`translateY(${backgroundY}) scale(${scaleY})`;
 
-  const clipBottom = useTransform(
-    scrollY,
-    [infoHeight, containerHeight + infoHeight],
-    [`${containerHeight}px`, `${infoHeight - infoHeight}px`],
-  );
+  // const clipBottom = useTransform(
+  //   scrollY,
+  //   [infoHeight, containerHeight + infoHeight],
+  //   [`${containerHeight}px`, `${infoHeight - infoHeight}px`],
+  // );
+  const clipBottom = useMotionTemplate`100%`;
   const clipPath = useMotionTemplate`polygon(0 0, 100% 0, 100% ${clipBottom}, 0 ${clipBottom})`;
 
-  useMotionValueEvent(clipPath, 'change', v => console.log(v));
+  // useMotionValueEvent(clipPath, 'change', v => console.log(v));
 
   return (
     <>
-      <div ref={imageContainerRef} className='fixed w-full h-[55vh]'>
-        <motion.div className='absolute inset-0 z-0 bg-center bg-cover' style={{ clipPath }}>
+      <div ref={imageContainerRef} className='relative w-full h-[55vh]'>
+        <motion.div
+          className='absolute inset-0 z-0 bg-center bg-cover'
+          style={{ transform, clipPath }}
+        >
           <Image
             className='object-cover'
             src={recipe.imageUrl}
@@ -70,13 +70,16 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
         </motion.div>
       </div>
 
-      <section aria-label='Recipe of the day details' className='relative mt-[55vh]'>
+      <section aria-label='Recipe of the day details' className='relative'>
         <article
           ref={infoContainerRef}
           className='absolute left-1/2 -top-10 transform -translate-x-1/2 flex flex-col p-4 w-[80vw] rounded-lg bg-orange-50 z-100'
         >
           <span className='text-base'>Recipe of the Day</span>
-          <h1 className='text-2xl font-semibold mb-3'>{recipe.title}</h1>
+          <h1 className='text-2xl font-semibold mb-3'>
+            {recipe.title}
+            {recipe.title}
+          </h1>
 
           <RecipeAuthor recipe={recipe} avatarSize={20} />
         </article>
