@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  motion,
-  useMotionTemplate,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from 'framer-motion';
+import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
 
@@ -29,7 +23,7 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
     const containerHeight = imageContainerRef.current?.offsetHeight ?? 0;
 
     setContainerHeight(containerHeight);
-    setInfoHeight(infoHeight - 30);
+    setInfoHeight(infoHeight - 40);
   }, []);
 
   const { scrollY } = useScroll({
@@ -37,27 +31,24 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
     offset: ['start start', 'end start'],
   });
 
-  const xPadding = 0;
-  const backgroundY = useTransform(scrollY, [0, infoHeight + xPadding], ['0px', `${infoHeight}px`]);
-  const scaleY = useTransform(scrollY, [0, infoHeight + xPadding], [1, 1]);
-  const transform = useMotionTemplate`translateY(${backgroundY}) scale(${scaleY})`;
+  const finalScale = 1.05;
+  const scale = useTransform(scrollY, [0, infoHeight], [1, finalScale]);
 
-  // const clipBottom = useTransform(
-  //   scrollY,
-  //   [infoHeight, containerHeight + infoHeight],
-  //   [`${containerHeight}px`, `${infoHeight - infoHeight}px`],
-  // );
-  const clipBottom = useMotionTemplate`100%`;
+  const clipBottom = useTransform(
+    scrollY,
+    [infoHeight, containerHeight * finalScale + infoHeight],
+    [`${containerHeight}px`, '0px'],
+  );
+
   const clipPath = useMotionTemplate`polygon(0 0, 100% 0, 100% ${clipBottom}, 0 ${clipBottom})`;
-
-  // useMotionValueEvent(clipPath, 'change', v => console.log(v));
 
   return (
     <>
-      <div ref={imageContainerRef} className='relative w-full h-[55vh]'>
+      <div ref={imageContainerRef} className='fixed w-full h-[55vh]'>
         <motion.div
           className='absolute inset-0 z-0 bg-center bg-cover'
-          style={{ transform, clipPath }}
+          initial={{ clipPath: 'none' }}
+          style={{ scale, clipPath }}
         >
           <Image
             className='object-cover'
@@ -69,6 +60,8 @@ function ParallaxImage({ recipe }: ParallaxImageProps) {
           />
         </motion.div>
       </div>
+
+      <div className='h-[55vh]' aria-hidden='true'></div>
 
       <section aria-label='Recipe of the day details' className='relative'>
         <article
