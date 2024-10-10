@@ -5,6 +5,7 @@ import RecipeDetailsHeader from '@/app/(main)/recipes/[slug]/_components/recipe-
 import RecipeDetails from '@/components/recipe-details';
 import RecipeDetailsSkeleton from '@/components/recipe-details/skeleton';
 import { getRecipeDetails } from '@/lib/data/recipe';
+import { getRecipeJsonLdScheme } from '@/lib/json-ld/recipe';
 
 import type { Metadata } from 'next';
 
@@ -25,9 +26,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata 
   };
 }
 
-function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
+  const recipe = await getRecipeDetails(Number(params.slug));
+  if (!recipe) return notFound();
+
+  const jsonLd = getRecipeJsonLdScheme(recipe);
+
   return (
     <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <RecipeDetailsHeader recipeId={Number(params.slug)} />
 
       <main className='page-container'>
