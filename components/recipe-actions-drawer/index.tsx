@@ -4,7 +4,7 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
-import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
 import DeleteRecipeAlert from '../delete-recipe-alert';
 

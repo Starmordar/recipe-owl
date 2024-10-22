@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { getCurrentUser } from '@/lib/data/user';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/classnames';
 
 import { navbarItems } from './constants';
 import { NavbarItem } from './types';

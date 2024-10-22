@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Command, CommandList, CommandInput } from '@/components/ui/command';
+import { Command, CommandList, CommandInput } from '@/shared/ui/command';
 
 interface SearchProps {
   placeholder: string;

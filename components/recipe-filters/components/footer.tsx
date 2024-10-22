@@ -1,9 +1,9 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
-import { DrawerClose } from '@/components/ui/drawer';
-import useValueToPathname from '@/hooks/useValueToPathname';
+import useValueToPathname from '@/shared/hooks/useValueToPathname';
+import { Button } from '@/shared/ui/button';
+import { DrawerClose } from '@/shared/ui/drawer';
 
 import type { SelectedFilters } from '../types';
 

@@ -7,8 +7,8 @@ import { publicUrls } from '@/config/url';
 import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { imageUpload } from '@/lib/image';
-import { pickBy } from '@/lib/utils';
 import { prisma } from '@/prisma/prisma-client';
+import pick from '@/shared/lib/pick';
 
 import type { FormDataValues, FormValues } from '@/components/recipe-details-form/constants/shema';
 import type { Recipe, Ingredient } from '@prisma/client';
@@ -126,8 +126,8 @@ async function getIngredientListPayload(recipeId: number, ingredients: Array<Ing
 }
 
 function isEqualIngredients(ingredient1: Ingredient, ingredient2: Ingredient) {
-  const string1 = JSON.stringify(pickBy(ingredient1, ['id', 'name', 'order', 'unit']));
-  const string2 = JSON.stringify(pickBy(ingredient2, ['id', 'name', 'order', 'unit']));
+  const string1 = JSON.stringify(pick(ingredient1, ['id', 'name', 'order', 'unit']));
+  const string2 = JSON.stringify(pick(ingredient2, ['id', 'name', 'order', 'unit']));
 
   return string1 === string2;
 }

@@ -9,7 +9,7 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerTrigger,
-} from '@/components/ui/drawer';
+} from '@/shared/ui/drawer';
 
 import type { PropsWithChildren } from 'react';
 

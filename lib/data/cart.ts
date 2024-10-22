@@ -1,8 +1,7 @@
 import { validateRequest } from '@/app/(auth)/actions';
 import { prisma } from '@/prisma/prisma-client';
+import groupBy from '@/shared/lib/groupBy';
 import { CartDetails } from '@/types/api';
-
-import { groupBy } from '../utils';
 
 import type { Prisma, Ingredient } from '@prisma/client';
 

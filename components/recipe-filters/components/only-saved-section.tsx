@@ -1,6 +1,6 @@
 'use client';
 
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/shared/ui/switch';
 
 interface OnlySavedSectionProps {
   category: string;

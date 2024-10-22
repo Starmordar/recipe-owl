@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 
 interface SearchExitProps {
   hidden: boolean;

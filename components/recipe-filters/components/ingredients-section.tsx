@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 
-import Search from '@/components/ui/search';
 import { searchIngredients } from '@/lib/data/ingredients';
+import Search from '@/shared/ui/search';
 
 import CategorySection from './category-section';
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { NumberInputSpinner } from '@/components/ui/number-input-spinner';
+import { Button } from '@/shared/ui/button';
+import { NumberInputSpinner } from '@/shared/ui/number-input-spinner';
 
 import type { FormValues } from '../constants/schema';
 import type { RecipeDetails } from '@/types/api';

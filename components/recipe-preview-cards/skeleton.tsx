@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 function RecipePreviewCardsSkeleton() {
   const cards = new Array<number>(20).fill(0);

@@ -1,7 +1,7 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
+import { Card } from '@/shared/ui/card';
 
 import IngredientsList from './components/ingredients-list';
 import RecipeCardHeader from './components/section-header';

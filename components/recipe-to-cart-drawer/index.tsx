@@ -3,14 +3,14 @@
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { PropsWithChildren, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import {
   Drawer,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerTrigger,
-} from '@/components/ui/drawer';
+} from '@/shared/ui/drawer';
 
 import IngredientsForm from './components/ingredients-form';
 import IngredientsFormHeader from './components/ingredients-form-header';

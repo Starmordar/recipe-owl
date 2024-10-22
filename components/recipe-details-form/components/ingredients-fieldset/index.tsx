@@ -9,7 +9,7 @@ import {
   DraggableFields,
   DraggableFieldsHeader,
 } from '@/components/draggable-fields';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 
 import IngredientField from './components/ingredient-field';
 

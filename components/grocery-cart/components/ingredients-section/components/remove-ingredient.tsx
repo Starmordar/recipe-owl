@@ -1,8 +1,8 @@
 'use client';
 
 import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useUserCart } from '@/context/userCartProvider';
+import { Checkbox } from '@/shared/ui/checkbox';
 
 interface RemoveIngredientProps {
   ingredientIds: Array<number>;

@@ -5,16 +5,16 @@ import Cookies from 'js-cookie';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
+import { publicUrls } from '@/config/url';
+import { useUserCart } from '@/context/userCartProvider';
 import {
   Drawer,
   DrawerActionButton,
   DrawerClose,
   DrawerContent,
   DrawerTrigger,
-} from '@/components/ui/drawer';
-import { UserAvatar } from '@/components/ui/user-avatar';
-import { publicUrls } from '@/config/url';
-import { useUserCart } from '@/context/userCartProvider';
+} from '@/shared/ui/drawer';
+import { UserAvatar } from '@/shared/ui/user-avatar';
 
 import type { PropsWithChildren } from 'react';
 

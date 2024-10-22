@@ -1,4 +1,4 @@
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { ToggleGroup, ToggleGroupItem } from '@/shared/ui/toggle-group';
 
 interface FiltersOpenProps {
   options: Array<string>;

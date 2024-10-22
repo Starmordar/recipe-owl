@@ -4,10 +4,10 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
 import { useState, type PropsWithChildren } from 'react';
 
-import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { useUserCart } from '@/context/userCartProvider';
 import useLeaveSharedCart from '@/hooks/cart/useLeaveSharedCart';
-import { useServerAction } from '@/hooks/useServerAction';
+import useServerAction from '@/shared/hooks/useServerAction';
+import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
 import { clearCart, disableCartSharing } from '../../actions';
 import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';

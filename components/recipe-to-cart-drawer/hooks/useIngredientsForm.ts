@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 
 import { addIngredientsToCart } from '@/app/(main)/cart/actions';
-import { toast } from '@/components/ui/use-toast';
-import { useServerAction } from '@/hooks/useServerAction';
+import useServerAction from '@/shared/hooks/useServerAction';
+import { toast } from '@/shared/hooks/useToast';
 import { RecipeDetails } from '@/types/api';
 
 import schema, { FormValues } from '../constants/schema';

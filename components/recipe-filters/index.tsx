@@ -3,6 +3,7 @@
 import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
+import useValueToPathname from '@/shared/hooks/useValueToPathname';
 import {
   Drawer,
   DrawerContent,
@@ -10,8 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
-import useValueToPathname from '@/hooks/useValueToPathname';
+} from '@/shared/ui/drawer';
 
 import HeaderIconButton from '../layout/app-header/components/icon-button';
 

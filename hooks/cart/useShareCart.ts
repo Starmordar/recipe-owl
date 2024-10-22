@@ -3,9 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { enableCartSharing } from '@/app/(main)/cart/actions';
 import { cartShareData } from '@/config/share';
 import { publicUrls } from '@/config/url';
-
-import { useServerAction } from '../useServerAction';
-import useWebShare from '../useWebShare';
+import useServerAction from '@/shared/hooks/useServerAction';
+import useWebShare from '@/shared/hooks/useWebShare';
 
 interface UseShareCartOptions {
   cart: { id: number; shareToken: string | null };
@@ -13,14 +12,14 @@ interface UseShareCartOptions {
 
 function useShareCart({ cart }: UseShareCartOptions) {
   const [enableCartSharingAction, isPending] = useServerAction(enableCartSharing);
-  const { handleShare, shareAllowed } = useWebShare({ data: cartShareData });
+  const { shareContent, isShareSupported } = useWebShare({ shareData: cartShareData });
 
   async function handleCartShare() {
     const shareToken = cart.shareToken ?? uuidv4();
     const url = publicUrls.cartWithToken(shareToken);
-    if (!shareAllowed(url)) return;
+    if (!isShareSupported(url)) return;
 
-    await handleShare(url);
+    await shareContent(url);
     if (!cart.shareToken) await enableCartSharingAction(cart.id, shareToken);
   }
 

@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea
 import { CheckCheck, GripVertical, Shuffle } from 'lucide-react';
 import { cloneElement, type PropsWithChildren, type ReactNode } from 'react';
 
-import { Button, ButtonProps } from '@/components/ui/button';
+import { Button, ButtonProps } from '@/shared/ui/button';
 
 import type { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
 import type { FieldArrayWithId } from 'react-hook-form';

@@ -2,8 +2,8 @@
 
 import { ClipboardCheck } from 'lucide-react';
 
-import { Card } from '@/components/ui/card';
 import { useUserCart } from '@/context/userCartProvider';
+import { Card } from '@/shared/ui/card';
 
 import SectionHeader from '../section-header';
 

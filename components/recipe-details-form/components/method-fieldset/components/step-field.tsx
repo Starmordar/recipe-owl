@@ -1,7 +1,7 @@
 'use client';
 
-import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
+import { FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form';
+import { Textarea } from '@/shared/ui/textarea';
 
 import type { FormValues } from '@/components/recipe-details-form/constants/shema';
 import type { FieldArrayWithId, UseFormReturn } from 'react-hook-form';

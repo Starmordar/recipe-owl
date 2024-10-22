@@ -4,9 +4,9 @@ import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/app/(main)/recipes/actions';
-import { toast } from '@/components/ui/use-toast';
 import { errorToast } from '@/constants/toast';
-import { useServerAction } from '@/hooks/useServerAction';
+import useServerAction from '@/shared/hooks/useServerAction';
+import { toast } from '@/shared/hooks/useToast';
 
 import schema, { defaultValues } from '../constants/shema';
 

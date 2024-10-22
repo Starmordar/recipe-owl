@@ -1,8 +1,8 @@
 'use client';
 
-import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form';
+import { Input } from '@/shared/ui/input';
+import { Textarea } from '@/shared/ui/textarea';
 
 import { type FormValues } from '../constants/shema';
 

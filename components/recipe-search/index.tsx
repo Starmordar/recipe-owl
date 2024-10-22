@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 
 import { publicUrls } from '@/config/url';
 import { searchKey } from '@/constants/query';
-import useValueToPathname from '@/hooks/useValueToPathname';
+import useValueToPathname from '@/shared/hooks/useValueToPathname';
 
 import Search from './components/search';
 

@@ -1,6 +1,6 @@
 import { cloneElement, PropsWithChildren } from 'react';
 
-import { CardTitle } from '@/components/ui/card';
+import { CardTitle } from '@/shared/ui/card';
 
 interface SectionHeaderProps extends PropsWithChildren {
   title: string;

@@ -1,4 +1,4 @@
-import { Skeleton } from '../ui/skeleton';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 function RecipeSkeleton() {
   const ingredients = new Array<number>(10).fill(0);

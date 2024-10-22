@@ -1,7 +1,7 @@
 'use client';
 
-import { Form } from '@/components/ui/form';
-import useConfirmOnPageLeave from '@/hooks/useConfirmOnPageLeave';
+import usePageLeaveConfirmation from '@/shared/hooks/usePageLeaveConfirmation';
+import { Form } from '@/shared/ui/form';
 
 import DetailsFieldset from './details-fieldset';
 import IngredientsFieldset from './ingredients-fieldset/index';
@@ -16,9 +16,9 @@ export interface RecipeFormProps {
 }
 
 function RecipeForm({ form, onSubmit }: RecipeFormProps) {
-  useConfirmOnPageLeave({
-    shouldTrigger: form.formState.isDirty,
-    message: 'You have unsaved changes. Are you sure you want to leave?',
+  usePageLeaveConfirmation({
+    confirmationMessage: 'You have unsaved changes. Are you sure you want to leave?',
+    shouldConfirm: form.formState.isDirty,
   });
 
   return (

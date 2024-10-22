@@ -4,9 +4,9 @@ import { Camera, Image as LucideImage } from 'lucide-react';
 import NextImage from 'next/image';
 import { useState } from 'react';
 
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { acceptedImageMimeTypes } from '@/constants/image';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
+import { Input } from '@/shared/ui/input';
 
 import type { FormValues } from '../constants/shema';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';

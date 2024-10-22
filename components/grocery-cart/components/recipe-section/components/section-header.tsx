@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { CardTitle } from '@/components/ui/card';
+import { CardTitle } from '@/shared/ui/card';
 
 import RemoveRecipe from './remove-recipe';
 import ServingInput from './servings-input';

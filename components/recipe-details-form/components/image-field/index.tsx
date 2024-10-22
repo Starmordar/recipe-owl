@@ -5,7 +5,7 @@ import NextImage from 'next/image';
 import { useRef, useState } from 'react';
 
 import ImageUploadDrawer from '@/components/image-upload-drawer';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
 
 import FileInputs, { FileUploadHandles } from './components/file-inputs';
 

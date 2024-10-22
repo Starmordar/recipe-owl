@@ -1,8 +1,8 @@
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
 import { publicUrls } from '@/config/url';
+import { Button } from '@/shared/ui/button';
 
 interface LoginWithEmailProps {
   title: string;

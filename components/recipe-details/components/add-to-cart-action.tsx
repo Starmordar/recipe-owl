@@ -3,7 +3,7 @@
 import { CirclePlus } from 'lucide-react';
 
 import AddToCartDrawer from '@/components/recipe-to-cart-drawer';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 
 import type { RecipeDetails } from '@/types/api';
 

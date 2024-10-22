@@ -2,8 +2,8 @@
 
 import { cloneElement, forwardRef, PropsWithChildren } from 'react';
 
-import { Button, ButtonProps } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/classnames';
+import { Button, ButtonProps } from '@/shared/ui/button';
 
 interface HeaderIconButtonProps extends ButtonProps, PropsWithChildren {
   className?: string;

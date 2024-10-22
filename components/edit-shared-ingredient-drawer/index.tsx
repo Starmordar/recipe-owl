@@ -2,8 +2,8 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { SharedIngredient } from '@/lib/data/cart';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
 import RemoveIngredient from '../grocery-cart/components/ingredients-section/components/remove-ingredient';
 import { applyQuantityToUnit } from '../grocery-cart/utils/applyQuantityToUnit';

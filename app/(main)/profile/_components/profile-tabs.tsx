@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skeleton';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 
 import SavedRecipes from './saved-recipes';
 

@@ -1,5 +1,5 @@
 import AppHeader from '@/components/layout/app-header';
-import { UserAvatar } from '@/components/ui/user-avatar';
+import { UserAvatar } from '@/shared/ui/user-avatar';
 
 import MoreOptionsAction from './components/more-options-action';
 import ShareAction from './components/share-action';

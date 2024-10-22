@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 function GroceryCartSekeleton() {
   const cards = new Array<number>(2).fill(0);

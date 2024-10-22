@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/classnames';
 
 import type { RecipeDetails } from '@/types/api';
 

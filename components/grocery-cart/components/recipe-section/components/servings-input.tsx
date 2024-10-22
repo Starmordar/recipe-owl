@@ -4,9 +4,9 @@ import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 
 import { updateServings } from '@/app/(main)/cart/actions';
-import { NumberInputSpinner } from '@/components/ui/number-input-spinner';
 import { useUserCart } from '@/context/userCartProvider';
-import { useServerAction } from '@/hooks/useServerAction';
+import useServerAction from '@/shared/hooks/useServerAction';
+import { NumberInputSpinner } from '@/shared/ui/number-input-spinner';
 
 interface ServingInputProps {
   recipeId: number;

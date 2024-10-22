@@ -3,9 +3,9 @@
 import { X } from 'lucide-react';
 
 import { clearCheckedItems } from '@/app/(main)/cart/actions';
-import { Button } from '@/components/ui/button';
 import { useUserCart } from '@/context/userCartProvider';
-import { useServerAction } from '@/hooks/useServerAction';
+import useServerAction from '@/shared/hooks/useServerAction';
+import { Button } from '@/shared/ui/button';
 
 function ClearChecked() {
   const { cartId } = useUserCart();

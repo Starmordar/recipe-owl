@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 
 import QueryClientProvider from '@/components/query-client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/classnames';
+import { Toaster } from '@/shared/ui/toaster';
 
 import type { Metadata } from 'next';
 
