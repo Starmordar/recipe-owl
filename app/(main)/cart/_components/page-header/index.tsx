@@ -1,4 +1,4 @@
-import AppHeader from '@/components/layout/app-header';
+import AppHeader from '@/shared/ui/app-header';
 import { UserAvatar } from '@/shared/ui/user-avatar';
 
 import MoreOptionsAction from './components/more-options-action';

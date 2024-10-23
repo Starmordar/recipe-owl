@@ -6,6 +6,10 @@ const config = {
     hoverOnlyWhenSupported: true,
   },
   content: [
+    './entities/**/*.{ts,tsx}',
+    './features/**/*.{ts,tsx}',
+    './widgets/**/*.{ts,tsx}',
+    './shared/**/*.{ts,tsx}',
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',

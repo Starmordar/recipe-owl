@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
+import { validateRequest } from '@/entities/session';
 import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { imageUpload } from '@/lib/image';

@@ -1,6 +1,5 @@
+import AppHeader from '@/shared/ui/app-header';
 import { Button } from '@/shared/ui/button';
-
-import AppHeader from '../app-header';
 
 function CartHeader() {
   return (

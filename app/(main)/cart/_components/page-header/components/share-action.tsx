@@ -2,8 +2,8 @@
 
 import { Share2 } from 'lucide-react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import useShareCart from '@/hooks/cart/useShareCart';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
 
 import type { CartDetails } from '@/types/api';
 

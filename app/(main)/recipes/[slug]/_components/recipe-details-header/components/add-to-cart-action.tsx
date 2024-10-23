@@ -2,8 +2,8 @@
 
 import { CirclePlus } from 'lucide-react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import AddToCartDrawer from '@/components/recipe-to-cart-drawer';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
 
 import type { RecipeDetails } from '@/types/api';
 

@@ -2,8 +2,8 @@
 
 import { EllipsisVertical } from 'lucide-react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import RecipeActionsDrawer from '@/components/recipe-actions-drawer';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
 
 interface MoreOptionsActionProps {
   recipeId: number;

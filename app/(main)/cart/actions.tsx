@@ -3,8 +3,8 @@
 import { Ingredient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
-import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
+import { validateRequest } from '@/entities/session';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { prisma } from '@/prisma/prisma-client';
 import { CartWithUser } from '@/types/api';

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
+import { validateRequest } from '@/entities/session';
 
 import ProfileTabs from './_components/profile-tabs';
 

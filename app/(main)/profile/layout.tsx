@@ -1,4 +1,4 @@
-import { validateRequest } from '@/app/(auth)/actions';
+import { validateRequest } from '@/entities/session';
 
 import ProfileHeader from './_components/profile-header';
 

@@ -1,7 +1,7 @@
-import { validateRequest } from '@/app/(auth)/actions';
-import AppHeader from '@/components/layout/app-header';
 import { publicUrls } from '@/config/url';
+import { validateRequest } from '@/entities/session';
 import { getRecipeDetails, isRecipeSaved } from '@/lib/data/recipe';
+import AppHeader from '@/shared/ui/app-header';
 
 import AddToCartAction from './components/add-to-cart-action';
 import MoreOptionsAction from './components/more-options-action';

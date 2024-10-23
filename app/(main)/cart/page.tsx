@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import { validateRequest } from '@/app/(auth)/actions';
 import { publicUrls } from '@/config/url';
 import { UserCartProvider } from '@/context/userCartProvider';
+import { validateRequest } from '@/entities/session';
 import useGroceryCart from '@/hooks/cart/useGroceryCart';
 
 import PageHeader from './_components/page-header';
@@ -15,6 +15,7 @@ interface PageProps {
 
 async function Page({ searchParams: { shareToken } }: PageProps) {
   const { user } = await validateRequest();
+  console.log('user :>> ', user);
   if (user === null) redirect(publicUrls.signIn);
 
   if (shareToken) {

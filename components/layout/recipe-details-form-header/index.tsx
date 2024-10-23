@@ -1,8 +1,5 @@
-import { Save } from 'lucide-react';
-
+import AppHeader from '@/shared/ui/app-header';
 import { Button } from '@/shared/ui/button';
-
-import AppHeader from '../app-header';
 
 interface RecipeDetailsFormHeader {
   isPending: boolean;

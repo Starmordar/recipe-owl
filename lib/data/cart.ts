@@ -1,4 +1,4 @@
-import { validateRequest } from '@/app/(auth)/actions';
+import { validateRequest } from '@/entities/session';
 import { prisma } from '@/prisma/prisma-client';
 import groupBy from '@/shared/lib/groupBy';
 import { CartDetails } from '@/types/api';

@@ -2,9 +2,9 @@
 
 import { Share2 } from 'lucide-react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import { webShareData } from '@/config/share';
 import useWebShare from '@/shared/hooks/useWebShare';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
 
 function ShareAction() {
   const { shareContent } = useWebShare({ shareData: webShareData });

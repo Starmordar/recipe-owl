@@ -2,8 +2,8 @@
 
 import { Bookmark } from 'lucide-react';
 
-import HeaderIconButton from '@/components/layout/app-header/components/icon-button';
 import useSaveRecipeToggle from '@/hooks/useSaveRecipeToggle';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
 
 interface SaveRecipeActionProps {
   isSaved: boolean;
