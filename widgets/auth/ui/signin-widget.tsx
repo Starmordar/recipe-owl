@@ -1,5 +1,5 @@
-import { publicUrls } from '@/config/url';
 import { LoginForm } from '@/features/session/login';
+import { publicUrls } from '@/shared/config/url';
 
 import { AuthChangeOption } from './auth-change-option';
 import { AuthHeader } from './auth-header';

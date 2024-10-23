@@ -1,4 +1,4 @@
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 
 import { AuthChangeOption } from './auth-change-option';
 import { AuthHeader } from './auth-header';

@@ -1,6 +1,6 @@
-import { publicUrls } from '@/config/url';
 import { validateRequest } from '@/entities/session';
 import { getRecipeDetails, isRecipeSaved } from '@/lib/data/recipe';
+import { publicUrls } from '@/shared/config/url';
 import AppHeader from '@/shared/ui/app-header';
 
 import AddToCartAction from './components/add-to-cart-action';

@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
 
-import { publicUrls } from '@/config/url';
 import { UserCartProvider } from '@/context/userCartProvider';
 import { validateRequest } from '@/entities/session';
 import useGroceryCart from '@/hooks/cart/useGroceryCart';
+import { publicUrls } from '@/shared/config/url';
 
 import PageHeader from './_components/page-header';
 import CartTabs from './_components/tabs';

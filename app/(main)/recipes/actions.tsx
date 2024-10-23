@@ -2,12 +2,12 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { publicUrls } from '@/config/url';
 import { validateRequest } from '@/entities/session';
 import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { imageUpload } from '@/lib/image';
 import { prisma } from '@/prisma/prisma-client';
+import { publicUrls } from '@/shared/config/url';
 import pick from '@/shared/lib/pick';
 
 import type { FormDataValues, FormValues } from '@/components/recipe-details-form/constants/shema';

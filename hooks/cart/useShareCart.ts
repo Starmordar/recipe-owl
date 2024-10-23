@@ -1,14 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import { enableCartSharing } from '@/app/(main)/cart/actions';
-import { cartShareData } from '@/config/share';
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 import useServerAction from '@/shared/hooks/useServerAction';
 import useWebShare from '@/shared/hooks/useWebShare';
 
 interface UseShareCartOptions {
   cart: { id: number; shareToken: string | null };
 }
+
+const cartShareData = {
+  title: 'Recipe OWL: Check out my grocery cart!',
+  text: 'Here are the items I want to share with you.',
+};
 
 function useShareCart({ cart }: UseShareCartOptions) {
   const [enableCartSharingAction, isPending] = useServerAction(enableCartSharing);

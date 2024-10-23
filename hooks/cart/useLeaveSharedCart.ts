@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 
 import { leaveSharedCart } from '@/app/(main)/cart/actions';
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 import useServerAction from '@/shared/hooks/useServerAction';
 
 interface UseLeaveSharedCart {

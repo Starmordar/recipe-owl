@@ -3,9 +3,9 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { publicUrls } from '@/config/url';
 import { validateRequest } from '@/entities/session';
 import { lucia } from '@/entities/session/lucia';
+import { publicUrls } from '@/shared/config/url';
 
 async function signOut() {
   const { session } = await validateRequest();

@@ -3,10 +3,10 @@
 import { Ingredient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
-import { publicUrls } from '@/config/url';
 import { validateRequest } from '@/entities/session';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { prisma } from '@/prisma/prisma-client';
+import { publicUrls } from '@/shared/config/url';
 import { CartWithUser } from '@/types/api';
 
 async function updateOrCreateCart(

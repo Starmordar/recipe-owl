@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 
 import { deleteRecipe } from '@/app/(main)/recipes/actions';
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 import {
   AlertDialog,
   AlertDialogAction,

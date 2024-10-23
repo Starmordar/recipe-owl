@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { ShoppingCart, User, Search, CirclePlus, House } from 'lucide-react';
 import Image from 'next/image';
 
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 
 import type { NavbarItem } from '../model/types';
 

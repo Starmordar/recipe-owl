@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
-import { publicUrls } from '@/config/url';
 import { useUserCart } from '@/context/userCartProvider';
+import { publicUrls } from '@/shared/config/url';
 import {
   Drawer,
   DrawerActionButton,

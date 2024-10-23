@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { forwardRef } from 'react';
 
 import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 
 import type { RecipePreview } from '@/types/api';
 

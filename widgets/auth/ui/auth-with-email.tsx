@@ -1,7 +1,7 @@
 import { Mail } from 'lucide-react';
 import Link from 'next/link';
 
-import { publicUrls } from '@/config/url';
+import { publicUrls } from '@/shared/config/url';
 import { Button } from '@/shared/ui/button';
 
 interface AuthWithEmailProps {

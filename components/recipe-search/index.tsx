@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
-import { publicUrls } from '@/config/url';
 import { searchKey } from '@/constants/query';
+import { publicUrls } from '@/shared/config/url';
 import useValueToPathname from '@/shared/hooks/useValueToPathname';
 
 import Search from './components/search';

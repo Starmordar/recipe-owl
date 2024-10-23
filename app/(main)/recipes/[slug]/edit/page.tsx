@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
 import RecipeDetailsForm from '@/components/recipe-details-form';
-import { publicUrls } from '@/config/url';
 import { getRecipeDetails } from '@/lib/data/recipe';
+import { publicUrls } from '@/shared/config/url';
 
 async function Page({ params }: { params: { slug: string } }) {
   const recipe = await getRecipeDetails(Number(params.slug));

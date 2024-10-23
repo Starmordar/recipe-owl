@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import RecipeDetailsForm from '@/components/recipe-details-form';
-import { publicUrls } from '@/config/url';
 import { validateRequest } from '@/entities/session';
+import { publicUrls } from '@/shared/config/url';
 
 async function Page() {
   const { user } = await validateRequest();
