@@ -7,6 +7,7 @@ const publicUrls = {
 
   recipes: '/recipes',
   recipe: (recipeId: number | string) => `/recipes/${recipeId}`,
+  editRecipe: (recipeId: number | string) => `/recipes/${recipeId}/edit`,
   newRecipe: '/recipes/new',
 
   register: '/registration',

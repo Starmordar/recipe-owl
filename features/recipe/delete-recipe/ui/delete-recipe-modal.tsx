@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 
-import { deleteRecipe } from '@/app/(main)/recipes/actions';
 import { publicUrls } from '@/shared/config/url';
 import {
   AlertDialog,
@@ -16,13 +15,15 @@ import {
   AlertDialogTrigger,
 } from '@/shared/ui/alert-dialog';
 
+import { deleteRecipe } from '../model/delete-recipe';
+
 import type { PropsWithChildren } from 'react';
 
-interface DeleteRecipeAlertProps extends PropsWithChildren {
+interface DeleteRecipeProps extends PropsWithChildren {
   recipeId: number;
 }
 
-function DeleteRecipeAlert({ children, recipeId }: DeleteRecipeAlertProps) {
+function DeleteRecipe({ children, recipeId }: DeleteRecipeProps) {
   const router = useRouter();
 
   async function handleDeleteRecipe() {
@@ -51,4 +52,4 @@ function DeleteRecipeAlert({ children, recipeId }: DeleteRecipeAlertProps) {
   );
 }
 
-export default DeleteRecipeAlert;
+export { DeleteRecipe };

@@ -4,9 +4,9 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
+import { DeleteRecipe } from '@/features/recipe/delete-recipe';
+import { publicUrls } from '@/shared/config/url';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
-
-import DeleteRecipeAlert from '../delete-recipe-alert';
 
 import type { PropsWithChildren } from 'react';
 
@@ -24,7 +24,7 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
 
         <ul className='my-4'>
           <li>
-            <Link href={`/recipes/${recipeId}/edit`}>
+            <Link href={publicUrls.editRecipe(recipeId)}>
               <DrawerActionButton>
                 <Pencil className='h-5 w-5 opacity-60' /> Edit Recipe
               </DrawerActionButton>
@@ -32,11 +32,11 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
           </li>
 
           <li>
-            <DeleteRecipeAlert recipeId={recipeId}>
+            <DeleteRecipe recipeId={recipeId}>
               <DrawerActionButton>
                 <Trash2 className='h-5 w-5 opacity-60' /> Delete Recipe
               </DrawerActionButton>
-            </DeleteRecipeAlert>
+            </DeleteRecipe>
           </li>
         </ul>
       </DrawerContent>
@@ -44,4 +44,4 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
   );
 }
 
-export default RecipeActionsDrawer;
+export { RecipeActionsDrawer };

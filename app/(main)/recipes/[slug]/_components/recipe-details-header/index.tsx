@@ -1,12 +1,15 @@
+import { EllipsisVertical } from 'lucide-react';
+
 import { validateRequest } from '@/entities/session';
+import { SaveRecipe } from '@/features/recipe/save-recipe';
+import { ShareRecipe } from '@/features/recipe/share-recipe';
 import { getRecipeDetails, isRecipeSaved } from '@/lib/data/recipe';
 import { publicUrls } from '@/shared/config/url';
 import AppHeader from '@/shared/ui/app-header';
+import HeaderIconButton from '@/shared/ui/app-header-icon-button';
+import { RecipeActionsDrawer } from '@/widgets/recipe-actions-drawer';
 
 import AddToCartAction from './components/add-to-cart-action';
-import MoreOptionsAction from './components/more-options-action';
-import SaveRecipeAction from './components/save-recipe-action';
-import ShareAction from './components/share-action';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
@@ -24,9 +27,13 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
     <AppHeader prevUrl={publicUrls.recipes} className='pr-2'>
       <div className='flex items-center gap-x-3'>
         <AddToCartAction recipe={recipe} />
-        <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
-        <ShareAction />
-        <MoreOptionsAction recipeId={recipeId} />
+
+        <SaveRecipe recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
+        <ShareRecipe />
+
+        <RecipeActionsDrawer recipeId={recipeId}>
+          <HeaderIconButton Icon={<EllipsisVertical />} />
+        </RecipeActionsDrawer>
       </div>
     </AppHeader>
   );

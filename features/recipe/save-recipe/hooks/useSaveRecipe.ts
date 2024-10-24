@@ -1,14 +1,15 @@
 import { startTransition, useOptimistic } from 'react';
 
-import { saveRecipe, unsaveRecipe } from '@/app/(main)/recipes/actions';
+import { saveRecipe } from '../model/save-recipe';
+import { unsaveRecipe } from '../model/unsave-recipe';
 
-interface UseSaveRecipeToggleProps {
+interface UseSaveRecipeProps {
+  userId: string | undefined;
   recipeId: number;
-  userId?: string;
   isSaved: boolean;
 }
 
-function useSaveRecipeToggle({ recipeId, userId, isSaved }: UseSaveRecipeToggleProps) {
+function useSaveRecipe({ recipeId, userId, isSaved }: UseSaveRecipeProps) {
   const [isSavedOptimistic, setIsSavedOptimistic] = useOptimistic(isSaved);
 
   async function handleSaveRecipe() {
@@ -24,4 +25,4 @@ function useSaveRecipeToggle({ recipeId, userId, isSaved }: UseSaveRecipeToggleP
   return { handleSaveRecipe, isSavedOptimistic };
 }
 
-export default useSaveRecipeToggle;
+export { useSaveRecipe };
