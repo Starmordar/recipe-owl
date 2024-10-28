@@ -4,12 +4,12 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 
+import { Button } from '@/shared/ui/button';
 import {
   DraggableAction,
   DraggableFields,
   DraggableFieldsHeader,
-} from '@/components/draggable-fields';
-import { Button } from '@/shared/ui/button';
+} from '@/shared/ui/draggable-fields';
 
 import IngredientField from './components/ingredient-field';
 
