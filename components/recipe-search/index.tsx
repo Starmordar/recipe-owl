@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
-import { searchKey } from '@/constants/query';
 import { publicUrls } from '@/shared/config/url';
 import useValueToPathname from '@/shared/hooks/useValueToPathname';
 
@@ -15,13 +14,13 @@ function RecipeSearch() {
   const { replace } = useRouter();
   const { valueToPathname, valueFromPathname } = useValueToPathname();
 
-  const [searchTerm, setSearchTerm] = useState(valueFromPathname(searchKey));
-  const [selectedValue, setSelectedValue] = useState(valueFromPathname(searchKey));
+  const [searchTerm, setSearchTerm] = useState(valueFromPathname('search'));
+  const [selectedValue, setSelectedValue] = useState(valueFromPathname('search'));
 
   function handleSearch(value: string) {
     setSelectedValue(value);
 
-    const pathname = valueToPathname(searchKey, value);
+    const pathname = valueToPathname('search', value);
     replace(pathname);
   }
 

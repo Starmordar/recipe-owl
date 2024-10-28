@@ -1,4 +1,4 @@
-import { imageProcessOptions } from '../../model/options';
+import { imageProcessOptions } from '../../config/options';
 
 import type { ImageProcessor, ImageStorage } from '../../model/type';
 

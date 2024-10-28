@@ -1,6 +1,6 @@
 import { GetSignedUrlConfig, Storage as GoogleStorageClient } from '@google-cloud/storage';
 
-import { signedUrlExpires } from '../../model/options';
+import { signedUrlExpires } from '../../config/options';
 
 import type { ImageStorage } from '../../model/type';
 

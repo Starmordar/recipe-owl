@@ -1,4 +1,4 @@
-import type { ImageProcessOptions } from './type';
+import type { ImageProcessOptions } from '../model/type';
 
 const acceptedImageMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/avif'];
 

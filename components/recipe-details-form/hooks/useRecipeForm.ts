@@ -4,7 +4,6 @@ import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/app/(main)/recipes/actions';
-import { errorToast } from '@/constants/toast';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { toast } from '@/shared/hooks/useToast';
 
@@ -16,6 +15,13 @@ interface UseRecipeFormOptions {
   recipeId?: number;
   initialValues?: FormValues;
 }
+
+const errorToast = {
+  variant: 'destructive',
+  title: 'Something went wrong.',
+  description: 'There was a problem with your request.',
+  duration: 2000,
+} as const;
 
 function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
   const [createAction, isPendingCreate] = useServerAction(createRecipe);
