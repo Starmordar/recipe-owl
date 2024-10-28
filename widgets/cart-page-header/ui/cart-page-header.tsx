@@ -2,16 +2,16 @@ import { ShareCart } from '@/features/cart/share-cart';
 import AppHeader from '@/shared/ui/app-header';
 import { UserAvatar } from '@/shared/ui/user-avatar';
 
-import MoreOptionsAction from './components/more-options-action';
+import { MoreOptionsAction } from './more-options-action';
 
 import type { CartDetails } from '@/entities/cart';
 
-interface PageHeaderProps {
+interface CartPageHeaderProps {
   cart: CartDetails;
   userId: string;
 }
 
-async function PageHeader({ cart, userId }: PageHeaderProps) {
+async function CartPageHeader({ cart, userId }: CartPageHeaderProps) {
   const isCartOwner = cart.userId === userId;
 
   return (
@@ -32,4 +32,4 @@ async function PageHeader({ cart, userId }: PageHeaderProps) {
   );
 }
 
-export default PageHeader;
+export { CartPageHeader };

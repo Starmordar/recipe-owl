@@ -3,8 +3,7 @@
 import { EllipsisVertical } from 'lucide-react';
 
 import HeaderIconButton from '@/shared/ui/app-header-icon-button';
-
-import CartActionsDrawer from '../../cart-actions-drawer';
+import { CartActionsDrawer } from '@/widgets/cart-actions-drawer';
 
 function MoreOptionsAction() {
   return (
@@ -14,4 +13,4 @@ function MoreOptionsAction() {
   );
 }
 
-export default MoreOptionsAction;
+export { MoreOptionsAction };

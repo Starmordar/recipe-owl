@@ -4,9 +4,8 @@ import { CartProvider, getSharedCarts, useCartDetails } from '@/entities/cart';
 import { validateRequest } from '@/entities/session';
 import { assignUserToSharedCart } from '@/features/cart/assign-user-to-shared-cart';
 import { publicUrls } from '@/shared/config/url';
+import { CartPageHeader } from '@/widgets/cart-page-header';
 import { CartTabs } from '@/widgets/cart-tabs';
-
-import PageHeader from './_components/page-header';
 
 interface PageProps {
   searchParams: { shareToken?: string };
@@ -35,7 +34,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
       sharedCarts={sharedCarts}
       cartDetails={cartDetails}
     >
-      <PageHeader userId={user.id} cart={cartDetails.cart} />
+      <CartPageHeader userId={user.id} cart={cartDetails.cart} />
 
       <main className='page-container px-0 pb-0'>
         <CartTabs cartWithRecipes={cartDetails} />

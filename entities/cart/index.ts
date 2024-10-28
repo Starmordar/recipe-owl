@@ -3,6 +3,7 @@ export { getCartByShareToken } from './model/get-cart-by-token';
 export { getOrCreateCart } from './model/get-or-create-cart';
 export { populateCartWithItems } from './model/populate-cart-with-items';
 export { getSharedCarts } from './model/get-shared-carts';
+export { storeShareToken } from './model/cookies';
 
 export { CartProvider, useCart } from './ui/cart-provider';
 export { useCartDetails } from './hooks/useCartDetails';

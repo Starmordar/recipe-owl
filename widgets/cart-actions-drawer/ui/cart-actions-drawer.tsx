@@ -2,7 +2,7 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
-import { useState, type PropsWithChildren } from 'react';
+import { useState } from 'react';
 
 import { useCart } from '@/entities/cart';
 import { clearCart } from '@/features/cart/clear-cart';
@@ -10,8 +10,9 @@ import { disableCartSharing } from '@/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/features/cart/leave-shared-cart';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
+import { SwitchCartDrawer } from '@/widgets/switch-cart-drawer';
 
-import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
+import type { PropsWithChildren } from 'react';
 
 interface CartActionsDrawerProps extends PropsWithChildren {}
 
@@ -79,11 +80,11 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
           )}
           {sharedCarts.length > 0 && (
             <li>
-              <SwitchGroceryCartsDrawer onSelect={() => setIsDrawerOpen(false)}>
+              <SwitchCartDrawer onSelect={() => setIsDrawerOpen(false)}>
                 <DrawerActionButton>
                   <AlignJustify className='h-5 w-5 opacity-60' /> Switch Lists
                 </DrawerActionButton>
-              </SwitchGroceryCartsDrawer>
+              </SwitchCartDrawer>
             </li>
           )}
         </ul>
@@ -92,4 +93,4 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
   );
 }
 
-export default CartActionsDrawer;
+export { CartActionsDrawer };
