@@ -3,7 +3,7 @@ import EmptyCart from './components/empty-cart';
 import RecipeSection from './components/recipe-section';
 import SharedIngredientsSection from './components/shared-ingredients';
 
-import type { CartWithRecipes } from '@/lib/data/cart';
+import type { CartWithRecipes } from '@/entities/cart';
 
 interface GroceryCartProps {
   cartWithRecipes: CartWithRecipes;

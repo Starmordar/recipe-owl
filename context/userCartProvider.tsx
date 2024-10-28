@@ -2,9 +2,9 @@
 
 import { createContext, useContext, PropsWithChildren, useState, useEffect } from 'react';
 
-import { getCartWithItems, type CartWithRecipes } from '@/lib/data/cart';
+import { getCartWithItems } from '@/lib/data/cart';
 
-import type { CartWithUser } from '@/types/api';
+import type { CartWithRecipes, CartWithUser } from '@/entities/cart';
 
 interface UserCartContext {
   userId: string;

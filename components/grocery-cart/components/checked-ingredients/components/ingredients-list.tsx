@@ -9,7 +9,7 @@ import { useUserCart } from '@/context/userCartProvider';
 import IngredientsSection from '../../ingredients-section';
 import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';
 
-import type { CartWithRecipes } from '@/lib/data/cart';
+import type { CartWithRecipes } from '@/entities/cart';
 
 type Ingredient = CartWithRecipes['checked'][number] & { name: string };
 

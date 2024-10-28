@@ -7,7 +7,8 @@ import { validateRequest } from '@/entities/session';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { prisma } from '@/prisma/prisma-client';
 import { publicUrls } from '@/shared/config/url';
-import { CartWithUser } from '@/types/api';
+
+import type { CartWithUser } from '@/entities/cart';
 
 async function updateOrCreateCart(
   recipeId: number,

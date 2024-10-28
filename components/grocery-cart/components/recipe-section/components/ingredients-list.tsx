@@ -5,12 +5,13 @@ import React from 'react';
 import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { useUserCart } from '@/context/userCartProvider';
-import { CartRecipe } from '@/lib/data/cart';
 
 import IngredientsSection from '../../ingredients-section';
 import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';
 
-type Ingredient = CartRecipe['ingredients'][number];
+import type { RecipeItemInCart } from '@/entities/cart';
+
+type Ingredient = RecipeItemInCart['ingredients'][number];
 
 interface IngredientsListProps {
   recipeId: number;

@@ -1,43 +1,9 @@
-import { validateRequest } from '@/entities/session';
+import { cartDetailsPayload } from '@/entities/cart';
 import { prisma } from '@/prisma/prisma-client';
 import groupBy from '@/shared/lib/groupBy';
-import { CartDetails } from '@/types/api';
 
-import type { Prisma, Ingredient } from '@prisma/client';
-
-export interface CartWithRecipes {
-  cart: CartDetails;
-  checked: CartDetails['items'];
-  shared: Array<SharedIngredient>;
-
-  items: Array<CartRecipe>;
-}
-
-export interface CartRecipe {
-  recipe: Prisma.RecipeGetPayload<{ select: { id: true; title: true; imageUrl: true } }>;
-  ingredients: Array<Ingredient & { itemId: number }>;
-  quantity: number;
-}
-
-export interface SharedIngredient {
-  name: string;
-  ingredients: Array<{
-    itemId: number;
-    id: number;
-    recipeId: number;
-    recipe: CartRecipe['recipe'];
-    unit: string;
-    quantity: number;
-  }>;
-}
-
-const cartDetailsInclude: Prisma.CartInclude = {
-  items: {
-    include: { recipe: { select: { id: true, title: true, imageUrl: true } }, ingredient: true },
-    orderBy: { id: 'asc' },
-  },
-  user: true,
-};
+import type { CartDetails, CartSharedIngredient, CartWithRecipes } from '@/entities/cart';
+import type { Prisma } from '@prisma/client';
 
 export async function getCartByShareToken(shareToken: string): Promise<CartWithRecipes | null> {
   const cartDetails = await getCartDetails({ shareToken });
@@ -50,7 +16,7 @@ export async function getOrCreateCartByUser(userId: string): Promise<CartWithRec
   const cartDetails = await getCartDetails({ userId });
 
   if (cartDetails === null) {
-    const createdCart = await prisma.cart.create({ data: { userId }, include: cartDetailsInclude });
+    const createdCart = await prisma.cart.create({ data: { userId }, ...cartDetailsPayload });
     return getCartWithItems(createdCart as unknown as CartDetails);
   }
 
@@ -58,10 +24,7 @@ export async function getOrCreateCartByUser(userId: string): Promise<CartWithRec
 }
 
 export async function getCartDetails(where: Prisma.CartWhereInput): Promise<CartDetails | null> {
-  return prisma.cart.findFirst({
-    where,
-    include: cartDetailsInclude,
-  }) as Promise<CartDetails | null>;
+  return prisma.cart.findFirst({ where, ...cartDetailsPayload });
 }
 
 export function getCartWithItems(cart: CartDetails): CartWithRecipes {
@@ -75,23 +38,12 @@ export function getCartWithItems(cart: CartDetails): CartWithRecipes {
   return { cart, shared, checked, items };
 }
 
-export async function ingredientsInCart(): Promise<number> {
-  const { user } = await validateRequest();
-  if (user === null) return 0;
-
-  const cart = await prisma.cart.findFirst({ where: { userId: user.id } });
-  if (cart === null) return 0;
-
-  const itemsCount = await prisma.cartItem.count({ where: { cartId: cart.id } });
-  return itemsCount;
-}
-
 function getCheckedIngredients(cart: CartDetails) {
   const checked = cart.items.filter(item => item.isChecked);
   return checked;
 }
 
-function getCartIngredients(items: CartDetails['items'], shared: Array<SharedIngredient>) {
+function getCartIngredients(items: CartDetails['items'], shared: Array<CartSharedIngredient>) {
   const sharedNames = new Set(shared.map(s => s.name));
   const groupedItems = groupBy(items, ({ recipe }) => recipe.id);
 
@@ -108,7 +60,7 @@ function getCartIngredients(items: CartDetails['items'], shared: Array<SharedIng
   });
 }
 
-function getSharedIngredients(items: CartDetails['items']): Array<SharedIngredient> {
+function getSharedIngredients(items: CartDetails['items']): Array<CartSharedIngredient> {
   const groupedByName = groupBy(items, ({ ingredient }) => ingredient.name);
 
   return Object.entries(groupedByName).flatMap(([name, data]) => {

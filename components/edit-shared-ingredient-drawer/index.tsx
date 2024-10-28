@@ -2,16 +2,16 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 
-import { SharedIngredient } from '@/lib/data/cart';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
 import RemoveIngredient from '../grocery-cart/components/ingredients-section/components/remove-ingredient';
 import { applyQuantityToUnit } from '../grocery-cart/utils/applyQuantityToUnit';
 
+import type { CartSharedIngredient } from '@/entities/cart';
 import type { PropsWithChildren } from 'react';
 
 interface RecipeActionsDrawerProps extends PropsWithChildren {
-  item: SharedIngredient;
+  item: CartSharedIngredient;
 }
 
 function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps) {

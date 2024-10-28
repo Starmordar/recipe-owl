@@ -14,19 +14,3 @@ export type RecipeOfTheDay = Prisma.RecipeOfTheDayGetPayload<{
 }>;
 
 export type IngredientDetails = Prisma.IngredientGetPayload<null>;
-
-export type CartDetails = Prisma.CartGetPayload<{
-  include: {
-    items: {
-      include: {
-        recipe: { select: { id: true; title: true; imageUrl: true } };
-        ingredient: true;
-      };
-    };
-    user: true;
-  };
-}>;
-
-export type CartWithUser = Prisma.CartGetPayload<{
-  include: { user: { select: { fullName: true; picture: true } } };
-}>;

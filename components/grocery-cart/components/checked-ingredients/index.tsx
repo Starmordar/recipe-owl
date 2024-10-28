@@ -10,10 +10,6 @@ import SectionHeader from '../section-header';
 import ClearChecked from './components/clear-checked';
 import IngredientsList from './components/ingredients-list';
 
-import type { CartWithRecipes } from '@/lib/data/cart';
-
-type Ingredient = CartWithRecipes['checked'][number] & { name: string };
-
 function CheckedIngredientsSection() {
   const { cartDetails } = useUserCart();
   const { checked: ingredients } = cartDetails;

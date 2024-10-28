@@ -6,10 +6,10 @@ import { CardTitle } from '@/shared/ui/card';
 import RemoveRecipe from './remove-recipe';
 import ServingInput from './servings-input';
 
-import type { CartRecipe } from '@/lib/data/cart';
+import type { RecipeItemInCart } from '@/entities/cart';
 
 interface SectionHeaderProps {
-  recipe: NonNullable<CartRecipe['recipe']>;
+  recipe: NonNullable<RecipeItemInCart['recipe']>;
   quantity: number;
 }
 
