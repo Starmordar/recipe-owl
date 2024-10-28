@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 
 import { validateRequest } from '@/entities/session';
-import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { prisma } from '@/shared/api/prisma-client';
 import { publicUrls } from '@/shared/config/url';
+import { UnauthorizedError } from '@/shared/lib/errors/UnauthorizedError';
 
 async function getCartId(shareToken?: string | null): Promise<[number | undefined, string]> {
   let existingCart = null;

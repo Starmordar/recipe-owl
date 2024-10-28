@@ -4,10 +4,10 @@ import { revalidatePath } from 'next/cache';
 
 import { imageUploadService } from '@/entities/image';
 import { validateRequest } from '@/entities/session';
-import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
 import { elastic } from '@/shared/api/elastic-client';
 import { prisma } from '@/shared/api/prisma-client';
 import { publicUrls } from '@/shared/config/url';
+import { UnauthorizedError } from '@/shared/lib/errors/UnauthorizedError';
 import pick from '@/shared/lib/pick';
 
 import type { FormDataValues, FormValues } from '@/components/recipe-details-form/constants/shema';

@@ -12,5 +12,3 @@ export type LatestRecipe = Prisma.RecipeGetPayload<{ include: { user: true } }>;
 export type RecipeOfTheDay = Prisma.RecipeOfTheDayGetPayload<{
   include: { recipe: { include: { user: true } } };
 }>;
-
-export type IngredientDetails = Prisma.IngredientGetPayload<null>;
