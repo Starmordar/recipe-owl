@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
 import { lucia } from '@/entities/session/lucia';
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from '@/shared/api/prisma-client';
 import { publicUrls } from '@/shared/config/url';
 
 import type { LoginFormSchema } from './schema';

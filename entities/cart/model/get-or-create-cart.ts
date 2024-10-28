@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from '@/shared/api/prisma-client';
 
 import { getCartDetails } from './get-cart-details';
 import { cartDetailsPayload } from './payload';

@@ -4,9 +4,9 @@ import { revalidatePath } from 'next/cache';
 
 import { imageUploadService } from '@/entities/image';
 import { validateRequest } from '@/entities/session';
-import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
-import { prisma } from '@/prisma/prisma-client';
+import { elastic } from '@/shared/api/elastic-client';
+import { prisma } from '@/shared/api/prisma-client';
 import { publicUrls } from '@/shared/config/url';
 import pick from '@/shared/lib/pick';
 
@@ -32,6 +32,21 @@ export async function createRecipe(formData: FormData): Promise<Recipe> {
 
   revalidatePath(publicUrls.recipes);
   return recipe;
+}
+
+async function indexRecipe(recipe: Recipe, ingredients: Array<string>): Promise<void> {
+  await elastic.index({
+    index: 'recipes',
+    id: recipe.id.toString(),
+    body: {
+      title: recipe.title,
+      description: recipe.description,
+      ingredients: ingredients,
+      imageUrl: recipe.imageUrl,
+      createdById: recipe.createdById,
+      createdAt: recipe.createdAt,
+    },
+  });
 }
 
 export async function updateRecipe(recipeId: number, formData: FormData): Promise<Recipe> {
@@ -71,15 +86,21 @@ export async function updateRecipe(recipeId: number, formData: FormData): Promis
   return recipe;
 }
 
-export async function deleteRecipe(recipeId: number): Promise<void> {
-  const recipe = await prisma.recipe.delete({
-    where: { id: recipeId },
+async function updateRecipeIndex(recipe: Recipe, ingredients: Array<string>): Promise<void> {
+  await elastic.update({
+    index: 'recipes',
+    id: recipe.id.toString(),
+    body: {
+      doc: {
+        title: recipe.title,
+        description: recipe.description,
+        ingredients: ingredients,
+        imageUrl: recipe.imageUrl,
+        createdById: recipe.createdById,
+        createdAt: recipe.createdAt,
+      },
+    },
   });
-
-  await deleteRecipeIndex(recipe.id);
-
-  revalidatePath(publicUrls.recipe(recipe.id));
-  revalidatePath(publicUrls.recipes);
 }
 
 async function getIngredientListPayload(recipeId: number, ingredients: Array<Ingredient>) {

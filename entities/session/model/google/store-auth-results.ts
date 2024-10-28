@@ -4,7 +4,7 @@ import { OAuth2RequestError } from 'arctic';
 import { generateIdFromEntropySize } from 'lucia';
 import { cookies } from 'next/headers';
 
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from '@/shared/api/prisma-client';
 
 import { lucia } from '../../lib/lucia';
 import { google } from '../../lib/oauth';

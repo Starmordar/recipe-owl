@@ -1,6 +1,6 @@
 import { ingredientsCategory } from '@/components/recipe-filters/constants/filter-categories';
 
-import { elastic } from '../elastic/setup';
+import { elastic } from '../../shared/api/elastic-client';
 
 import type { RecipeSearchResult } from '@/types/api';
 

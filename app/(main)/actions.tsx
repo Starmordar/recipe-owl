@@ -1,6 +1,6 @@
 import { revalidatePath } from 'next/cache';
 
-import { prisma } from '@/prisma/prisma-client';
+import { prisma } from '@/shared/api/prisma-client';
 import { publicUrls } from '@/shared/config/url';
 
 import type { RecipeOfTheDay, LatestRecipe, RecipePreview } from '@/types/api';

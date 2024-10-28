@@ -28,8 +28,7 @@ function CartTabs({ cartWithRecipes }: CartTabsProps) {
     [cartWithRecipes],
   );
 
-  const loadAnimationFeatures = () =>
-    import('@/lib/framer-motion/features').then(res => res.default);
+  const loadAnimationFeatures = () => import('@/shared/lib/framer-motion').then(res => res.default);
 
   return (
     <LazyMotion features={loadAnimationFeatures} strict>
