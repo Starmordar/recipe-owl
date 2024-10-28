@@ -1,8 +1,8 @@
 'use client';
 
-import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
 import { useUserCart } from '@/context/userCartProvider';
 import { groupCartIngredient } from '@/entities/cart';
+import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
 
 import IngredientsSection from '../../ingredients-section';
 import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';

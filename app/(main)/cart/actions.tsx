@@ -40,16 +40,3 @@ export async function addIngredientsToCart(
   revalidatePath(publicUrls.cart);
   return { id: cartId };
 }
-
-export async function clearCart(cartId: number): Promise<void> {
-  await prisma.cartItem.deleteMany({ where: { cartId } });
-  revalidatePath(publicUrls.cart);
-}
-
-export async function updateCartItemCheckStatus(
-  cartItemIds: Array<number>,
-  isChecked: boolean,
-): Promise<void> {
-  await prisma.cartItem.updateMany({ where: { id: { in: cartItemIds } }, data: { isChecked } });
-  revalidatePath(publicUrls.cart);
-}

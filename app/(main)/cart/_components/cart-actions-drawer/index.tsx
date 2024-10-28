@@ -5,12 +5,12 @@ import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
 import { useState, type PropsWithChildren } from 'react';
 
 import { useUserCart } from '@/context/userCartProvider';
+import { clearCart } from '@/features/cart/clear-cart';
 import { disableCartSharing } from '@/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/features/cart/leave-shared-cart';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
-import { clearCart } from '../../actions';
 import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
 
 interface CartActionsDrawerProps extends PropsWithChildren {}
