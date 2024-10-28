@@ -8,19 +8,20 @@ interface Ingredient {
   id?: number;
   name?: string;
 }
-interface IngredientsSectionProps<I extends Ingredient> {
+
+interface CartIngredientsSectionProps<I extends Ingredient> {
   ingredients: Array<I>;
   renderContent: (ingredient: I) => ReactNode;
   checked: boolean;
   onClick: (ingredient: I) => void;
 }
 
-function IngredientsSection<I extends Ingredient>({
+function CartIngredientsSection<I extends Ingredient>({
   renderContent,
   ingredients,
   checked,
   onClick,
-}: IngredientsSectionProps<I>) {
+}: CartIngredientsSectionProps<I>) {
   return (
     <div className={checked ? 'opacity-40' : 'opacity-100'}>
       {ingredients.map(ingredient => {
@@ -44,4 +45,4 @@ function IngredientsSection<I extends Ingredient>({
   );
 }
 
-export default IngredientsSection;
+export { CartIngredientsSection };

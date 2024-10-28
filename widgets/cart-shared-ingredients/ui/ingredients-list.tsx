@@ -1,14 +1,16 @@
 'use client';
 
-import { useCart, groupCartIngredient } from '@/entities/cart';
-import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
-
-import IngredientsSection from '../../ingredients-section';
-import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';
+import {
+  useCart,
+  groupCartIngredient,
+  CartIngredientsSection,
+  updateCartItemCheckStatus,
+} from '@/entities/cart';
+import { RemoveIngredient } from '@/features/cart/remove-ingredient';
 
 import type { CartSharedIngredient } from '@/entities/cart';
 
-function IngredientsList() {
+function SharedIngredientsList() {
   const { cartDetails, handleItemsUpdate } = useCart();
   const { shared: ingredients } = cartDetails;
 
@@ -29,7 +31,7 @@ function IngredientsList() {
   if (ingredients.length === 0) return null;
 
   return (
-    <IngredientsSection<CartSharedIngredient>
+    <CartIngredientsSection<CartSharedIngredient>
       ingredients={ingredients}
       renderContent={(item: CartSharedIngredient) => (
         <>
@@ -59,4 +61,4 @@ function IngredientsList() {
   );
 }
 
-export default IngredientsList;
+export { SharedIngredientsList };

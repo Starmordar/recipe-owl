@@ -2,13 +2,11 @@
 
 import { ClipboardCheck } from 'lucide-react';
 
-import { useCart } from '@/entities/cart';
+import { CartSectionHeader, useCart } from '@/entities/cart';
 import { ClearChecked } from '@/features/cart/clear-checked-items';
 import { Card } from '@/shared/ui/card';
 
-import SectionHeader from '../section-header';
-
-import IngredientsList from './components/ingredients-list';
+import { CheckedIngredientsList } from './ingredients-list';
 
 function CheckedIngredientsSection() {
   const { cartDetails } = useCart();
@@ -19,16 +17,16 @@ function CheckedIngredientsSection() {
   return (
     <Card className='flex flex-col gap-y-2 p-4'>
       <div className='flex gap-4'>
-        <SectionHeader title='Checked Ingredients' Icon={<ClipboardCheck />}>
+        <CartSectionHeader title='Checked Ingredients' Icon={<ClipboardCheck />}>
           <ClearChecked />
-        </SectionHeader>
+        </CartSectionHeader>
       </div>
 
       <div className='grid gap-2'>
-        <IngredientsList />
+        <CheckedIngredientsList />
       </div>
     </Card>
   );
 }
 
-export default CheckedIngredientsSection;
+export { CheckedIngredientsSection };

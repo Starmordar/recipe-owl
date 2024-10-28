@@ -1,9 +1,7 @@
-import CheckedIngredientsList from './components/checked-ingredients/components/ingredients-list';
-import EmptyCart from './components/empty-cart';
-import RecipeIngredientsList from './components/recipe-section/components/ingredients-list';
-import SharedIngredientsList from './components/shared-ingredients/components/ingredients-list';
-
-import type { CartWithRecipes } from '@/entities/cart';
+import { EmptyCart, type CartWithRecipes } from '@/entities/cart';
+import { CheckedIngredientsList } from '@/widgets/cart-checked-ingredients';
+import { RecipeIngredientsList } from '@/widgets/cart-recipe-section';
+import { SharedIngredientsList } from '@/widgets/cart-shared-ingredients';
 
 interface IngredientsListProps {
   cartWithRecipes: CartWithRecipes;

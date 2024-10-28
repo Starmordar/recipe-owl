@@ -4,13 +4,13 @@ import { useCart } from '@/entities/cart';
 import { Card } from '@/shared/ui/card';
 import { CartRecipeHeader } from '@/widgets/cart-recipe-header';
 
-import IngredientsList from './components/ingredients-list';
+import { RecipeIngredientsList } from './ingredients-list';
 
-interface RecipeSectionProps {
+interface CartRecipeSectionProps {
   recipeId: number;
 }
 
-function RecipeSection({ recipeId }: RecipeSectionProps) {
+function CartRecipeSection({ recipeId }: CartRecipeSectionProps) {
   const { cartDetails } = useCart();
   const { items } = cartDetails;
 
@@ -23,9 +23,9 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
         <CartRecipeHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </div>
 
-      <IngredientsList recipeId={recipeId} />
+      <RecipeIngredientsList recipeId={recipeId} />
     </Card>
   );
 }
 
-export default RecipeSection;
+export { CartRecipeSection };

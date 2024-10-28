@@ -2,17 +2,19 @@
 
 import React from 'react';
 
-import { useCart, applyQuantityToUnit } from '@/entities/cart';
-import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
-
-import IngredientsSection from '../../ingredients-section';
-import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';
+import {
+  useCart,
+  applyQuantityToUnit,
+  CartIngredientsSection,
+  updateCartItemCheckStatus,
+} from '@/entities/cart';
+import { RemoveIngredient } from '@/features/cart/remove-ingredient';
 
 import type { CartWithRecipes } from '@/entities/cart';
 
 type Ingredient = CartWithRecipes['checked'][number] & { name: string };
 
-function IngredientsList() {
+function CheckedIngredientsList() {
   const { cartDetails, handleItemsUpdate } = useCart();
   const { checked: ingredients } = cartDetails;
 
@@ -24,7 +26,7 @@ function IngredientsList() {
   if (ingredients.length === 0) return null;
 
   return (
-    <IngredientsSection<Ingredient>
+    <CartIngredientsSection<Ingredient>
       ingredients={ingredients.map(i => ({ ...i, name: i.ingredient.name }))}
       renderContent={item => (
         <>
@@ -47,4 +49,4 @@ function IngredientsList() {
   );
 }
 
-export default IngredientsList;
+export { CheckedIngredientsList };

@@ -2,12 +2,12 @@ import { cloneElement, PropsWithChildren } from 'react';
 
 import { CardTitle } from '@/shared/ui/card';
 
-interface SectionHeaderProps extends PropsWithChildren {
+interface CartSectionHeaderProps extends PropsWithChildren {
   title: string;
   Icon: JSX.Element;
 }
 
-function SectionHeader({ title, Icon, children }: SectionHeaderProps) {
+function CartSectionHeader({ title, Icon, children }: CartSectionHeaderProps) {
   return (
     <div className='flex items-center w-full gap-x-4'>
       <div className='flex items-center justify-center rounded-lg min-w-10 w-10 h-10 bg-muted'>
@@ -24,4 +24,4 @@ function SectionHeader({ title, Icon, children }: SectionHeaderProps) {
   );
 }
 
-export default SectionHeader;
+export { CartSectionHeader };

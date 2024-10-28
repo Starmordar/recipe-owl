@@ -3,9 +3,8 @@
 import { DialogTitle } from '@radix-ui/react-dialog';
 
 import { applyQuantityToUnit } from '@/entities/cart';
+import { RemoveIngredient } from '@/features/cart/remove-ingredient';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
-
-import RemoveIngredient from '../grocery-cart/components/ingredients-section/components/remove-ingredient';
 
 import type { CartSharedIngredient } from '@/entities/cart';
 import type { PropsWithChildren } from 'react';

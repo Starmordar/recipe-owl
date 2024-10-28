@@ -2,12 +2,10 @@
 
 import { ClipboardList } from 'lucide-react';
 
-import { useCart } from '@/entities/cart';
+import { CartSectionHeader, useCart } from '@/entities/cart';
 import { Card } from '@/shared/ui/card';
 
-import SectionHeader from '../section-header';
-
-import IngredientsList from './components/ingredients-list';
+import { SharedIngredientsList } from './ingredients-list';
 
 function SharedIngredientsSection() {
   const { cartDetails } = useCart();
@@ -18,14 +16,14 @@ function SharedIngredientsSection() {
   return (
     <Card className='flex flex-col gap-y-2 p-4'>
       <div className='flex gap-4'>
-        <SectionHeader title='Shared Ingredients' Icon={<ClipboardList />} />
+        <CartSectionHeader title='Shared Ingredients' Icon={<ClipboardList />} />
       </div>
 
       <div className='grid gap-2'>
-        <IngredientsList />
+        <SharedIngredientsList />
       </div>
     </Card>
   );
 }
 
-export default SharedIngredientsSection;
+export { SharedIngredientsSection };

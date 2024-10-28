@@ -2,21 +2,23 @@
 
 import React from 'react';
 
-import { useCart, applyQuantityToUnit } from '@/entities/cart';
-import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
-
-import IngredientsSection from '../../ingredients-section';
-import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';
+import {
+  useCart,
+  applyQuantityToUnit,
+  CartIngredientsSection,
+  updateCartItemCheckStatus,
+} from '@/entities/cart';
+import { RemoveIngredient } from '@/features/cart/remove-ingredient';
 
 import type { RecipeItemInCart } from '@/entities/cart';
 
 type Ingredient = RecipeItemInCart['ingredients'][number];
 
-interface IngredientsListProps {
+interface RecipeIngredientsListProps {
   recipeId: number;
 }
 
-function IngredientsList({ recipeId }: IngredientsListProps) {
+function RecipeIngredientsList({ recipeId }: RecipeIngredientsListProps) {
   const { cartDetails, handleItemsUpdate } = useCart();
   const { items } = cartDetails;
 
@@ -29,7 +31,7 @@ function IngredientsList({ recipeId }: IngredientsListProps) {
   if (!cartItem) return null;
 
   return (
-    <IngredientsSection<Ingredient>
+    <CartIngredientsSection<Ingredient>
       ingredients={cartItem.ingredients}
       renderContent={ingredient => (
         <>
@@ -52,4 +54,4 @@ function IngredientsList({ recipeId }: IngredientsListProps) {
   );
 }
 
-export default IngredientsList;
+export { RecipeIngredientsList };

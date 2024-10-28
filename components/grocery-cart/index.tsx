@@ -1,9 +1,7 @@
-import CheckedIngredientsSection from './components/checked-ingredients';
-import EmptyCart from './components/empty-cart';
-import RecipeSection from './components/recipe-section';
-import SharedIngredientsSection from './components/shared-ingredients';
-
-import type { CartWithRecipes } from '@/entities/cart';
+import { EmptyCart, type CartWithRecipes } from '@/entities/cart';
+import { CheckedIngredientsSection } from '@/widgets/cart-checked-ingredients';
+import { CartRecipeSection } from '@/widgets/cart-recipe-section';
+import { SharedIngredientsSection } from '@/widgets/cart-shared-ingredients';
 
 interface GroceryCartProps {
   cartWithRecipes: CartWithRecipes;
@@ -16,7 +14,7 @@ function GroceryCart({ cartWithRecipes }: GroceryCartProps) {
   return (
     <div className='space-y-4'>
       {cartWithRecipes.items.map(cartItem => (
-        <RecipeSection key={cartItem.recipe.id} recipeId={cartItem.recipe.id} />
+        <CartRecipeSection key={cartItem.recipe.id} recipeId={cartItem.recipe.id} />
       ))}
 
       <SharedIngredientsSection />

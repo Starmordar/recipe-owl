@@ -1,7 +1,6 @@
 'use client';
 
-import { useCart } from '@/entities/cart';
-import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
+import { useCart, updateCartItemCheckStatus } from '@/entities/cart';
 import { Checkbox } from '@/shared/ui/checkbox';
 
 interface RemoveIngredientProps {
