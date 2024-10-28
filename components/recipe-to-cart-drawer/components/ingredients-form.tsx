@@ -1,6 +1,6 @@
 'use client';
 
-import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
+import { applyQuantityToUnit } from '@/entities/cart';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form';
 

@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { UserCartProvider } from '@/context/userCartProvider';
+import { useCartDetails } from '@/entities/cart';
 import { validateRequest } from '@/entities/session';
-import useGroceryCart from '@/hooks/cart/useGroceryCart';
 import { publicUrls } from '@/shared/config/url';
 import { CartTabs } from '@/widgets/cart-tabs';
 
@@ -15,7 +15,6 @@ interface PageProps {
 
 async function Page({ searchParams: { shareToken } }: PageProps) {
   const { user } = await validateRequest();
-  console.log('user :>> ', user);
   if (user === null) redirect(publicUrls.signIn);
 
   if (shareToken) {
@@ -23,7 +22,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
     if (!isExists) redirect(publicUrls.cart);
   }
 
-  const { getCartDetails } = useGroceryCart({ userId: user.id, shareToken });
+  const { getCartDetails } = useCartDetails({ userId: user.id, shareToken });
   const cartDetails = await getCartDetails();
   if (cartDetails === null) redirect(publicUrls.cart);
 

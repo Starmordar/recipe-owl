@@ -2,10 +2,10 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 
+import { applyQuantityToUnit } from '@/entities/cart';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/shared/ui/drawer';
 
 import RemoveIngredient from '../grocery-cart/components/ingredients-section/components/remove-ingredient';
-import { applyQuantityToUnit } from '../grocery-cart/utils/applyQuantityToUnit';
 
 import type { CartSharedIngredient } from '@/entities/cart';
 import type { PropsWithChildren } from 'react';

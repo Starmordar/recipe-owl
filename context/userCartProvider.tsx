@@ -2,7 +2,7 @@
 
 import { createContext, useContext, PropsWithChildren, useState, useEffect } from 'react';
 
-import { getCartWithItems } from '@/lib/data/cart';
+import { populateCartWithItems } from '@/entities/cart';
 
 import type { CartWithRecipes, CartWithUser } from '@/entities/cart';
 
@@ -45,7 +45,7 @@ function UserCartProvider({
         : item,
     );
 
-    const updated = getCartWithItems({ ...details.cart, items: updatedItems });
+    const updated = populateCartWithItems({ ...details.cart, items: updatedItems });
     setDetails(updated);
   }
 

@@ -3,8 +3,8 @@
 import React from 'react';
 
 import { updateCartItemCheckStatus } from '@/app/(main)/cart/actions';
-import { applyQuantityToUnit } from '@/components/grocery-cart/utils/applyQuantityToUnit';
 import { useUserCart } from '@/context/userCartProvider';
+import { applyQuantityToUnit } from '@/entities/cart';
 
 import IngredientsSection from '../../ingredients-section';
 import RemoveIngredient from '../../ingredients-section/components/remove-ingredient';

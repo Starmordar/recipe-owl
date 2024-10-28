@@ -1,4 +1,4 @@
-export function applyQuantityToUnit(unit: string | null, quantity: number): string {
+function applyQuantityToUnit(unit: string | null, quantity: number): string {
   if (unit === null) return '';
   return replaceValuesWithMultipliedValue(unit, quantity);
 }
@@ -26,3 +26,5 @@ function replaceValuesWithMultipliedValue(str: string, quantity: number): string
     return `${quantity} x ${match}`;
   });
 }
+
+export { applyQuantityToUnit };

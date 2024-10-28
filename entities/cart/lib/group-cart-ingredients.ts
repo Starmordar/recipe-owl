@@ -1,6 +1,6 @@
-import { applyQuantityToUnit } from './applyQuantityToUnit';
+import { applyQuantityToUnit } from './add-quantity-to-units';
 
-import type { CartSharedIngredient } from '@/entities/cart';
+import type { CartSharedIngredient } from '../model/type';
 
 function parseQuantityAndUnit(quantityWithUnit: string) {
   const match = quantityWithUnit.match(/^(\d*\.?\d+|\d+)\s*(\D+)?$/);
@@ -9,7 +9,7 @@ function parseQuantityAndUnit(quantityWithUnit: string) {
   return { quantity: parseFloat(match[1]), unit: match[2].trim() };
 }
 
-function mergeIngredients(item: CartSharedIngredient): Array<string> {
+function groupCartIngredient(item: CartSharedIngredient): Array<string> {
   const merged = item.ingredients.reduce(
     (result, ingredient) => {
       const quantityWithUnit = applyQuantityToUnit(ingredient.unit, ingredient.quantity);
@@ -31,4 +31,4 @@ function mergeIngredients(item: CartSharedIngredient): Array<string> {
   );
 }
 
-export default mergeIngredients;
+export { groupCartIngredient };
