@@ -4,8 +4,8 @@ import { Camera, Pencil, Image as LucideImage } from 'lucide-react';
 import NextImage from 'next/image';
 import { useRef, useState } from 'react';
 
-import ImageUploadDrawer from '@/components/image-upload-drawer';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
+import { FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form';
+import { ImageUploadDrawer } from '@/shared/ui/image-upload-drawer';
 
 import FileInputs, { FileUploadHandles } from './components/file-inputs';
 

@@ -48,4 +48,4 @@ function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawe
   );
 }
 
-export default ImageUploadDrawer;
+export { ImageUploadDrawer };
