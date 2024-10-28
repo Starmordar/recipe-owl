@@ -2,7 +2,7 @@
 
 import { ClipboardList } from 'lucide-react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { Card } from '@/shared/ui/card';
 
 import SectionHeader from '../section-header';
@@ -10,7 +10,7 @@ import SectionHeader from '../section-header';
 import IngredientsList from './components/ingredients-list';
 
 function SharedIngredientsSection() {
-  const { cartDetails } = useUserCart();
+  const { cartDetails } = useCart();
   const { shared: ingredients } = cartDetails;
 
   if (ingredients.length === 0) return null;

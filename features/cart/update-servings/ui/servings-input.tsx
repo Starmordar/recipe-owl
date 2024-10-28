@@ -3,7 +3,7 @@
 import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { NumberInputSpinner } from '@/shared/ui/number-input-spinner';
 
@@ -15,7 +15,7 @@ interface ServingsInput {
 }
 
 function ServingsInput({ recipeId, quantity }: ServingsInput) {
-  const { cartId } = useUserCart();
+  const { cartId } = useCart();
   const [updateServingsAction, isPending] = useServerAction(updateServings);
   const [value, setValue] = useState<number>(quantity);
 

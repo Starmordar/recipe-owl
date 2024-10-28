@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { UserCartProvider } from '@/context/userCartProvider';
-import { getSharedCarts, useCartDetails } from '@/entities/cart';
+import { CartProvider, getSharedCarts, useCartDetails } from '@/entities/cart';
 import { validateRequest } from '@/entities/session';
 import { assignUserToSharedCart } from '@/features/cart/assign-user-to-shared-cart';
 import { publicUrls } from '@/shared/config/url';
@@ -29,7 +28,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
   const sharedCarts = await getSharedCarts(user.id);
 
   return (
-    <UserCartProvider
+    <CartProvider
       userId={user.id}
       cartId={cartDetails.cart.id}
       isCartOwner={cartDetails.cart.userId === user.id}
@@ -41,7 +40,7 @@ async function Page({ searchParams: { shareToken } }: PageProps) {
       <main className='page-container px-0 pb-0'>
         <CartTabs cartWithRecipes={cartDetails} />
       </main>
-    </UserCartProvider>
+    </CartProvider>
   );
 }
 

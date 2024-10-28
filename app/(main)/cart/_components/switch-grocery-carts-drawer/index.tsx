@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { publicUrls } from '@/shared/config/url';
 import {
   Drawer,
@@ -23,7 +23,7 @@ interface SwitchGroceryCartsDrawerProps extends PropsWithChildren {
 }
 
 function SwitchGroceryCartsDrawer({ onSelect, children }: SwitchGroceryCartsDrawerProps) {
-  const { sharedCarts } = useUserCart();
+  const { sharedCarts } = useCart();
 
   function handleChangeCart(shareToken?: string | null) {
     Cookies.set('shareToken', shareToken ?? '', { path: '/' });

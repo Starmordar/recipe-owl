@@ -2,14 +2,14 @@
 
 import { X } from 'lucide-react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Button } from '@/shared/ui/button';
 
 import { clearCheckedItems } from '../model/clear-checked';
 
 function ClearChecked() {
-  const { cartId } = useUserCart();
+  const { cartId } = useCart();
   const [clearCheckedAction, isPending] = useServerAction(clearCheckedItems);
 
   return (

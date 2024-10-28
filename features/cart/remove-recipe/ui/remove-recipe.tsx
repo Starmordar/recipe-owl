@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Button } from '@/shared/ui/button';
 
@@ -13,7 +13,7 @@ interface RemoveRecipeProps {
 }
 
 function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
-  const { cartId } = useUserCart();
+  const { cartId } = useCart();
   const [removeRecipeAction, isPending] = useServerAction(removeRecipe);
 
   return (

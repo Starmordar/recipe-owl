@@ -4,7 +4,7 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
 import { useState, type PropsWithChildren } from 'react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { clearCart } from '@/features/cart/clear-cart';
 import { disableCartSharing } from '@/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/features/cart/leave-shared-cart';
@@ -16,7 +16,7 @@ import SwitchGroceryCartsDrawer from '../switch-grocery-carts-drawer';
 interface CartActionsDrawerProps extends PropsWithChildren {}
 
 function CartActionsDrawer({ children }: CartActionsDrawerProps) {
-  const { cartId, userId, isCartOwner, sharedCarts } = useUserCart();
+  const { cartId, userId, isCartOwner, sharedCarts } = useCart();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const { handleLeaveCart, isPending } = useLeaveSharedCart({ userId, cartId });

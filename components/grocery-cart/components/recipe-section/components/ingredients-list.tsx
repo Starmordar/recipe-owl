@@ -2,8 +2,7 @@
 
 import React from 'react';
 
-import { useUserCart } from '@/context/userCartProvider';
-import { applyQuantityToUnit } from '@/entities/cart';
+import { useCart, applyQuantityToUnit } from '@/entities/cart';
 import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
 
 import IngredientsSection from '../../ingredients-section';
@@ -18,7 +17,7 @@ interface IngredientsListProps {
 }
 
 function IngredientsList({ recipeId }: IngredientsListProps) {
-  const { cartDetails, handleItemsUpdate } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useCart();
   const { items } = cartDetails;
 
   async function onCheckedChange(item: Ingredient, nextChecked = true) {

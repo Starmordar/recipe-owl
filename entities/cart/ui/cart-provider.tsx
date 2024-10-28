@@ -1,12 +1,13 @@
 'use client';
 
-import { createContext, useContext, PropsWithChildren, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 import { populateCartWithItems } from '@/entities/cart';
 
 import type { CartWithRecipes, CartWithUser } from '@/entities/cart';
+import type { PropsWithChildren } from 'react';
 
-interface UserCartContext {
+interface CartContext {
   userId: string;
   cartId: number;
   isCartOwner: boolean;
@@ -14,24 +15,24 @@ interface UserCartContext {
   cartDetails: CartWithRecipes;
 }
 
-interface UserCartContextType extends UserCartContext {
+interface CartContextType extends CartContext {
   handleItemsUpdate: (ingrediendIds: Array<number>, nextChecked: boolean) => void;
 }
 
-const UserCartContext = createContext<UserCartContextType>({} as UserCartContextType);
+const CartContext = createContext<CartContextType>({} as CartContextType);
 
-interface UserCartProviderProps extends UserCartContext, PropsWithChildren {
+interface CartProviderProps extends CartContext, PropsWithChildren {
   cartDetails: CartWithRecipes;
 }
 
-function UserCartProvider({
+function CartProvider({
   children,
   userId,
   cartId,
   isCartOwner,
   sharedCarts,
   cartDetails,
-}: UserCartProviderProps) {
+}: CartProviderProps) {
   const [details, setDetails] = useState(cartDetails);
 
   useEffect(() => {
@@ -50,16 +51,16 @@ function UserCartProvider({
   }
 
   return (
-    <UserCartContext.Provider
+    <CartContext.Provider
       value={{ userId, cartId, isCartOwner, sharedCarts, cartDetails: details, handleItemsUpdate }}
     >
       {children}
-    </UserCartContext.Provider>
+    </CartContext.Provider>
   );
 }
 
-function useUserCart(): UserCartContextType {
-  return useContext(UserCartContext);
+function useCart(): CartContextType {
+  return useContext(CartContext);
 }
 
-export { UserCartProvider, useUserCart };
+export { CartProvider, useCart };

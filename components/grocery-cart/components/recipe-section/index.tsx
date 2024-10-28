@@ -1,6 +1,6 @@
 'use client';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { Card } from '@/shared/ui/card';
 import { CartRecipeHeader } from '@/widgets/cart-recipe-header';
 
@@ -11,7 +11,7 @@ interface RecipeSectionProps {
 }
 
 function RecipeSection({ recipeId }: RecipeSectionProps) {
-  const { cartDetails } = useUserCart();
+  const { cartDetails } = useCart();
   const { items } = cartDetails;
 
   const cartItem = items.find(item => item.recipe.id === recipeId);

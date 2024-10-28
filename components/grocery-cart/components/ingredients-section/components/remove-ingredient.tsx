@@ -1,6 +1,6 @@
 'use client';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
 import { Checkbox } from '@/shared/ui/checkbox';
 
@@ -11,7 +11,7 @@ interface RemoveIngredientProps {
 }
 
 function RemoveIngredient({ cartItemIds, ingredientIds, defaultChecked }: RemoveIngredientProps) {
-  const { handleItemsUpdate } = useUserCart();
+  const { handleItemsUpdate } = useCart();
   const inputId = `ingredienIt: ${ingredientIds.toString()}`;
 
   async function onCheckedChange(nextChecked: boolean) {

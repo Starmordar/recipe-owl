@@ -2,7 +2,7 @@
 
 import { ClipboardCheck } from 'lucide-react';
 
-import { useUserCart } from '@/context/userCartProvider';
+import { useCart } from '@/entities/cart';
 import { ClearChecked } from '@/features/cart/clear-checked-items';
 import { Card } from '@/shared/ui/card';
 
@@ -11,7 +11,7 @@ import SectionHeader from '../section-header';
 import IngredientsList from './components/ingredients-list';
 
 function CheckedIngredientsSection() {
-  const { cartDetails } = useUserCart();
+  const { cartDetails } = useCart();
   const { checked: ingredients } = cartDetails;
 
   if (ingredients.length === 0) return null;

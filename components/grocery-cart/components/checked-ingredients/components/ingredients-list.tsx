@@ -2,8 +2,7 @@
 
 import React from 'react';
 
-import { useUserCart } from '@/context/userCartProvider';
-import { applyQuantityToUnit } from '@/entities/cart';
+import { useCart, applyQuantityToUnit } from '@/entities/cart';
 import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
 
 import IngredientsSection from '../../ingredients-section';
@@ -14,7 +13,7 @@ import type { CartWithRecipes } from '@/entities/cart';
 type Ingredient = CartWithRecipes['checked'][number] & { name: string };
 
 function IngredientsList() {
-  const { cartDetails, handleItemsUpdate } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useCart();
   const { checked: ingredients } = cartDetails;
 
   async function onCheckedChange(item: Ingredient, nextChecked = false) {

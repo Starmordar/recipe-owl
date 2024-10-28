@@ -1,7 +1,6 @@
 'use client';
 
-import { useUserCart } from '@/context/userCartProvider';
-import { groupCartIngredient } from '@/entities/cart';
+import { useCart, groupCartIngredient } from '@/entities/cart';
 import { updateCartItemCheckStatus } from '@/features/cart/update-item-check-status';
 
 import IngredientsSection from '../../ingredients-section';
@@ -10,7 +9,7 @@ import RemoveIngredient from '../../ingredients-section/components/remove-ingred
 import type { CartSharedIngredient } from '@/entities/cart';
 
 function IngredientsList() {
-  const { cartDetails, handleItemsUpdate } = useUserCart();
+  const { cartDetails, handleItemsUpdate } = useCart();
   const { shared: ingredients } = cartDetails;
 
   function getCartItemIds(item: CartSharedIngredient) {
