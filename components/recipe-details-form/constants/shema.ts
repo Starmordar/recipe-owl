@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { acceptedImageMimeTypes } from '@/entities/image';
+import { acceptedImageMimeTypes } from '@/entities/image/config';
 
 const ingredientSchema = z.object({
   id: z.any(),

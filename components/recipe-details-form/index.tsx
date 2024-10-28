@@ -1,7 +1,5 @@
 'use client';
 
-import { publicUrls } from '@/shared/config/url';
-
 import RecipeDetailsFormHeader from '../layout/recipe-details-form-header';
 
 import RecipeForm from './components/recipe-form';

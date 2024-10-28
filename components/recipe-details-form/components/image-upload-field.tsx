@@ -4,7 +4,7 @@ import { Camera, Image as LucideImage } from 'lucide-react';
 import NextImage from 'next/image';
 import { useState } from 'react';
 
-import { acceptedImageMimeTypes } from '@/entities/image';
+import { acceptedImageMimeTypes } from '@/entities/image/config';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 
