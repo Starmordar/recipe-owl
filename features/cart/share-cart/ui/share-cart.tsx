@@ -2,16 +2,17 @@
 
 import { Share2 } from 'lucide-react';
 
-import useShareCart from '@/hooks/cart/useShareCart';
 import HeaderIconButton from '@/shared/ui/app-header-icon-button';
+
+import { useShareCart } from '../hooks/useShareCart';
 
 import type { CartDetails } from '@/entities/cart';
 
-interface ShareActionProps {
+interface ShareCartProps {
   cart: CartDetails;
 }
 
-function ShareAction({ cart }: ShareActionProps) {
+function ShareCart({ cart }: ShareCartProps) {
   const { handleCartShare, isPending } = useShareCart({ cart });
 
   return (
@@ -26,4 +27,4 @@ function ShareAction({ cart }: ShareActionProps) {
   );
 }
 
-export default ShareAction;
+export { ShareCart };

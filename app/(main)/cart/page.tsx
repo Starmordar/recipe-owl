@@ -1,13 +1,13 @@
 import { redirect } from 'next/navigation';
 
 import { UserCartProvider } from '@/context/userCartProvider';
-import { useCartDetails } from '@/entities/cart';
+import { getSharedCarts, useCartDetails } from '@/entities/cart';
 import { validateRequest } from '@/entities/session';
+import { assignUserToSharedCart } from '@/features/cart/assign-user-to-shared-cart';
 import { publicUrls } from '@/shared/config/url';
 import { CartTabs } from '@/widgets/cart-tabs';
 
 import PageHeader from './_components/page-header';
-import { assignUserToSharedCart, getSharedCarts } from './actions';
 
 interface PageProps {
   searchParams: { shareToken?: string };

@@ -2,9 +2,9 @@
 
 import { useUserCart } from '@/context/userCartProvider';
 import { Card } from '@/shared/ui/card';
+import { CartRecipeHeader } from '@/widgets/cart-recipe-header';
 
 import IngredientsList from './components/ingredients-list';
-import RecipeCardHeader from './components/section-header';
 
 interface RecipeSectionProps {
   recipeId: number;
@@ -20,7 +20,7 @@ function RecipeSection({ recipeId }: RecipeSectionProps) {
   return (
     <Card className='flex flex-col p-4'>
       <div className='flex flex-row space-y-0 gap-4'>
-        <RecipeCardHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
+        <CartRecipeHeader recipe={cartItem.recipe} quantity={cartItem.quantity} />
       </div>
 
       <IngredientsList recipeId={recipeId} />

@@ -3,17 +3,18 @@
 import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 
-import { updateServings } from '@/app/(main)/cart/actions';
 import { useUserCart } from '@/context/userCartProvider';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { NumberInputSpinner } from '@/shared/ui/number-input-spinner';
 
-interface ServingInputProps {
+import { updateServings } from '../model/update-servings';
+
+interface ServingsInput {
   recipeId: number;
   quantity: number;
 }
 
-function ServingInput({ recipeId, quantity }: ServingInputProps) {
+function ServingsInput({ recipeId, quantity }: ServingsInput) {
   const { cartId } = useUserCart();
   const [updateServingsAction, isPending] = useServerAction(updateServings);
   const [value, setValue] = useState<number>(quantity);
@@ -34,4 +35,4 @@ function ServingInput({ recipeId, quantity }: ServingInputProps) {
   );
 }
 
-export default ServingInput;
+export { ServingsInput };

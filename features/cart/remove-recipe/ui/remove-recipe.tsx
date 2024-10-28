@@ -2,10 +2,11 @@
 
 import { X } from 'lucide-react';
 
-import { removeRecipeFromCart } from '@/app/(main)/cart/actions';
 import { useUserCart } from '@/context/userCartProvider';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Button } from '@/shared/ui/button';
+
+import { removeRecipe } from '../model/remove-recipe';
 
 interface RemoveRecipeProps {
   recipeId: number;
@@ -13,7 +14,7 @@ interface RemoveRecipeProps {
 
 function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
   const { cartId } = useUserCart();
-  const [removeRecipeAction, isPending] = useServerAction(removeRecipeFromCart);
+  const [removeRecipeAction, isPending] = useServerAction(removeRecipe);
 
   return (
     <Button
@@ -31,4 +32,4 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
   );
 }
 
-export default RemoveRecipe;
+export { RemoveRecipe };

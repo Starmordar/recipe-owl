@@ -3,11 +3,11 @@
 import { ClipboardCheck } from 'lucide-react';
 
 import { useUserCart } from '@/context/userCartProvider';
+import { ClearChecked } from '@/features/cart/clear-checked-items';
 import { Card } from '@/shared/ui/card';
 
 import SectionHeader from '../section-header';
 
-import ClearChecked from './components/clear-checked';
 import IngredientsList from './components/ingredients-list';
 
 function CheckedIngredientsSection() {

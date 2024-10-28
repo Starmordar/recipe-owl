@@ -1,8 +1,8 @@
+import { ShareCart } from '@/features/cart/share-cart';
 import AppHeader from '@/shared/ui/app-header';
 import { UserAvatar } from '@/shared/ui/user-avatar';
 
 import MoreOptionsAction from './components/more-options-action';
-import ShareAction from './components/share-action';
 
 import type { CartDetails } from '@/entities/cart';
 
@@ -23,7 +23,7 @@ async function PageHeader({ cart, userId }: PageHeaderProps) {
           <div className='flex items-center gap-x-3'>
             {!isCartOwner && <UserAvatar src={cart.user.picture} />}
 
-            <ShareAction cart={cart} />
+            <ShareCart cart={cart} />
             <MoreOptionsAction />
           </div>
         )}

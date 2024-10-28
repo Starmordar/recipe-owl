@@ -1,19 +1,18 @@
 import Image from 'next/image';
 import React from 'react';
 
+import { RemoveRecipe } from '@/features/cart/remove-recipe';
+import { ServingsInput } from '@/features/cart/update-servings';
 import { CardTitle } from '@/shared/ui/card';
-
-import RemoveRecipe from './remove-recipe';
-import ServingInput from './servings-input';
 
 import type { RecipeItemInCart } from '@/entities/cart';
 
-interface SectionHeaderProps {
+interface CartRecipeHeaderProps {
   recipe: NonNullable<RecipeItemInCart['recipe']>;
   quantity: number;
 }
 
-function SectionHeader({ recipe, quantity }: SectionHeaderProps) {
+function CartRecipeHeader({ recipe, quantity }: CartRecipeHeaderProps) {
   return (
     <>
       <div className='relative min-w-15 w-15 h-15'>
@@ -33,10 +32,10 @@ function SectionHeader({ recipe, quantity }: SectionHeaderProps) {
           <RemoveRecipe recipeId={recipe.id} />
         </div>
 
-        <ServingInput recipeId={recipe.id} quantity={quantity} />
+        <ServingsInput recipeId={recipe.id} quantity={quantity} />
       </div>
     </>
   );
 }
 
-export default SectionHeader;
+export { CartRecipeHeader };

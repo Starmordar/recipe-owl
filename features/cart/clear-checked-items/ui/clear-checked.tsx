@@ -2,10 +2,11 @@
 
 import { X } from 'lucide-react';
 
-import { clearCheckedItems } from '@/app/(main)/cart/actions';
 import { useUserCart } from '@/context/userCartProvider';
 import useServerAction from '@/shared/hooks/useServerAction';
 import { Button } from '@/shared/ui/button';
+
+import { clearCheckedItems } from '../model/clear-checked';
 
 function ClearChecked() {
   const { cartId } = useUserCart();
@@ -26,4 +27,4 @@ function ClearChecked() {
   );
 }
 
-export default ClearChecked;
+export { ClearChecked };
