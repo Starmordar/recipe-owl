@@ -1,8 +1,8 @@
 import sharp from 'sharp';
 
-import { acceptedImageMimeTypes } from '../constants';
+import { acceptedImageMimeTypes } from '../../model/options';
 
-import type { ImageProcessOptions, ImageProcessor } from './type';
+import type { ImageProcessOptions, ImageProcessor } from '../../model/type';
 
 class SharpImageProcessor implements ImageProcessor {
   async process(buffer: Buffer, options: ImageProcessOptions): Promise<Buffer> {
@@ -21,4 +21,4 @@ class SharpImageProcessor implements ImageProcessor {
   }
 }
 
-export default SharpImageProcessor;
+export { SharpImageProcessor };

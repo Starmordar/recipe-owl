@@ -1,10 +1,10 @@
-export interface ImageProcessOptions {
+interface ImageProcessOptions {
   maxWidth: number;
   format: 'avif' | 'webp' | 'jpeg';
   quality: number;
 }
 
-export interface ImageProcessor {
+interface ImageProcessor {
   /**
    * Scales an image to the specified maxWidth.
    * @param buffer The buffer containing the image data
@@ -20,3 +20,14 @@ export interface ImageProcessor {
    */
   supported(mimeType: string): boolean;
 }
+
+interface ImageStorage {
+  /**
+   * Store an attachment
+   * @param attachment The attachment to store
+   * @returns The uploaded file name
+   */
+  upload(filename: string, buffer: Buffer): Promise<string>;
+}
+
+export type { ImageProcessor, ImageStorage, ImageProcessOptions };

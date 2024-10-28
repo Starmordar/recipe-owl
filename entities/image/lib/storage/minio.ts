@@ -1,6 +1,6 @@
 import * as Minio from 'minio';
 
-import type { ImageStorage } from './type.ts';
+import type { ImageStorage } from '../../model/type';
 
 class MinioStorage implements ImageStorage {
   private minioClient: Minio.Client;
@@ -59,4 +59,4 @@ class MinioStorage implements ImageStorage {
   }
 }
 
-export default MinioStorage;
+export { MinioStorage };

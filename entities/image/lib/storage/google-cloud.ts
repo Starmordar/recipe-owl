@@ -1,6 +1,8 @@
 import { GetSignedUrlConfig, Storage as GoogleStorageClient } from '@google-cloud/storage';
 
-import type { ImageStorage } from './type.js';
+import { signedUrlExpires } from '../../model/options';
+
+import type { ImageStorage } from '../../model/type';
 
 class GoogleCloudeStorage implements ImageStorage {
   private storageClient: GoogleStorageClient;
@@ -29,7 +31,7 @@ class GoogleCloudeStorage implements ImageStorage {
     const options: GetSignedUrlConfig = {
       version: 'v4',
       action: 'read',
-      expires: Date.now() + 60 * 60 * 1000, // 1 hour
+      expires: Date.now() + signedUrlExpires,
     };
 
     const [url] = await this.storageClient
@@ -45,4 +47,4 @@ class GoogleCloudeStorage implements ImageStorage {
   }
 }
 
-export default GoogleCloudeStorage;
+export { GoogleCloudeStorage };

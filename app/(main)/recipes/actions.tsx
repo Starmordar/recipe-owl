@@ -2,10 +2,10 @@
 
 import { revalidatePath } from 'next/cache';
 
+import { imageUploadService } from '@/entities/image';
 import { validateRequest } from '@/entities/session';
 import { deleteRecipeIndex, indexRecipe, updateRecipeIndex } from '@/lib/elastic/data';
 import { UnauthorizedError } from '@/lib/errors/UnauthorizedError';
-import { imageUpload } from '@/lib/image';
 import { prisma } from '@/prisma/prisma-client';
 import { publicUrls } from '@/shared/config/url';
 import pick from '@/shared/lib/pick';
@@ -20,7 +20,7 @@ export async function createRecipe(formData: FormData): Promise<Recipe> {
   const image = formData.get('image') as FormValues['image'];
   const data = JSON.parse(formData.get('data') as string) as FormDataValues;
 
-  const imageUrl = await imageUpload.upload(image);
+  const imageUrl = await imageUploadService.upload(image);
   const ingredients = data.ingredients.map((ingredient, i) => ({ ...ingredient, order: i }));
 
   const recipe = await prisma.recipe.create({
@@ -41,7 +41,7 @@ export async function updateRecipe(recipeId: number, formData: FormData): Promis
   const image = formData.get('image') as FormValues['image'];
   const data = JSON.parse(formData.get('data') as string) as FormDataValues;
 
-  const imageUrl = typeof image !== 'string' ? await imageUpload.upload(image) : undefined;
+  const imageUrl = typeof image !== 'string' ? await imageUploadService.upload(image) : undefined;
   const ingredients = data.ingredients.map((ingredient, i) => ({ ...ingredient, order: i }));
 
   const { toCreate, toUpdate, toDelete } = await getIngredientListPayload(

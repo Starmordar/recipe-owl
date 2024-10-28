@@ -1,7 +1,6 @@
-import { imageProcessOptions } from '../constants';
+import { imageProcessOptions } from '../../model/options';
 
-import type { ImageProcessor } from '../processor/type';
-import type { ImageStorage } from '../storage/type';
+import type { ImageProcessor, ImageStorage } from '../../model/type';
 
 class ImageUploadService {
   private readonly processor: ImageProcessor;
@@ -31,4 +30,4 @@ class ImageUploadService {
   }
 }
 
-export default ImageUploadService;
+export { ImageUploadService };
