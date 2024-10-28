@@ -2,9 +2,9 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import RecipeDetailsHeader from '@/app/(main)/recipes/[slug]/_components/recipe-details-header';
-import RecipeDetails from '@/components/recipe-details';
-import RecipeDetailsSkeleton from '@/components/recipe-details/skeleton';
-import { getRecipeJsonLdScheme, getRecipeDetails } from '@/entities/recipe';
+import RecipeDetails from '@/src/components/recipe-details';
+import RecipeDetailsSkeleton from '@/src/components/recipe-details/skeleton';
+import { getRecipeJsonLdScheme, getRecipeDetails } from '@/src/entities/recipe';
 
 import type { Metadata } from 'next';
 

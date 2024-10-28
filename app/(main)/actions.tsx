@@ -1,9 +1,9 @@
 import { revalidatePath } from 'next/cache';
 
-import { prisma } from '@/shared/api/prisma-client';
-import { publicUrls } from '@/shared/config/url';
+import { prisma } from '@/src/shared/api/prisma-client';
+import { publicUrls } from '@/src/shared/config/url';
 
-import type { RecipeOfTheDayDetails, RecipeWithUser } from '@/entities/recipe';
+import type { RecipeOfTheDayDetails, RecipeWithUser } from '@/src/entities/recipe';
 
 async function getRecipeOfTheDay(): Promise<RecipeWithUser | null> {
   const data = await prisma.recipeOfTheDay.findFirst({

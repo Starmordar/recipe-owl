@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import RecipeImage from './recipe-image';
 import RecipeInfo from './recipe-info';
 
-import type { RecipeWithUser } from '@/entities/recipe';
+import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface Props {
   recipe: RecipeWithUser;

@@ -1,4 +1,4 @@
-import { AppFooterNav } from '@/widgets/app-footer-nav';
+import { AppFooterNav } from '@/src/widgets/app-footer-nav';
 
 interface LayoutProps {
   children: React.ReactNode;

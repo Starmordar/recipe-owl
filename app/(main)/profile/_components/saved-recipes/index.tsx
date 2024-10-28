@@ -1,7 +1,7 @@
 import { User } from 'lucia';
 
-import RecipePreviewCard from '@/components/recipe-preview-cards/components/preview-card';
-import { getSavedRecipes } from '@/entities/recipe';
+import RecipePreviewCard from '@/src/components/recipe-preview-cards/components/preview-card';
+import { getSavedRecipes } from '@/src/entities/recipe';
 
 import EmptySavedRecipes from './components/empty-saved-recipes';
 

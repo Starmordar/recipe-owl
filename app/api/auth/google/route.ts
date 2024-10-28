@@ -1,4 +1,4 @@
-import { redirectToGoogleURL } from '@/entities/session';
+import { redirectToGoogleURL } from '@/src/entities/session';
 
 export async function GET() {
   return redirectToGoogleURL();

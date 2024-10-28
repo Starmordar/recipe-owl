@@ -1,7 +1,7 @@
 import { Settings, EllipsisVertical } from 'lucide-react';
 import Image from 'next/image';
 
-import AppHeader from '@/shared/ui/app-header';
+import AppHeader from '@/src/shared/ui/app-header';
 
 import type { User } from 'lucia';
 

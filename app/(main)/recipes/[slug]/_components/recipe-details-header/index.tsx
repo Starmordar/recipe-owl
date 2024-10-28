@@ -1,13 +1,13 @@
 import { EllipsisVertical } from 'lucide-react';
 
-import { getRecipeDetails, isRecipeSaved } from '@/entities/recipe';
-import { validateRequest } from '@/entities/session';
-import { SaveRecipe } from '@/features/recipe/save-recipe';
-import { ShareRecipe } from '@/features/recipe/share-recipe';
-import { publicUrls } from '@/shared/config/url';
-import AppHeader from '@/shared/ui/app-header';
-import HeaderIconButton from '@/shared/ui/app-header-icon-button';
-import { RecipeActionsDrawer } from '@/widgets/recipe-actions-drawer';
+import { getRecipeDetails, isRecipeSaved } from '@/src/entities/recipe';
+import { validateRequest } from '@/src/entities/session';
+import { SaveRecipe } from '@/src/features/recipe/save-recipe';
+import { ShareRecipe } from '@/src/features/recipe/share-recipe';
+import { publicUrls } from '@/src/shared/config/url';
+import AppHeader from '@/src/shared/ui/app-header';
+import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
+import { RecipeActionsDrawer } from '@/src/widgets/recipe-actions-drawer';
 
 import AddToCartAction from './components/add-to-cart-action';
 

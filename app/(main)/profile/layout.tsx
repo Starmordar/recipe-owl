@@ -1,4 +1,4 @@
-import { validateRequest } from '@/entities/session';
+import { validateRequest } from '@/src/entities/session';
 
 import ProfileHeader from './_components/profile-header';
 

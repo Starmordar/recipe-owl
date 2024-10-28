@@ -4,7 +4,7 @@ import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motio
 import Image from 'next/image';
 import { forwardRef } from 'react';
 
-import type { RecipeWithUser } from '@/entities/recipe';
+import type { RecipeWithUser } from '@/src/entities/recipe';
 import type { RefObject } from 'react';
 
 interface Props {

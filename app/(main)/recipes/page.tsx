@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 
-import RecipesHeader from '@/components/layout/recipes-header';
-import RecipePreviewCards from '@/components/recipe-preview-cards';
-import RecipePreviewCardsSkeleton from '@/components/recipe-preview-cards/skeleton';
+import RecipesHeader from '@/src/components/layout/recipes-header';
+import RecipePreviewCards from '@/src/components/recipe-preview-cards';
+import RecipePreviewCardsSkeleton from '@/src/components/recipe-preview-cards/skeleton';
 
 interface PageProps {
   searchParams: {

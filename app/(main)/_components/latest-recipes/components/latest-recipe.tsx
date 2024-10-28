@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
+import RecipeAuthor from '@/src/components/recipe-details/components/recipe-author';
 
-import type { RecipeWithUser } from '@/entities/recipe';
+import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface Props {
   recipe: RecipeWithUser;

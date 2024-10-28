@@ -1,10 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
-import QueryClientProvider from '@/components/query-client-provider';
-import { ThemeProvider } from '@/components/theme-provider';
-import { cn } from '@/shared/lib/classnames';
-import { Toaster } from '@/shared/ui/toaster';
+import QueryClientProvider from '@/src/components/query-client-provider';
+import { ThemeProvider } from '@/src/components/theme-provider';
+import { cn } from '@/src/shared/lib/classnames';
+import { Toaster } from '@/src/shared/ui/toaster';
 
 import type { Metadata } from 'next';
 

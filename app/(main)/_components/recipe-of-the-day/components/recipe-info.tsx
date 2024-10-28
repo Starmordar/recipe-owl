@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
-import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
-import { publicUrls } from '@/shared/config/url';
+import RecipeAuthor from '@/src/components/recipe-details/components/recipe-author';
+import { publicUrls } from '@/src/shared/config/url';
 
-import type { RecipeWithUser } from '@/entities/recipe';
+import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface Props {
   recipe: RecipeWithUser;

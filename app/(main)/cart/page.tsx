@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation';
 
-import { CartProvider, getSharedCarts, useCartDetails } from '@/entities/cart';
-import { validateRequest } from '@/entities/session';
-import { assignUserToSharedCart } from '@/features/cart/assign-user-to-shared-cart';
-import { publicUrls } from '@/shared/config/url';
-import { CartPageHeader } from '@/widgets/cart-page-header';
-import { CartTabs } from '@/widgets/cart-tabs';
+import { CartProvider, getSharedCarts, useCartDetails } from '@/src/entities/cart';
+import { validateRequest } from '@/src/entities/session';
+import { assignUserToSharedCart } from '@/src/features/cart/assign-user-to-shared-cart';
+import { publicUrls } from '@/src/shared/config/url';
+import { CartPageHeader } from '@/src/widgets/cart-page-header';
+import { CartTabs } from '@/src/widgets/cart-tabs';
 
 interface PageProps {
   searchParams: { shareToken?: string };

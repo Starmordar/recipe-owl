@@ -1,4 +1,4 @@
-import { Carousel, CarouselContent, CarouselDots, CarouselItem } from '@/shared/ui/carousel';
+import { Carousel, CarouselContent, CarouselDots, CarouselItem } from '@/src/shared/ui/carousel';
 
 import { getMostPopularRecipes } from '../../actions';
 

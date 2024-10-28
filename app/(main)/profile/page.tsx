@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { validateRequest } from '@/entities/session';
-import { publicUrls } from '@/shared/config/url';
+import { validateRequest } from '@/src/entities/session';
+import { publicUrls } from '@/src/shared/config/url';
 
 import ProfileTabs from './_components/profile-tabs';
 

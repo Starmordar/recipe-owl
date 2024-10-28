@@ -1,4 +1,4 @@
-import { SignInWidget } from '@/widgets/auth';
+import { SignInWidget } from '@/src/widgets/auth';
 
 function SignInPage() {
   return <SignInWidget />;

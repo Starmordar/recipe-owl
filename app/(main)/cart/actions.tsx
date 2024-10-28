@@ -2,10 +2,10 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { validateRequest } from '@/entities/session';
-import { prisma } from '@/shared/api/prisma-client';
-import { publicUrls } from '@/shared/config/url';
-import { UnauthorizedError } from '@/shared/lib/errors/UnauthorizedError';
+import { validateRequest } from '@/src/entities/session';
+import { prisma } from '@/src/shared/api/prisma-client';
+import { publicUrls } from '@/src/shared/config/url';
+import { UnauthorizedError } from '@/src/shared/lib/errors/UnauthorizedError';
 
 async function getCartId(shareToken?: string | null): Promise<[number | undefined, string]> {
   let existingCart = null;
