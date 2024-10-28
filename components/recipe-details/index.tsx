@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import React from 'react';
 
-import { getRecipeDetails } from '@/lib/data/recipe';
+import { getRecipeDetails } from '@/entities/recipe';
 
 import AddToCartAction from './components/add-to-cart-action';
 import IngredientsTable from './components/ingredients-table';

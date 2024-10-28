@@ -1,7 +1,7 @@
 import { User } from 'lucia';
 
 import RecipePreviewCard from '@/components/recipe-preview-cards/components/preview-card';
-import { savedRecipes } from '@/lib/data/recipe';
+import { getSavedRecipes } from '@/entities/recipe';
 
 import EmptySavedRecipes from './components/empty-saved-recipes';
 
@@ -10,7 +10,7 @@ interface SavedRecipesProps {
 }
 
 async function SavedRecipes({ user }: SavedRecipesProps) {
-  const recipes = await savedRecipes(user.id);
+  const recipes = await getSavedRecipes(user.id);
   if (recipes.length === 0) return <EmptySavedRecipes />;
 
   return (

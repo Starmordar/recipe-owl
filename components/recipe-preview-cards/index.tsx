@@ -1,5 +1,5 @@
 import EmptySearchResults from '@/app/(main)/recipes/_components/empty-search-results';
-import { getRecipesPreview } from '@/lib/data/recipe';
+import { searchRecipes } from '@/entities/recipe';
 
 import RecipePreviewCard from './components/preview-card';
 
@@ -9,7 +9,7 @@ interface RecipePreviewCardsProps {
 }
 
 async function RecipePreviewCards({ search, filters }: RecipePreviewCardsProps) {
-  const recipes = await getRecipesPreview(search, filters);
+  const recipes = await searchRecipes(search, filters);
   if (recipes.length === 0) return <EmptySearchResults />;
 
   return (

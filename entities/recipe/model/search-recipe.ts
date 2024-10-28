@@ -1,15 +1,15 @@
-import { ingredientsCategory } from '@/components/recipe-filters/constants/filter-categories';
+import { elastic } from '@/shared/api/elastic-client';
 
-import { elastic } from '../../shared/api/elastic-client';
+import { ingredientsCategory } from '../config/search-recipes';
 
-import type { RecipeSearchResult } from '@/types/api';
+import type { RecipeSearchResult } from './type';
 
 type Filters = Record<string, string | Array<string> | undefined>;
 interface SearchResult {
   hits: { hits: Array<{ _id: string; _source: { title: string; imageUrl: string } }> };
 }
 
-export async function searchRecipes(
+async function searchRecipes(
   searchTerm: string,
   filters: Filters,
 ): Promise<Array<RecipeSearchResult>> {
@@ -84,3 +84,5 @@ function getIngredientsFromFilters(filters: Filters): Array<string> {
 
   return [];
 }
+
+export { searchRecipes };

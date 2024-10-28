@@ -8,7 +8,7 @@ import RecipeForm from './components/recipe-form';
 import useRecipeForm from './hooks/useRecipeForm';
 import { recipeToFormValues } from './utils/recipeToFormValues';
 
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface RecipeProps {
   title: string;

@@ -5,7 +5,7 @@ import { useDebounce } from '@uidotdev/usehooks';
 import { useState } from 'react';
 
 import { FormValues } from '@/components/recipe-details-form/constants/shema';
-import { searchIngredients } from '@/lib/data/ingredients';
+import { searchIngredients } from '@/entities/ingredient';
 import { FormField, FormItem, FormMessage } from '@/shared/ui/form';
 import Search from '@/shared/ui/search';
 

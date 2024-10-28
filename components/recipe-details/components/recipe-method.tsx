@@ -1,4 +1,4 @@
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface MethodProps {
   recipe: RecipeDetails;

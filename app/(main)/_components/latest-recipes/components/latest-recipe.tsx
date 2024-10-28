@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import RecipeAuthor from '@/components/recipe-details/components/recipe-author';
 
-import type { LatestRecipe } from '@/types/api';
+import type { RecipeWithUser } from '@/entities/recipe';
 
 interface Props {
-  recipe: LatestRecipe;
+  recipe: RecipeWithUser;
 }
 
 async function RecipeCard({ recipe }: Props) {

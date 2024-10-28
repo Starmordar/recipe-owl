@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/button';
 import { NumberInputSpinner } from '@/shared/ui/number-input-spinner';
 
 import type { FormValues } from '../constants/schema';
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsFormHeaderProps {

@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { cn } from '@/shared/lib/classnames';
 
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface RecipeAuthorProps {
   recipe: { user: RecipeDetails['user'] };

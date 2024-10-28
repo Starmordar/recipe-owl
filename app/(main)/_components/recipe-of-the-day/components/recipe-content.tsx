@@ -5,10 +5,10 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import RecipeImage from './recipe-image';
 import RecipeInfo from './recipe-info';
 
-import type { RecipePreview } from '@/types/api';
+import type { RecipeWithUser } from '@/entities/recipe';
 
 interface Props {
-  recipe: RecipePreview;
+  recipe: RecipeWithUser;
 }
 
 function RecipeContent({ recipe }: Props) {

@@ -17,7 +17,7 @@ import IngredientsFormHeader from './components/ingredients-form-header';
 import useIngredientsForm from './hooks/useIngredientsForm';
 
 import type { FormValues } from './constants/schema';
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface AddToCartDrawerProps extends PropsWithChildren {
   recipe: RecipeDetails;

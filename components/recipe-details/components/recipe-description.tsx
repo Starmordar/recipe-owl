@@ -2,7 +2,7 @@ import { isValidURL } from '../utils/isValidUrl';
 
 import RecipeAuthor from './recipe-author';
 
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface RecipeDescriptionProps {
   recipe: RecipeDetails;

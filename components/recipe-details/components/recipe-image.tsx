@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { RecipeDetails } from '@/types/api';
+import type { RecipeDetails } from '@/entities/recipe';
 
 interface RecipeImageProps {
   recipe: RecipeDetails;

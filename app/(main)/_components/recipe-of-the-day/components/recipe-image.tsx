@@ -4,11 +4,11 @@ import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motio
 import Image from 'next/image';
 import { forwardRef } from 'react';
 
-import type { RecipePreview } from '@/types/api';
+import type { RecipeWithUser } from '@/entities/recipe';
 import type { RefObject } from 'react';
 
 interface Props {
-  recipe: RecipePreview;
+  recipe: RecipeWithUser;
   imageHeight: number;
   infoHeight: number;
 }

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import RecipeDetailsForm from '@/components/recipe-details-form';
-import { getRecipeDetails } from '@/lib/data/recipe';
+import { getRecipeDetails } from '@/entities/recipe';
 import { publicUrls } from '@/shared/config/url';
 
 async function Page({ params }: { params: { slug: string } }) {
