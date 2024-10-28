@@ -3,10 +3,9 @@ import React from 'react';
 
 import { RemoveRecipe } from '@/src/features/cart/remove-recipe';
 import { ServingsInput } from '@/src/features/cart/update-servings';
+import { CardTitle } from '@/src/shared/ui/card';
 
 import type { RecipeItemInCart } from '@/src/entities/cart';
-
-import { CardTitle } from '@/src/shared/ui/card';
 
 interface CartRecipeHeaderProps {
   recipe: NonNullable<RecipeItemInCart['recipe']>;

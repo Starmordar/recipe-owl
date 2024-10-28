@@ -1,11 +1,10 @@
 import { ShareCart } from '@/src/features/cart/share-cart';
+import AppHeader from '@/src/shared/ui/app-header';
+import { UserAvatar } from '@/src/shared/ui/user-avatar';
 
 import { MoreOptionsAction } from './more-options-action';
 
 import type { CartDetails } from '@/src/entities/cart';
-
-import AppHeader from '@/src/shared/ui/app-header';
-import { UserAvatar } from '@/src/shared/ui/user-avatar';
 
 interface CartPageHeaderProps {
   cart: CartDetails;

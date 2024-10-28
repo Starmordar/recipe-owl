@@ -3,13 +3,12 @@
 import { DialogTitle } from '@radix-ui/react-dialog';
 
 import { storeShareToken, useCart } from '@/src/entities/cart';
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 
 import { CartOption } from './cart-option';
 import { DefaultCartOption } from './default-cart-option';
 
 import type { PropsWithChildren } from 'react';
-
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 
 interface SwitchCartDrawerProps extends PropsWithChildren {
   onSelect: () => void;

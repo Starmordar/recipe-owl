@@ -1,11 +1,11 @@
 'use client';
 
+import { Button } from '@/src/shared/ui/button';
+import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
+
 import type { FormValues } from '../constants/schema';
 import type { RecipeDetails } from '@/src/entities/recipe';
 import type { UseFormReturn } from 'react-hook-form';
-
-import { Button } from '@/src/shared/ui/button';
-import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
 
 interface IngredientsFormHeaderProps {
   form: UseFormReturn<FormValues>;

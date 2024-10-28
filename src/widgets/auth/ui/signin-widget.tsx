@@ -1,10 +1,9 @@
 import { LoginForm } from '@/src/features/session/login';
+import { publicUrls } from '@/src/shared/config/url';
 
 import { AuthChangeOption } from './auth-change-option';
 import { AuthHeader } from './auth-header';
 import { AuthWithGoogle } from './auth-with-google';
-
-import { publicUrls } from '@/src/shared/config/url';
 
 function SignInWidget() {
   return (

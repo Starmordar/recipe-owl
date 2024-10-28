@@ -3,11 +3,10 @@
 import { X } from 'lucide-react';
 
 import { useCart } from '@/src/entities/cart';
-
-import { removeRecipe } from '../model/remove-recipe';
-
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { Button } from '@/src/shared/ui/button';
+
+import { removeRecipe } from '../model/remove-recipe';
 
 interface RemoveRecipeProps {
   recipeId: number;

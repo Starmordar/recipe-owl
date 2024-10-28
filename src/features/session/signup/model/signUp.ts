@@ -6,11 +6,10 @@ import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
 import { lucia } from '@/src/entities/session/lucia';
-
-import type { SignUpFormSchema } from './schema';
-
 import { prisma } from '@/src/shared/api/prisma-client';
 import { publicUrls } from '@/src/shared/config/url';
+
+import type { SignUpFormSchema } from './schema';
 
 async function signUp(values: SignUpFormSchema): Promise<{ error: string }> {
   const exists = await prisma.user.findFirst({ where: { email: values.email } });

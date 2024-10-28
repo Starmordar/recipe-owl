@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 
 import { validateRequest } from '@/src/entities/session';
 import { lucia } from '@/src/entities/session/lucia';
-
 import { publicUrls } from '@/src/shared/config/url';
 
 async function signOut() {

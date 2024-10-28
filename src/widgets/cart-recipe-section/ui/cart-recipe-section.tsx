@@ -1,11 +1,10 @@
 'use client';
 
 import { useCart } from '@/src/entities/cart';
+import { Card } from '@/src/shared/ui/card';
 import { CartRecipeHeader } from '@/src/widgets/cart-recipe-header';
 
 import { RecipeIngredientsList } from './ingredients-list';
-
-import { Card } from '@/src/shared/ui/card';
 
 interface CartRecipeSectionProps {
   recipeId: number;

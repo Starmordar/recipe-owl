@@ -5,11 +5,10 @@ import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { DeleteRecipe } from '@/src/features/recipe/delete-recipe';
-
-import type { PropsWithChildren } from 'react';
-
 import { publicUrls } from '@/src/shared/config/url';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
+
+import type { PropsWithChildren } from 'react';
 
 interface RecipeActionsDrawerProps extends PropsWithChildren {
   recipeId: number;

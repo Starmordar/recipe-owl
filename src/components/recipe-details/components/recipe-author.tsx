@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import type { RecipeDetails } from '@/src/entities/recipe';
-
 import { cn } from '@/src/shared/lib/classnames';
+
+import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface RecipeAuthorProps {
   recipe: { user: RecipeDetails['user'] };

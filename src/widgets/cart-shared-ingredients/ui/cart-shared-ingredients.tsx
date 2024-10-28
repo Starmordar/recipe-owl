@@ -3,10 +3,9 @@
 import { ClipboardList } from 'lucide-react';
 
 import { CartSectionHeader, useCart } from '@/src/entities/cart';
+import { Card } from '@/src/shared/ui/card';
 
 import { SharedIngredientsList } from './ingredients-list';
-
-import { Card } from '@/src/shared/ui/card';
 
 function SharedIngredientsSection() {
   const { cartDetails } = useCart();

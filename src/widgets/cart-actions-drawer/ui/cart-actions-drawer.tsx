@@ -8,12 +8,11 @@ import { useCart } from '@/src/entities/cart';
 import { clearCart } from '@/src/features/cart/clear-cart';
 import { disableCartSharing } from '@/src/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/src/features/cart/leave-shared-cart';
+import useServerAction from '@/src/shared/hooks/useServerAction';
+import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 import { SwitchCartDrawer } from '@/src/widgets/switch-cart-drawer';
 
 import type { PropsWithChildren } from 'react';
-
-import useServerAction from '@/src/shared/hooks/useServerAction';
-import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 
 interface CartActionsDrawerProps extends PropsWithChildren {}
 

@@ -5,12 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { userQueries } from '@/src/entities/user';
+import { cn } from '@/src/shared/lib/classnames';
 
 import { items } from './items';
 
 import type { NavbarItem } from '../model/types';
-
-import { cn } from '@/src/shared/lib/classnames';
 
 function AppFooterNav() {
   const pathname = usePathname();

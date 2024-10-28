@@ -3,13 +3,12 @@ import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 
 import { addIngredientsToCart } from '@/app/(main)/cart/actions';
+import useServerAction from '@/src/shared/hooks/useServerAction';
+import { toast } from '@/src/shared/hooks/useToast';
 
 import schema, { FormValues } from '../constants/schema';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
-
-import useServerAction from '@/src/shared/hooks/useServerAction';
-import { toast } from '@/src/shared/hooks/useToast';
 
 interface UseIngredientsFormOptions {
   recipe: RecipeDetails;

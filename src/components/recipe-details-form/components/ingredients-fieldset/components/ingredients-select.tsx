@@ -6,11 +6,10 @@ import { useState } from 'react';
 
 import { FormValues } from '@/src/components/recipe-details-form/constants/shema';
 import { searchIngredients } from '@/src/entities/ingredient';
-
-import type { UseFormReturn } from 'react-hook-form';
-
 import { FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import Search from '@/src/shared/ui/search';
+
+import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsSelectProps {
   form: UseFormReturn<FormValues>;

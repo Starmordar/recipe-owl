@@ -5,10 +5,9 @@ import { useMemo } from 'react';
 
 import GroceryCart from '@/src/components/grocery-cart';
 import IngredientsList from '@/src/components/grocery-cart/ingredients-list';
+import SwipableTabs from '@/src/shared/ui/swipable-tabs';
 
 import type { CartWithRecipes } from '@/src/entities/cart';
-
-import SwipableTabs from '@/src/shared/ui/swipable-tabs';
 
 interface CartTabsProps {
   cartWithRecipes: CartWithRecipes;
@@ -29,7 +28,8 @@ function CartTabs({ cartWithRecipes }: CartTabsProps) {
     [cartWithRecipes],
   );
 
-  const loadAnimationFeatures = () => import('@/src/shared/lib/framer-motion').then(res => res.default);
+  const loadAnimationFeatures = () =>
+    import('@/src/shared/lib/framer-motion').then(res => res.default);
 
   return (
     <LazyMotion features={loadAnimationFeatures} strict>

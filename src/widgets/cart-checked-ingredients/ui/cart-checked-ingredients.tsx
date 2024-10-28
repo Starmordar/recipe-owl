@@ -4,10 +4,9 @@ import { ClipboardCheck } from 'lucide-react';
 
 import { CartSectionHeader, useCart } from '@/src/entities/cart';
 import { ClearChecked } from '@/src/features/cart/clear-checked-items';
+import { Card } from '@/src/shared/ui/card';
 
 import { CheckedIngredientsList } from './ingredients-list';
-
-import { Card } from '@/src/shared/ui/card';
 
 function CheckedIngredientsSection() {
   const { cartDetails } = useCart();

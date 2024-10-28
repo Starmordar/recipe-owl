@@ -5,10 +5,9 @@ import { useDebounce } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 
 import { searchIngredients } from '@/src/entities/ingredient';
+import Search from '@/src/shared/ui/search';
 
 import CategorySection from './category-section';
-
-import Search from '@/src/shared/ui/search';
 
 interface IngredientsSectionProps {
   category: string;

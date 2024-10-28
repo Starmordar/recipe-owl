@@ -5,12 +5,11 @@ import NextImage from 'next/image';
 import { useState } from 'react';
 
 import { acceptedImageMimeTypes } from '@/src/entities/image/config';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
+import { Input } from '@/src/shared/ui/input';
 
 import type { FormValues } from '../constants/shema';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
-
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
-import { Input } from '@/src/shared/ui/input';
 
 interface ImageUploadFieldProps {
   form: UseFormReturn<FormValues>;

@@ -3,11 +3,10 @@
 import { UseFormReturn } from 'react-hook-form';
 
 import { FormValues } from '@/src/components/recipe-details-form/constants/shema';
-
-import IngredientsSelect from './ingredients-select';
-
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
+
+import IngredientsSelect from './ingredients-select';
 
 interface IngredientFieldProps {
   form: UseFormReturn<FormValues>;

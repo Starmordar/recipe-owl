@@ -5,11 +5,10 @@ import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
 import { lucia } from '@/src/entities/session/lucia';
-
-import type { LoginFormSchema } from './schema';
-
 import { prisma } from '@/src/shared/api/prisma-client';
 import { publicUrls } from '@/src/shared/config/url';
+
+import type { LoginFormSchema } from './schema';
 
 async function login(values: LoginFormSchema): Promise<{ error: string }> {
   const user = await prisma.user.findUnique({ where: { email: values.email } });

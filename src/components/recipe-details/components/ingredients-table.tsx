@@ -1,6 +1,13 @@
-import type { RecipeDetails } from '@/src/entities/recipe';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/src/shared/ui/table';
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/src/shared/ui/table';
+import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface IngredientsTableProps {
   ingredients: Array<RecipeDetails['ingredients'][number]>;

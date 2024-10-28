@@ -4,11 +4,10 @@ import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 
 import { useCart } from '@/src/entities/cart';
-
-import { updateServings } from '../model/update-servings';
-
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
+
+import { updateServings } from '../model/update-servings';
 
 interface ServingsInput {
   recipeId: number;

@@ -2,11 +2,11 @@
 
 import { Share2 } from 'lucide-react';
 
+import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
+
 import { useShareCart } from '../hooks/useShareCart';
 
 import type { CartDetails } from '@/src/entities/cart';
-
-import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 
 interface ShareCartProps {
   cart: CartDetails;

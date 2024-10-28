@@ -1,9 +1,8 @@
 import { SignupForm } from '@/src/features/session/signup';
+import { publicUrls } from '@/src/shared/config/url';
 
 import { AuthChangeOption } from './auth-change-option';
 import { AuthHeader } from './auth-header';
-
-import { publicUrls } from '@/src/shared/config/url';
 
 function SignUpWithEmailWidget() {
   return (
