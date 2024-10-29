@@ -1,8 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
-import QueryClientProvider from '@/src/components/query-client-provider';
-import { ThemeProvider } from '@/src/components/theme-provider';
+import { ThemeProvider, ReactQueryClientProvider } from '@/src/app';
 import { cn } from '@/src/shared/lib/classnames';
 import { Toaster } from '@/src/shared/ui/toaster';
 
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
 
 function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <QueryClientProvider>
+    <ReactQueryClientProvider>
       <html lang='en'>
         <body className={cn('flex flex-col min-h-[100vh]', inter.className)}>
           <ThemeProvider
@@ -45,7 +44,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
           </ThemeProvider>
         </body>
       </html>
-    </QueryClientProvider>
+    </ReactQueryClientProvider>
   );
 }
 
