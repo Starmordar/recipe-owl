@@ -11,20 +11,20 @@ import {
   DraggableFieldsHeader,
 } from '@/src/shared/ui/draggable-fields';
 
-import IngredientField from './components/ingredient-field';
+import { StepField } from './step-field';
 
-import type { FormValues } from '../../constants/shema';
+import type { FormValues } from '../../model/shema';
 import type { DropResult } from '@hello-pangea/dnd';
 
-interface IngredientsFieldsetProps {
+interface StepsFieldsetProps {
   form: UseFormReturn<FormValues>;
 }
 
-function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
+function StepsFieldset({ form }: StepsFieldsetProps) {
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
-    name: 'ingredients',
+    name: 'steps',
     control: form.control,
   });
 
@@ -39,20 +39,18 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title='Ingredients'
+        title='Method'
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
 
       <DraggableFields<(typeof fields)[number]>
         fields={fields}
-        droppableId='ingredients'
-        draggableId='ingredients'
+        droppableId='steps'
+        draggableId='steps'
         isDraggable={isDraggable}
         onDragField={handleDragField}
-        renderField={({ field, index }) => (
-          <IngredientField form={form} field={field} index={index} />
-        )}
+        renderField={({ field, index }) => <StepField form={form} field={field} index={index} />}
         renderAction={({ dragHandleProps, index }) => (
           <DraggableAction
             isDraggable={isDraggable}
@@ -64,14 +62,14 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
         )}
       />
 
-      <div className='flex justify-center mt-4'>
-        <Button variant='ghost' type='button' onClick={() => append({ name: '', unit: '' })}>
+      <div className='flex justify-center'>
+        <Button variant='ghost' type='button' onClick={() => append({ description: '' })}>
           <Plus className='h-5 w-5 mr-2' />
-          Ingredient
+          Step
         </Button>
       </div>
     </fieldset>
   );
 }
 
-export default IngredientsFieldset;
+export { StepsFieldset };

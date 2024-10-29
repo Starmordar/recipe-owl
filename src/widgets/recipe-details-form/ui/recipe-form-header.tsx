@@ -1,7 +1,7 @@
 import AppHeader from '@/src/shared/ui/app-header';
 import { Button } from '@/src/shared/ui/button';
 
-interface RecipeDetailsFormHeader {
+interface RecipeDetailsFormHeaderProps {
   isPending: boolean;
   dataChanged: boolean;
   title: string;
@@ -13,7 +13,7 @@ function RecipeDetailsFormHeader({
   dataChanged,
   title,
   prevUrl,
-}: RecipeDetailsFormHeader) {
+}: RecipeDetailsFormHeaderProps) {
   return (
     <AppHeader prevUrl={prevUrl}>
       <div className='flex justify-between grow items-center ml-5'>
@@ -34,4 +34,4 @@ function RecipeDetailsFormHeader({
   );
 }
 
-export default RecipeDetailsFormHeader;
+export { RecipeDetailsFormHeader };

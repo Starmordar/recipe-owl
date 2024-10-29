@@ -30,4 +30,4 @@ function RecipeDetailsFormSkeleton() {
   );
 }
 
-export default RecipeDetailsFormSkeleton;
+export { RecipeDetailsFormSkeleton };

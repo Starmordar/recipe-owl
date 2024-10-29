@@ -1,10 +1,10 @@
 'use client';
 
-import RecipeDetailsFormHeader from '../layout/recipe-details-form-header';
+import { useRecipeForm } from '../hooks/useRecipeForm';
+import { recipeToFormValues } from '../model/recipe-to-form-values';
 
-import RecipeForm from './components/recipe-form';
-import useRecipeForm from './hooks/useRecipeForm';
-import { recipeToFormValues } from './utils/recipeToFormValues';
+import { RecipeForm } from './recipe-form';
+import { RecipeDetailsFormHeader } from './recipe-form-header';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
@@ -38,4 +38,4 @@ function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
   );
 }
 
-export default RecipeDetailsForm;
+export { RecipeDetailsForm };

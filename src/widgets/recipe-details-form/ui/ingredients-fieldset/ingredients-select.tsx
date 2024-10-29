@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useState } from 'react';
 
-import { FormValues } from '@/src/components/recipe-details-form/constants/shema';
 import { searchIngredients } from '@/src/entities/ingredient';
 import { FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import Search from '@/src/shared/ui/search';
 
+import type { FormValues } from '../../model/shema';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsSelectProps {
@@ -66,4 +66,4 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
   );
 }
 
-export default IngredientsSelect;
+export { IngredientsSelect };

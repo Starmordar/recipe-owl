@@ -34,4 +34,4 @@ function StepField({ form, field, index }: StepFieldProps) {
   );
 }
 
-export default StepField;
+export { StepField };

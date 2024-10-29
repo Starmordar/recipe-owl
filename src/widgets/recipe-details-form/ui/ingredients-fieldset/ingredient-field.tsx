@@ -2,11 +2,12 @@
 
 import { UseFormReturn } from 'react-hook-form';
 
-import { FormValues } from '@/src/components/recipe-details-form/constants/shema';
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
 
-import IngredientsSelect from './ingredients-select';
+import { IngredientsSelect } from './ingredients-select';
+
+import type { FormValues } from '../../model/shema';
 
 interface IngredientFieldProps {
   form: UseFormReturn<FormValues>;
@@ -35,4 +36,4 @@ function IngredientField({ form, field, index }: IngredientFieldProps) {
   );
 }
 
-export default IngredientField;
+export { IngredientField };

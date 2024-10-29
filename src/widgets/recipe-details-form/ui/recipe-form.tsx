@@ -3,11 +3,11 @@
 import usePageLeaveConfirmation from '@/src/shared/hooks/usePageLeaveConfirmation';
 import { Form } from '@/src/shared/ui/form';
 
-import DetailsFieldset from './details-fieldset';
-import IngredientsFieldset from './ingredients-fieldset/index';
-import StepsFieldset from './method-fieldset';
+import { DetailsFieldset } from './details-fieldset';
+import { IngredientsFieldset } from './ingredients-fieldset';
+import { StepsFieldset } from './method-fieldset';
 
-import type { FormValues } from '../constants/shema';
+import type { FormValues } from '../model/shema';
 import type { UseFormReturn } from 'react-hook-form';
 
 export interface RecipeFormProps {
@@ -32,4 +32,4 @@ function RecipeForm({ form, onSubmit }: RecipeFormProps) {
   );
 }
 
-export default RecipeForm;
+export { RecipeForm };

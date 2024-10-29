@@ -39,10 +39,10 @@ const schema = z.object({
   steps: z.array(stepSchema).min(1, { message: 'At least one step is required for the recipe.' }),
 });
 
-export type FormValues = z.infer<typeof schema>;
-export type FormDataValues = Omit<FormValues, 'image' | 'steps'> & { steps: Array<string> };
+type FormValues = z.infer<typeof schema>;
+type FormDataValues = Omit<FormValues, 'image' | 'steps'> & { steps: Array<string> };
 
-export const defaultValues: FormValues = {
+const defaultValues: FormValues = {
   image: undefined,
   title: '',
   description: '',
@@ -51,4 +51,5 @@ export const defaultValues: FormValues = {
   steps: [{ description: '' }],
 };
 
-export default schema;
+export type { FormValues, FormDataValues };
+export { defaultValues, schema };

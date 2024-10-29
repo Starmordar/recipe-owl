@@ -3,13 +3,13 @@ import { useRouter } from 'next/navigation';
 import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
-import { createRecipe, updateRecipe } from '@/app/(main)/recipes/actions';
+import { createRecipe, updateRecipe } from '@/src/entities/recipe';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { toast } from '@/src/shared/hooks/useToast';
 
-import schema, { defaultValues } from '../constants/shema';
+import { schema, defaultValues } from '../model/shema';
 
-import type { FormValues } from '../constants/shema';
+import type { FormValues } from '../model/shema';
 
 interface UseRecipeFormOptions {
   recipeId?: number;
@@ -67,4 +67,4 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
   return { form, onSubmit, isPending: isPendingCreate || isPendingUpdate };
 }
 
-export default useRecipeForm;
+export { useRecipeForm };

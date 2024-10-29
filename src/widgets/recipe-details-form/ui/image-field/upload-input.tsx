@@ -4,7 +4,7 @@ import { ControllerRenderProps } from 'react-hook-form';
 import { acceptedImageMimeTypes } from '@/src/entities/image/config';
 import { Input } from '@/src/shared/ui/input';
 
-export interface UploadInputProps extends React.ButtonHTMLAttributes<HTMLInputElement> {
+interface UploadInputProps extends React.ButtonHTMLAttributes<HTMLInputElement> {
   id: string;
   onUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
   fieldProps: Partial<ControllerRenderProps>;
@@ -27,4 +27,6 @@ const UploadInput = forwardRef<HTMLInputElement, UploadInputProps>(
   ),
 );
 UploadInput.displayName = 'UploadInput';
-export default UploadInput;
+
+export type { UploadInputProps };
+export { UploadInput };

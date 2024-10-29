@@ -11,20 +11,20 @@ import {
   DraggableFieldsHeader,
 } from '@/src/shared/ui/draggable-fields';
 
-import StepField from './components/step-field';
+import { IngredientField } from './ingredient-field';
 
-import type { FormValues } from '../../constants/shema';
+import type { FormValues } from '../../model/shema';
 import type { DropResult } from '@hello-pangea/dnd';
 
-interface StepsFieldsetProps {
+interface IngredientsFieldsetProps {
   form: UseFormReturn<FormValues>;
 }
 
-function StepsFieldset({ form }: StepsFieldsetProps) {
+function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
-    name: 'steps',
+    name: 'ingredients',
     control: form.control,
   });
 
@@ -39,18 +39,20 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title='Method'
+        title='Ingredients'
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
 
       <DraggableFields<(typeof fields)[number]>
         fields={fields}
-        droppableId='steps'
-        draggableId='steps'
+        droppableId='ingredients'
+        draggableId='ingredients'
         isDraggable={isDraggable}
         onDragField={handleDragField}
-        renderField={({ field, index }) => <StepField form={form} field={field} index={index} />}
+        renderField={({ field, index }) => (
+          <IngredientField form={form} field={field} index={index} />
+        )}
         renderAction={({ dragHandleProps, index }) => (
           <DraggableAction
             isDraggable={isDraggable}
@@ -62,14 +64,14 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
         )}
       />
 
-      <div className='flex justify-center'>
-        <Button variant='ghost' type='button' onClick={() => append({ description: '' })}>
+      <div className='flex justify-center mt-4'>
+        <Button variant='ghost' type='button' onClick={() => append({ name: '', unit: '' })}>
           <Plus className='h-5 w-5 mr-2' />
-          Step
+          Ingredient
         </Button>
       </div>
     </fieldset>
   );
 }
 
-export default StepsFieldset;
+export { IngredientsFieldset };

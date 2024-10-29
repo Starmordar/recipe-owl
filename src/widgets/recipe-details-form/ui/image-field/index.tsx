@@ -7,9 +7,9 @@ import { useRef, useState } from 'react';
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { ImageUploadDrawer } from '@/src/shared/ui/image-upload-drawer';
 
-import FileInputs, { FileUploadHandles } from './components/file-inputs';
+import { FileInputs, FileUploadHandles } from './file-inputs';
 
-import type { FormValues } from '../../constants/shema';
+import type { FormValues } from '../../model/shema';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface ImageUploadFieldProps {

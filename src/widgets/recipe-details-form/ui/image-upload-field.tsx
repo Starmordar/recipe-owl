@@ -8,7 +8,7 @@ import { acceptedImageMimeTypes } from '@/src/entities/image/config';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
 
-import type { FormValues } from '../constants/shema';
+import type { FormValues } from '../model/shema';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
 interface ImageUploadFieldProps {
@@ -118,4 +118,4 @@ function UploadInput({ onUpload, fieldProps }: UploadInputProps) {
   );
 }
 
-export default ImageUploadField;
+export { ImageUploadField };

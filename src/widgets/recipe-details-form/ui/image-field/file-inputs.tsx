@@ -1,9 +1,9 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
-import UploadInput from './upload-input';
+import { UploadInput } from './upload-input';
 
-export interface FileUploadHandles {
+interface FileUploadHandles {
   onUpload: () => void;
   onTakePhoto: () => void;
 }
@@ -50,4 +50,6 @@ const FileInputs = forwardRef<FileUploadHandles, FileInputsProps>(
   },
 );
 FileInputs.displayName = 'FileInputs';
-export default FileInputs;
+
+export type { FileUploadHandles };
+export { FileInputs };

@@ -4,7 +4,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/f
 import { Input } from '@/src/shared/ui/input';
 import { Textarea } from '@/src/shared/ui/textarea';
 
-import { type FormValues } from '../constants/shema';
+import { type FormValues } from '../model/shema';
 
 import ImageUploadField from './image-field';
 
@@ -66,4 +66,4 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
   );
 }
 
-export default DetailsFieldset;
+export { DetailsFieldset };
