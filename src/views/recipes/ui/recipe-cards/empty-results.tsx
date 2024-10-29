@@ -10,4 +10,4 @@ function EmptySearchResults() {
   );
 }
 
-export default EmptySearchResults;
+export { EmptySearchResults };

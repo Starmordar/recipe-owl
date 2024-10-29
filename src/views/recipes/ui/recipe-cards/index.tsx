@@ -1,5 +1,6 @@
-import EmptySearchResults from '@/app/(main)/recipes/_components/empty-search-results';
 import { RecipeCard, searchRecipes } from '@/src/entities/recipe';
+
+import { EmptySearchResults } from './empty-results';
 
 interface RecipeCardsProps {
   search: string;
