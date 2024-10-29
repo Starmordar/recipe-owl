@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import RecipeAuthor from '@/src/components/recipe-details/components/recipe-author';
+import RecipeAuthor from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
 
 import type { RecipeWithUser } from '@/src/entities/recipe';
 

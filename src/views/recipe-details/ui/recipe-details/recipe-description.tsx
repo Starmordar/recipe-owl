@@ -1,6 +1,6 @@
-import { isValidURL } from '../utils/isValidUrl';
+import { isValidURL } from '@/src/shared/lib/is-valid-url';
 
-import RecipeAuthor from './recipe-author';
+import { RecipeAuthor } from './recipe-author';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
@@ -44,4 +44,4 @@ function RecipeSource({ source }: RecipeSourceProps) {
   return <p className='truncate text-sm'>{source}</p>;
 }
 
-export default RecipeDescription;
+export { RecipeDescription };

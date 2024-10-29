@@ -9,11 +9,11 @@ import {
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
-interface IngredientsTableProps {
+interface RecipeIngredientsSectionProps {
   ingredients: Array<RecipeDetails['ingredients'][number]>;
 }
 
-function IngredientsTable({ ingredients }: IngredientsTableProps) {
+function RecipeIngredientsSection({ ingredients }: RecipeIngredientsSectionProps) {
   return (
     <section className='flex flex-col'>
       <Table>
@@ -39,4 +39,4 @@ function IngredientsTable({ ingredients }: IngredientsTableProps) {
   );
 }
 
-export default IngredientsTable;
+export { RecipeIngredientsSection };

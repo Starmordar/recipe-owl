@@ -31,4 +31,4 @@ function RecipeAuthor({ recipe, avatarSize = 24 }: RecipeAuthorProps) {
   );
 }
 
-export default RecipeAuthor;
+export { RecipeAuthor };

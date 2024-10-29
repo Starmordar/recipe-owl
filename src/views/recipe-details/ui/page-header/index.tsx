@@ -9,7 +9,7 @@ import AppHeader from '@/src/shared/ui/app-header';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 import { RecipeActionsDrawer } from '@/src/widgets/recipe-actions-drawer';
 
-import AddToCartAction from './components/add-to-cart-action';
+import { AddToCartAction } from './add-to-cart-action';
 
 interface RecipeDetailsHeaderProps {
   recipeId: number;
@@ -39,4 +39,4 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   );
 }
 
-export default RecipeDetailsHeader;
+export { RecipeDetailsHeader };

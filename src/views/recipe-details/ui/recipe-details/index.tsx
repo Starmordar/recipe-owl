@@ -3,11 +3,11 @@ import React from 'react';
 
 import { getRecipeDetails } from '@/src/entities/recipe';
 
-import AddToCartAction from './components/add-to-cart-action';
-import IngredientsTable from './components/ingredients-table';
-import RecipeDescription from './components/recipe-description';
-import RecipeImage from './components/recipe-image';
-import RecipeMethod from './components/recipe-method';
+import AddToCartAction from './add-to-cart-action';
+import { RecipeIngredientsSection } from './ingredients-table';
+import { RecipeDescription } from './recipe-description';
+import { RecipeImage } from './recipe-image';
+import { RecipeMethod } from './recipe-method';
 
 interface RecipeProps {
   recipeId: number;
@@ -29,7 +29,8 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
           <h2 className='text-xl font-bold'>Ingredients</h2>
           <AddToCartAction recipe={recipe} />
         </div>
-        <IngredientsTable ingredients={recipe.ingredients} />
+
+        <RecipeIngredientsSection ingredients={recipe.ingredients} />
       </section>
 
       <section>
@@ -40,4 +41,4 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
   );
 }
 
-export default RecipeDetails;
+export { RecipeDetails };

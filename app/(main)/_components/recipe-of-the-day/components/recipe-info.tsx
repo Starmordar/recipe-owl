@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
-import RecipeAuthor from '@/src/components/recipe-details/components/recipe-author';
 import { publicUrls } from '@/src/shared/config/url';
+import RecipeAuthor from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
 
 import type { RecipeWithUser } from '@/src/entities/recipe';
 

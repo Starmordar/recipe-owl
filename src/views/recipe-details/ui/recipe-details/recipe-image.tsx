@@ -22,4 +22,4 @@ function RecipeImage({ recipe }: RecipeImageProps) {
   );
 }
 
-export default RecipeImage;
+export { RecipeImage };

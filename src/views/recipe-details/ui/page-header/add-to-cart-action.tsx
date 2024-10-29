@@ -19,4 +19,4 @@ function AddToCartAction({ recipe }: AddToCartActionProps) {
   );
 }
 
-export default AddToCartAction;
+export { AddToCartAction };

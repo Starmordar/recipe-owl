@@ -1,6 +1,6 @@
 import { Skeleton } from '@/src/shared/ui/skeleton';
 
-function RecipeSkeleton() {
+function RecipeDetailsPageSkeleton() {
   const ingredients = new Array<number>(10).fill(0);
 
   return (
@@ -30,4 +30,4 @@ function RecipeSkeleton() {
   );
 }
 
-export default RecipeSkeleton;
+export { RecipeDetailsPageSkeleton };

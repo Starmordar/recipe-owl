@@ -1,10 +1,10 @@
 import type { RecipeDetails } from '@/src/entities/recipe';
 
-interface MethodProps {
+interface RecipeMethodProps {
   recipe: RecipeDetails;
 }
 
-function RecipeMethod({ recipe }: MethodProps) {
+function RecipeMethod({ recipe }: RecipeMethodProps) {
   return (
     <ul className='flex flex-col gap-5'>
       {recipe.steps.map((instruction, index) => {
@@ -24,4 +24,4 @@ function RecipeMethod({ recipe }: MethodProps) {
   );
 }
 
-export default RecipeMethod;
+export { RecipeMethod };

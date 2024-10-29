@@ -1,4 +1,4 @@
-export function isValidURL(str: string) {
+function isValidURL(str: string) {
   const pattern = new RegExp(
     '^(https?:\\/\\/)?' + // protocol (optional)
       '((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|' + // domain name
@@ -11,3 +11,5 @@ export function isValidURL(str: string) {
 
   return !!pattern.test(str);
 }
+
+export { isValidURL };
