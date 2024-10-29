@@ -2,7 +2,7 @@
 
 import { useDrag } from '@use-gesture/react';
 import { m, useAnimationControls } from 'framer-motion';
-import { useRef, useState, ReactNode, useLayoutEffect } from 'react';
+import React, { useRef, useState, ReactNode, useLayoutEffect } from 'react';
 
 import { Tabs, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
 
@@ -14,6 +14,7 @@ interface Tab {
 interface SwipableTabsProps {
   defaultTab: string;
   tabs: Record<string, Tab>;
+  loader?: ReactNode;
   options?: { swipeThreshold?: number };
 }
 
@@ -23,7 +24,7 @@ interface TriggerSwipeAnimationOptions {
   offsetX?: number;
 }
 
-function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
+function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) {
   const [currentTab, setCurrentTab] = useState(defaultTab);
   const controls = useAnimationControls();
 
@@ -110,21 +111,25 @@ function SwipableTabs({ defaultTab, tabs, options }: SwipableTabsProps) {
         ref={contentContainerRef}
         className='relative flex flex-grow overflow-x-hidden touch-none'
       >
-        {Object.keys(tabs).map((tab, i) => {
-          if (initialWidth === null) return null;
+        {initialWidth ? (
+          Object.keys(tabs).map((tab, i) => {
+            if (initialWidth === null) return null;
 
-          return (
-            <m.div
-              key={tab}
-              className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
-              initial={{ x: (i - currentTabIndex.current) * initialWidth }}
-              custom={i}
-              animate={controls}
-            >
-              {tabs[tab].content}
-            </m.div>
-          );
-        })}
+            return (
+              <m.div
+                key={tab}
+                className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
+                initial={{ x: (i - currentTabIndex.current) * initialWidth }}
+                custom={i}
+                animate={controls}
+              >
+                {tabs[tab].content}
+              </m.div>
+            );
+          })
+        ) : (
+          <React.Fragment>{loader}</React.Fragment>
+        )}
       </div>
     </Tabs>
   );

@@ -1,5 +1,5 @@
-import GroceryCartSekeleton from '@/src/components/grocery-cart/skeleton';
+import { CartPageSkeleton } from '@/src/views/cart';
 
 export default function Loading() {
-  return <GroceryCartSekeleton />;
+  return <CartPageSkeleton />;
 }

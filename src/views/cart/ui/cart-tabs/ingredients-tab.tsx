@@ -3,11 +3,11 @@ import { CheckedIngredientsList } from '@/src/widgets/cart-checked-ingredients';
 import { RecipeIngredientsList } from '@/src/widgets/cart-recipe-section';
 import { SharedIngredientsList } from '@/src/widgets/cart-shared-ingredients';
 
-interface IngredientsListProps {
+interface CartIngredientsTabProps {
   cartWithRecipes: CartWithRecipes;
 }
 
-function IngredientsList({ cartWithRecipes }: IngredientsListProps) {
+function CartIngredientsTab({ cartWithRecipes }: CartIngredientsTabProps) {
   const { shared, checked, items } = cartWithRecipes;
   if (items.length === 0 && checked.length === 0 && shared.length === 0) return <EmptyCart />;
 
@@ -23,4 +23,4 @@ function IngredientsList({ cartWithRecipes }: IngredientsListProps) {
   );
 }
 
-export default IngredientsList;
+export { CartIngredientsTab };

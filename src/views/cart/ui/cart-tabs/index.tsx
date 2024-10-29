@@ -3,9 +3,11 @@
 import { LazyMotion } from 'framer-motion';
 import { useMemo } from 'react';
 
-import GroceryCart from '@/src/components/grocery-cart';
-import IngredientsList from '@/src/components/grocery-cart/ingredients-list';
 import SwipableTabs from '@/src/shared/ui/swipable-tabs';
+
+import { CartIngredientsTab } from './ingredients-tab';
+import { RecipesTab } from './recipes-tab';
+import { TabsContentSkeleton } from './skeleton';
 
 import type { CartWithRecipes } from '@/src/entities/cart';
 
@@ -18,11 +20,11 @@ function CartTabs({ cartWithRecipes }: CartTabsProps) {
     () => ({
       recipes: {
         title: 'Recipes',
-        content: <GroceryCart cartWithRecipes={cartWithRecipes} />,
+        content: <RecipesTab cartWithRecipes={cartWithRecipes} />,
       },
       ingredient: {
         title: 'All Ingredients',
-        content: <IngredientsList cartWithRecipes={cartWithRecipes} />,
+        content: <CartIngredientsTab cartWithRecipes={cartWithRecipes} />,
       },
     }),
     [cartWithRecipes],
@@ -33,7 +35,7 @@ function CartTabs({ cartWithRecipes }: CartTabsProps) {
 
   return (
     <LazyMotion features={loadAnimationFeatures} strict>
-      <SwipableTabs tabs={tabs} defaultTab='recipes' />
+      <SwipableTabs tabs={tabs} loader={<TabsContentSkeleton />} defaultTab='recipes' />
     </LazyMotion>
   );
 }
