@@ -9,11 +9,11 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 import type { CartSharedIngredient } from '@/src/entities/cart';
 import type { PropsWithChildren } from 'react';
 
-interface RecipeActionsDrawerProps extends PropsWithChildren {
+interface EditSharedIngredietDrawerProps extends PropsWithChildren {
   item: CartSharedIngredient;
 }
 
-function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps) {
+function EditSharedIngredietDrawer({ children, item }: EditSharedIngredietDrawerProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -47,4 +47,4 @@ function EditSharedIngredietDrawer({ children, item }: RecipeActionsDrawerProps)
   );
 }
 
-export default EditSharedIngredietDrawer;
+export { EditSharedIngredietDrawer };
