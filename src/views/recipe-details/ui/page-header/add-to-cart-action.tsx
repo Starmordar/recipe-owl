@@ -2,8 +2,8 @@
 
 import { CirclePlus } from 'lucide-react';
 
-import AddToCartDrawer from '@/src/components/recipe-to-cart-drawer';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
+import { AddRecipeToCartDrawer } from '@/src/widgets/recipe-to-cart-drawer';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
@@ -13,9 +13,9 @@ interface AddToCartActionProps {
 
 function AddToCartAction({ recipe }: AddToCartActionProps) {
   return (
-    <AddToCartDrawer recipe={recipe}>
+    <AddRecipeToCartDrawer recipe={recipe}>
       <HeaderIconButton Icon={<CirclePlus />} />
-    </AddToCartDrawer>
+    </AddRecipeToCartDrawer>
   );
 }
 

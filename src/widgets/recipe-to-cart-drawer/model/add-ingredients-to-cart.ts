@@ -19,7 +19,7 @@ async function getCartId(shareToken?: string | null): Promise<[number | undefine
   return [existingCart?.id, user.id];
 }
 
-export async function addIngredientsToCart(
+async function addIngredientsToCart(
   recipeId: number,
   ingredientIds: Array<number>,
   quantity: number,
@@ -40,3 +40,5 @@ export async function addIngredientsToCart(
   revalidatePath(publicUrls.cart);
   return { id: cartId };
 }
+
+export { addIngredientsToCart };

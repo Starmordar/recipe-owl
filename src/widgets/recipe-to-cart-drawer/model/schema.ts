@@ -6,10 +6,12 @@ const schema = z.object({
   }),
 });
 
-export type FormValues = z.infer<typeof schema>;
+type FormValues = z.infer<typeof schema>;
 
-export const defaultValues: FormValues = {
+const defaultValues: FormValues = {
   ingredients: [],
 };
 
-export default schema;
+export type { FormValues };
+
+export { schema, defaultValues };

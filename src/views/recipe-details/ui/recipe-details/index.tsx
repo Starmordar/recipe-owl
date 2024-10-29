@@ -3,7 +3,7 @@ import React from 'react';
 
 import { getRecipeDetails } from '@/src/entities/recipe';
 
-import AddToCartAction from './add-to-cart-action';
+import { AddToCartAction } from './add-to-cart-action';
 import { RecipeIngredientsSection } from './ingredients-table';
 import { RecipeDescription } from './recipe-description';
 import { RecipeImage } from './recipe-image';

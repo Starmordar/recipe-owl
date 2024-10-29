@@ -4,7 +4,8 @@ import { applyQuantityToUnit } from '@/src/entities/cart';
 import { Checkbox } from '@/src/shared/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 
-import type { FormValues } from '../constants/schema';
+import { FormValues } from '../model/schema';
+
 import type { Ingredient } from '@prisma/client';
 import type { UseFormReturn } from 'react-hook-form';
 
@@ -71,4 +72,4 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
   );
 }
 
-export default IngredientsForm;
+export { IngredientsForm };

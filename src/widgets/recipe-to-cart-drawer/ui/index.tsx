@@ -12,18 +12,19 @@ import {
   DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
-import IngredientsForm from './components/ingredients-form';
-import IngredientsFormHeader from './components/ingredients-form-header';
-import useIngredientsForm from './hooks/useIngredientsForm';
+import { useIngredientsForm } from '../hooks/useIngredientsForm';
+import { FormValues } from '../model/schema';
 
-import type { FormValues } from './constants/schema';
+import { IngredientsForm } from './ingredients-form';
+import { IngredientsFormHeader } from './ingredients-form-header';
+
 import type { RecipeDetails } from '@/src/entities/recipe';
 
-interface AddToCartDrawerProps extends PropsWithChildren {
+interface AddRecipeToCartDrawerProps extends PropsWithChildren {
   recipe: RecipeDetails;
 }
 
-function AddToCartDrawer({ recipe, children }: AddToCartDrawerProps) {
+function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps) {
   const { form, onSubmit, isPending } = useIngredientsForm({ recipe });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
@@ -76,4 +77,4 @@ function AddToCartDrawer({ recipe, children }: AddToCartDrawerProps) {
   );
 }
 
-export default AddToCartDrawer;
+export { AddRecipeToCartDrawer };

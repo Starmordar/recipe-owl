@@ -2,11 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 
-import { addIngredientsToCart } from '@/app/(main)/cart/actions';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { toast } from '@/src/shared/hooks/useToast';
 
-import schema, { FormValues } from '../constants/schema';
+import { addIngredientsToCart } from '../model/add-ingredients-to-cart';
+import { FormValues, schema } from '../model/schema';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
@@ -37,4 +37,4 @@ function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
   return { form, isPending, onSubmit };
 }
 
-export default useIngredientsForm;
+export { useIngredientsForm };
