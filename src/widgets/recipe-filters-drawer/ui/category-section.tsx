@@ -29,4 +29,4 @@ function CategorySection({ options, selected, onChange }: FiltersOpenProps) {
   );
 }
 
-export default CategorySection;
+export { CategorySection };

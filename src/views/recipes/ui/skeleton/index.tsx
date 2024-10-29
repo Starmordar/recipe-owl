@@ -1,6 +1,6 @@
 import { Skeleton } from '@/src/shared/ui/skeleton';
 
-function RecipePreviewCardsSkeleton() {
+function RecipesPageSkeleton() {
   const cards = new Array<number>(20).fill(0);
 
   return (
@@ -17,4 +17,4 @@ function RecipePreviewCardsSkeleton() {
   );
 }
 
-export default RecipePreviewCardsSkeleton;
+export { RecipesPageSkeleton };

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
-import RecipePreviewCardsSkeleton from '@/src/components/recipe-preview-cards/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
+import { RecipesPageSkeleton } from '@/src/views/recipes';
 
 import SavedRecipes from './saved-recipes';
 
@@ -24,7 +24,7 @@ function ProfileTabs({ user }: ProfileTabsProps) {
       </TabsList>
 
       <TabsContent value='saved'>
-        <Suspense fallback={<RecipePreviewCardsSkeleton />}>
+        <Suspense fallback={<RecipesPageSkeleton />}>
           <SavedRecipes user={user} />
         </Suspense>
       </TabsContent>

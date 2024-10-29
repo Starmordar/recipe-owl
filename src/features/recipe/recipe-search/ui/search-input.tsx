@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Command, CommandList, CommandInput } from '@/src/shared/ui/command';
 
-interface SearchProps {
+interface SearchInputProps {
   placeholder: string;
 
   searchTerm: string;
@@ -16,7 +16,7 @@ interface SearchProps {
   showClear?: boolean;
 }
 
-function Search({
+function SearchInput({
   placeholder,
   searchTerm,
   selectedValue,
@@ -24,7 +24,7 @@ function Search({
   setSelected,
   showSearch,
   showClear,
-}: SearchProps) {
+}: SearchInputProps) {
   function handleValueChange(value: string) {
     setSearchTerm(value);
   }
@@ -60,4 +60,4 @@ function Search({
   );
 }
 
-export default Search;
+export { SearchInput };

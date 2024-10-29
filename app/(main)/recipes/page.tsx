@@ -1,8 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-import RecipesHeader from '@/src/components/layout/recipes-header';
-import RecipePreviewCards from '@/src/components/recipe-preview-cards';
-import RecipePreviewCardsSkeleton from '@/src/components/recipe-preview-cards/skeleton';
+import { RecipesPage } from '@/src/views/recipes';
 
 interface PageProps {
   searchParams: {
@@ -12,19 +10,7 @@ interface PageProps {
 }
 
 function Page({ searchParams }: PageProps) {
-  const search = searchParams?.search ?? '';
-
-  return (
-    <>
-      <RecipesHeader />
-
-      <main className='page-container'>
-        <Suspense key={JSON.stringify(searchParams)} fallback={<RecipePreviewCardsSkeleton />}>
-          <RecipePreviewCards search={search} filters={searchParams} />
-        </Suspense>
-      </main>
-    </>
-  );
+  return <RecipesPage searchParams={searchParams} />;
 }
 
 export default Page;

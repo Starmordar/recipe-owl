@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { searchIngredients } from '@/src/entities/ingredient';
 import Search from '@/src/shared/ui/search';
 
-import CategorySection from './category-section';
+import { CategorySection } from './category-section';
 
 interface IngredientsSectionProps {
   category: string;
@@ -83,4 +83,4 @@ function IngredientsSection({
   );
 }
 
-export default IngredientsSection;
+export { IngredientsSection };

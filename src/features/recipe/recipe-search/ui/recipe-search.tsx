@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { publicUrls } from '@/src/shared/config/url';
 import useValueToPathname from '@/src/shared/hooks/useValueToPathname';
 
-import Search from './components/search';
+import { SearchInput } from './search-input';
 
 function RecipeSearch() {
   const { replace } = useRouter();
@@ -36,7 +36,7 @@ function RecipeSearch() {
           <ArrowLeft className='h-5 w-5' />
         </Link>
       )}
-      <Search
+      <SearchInput
         placeholder='Search for recipes'
         searchTerm={searchTerm}
         selectedValue={selectedValue}
@@ -47,4 +47,4 @@ function RecipeSearch() {
   );
 }
 
-export default RecipeSearch;
+export { RecipeSearch };

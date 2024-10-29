@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { RecipeSearchResult } from '@/src/entities/recipe';
+import type { RecipeSearchResult } from '../model/type';
 
-interface RecipePreviewCardProps {
+interface RecipeCardProps {
   recipe: RecipeSearchResult;
 }
 
-function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
+function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Link href={`/recipes/${recipe.id}`}>
       <div className='relative h-[20vh]'>
@@ -26,4 +26,4 @@ function RecipePreviewCard({ recipe }: RecipePreviewCardProps) {
   );
 }
 
-export default RecipePreviewCard;
+export { RecipeCard };

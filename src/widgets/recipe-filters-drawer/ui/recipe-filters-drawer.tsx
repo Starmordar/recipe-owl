@@ -3,6 +3,7 @@
 import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
+import { filterCategories, ingredientsCategory, onlySavedCategory } from '@/src/entities/recipe';
 import useValueToPathname from '@/src/shared/hooks/useValueToPathname';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 import {
@@ -14,18 +15,13 @@ import {
   DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
-import Footer from './components/footer';
-import IngredientsSection from './components/ingredients-section';
-import OnlySavedSection from './components/only-saved-section';
-import {
-  ingredientsCategory,
-  onlySavedCategory,
-  filterCategories,
-} from './constants/filter-categories';
+import { Footer } from './drawer-footer';
+import { IngredientsSection } from './ingredients-section';
+import { OnlySavedSection } from './only-saved-section';
 
-import type { SelectedFilters } from './types';
+import type { SelectedFilters } from '../model/types';
 
-function RecipeFilters() {
+function RecipeFiltersDrawer() {
   const { valuesFromPathname } = useValueToPathname();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [filters, setFilters] = React.useState<SelectedFilters>(
@@ -92,4 +88,4 @@ function RecipeFilters() {
   );
 }
 
-export default RecipeFilters;
+export { RecipeFiltersDrawer };

@@ -25,4 +25,4 @@ function OnlySavedSection({ category, selected, onFilterChange }: OnlySavedSecti
   );
 }
 
-export default OnlySavedSection;
+export { OnlySavedSection };

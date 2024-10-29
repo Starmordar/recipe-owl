@@ -5,7 +5,7 @@ import useValueToPathname from '@/src/shared/hooks/useValueToPathname';
 import { Button } from '@/src/shared/ui/button';
 import { DrawerClose } from '@/src/shared/ui/drawer';
 
-import type { SelectedFilters } from '../types';
+import type { SelectedFilters } from '../model/types';
 
 interface FooterProps {
   filters: SelectedFilters;
@@ -44,4 +44,4 @@ function Footer({ filters, setFilters, categoryIds }: FooterProps) {
   );
 }
 
-export default Footer;
+export { Footer };

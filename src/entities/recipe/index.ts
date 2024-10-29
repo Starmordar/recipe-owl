@@ -4,6 +4,10 @@ export { searchRecipes } from './model/search-recipe';
 export { getRecipeDetails } from './model/get-recipe-details';
 export { isRecipeSaved } from './model/is-recipe-saved';
 
+export { ingredientsCategory, onlySavedCategory, filterCategories } from './config/search-recipes';
+
+export { RecipeCard } from './ui/recipe-card';
+
 export type {
   RecipeSearchResult,
   RecipeDetails,
