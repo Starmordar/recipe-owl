@@ -2,16 +2,16 @@
 
 import { useLayoutEffect, useRef, useState } from 'react';
 
-import RecipeImage from './recipe-image';
-import RecipeInfo from './recipe-info';
+import { RecipeImage } from './recipe-image';
+import { RecipeInfo } from './recipe-info';
 
 import type { RecipeWithUser } from '@/src/entities/recipe';
 
-interface Props {
+interface RecipeContentProps {
   recipe: RecipeWithUser;
 }
 
-function RecipeContent({ recipe }: Props) {
+function RecipeContent({ recipe }: RecipeContentProps) {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const infoContainerRef = useRef<HTMLDivElement>(null);
 
@@ -37,4 +37,4 @@ function RecipeContent({ recipe }: Props) {
   );
 }
 
-export default RecipeContent;
+export { RecipeContent };

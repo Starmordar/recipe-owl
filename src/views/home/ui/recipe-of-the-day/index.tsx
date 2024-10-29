@@ -1,6 +1,6 @@
-import { getRecipeOfTheDay } from '../../actions';
+import { getRecipeOfTheDay } from '../../model/get-recipe-of-the-day';
 
-import RecipeContent from './components/recipe-content';
+import { RecipeContent } from './recipe-content';
 
 async function RecipeOfTheDay() {
   const recipe = await getRecipeOfTheDay();
@@ -9,4 +9,4 @@ async function RecipeOfTheDay() {
   return <RecipeContent recipe={recipe} />;
 }
 
-export default RecipeOfTheDay;
+export { RecipeOfTheDay };

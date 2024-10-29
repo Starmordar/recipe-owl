@@ -7,13 +7,13 @@ import { forwardRef } from 'react';
 import type { RecipeWithUser } from '@/src/entities/recipe';
 import type { RefObject } from 'react';
 
-interface Props {
+interface RecipeImageProps {
   recipe: RecipeWithUser;
   imageHeight: number;
   infoHeight: number;
 }
 
-const RecipeImage = forwardRef<HTMLDivElement, Props>(
+const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
   ({ recipe, infoHeight, imageHeight }, ref) => {
     const { scrollY } = useScroll({
       target: ref as RefObject<HTMLDivElement>,
@@ -62,4 +62,4 @@ const RecipeImage = forwardRef<HTMLDivElement, Props>(
 );
 
 RecipeImage.displayName = 'RecipeImage';
-export default RecipeImage;
+export { RecipeImage };

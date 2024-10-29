@@ -1,6 +1,6 @@
-import { getLatestRecipes } from '../../actions';
+import { getLatestRecipes } from '../../model/get-latest-recipes';
 
-import RecipeCard from './components/latest-recipe';
+import { LatestRecipeCard } from './latest-recipe';
 
 async function LatestRecipes() {
   const latestRecipes = await getLatestRecipes();
@@ -11,11 +11,11 @@ async function LatestRecipes() {
       <h2 className='text-xl font-semibold'>Our Latest Recipes</h2>
       <div className='flex flex-nowrap gap-x-3 pb-2 overflow-x-auto'>
         {latestRecipes.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <LatestRecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </section>
   );
 }
 
-export default LatestRecipes;
+export { LatestRecipes };

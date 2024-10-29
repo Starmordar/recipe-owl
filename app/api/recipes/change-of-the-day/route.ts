@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { createRecipeOfTheDay } from '@/app/(main)/actions';
+import { createRecipeOfTheDay } from '@/src/views/home';
 
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('authorization');

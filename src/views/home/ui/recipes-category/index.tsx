@@ -1,8 +1,8 @@
 import { Carousel, CarouselContent, CarouselDots, CarouselItem } from '@/src/shared/ui/carousel';
 
-import { getMostPopularRecipes } from '../../actions';
+import { getMostPopularRecipes } from '../../model/get-most-popular-recipes';
 
-import RecipeCard from './components/recipe-card';
+import { RecipeCard } from './recipe-card';
 
 async function RecipesCategory() {
   const latestRecipes = await getMostPopularRecipes();
@@ -27,4 +27,4 @@ async function RecipesCategory() {
   );
 }
 
-export default RecipesCategory;
+export { RecipesCategory };

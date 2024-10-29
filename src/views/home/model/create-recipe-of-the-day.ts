@@ -1,44 +1,10 @@
+'use server';
+
 import { revalidatePath } from 'next/cache';
 
+import { RecipeOfTheDayDetails } from '@/src/entities/recipe';
 import { prisma } from '@/src/shared/api/prisma-client';
 import { publicUrls } from '@/src/shared/config/url';
-
-import type { RecipeOfTheDayDetails, RecipeWithUser } from '@/src/entities/recipe';
-
-async function getRecipeOfTheDay(): Promise<RecipeWithUser | null> {
-  const data = await prisma.recipeOfTheDay.findFirst({
-    orderBy: { createdAt: 'desc' },
-    include: { recipe: { include: { user: true } } },
-  });
-
-  if (data) return data.recipe;
-
-  const newData = await createRecipeOfTheDay();
-  if (!newData) return null;
-  revalidatePath(publicUrls.home);
-
-  return newData.recipe;
-}
-
-async function getLatestRecipes(): Promise<Array<RecipeWithUser>> {
-  const recipes = await prisma.recipe.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 5,
-    include: { user: true },
-  });
-
-  return recipes;
-}
-
-async function getMostPopularRecipes(): Promise<Array<RecipeWithUser>> {
-  const recipes = await prisma.recipe.findMany({
-    orderBy: { createdAt: 'asc' },
-    take: 5,
-    include: { user: true },
-  });
-
-  return recipes;
-}
 
 async function createRecipeOfTheDay(): Promise<RecipeOfTheDayDetails | null> {
   const lastRecipesOfTheDay = await prisma.recipeOfTheDay.findMany({
@@ -70,4 +36,4 @@ async function createRecipeOfTheDay(): Promise<RecipeOfTheDayDetails | null> {
   return recipe;
 }
 
-export { getRecipeOfTheDay, getLatestRecipes, getMostPopularRecipes, createRecipeOfTheDay };
+export { createRecipeOfTheDay };

@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import RecipeAuthor from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
+import { RecipeAuthor } from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
 
 import type { RecipeWithUser } from '@/src/entities/recipe';
 
-interface Props {
+interface LatestRecipeCardProps {
   recipe: RecipeWithUser;
 }
 
-async function RecipeCard({ recipe }: Props) {
+function LatestRecipeCard({ recipe }: LatestRecipeCardProps) {
   return (
-    <Link href={`/recipes/${recipe.id}`} className='grow w-full min-w-full'>
+    <Link href={`/recipes/${recipe.id}`} className='min-w-64'>
       <div className='relative h-[40vh]'>
         <Image
           className='rounded-lg'
@@ -29,4 +29,4 @@ async function RecipeCard({ recipe }: Props) {
   );
 }
 
-export default RecipeCard;
+export { LatestRecipeCard };
