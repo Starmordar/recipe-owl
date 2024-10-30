@@ -1,28 +1,31 @@
-import { elastic } from '@/src/shared/api';
+'use server';
 
+import { elastic, type ElasticSearchResult } from '@/src/shared/api/elastic';
+
+import { elasticIndexName } from '../config/elastic-index-name';
 import { ingredientsCategory } from '../config/search-recipes';
 
-import type { RecipeSearchResult } from './type';
+import type { ElasticRecipe, RecipeSearchResult } from '../model/types';
 
 type Filters = Record<string, string | Array<string> | undefined>;
-interface SearchResult {
-  hits: { hits: Array<{ _id: string; _source: { title: string; imageUrl: string } }> };
-}
+
+const sourceFields = ['title', 'imageUrl'] as const;
+type SearchResult = ElasticSearchResult<Pick<ElasticRecipe, (typeof sourceFields)[number]>>;
 
 async function searchRecipes(
   searchTerm: string,
   filters: Filters,
 ): Promise<Array<RecipeSearchResult>> {
   const searchResult = await elastic.search<SearchResult>({
-    index: 'recipes',
+    index: elasticIndexName,
     body: {
       query: getSearchFilter(searchTerm, filters),
-      _source: ['title', 'imageUrl'],
+      _source: sourceFields,
     },
     pretty: true,
   });
 
-  const hits = searchResult.body.hits.hits;
+  const hits = searchResult?.body?.hits?.hits ?? [];
 
   const recipes = hits.map(hit => ({ id: hit._id, ...hit._source }));
   return recipes;

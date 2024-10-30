@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { getRecipeDetails, getRecipeJsonLdScheme } from '@/src/entities/recipe';
+import { getRecipeJsonLdScheme, getRecipeDetails } from '@/src/entities/recipe';
 
 import { RecipeDetailsHeader } from './page-header';
 import { RecipeDetails } from './recipe-details';

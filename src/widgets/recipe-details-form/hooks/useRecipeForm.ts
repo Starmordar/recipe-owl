@@ -7,6 +7,7 @@ import { createRecipe, updateRecipe } from '@/src/entities/recipe';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { toast } from '@/src/shared/hooks/useToast';
 
+import { mapRecipe } from '../model/map-recipe';
 import { schema, defaultValues } from '../model/shema';
 
 import type { FormValues } from '../model/shema';
@@ -35,8 +36,7 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
   });
 
   function valuesToFormData(values: FormValues): FormData {
-    const updated = { ...values, steps: values.steps.map(s => s.description) };
-    const { image, ...data } = updated;
+    const { image, ...data } = mapRecipe(values);
 
     const formData = new FormData();
     formData.append('image', image);
@@ -48,12 +48,15 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
   async function applyChanges(values: FormValues): Promise<{ id: number } | null> {
     const formData = valuesToFormData(values);
 
+    console.log('values :>> ', values, mapRecipe(values), createRecipe);
     try {
       const recipe = await (recipeId ? updateAction(recipeId, formData) : createAction(formData));
+
       // Update the form immediately to ensure the redirect after creation does not trigger the unsaved changes confirmation dialog.
       flushSync(() => form.reset({}, { keepValues: true }));
       return recipe ?? null;
-    } catch {
+    } catch (err) {
+      console.log('err :>> ', err);
       toast(errorToast);
       return null;
     }

@@ -1,10 +1,13 @@
+export { searchRecipes } from './api/search-recipes';
+export { getSavedRecipes } from './api/get-saved-recipes';
+export { getRecipeDetails } from './api/get-recipe-details';
+
+export { createRecipe } from './api/create-recipe';
+export { updateRecipe } from './api/update-recipe';
+export { deleteRecipe } from './api/delete-recipe';
+
 export { getRecipeJsonLdScheme } from './model/json-ld';
-export { getSavedRecipes } from './model/get-saved-recipes';
-export { searchRecipes } from './model/search-recipe';
-export { getRecipeDetails } from './model/get-recipe-details';
 export { isRecipeSaved } from './model/is-recipe-saved';
-export { createRecipe } from './model/create-recipe';
-export { updateRecipe } from './model/update-recipe';
 
 export { ingredientsCategory, onlySavedCategory, filterCategories } from './config/search-recipes';
 
@@ -15,4 +18,5 @@ export type {
   RecipeDetails,
   RecipeWithUser,
   RecipeOfTheDayDetails,
-} from './model/type';
+  UpdateRecipePayload,
+} from './model/types';

@@ -40,7 +40,7 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
-type FormDataValues = Omit<FormValues, 'image' | 'steps'> & { steps: Array<string> };
+type FormDataValues = Omit<FormValues, 'image'>;
 
 const defaultValues: FormValues = {
   image: undefined,

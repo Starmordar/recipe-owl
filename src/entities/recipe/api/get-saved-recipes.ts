@@ -1,6 +1,6 @@
 import { prisma } from '@/src/shared/api';
 
-import type { RecipeWithUser } from './type';
+import type { RecipeWithUser } from '../model/types';
 
 async function getSavedRecipes(userId: string): Promise<Array<RecipeWithUser>> {
   const response = await prisma.savedRecipe.findMany({

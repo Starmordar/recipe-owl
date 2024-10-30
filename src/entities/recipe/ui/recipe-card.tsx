@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { RecipeSearchResult } from '../model/type';
+import type { RecipeSearchResult } from '../model/types';
 
 interface RecipeCardProps {
   recipe: RecipeSearchResult;

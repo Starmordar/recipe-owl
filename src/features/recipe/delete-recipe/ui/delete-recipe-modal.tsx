@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
+import { deleteRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import {
   AlertDialog,
@@ -14,8 +15,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/src/shared/ui/alert-dialog';
-
-import { deleteRecipe } from '../model/delete-recipe';
 
 import type { PropsWithChildren } from 'react';
 

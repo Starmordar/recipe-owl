@@ -1,6 +1,6 @@
 import { EllipsisVertical } from 'lucide-react';
 
-import { getRecipeDetails, isRecipeSaved } from '@/src/entities/recipe';
+import { isRecipeSaved, getRecipeDetails } from '@/src/entities/recipe';
 import { SaveRecipe } from '@/src/features/recipe/save-recipe';
 import { ShareRecipe } from '@/src/features/recipe/share-recipe';
 import { validateRequest } from '@/src/shared/api/auth';

@@ -1,6 +1,6 @@
 import { prisma } from '@/src/shared/api';
 
-import { RecipeDetails } from './type';
+import { RecipeDetails } from '../model/types';
 
 async function getRecipeDetails(recipeId: number): Promise<RecipeDetails | null> {
   const recipe = await prisma.recipe.findFirst({

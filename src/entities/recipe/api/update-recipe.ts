@@ -1,32 +1,34 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import invariant from 'tiny-invariant';
 
 import { imageUploadService } from '@/src/entities/image';
-import { elastic, prisma } from '@/src/shared/api';
+import { prisma } from '@/src/shared/api';
 import { validateRequest } from '@/src/shared/api/auth';
+import { elastic } from '@/src/shared/api/elastic';
 import { publicUrls } from '@/src/shared/config/url';
-import { UnauthorizedError } from '@/src/shared/lib/errors/UnauthorizedError';
 import pick from '@/src/shared/lib/pick';
 
-import type { FormDataValues, FormValues } from '@/src/widgets/recipe-details-form/model/shema';
-import type { Recipe, Ingredient } from '@prisma/client';
+import { mapToElastic } from '../model/map-to-elastic';
+
+import type { UpdateRecipePayload } from '../model/types';
+import type { Recipe } from '@prisma/client';
 
 async function updateRecipe(recipeId: number, formData: FormData): Promise<Recipe> {
   const { user } = await validateRequest();
-  if (user === null) throw new UnauthorizedError();
+  invariant(user, 'An authorized user is required');
 
-  const image = formData.get('image') as FormValues['image'];
-  const data = JSON.parse(formData.get('data') as string) as FormDataValues;
+  const image = formData.get('image');
+  invariant(image, 'Expected a image file parameter');
+
+  const payload = formData.get('data');
+  invariant(typeof payload === 'string', 'Expected a payload parameter');
 
   const imageUrl = typeof image !== 'string' ? await imageUploadService.upload(image) : undefined;
-  const ingredients = data.ingredients.map((ingredient, i) => ({ ...ingredient, order: i }));
+  const { ingredients, ...data } = JSON.parse(payload) as UpdateRecipePayload;
 
-  const { toCreate, toUpdate, toDelete } = await getIngredientListPayload(
-    recipeId,
-    ingredients as Array<Ingredient>,
-  );
-
+  const { toCreate, toUpdate, toDelete } = await getIngredientListPayload(recipeId, ingredients);
   const recipe = await prisma.recipe.update({
     where: { id: recipeId },
     data: {
@@ -40,8 +42,7 @@ async function updateRecipe(recipeId: number, formData: FormData): Promise<Recip
     },
   });
 
-  const ingredientNames = ingredients.map(i => i.name);
-  await updateRecipeIndex(recipe, ingredientNames);
+  await updateRecipeIndex(recipe, ingredients);
 
   revalidatePath(publicUrls.recipe(recipe.id));
   revalidatePath(publicUrls.recipes);
@@ -49,24 +50,23 @@ async function updateRecipe(recipeId: number, formData: FormData): Promise<Recip
   return recipe;
 }
 
-async function updateRecipeIndex(recipe: Recipe, ingredients: Array<string>): Promise<void> {
+async function updateRecipeIndex(
+  recipe: Recipe,
+  ingredients: UpdateRecipePayload['ingredients'],
+): Promise<void> {
+  const ingredientNames = ingredients.map(i => i.name);
+
   await elastic.update({
     index: 'recipes',
     id: recipe.id.toString(),
-    body: {
-      doc: {
-        title: recipe.title,
-        description: recipe.description,
-        ingredients: ingredients,
-        imageUrl: recipe.imageUrl,
-        createdById: recipe.createdById,
-        createdAt: recipe.createdAt,
-      },
-    },
+    body: { doc: mapToElastic(recipe, ingredientNames) },
   });
 }
 
-async function getIngredientListPayload(recipeId: number, ingredients: Array<Ingredient>) {
+async function getIngredientListPayload(
+  recipeId: number,
+  ingredients: UpdateRecipePayload['ingredients'],
+) {
   const existingIngredients = await prisma.ingredient.findMany({ where: { recipeId } });
 
   const toCreate = [];
@@ -93,7 +93,10 @@ async function getIngredientListPayload(recipeId: number, ingredients: Array<Ing
   return { toCreate, toUpdate, toDelete };
 }
 
-function isEqualIngredients(ingredient1: Ingredient, ingredient2: Ingredient) {
+function isEqualIngredients(
+  ingredient1: UpdateRecipePayload['ingredients'][number],
+  ingredient2: UpdateRecipePayload['ingredients'][number],
+) {
   const string1 = JSON.stringify(pick(ingredient1, ['id', 'name', 'order', 'unit']));
   const string2 = JSON.stringify(pick(ingredient2, ['id', 'name', 'order', 'unit']));
 

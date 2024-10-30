@@ -2,8 +2,11 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { elastic, prisma } from '@/src/shared/api';
+import { prisma } from '@/src/shared/api';
+import { elastic } from '@/src/shared/api/elastic';
 import { publicUrls } from '@/src/shared/config/url';
+
+import { elasticIndexName } from '../config/elastic-index-name';
 
 async function deleteRecipe(recipeId: number): Promise<void> {
   const recipe = await prisma.recipe.delete({ where: { id: recipeId } });
@@ -15,7 +18,7 @@ async function deleteRecipe(recipeId: number): Promise<void> {
 }
 
 async function deleteRecipeIndex(recipeId: number) {
-  await elastic.delete({ index: 'recipes', id: recipeId.toString() });
+  await elastic.delete({ index: elasticIndexName, id: recipeId.toString() });
 }
 
-export { deleteRecipe, deleteRecipeIndex };
+export { deleteRecipe };
