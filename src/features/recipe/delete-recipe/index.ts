@@ -1,1 +1,1 @@
-export { DeleteRecipe } from './ui/delete-recipe-modal';
+export { DeleteRecipeModal } from './ui/delete-recipe-modal';

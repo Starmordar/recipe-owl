@@ -18,11 +18,11 @@ import {
 
 import type { PropsWithChildren } from 'react';
 
-interface DeleteRecipeProps extends PropsWithChildren {
+interface DeleteRecipeModalProps extends PropsWithChildren {
   recipeId: number;
 }
 
-function DeleteRecipe({ children, recipeId }: DeleteRecipeProps) {
+function DeleteRecipeModal({ children, recipeId }: DeleteRecipeModalProps) {
   const router = useRouter();
 
   async function handleDeleteRecipe() {
@@ -51,4 +51,4 @@ function DeleteRecipe({ children, recipeId }: DeleteRecipeProps) {
   );
 }
 
-export { DeleteRecipe };
+export { DeleteRecipeModal };

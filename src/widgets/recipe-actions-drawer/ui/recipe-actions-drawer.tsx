@@ -4,7 +4,7 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
-import { DeleteRecipe } from '@/src/features/recipe/delete-recipe';
+import { DeleteRecipeModal } from '@/src/features/recipe/delete-recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 
@@ -32,11 +32,11 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
           </li>
 
           <li>
-            <DeleteRecipe recipeId={recipeId}>
+            <DeleteRecipeModal recipeId={recipeId}>
               <DrawerActionButton>
                 <Trash2 className='h-5 w-5 opacity-60' /> Delete Recipe
               </DrawerActionButton>
-            </DeleteRecipe>
+            </DeleteRecipeModal>
           </li>
         </ul>
       </DrawerContent>
