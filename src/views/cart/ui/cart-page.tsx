@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { CartProvider, getSharedCarts, useCartDetails } from '@/src/entities/cart';
-import { validateRequest } from '@/src/entities/session';
 import { assignUserToSharedCart } from '@/src/features/cart/assign-user-to-shared-cart';
+import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
 import { CartPageHeader } from './cart-page-header/cart-page-header';

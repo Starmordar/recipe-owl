@@ -1,4 +1,4 @@
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
 
 async function isRecipeSaved(userId: string | undefined, recipeId: number): Promise<boolean> {
   if (!userId) return false;

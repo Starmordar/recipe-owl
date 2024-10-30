@@ -2,8 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { elastic } from '@/src/shared/api/elastic-client';
-import { prisma } from '@/src/shared/api/prisma-client';
+import { elastic, prisma } from '@/src/shared/api';
 import { publicUrls } from '@/src/shared/config/url';
 
 async function deleteRecipe(recipeId: number): Promise<void> {

@@ -1,4 +1,4 @@
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
 
 async function leaveSharedCart(userId: string, cartId: number) {
   await prisma.sharedCart.deleteMany({ where: { userId, cartId } });

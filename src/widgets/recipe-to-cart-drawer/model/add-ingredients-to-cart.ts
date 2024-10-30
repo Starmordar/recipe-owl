@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { validateRequest } from '@/src/entities/session';
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
+import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 import { UnauthorizedError } from '@/src/shared/lib/errors/UnauthorizedError';
 

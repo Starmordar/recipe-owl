@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
 
 type IsCartExists = boolean;
 

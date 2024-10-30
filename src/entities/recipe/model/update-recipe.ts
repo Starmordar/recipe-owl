@@ -3,9 +3,8 @@
 import { revalidatePath } from 'next/cache';
 
 import { imageUploadService } from '@/src/entities/image';
-import { validateRequest } from '@/src/entities/session';
-import { elastic } from '@/src/shared/api/elastic-client';
-import { prisma } from '@/src/shared/api/prisma-client';
+import { elastic, prisma } from '@/src/shared/api';
+import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 import { UnauthorizedError } from '@/src/shared/lib/errors/UnauthorizedError';
 import pick from '@/src/shared/lib/pick';

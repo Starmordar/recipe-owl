@@ -1,9 +1,9 @@
 import { EllipsisVertical } from 'lucide-react';
 
 import { getRecipeDetails, isRecipeSaved } from '@/src/entities/recipe';
-import { validateRequest } from '@/src/entities/session';
 import { SaveRecipe } from '@/src/features/recipe/save-recipe';
 import { ShareRecipe } from '@/src/features/recipe/share-recipe';
+import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 import AppHeader from '@/src/shared/ui/app-header';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';

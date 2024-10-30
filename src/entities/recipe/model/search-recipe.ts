@@ -1,4 +1,4 @@
-import { elastic } from '@/src/shared/api/elastic-client';
+import { elastic } from '@/src/shared/api';
 
 import { ingredientsCategory } from '../config/search-recipes';
 

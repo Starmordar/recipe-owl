@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { validateRequest } from '@/src/entities/session';
+import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 import { RecipeDetailsForm } from '@/src/widgets/recipe-details-form';
 

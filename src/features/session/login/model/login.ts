@@ -4,8 +4,8 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
-import { lucia } from '@/src/entities/session/lucia';
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
+import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
 import type { LoginFormSchema } from './schema';

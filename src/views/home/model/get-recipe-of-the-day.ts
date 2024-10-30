@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { prisma } from '@/src/shared/api/prisma-client';
+import { prisma } from '@/src/shared/api';
 import { publicUrls } from '@/src/shared/config/url';
 
 import { createRecipeOfTheDay } from './create-recipe-of-the-day';
