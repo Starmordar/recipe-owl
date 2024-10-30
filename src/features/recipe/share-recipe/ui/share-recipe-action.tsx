@@ -5,11 +5,11 @@ import { Share2 } from 'lucide-react';
 import useWebShare from '@/src/shared/hooks/useWebShare';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 
-import { recipeShareInfo } from '../config/share-info';
+import { shareInfo } from '../config/share-info';
 
-function ShareRecipe() {
-  const { shareContent } = useWebShare({ shareData: recipeShareInfo });
+function ShareRecipeAction() {
+  const { shareContent } = useWebShare({ shareData: shareInfo });
   return <HeaderIconButton Icon={<Share2 />} onClick={() => shareContent()} />;
 }
 
-export { ShareRecipe };
+export { ShareRecipeAction };

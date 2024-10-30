@@ -1,8 +1,8 @@
 import { EllipsisVertical } from 'lucide-react';
 
-import { isRecipeSaved, getRecipeDetails } from '@/src/entities/recipe';
-import { SaveRecipe } from '@/src/features/recipe/save-recipe';
-import { ShareRecipe } from '@/src/features/recipe/share-recipe';
+import { getRecipeDetails } from '@/src/entities/recipe';
+import { isRecipeSaved, SaveRecipeAction } from '@/src/features/recipe/save-recipe';
+import { ShareRecipeAction } from '@/src/features/recipe/share-recipe';
 import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 import AppHeader from '@/src/shared/ui/app-header';
@@ -28,8 +28,8 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
       <div className='flex items-center gap-x-3'>
         <AddToCartAction recipe={recipe} />
 
-        <SaveRecipe recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
-        <ShareRecipe />
+        <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
+        <ShareRecipeAction />
 
         <RecipeActionsDrawer recipeId={recipeId}>
           <HeaderIconButton Icon={<EllipsisVertical />} />

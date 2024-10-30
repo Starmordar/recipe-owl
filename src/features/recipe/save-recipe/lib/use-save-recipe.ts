@@ -1,15 +1,15 @@
 import { startTransition, useOptimistic } from 'react';
 
-import { saveRecipe } from '../model/save-recipe';
-import { unsaveRecipe } from '../model/unsave-recipe';
+import { saveRecipe } from '../api/save-recipe';
+import { unsaveRecipe } from '../api/unsave-recipe';
 
-interface UseSaveRecipeProps {
+interface UseSaveRecipeOptions {
   userId: string | undefined;
   recipeId: number;
   isSaved: boolean;
 }
 
-function useSaveRecipe({ recipeId, userId, isSaved }: UseSaveRecipeProps) {
+function useSaveRecipe({ recipeId, userId, isSaved }: UseSaveRecipeOptions) {
   const [isSavedOptimistic, setIsSavedOptimistic] = useOptimistic(isSaved);
 
   async function handleSaveRecipe() {

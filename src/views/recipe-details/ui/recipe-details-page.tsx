@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { getRecipeJsonLdScheme, getRecipeDetails } from '@/src/entities/recipe';
+import { getRecipeJsonLdSchema, getRecipeDetails } from '@/src/entities/recipe';
 
 import { RecipeDetailsHeader } from './page-header';
 import { RecipeDetails } from './recipe-details';
@@ -15,7 +15,7 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
   const recipe = await getRecipeDetails(recipeId);
   if (!recipe) return notFound();
 
-  const jsonLd = getRecipeJsonLdScheme(recipe);
+  const jsonLd = getRecipeJsonLdSchema(recipe);
 
   return (
     <>

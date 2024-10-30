@@ -1,8 +1,5 @@
+import { RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
-
-import { RecipeAuthor } from './recipe-author';
-
-import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface RecipeDescriptionProps {
   recipe: RecipeDetails;
@@ -12,7 +9,7 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
     <div className='w-full mb-2'>
       <h1 className='text-xl font-bold break-words line-clamp-2'>{recipe.title}</h1>
-      <RecipeAuthor recipe={recipe} />
+      <RecipeAuthor author={recipe.user} />
 
       <p className='text-sm leading-5 mt-2 break-words'>{recipe.description}</p>
 

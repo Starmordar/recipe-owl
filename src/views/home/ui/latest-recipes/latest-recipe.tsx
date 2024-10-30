@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { RecipeAuthor } from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
-
-import type { RecipeWithUser } from '@/src/entities/recipe';
+import { RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
 
 interface LatestRecipeCardProps {
   recipe: RecipeWithUser;
@@ -24,7 +22,8 @@ function LatestRecipeCard({ recipe }: LatestRecipeCardProps) {
       </div>
 
       <p className='text-base font-medium leading-5 my-2'>{recipe.title}</p>
-      <RecipeAuthor recipe={recipe} avatarSize={20} />
+
+      <RecipeAuthor author={recipe.user} avatarSize={20} />
     </Link>
   );
 }

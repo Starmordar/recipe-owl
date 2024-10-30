@@ -1,5 +1,5 @@
-const recipeShareInfo = {
+const shareInfo = {
   title: 'Recipe OWL: Discover, Cook, Share – The Wise Way',
 };
 
-export { recipeShareInfo };
+export { shareInfo };

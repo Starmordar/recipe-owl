@@ -2,7 +2,7 @@ import { HowToStep, Recipe, WithContext } from 'schema-dts';
 
 import type { RecipeDetails } from './types';
 
-function getRecipeJsonLdScheme(recipe: RecipeDetails): WithContext<Recipe> {
+function getRecipeJsonLdSchema(recipe: RecipeDetails): WithContext<Recipe> {
   const recipeInstructions: Array<HowToStep> = recipe.steps.map(step => ({
     '@type': 'HowToStep',
     text: step,
@@ -28,4 +28,4 @@ function getRecipeJsonLdScheme(recipe: RecipeDetails): WithContext<Recipe> {
   };
 }
 
-export { getRecipeJsonLdScheme };
+export { getRecipeJsonLdSchema };

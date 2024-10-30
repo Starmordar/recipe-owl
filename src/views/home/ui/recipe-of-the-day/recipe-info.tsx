@@ -3,10 +3,8 @@
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
+import { RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
-import { RecipeAuthor } from '@/src/views/recipe-details/ui/recipe-details/recipe-author';
-
-import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface RecipeInfoProps {
   recipe: RecipeWithUser;
@@ -22,7 +20,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
         <span className='text-base'>Recipe of the Day</span>
         <h1 className='text-2xl font-semibold mb-3'>{recipe.title}</h1>
 
-        <RecipeAuthor recipe={recipe} avatarSize={20} />
+        <RecipeAuthor author={recipe.user} avatarSize={20} />
       </article>
     </Link>
   );

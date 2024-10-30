@@ -1,1 +1,1 @@
-export { ShareRecipe } from './ui/share-recipe';
+export { ShareRecipeAction } from './ui/share-recipe-action';

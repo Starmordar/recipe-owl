@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { publicUrls } from '@/src/shared/config/url';
+
 import type { RecipeSearchResult } from '../model/types';
 
 interface RecipeCardProps {
@@ -9,7 +11,7 @@ interface RecipeCardProps {
 
 function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <Link href={`/recipes/${recipe.id}`}>
+    <Link href={publicUrls.recipe(recipe.id)}>
       <div className='relative h-[20vh]'>
         <Image
           className='rounded-lg'

@@ -2,31 +2,31 @@ import Image from 'next/image';
 
 import { cn } from '@/src/shared/lib/classnames';
 
-import type { RecipeDetails } from '@/src/entities/recipe';
+import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface RecipeAuthorProps {
-  recipe: { user: RecipeDetails['user'] };
+  author: RecipeWithUser['user'];
   avatarSize?: number;
 }
 
-function RecipeAuthor({ recipe, avatarSize = 24 }: RecipeAuthorProps) {
+function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
   const cssSize = `${avatarSize}px`;
 
   return (
     <div className='flex items-center gap-x-2'>
-      {recipe.user.picture ? (
+      {author.picture ? (
         <Image
           className='rounded-full'
           height={avatarSize}
           width={avatarSize}
-          src={recipe.user.picture}
+          src={author.picture}
           alt='Profile Picture'
         />
       ) : (
         <div className={cn(`h-[${cssSize}] w-[${cssSize}]`, 'rounded-full bg-purple-600')}></div>
       )}
 
-      <p className='text-md'>{recipe.user.fullName}</p>
+      <p className='text-md'>{author.fullName}</p>
     </div>
   );
 }

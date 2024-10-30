@@ -4,19 +4,19 @@ import { Bookmark } from 'lucide-react';
 
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 
-import { useSaveRecipe } from '../hooks/useSaveRecipe';
+import { useSaveRecipe } from '../lib/use-save-recipe';
 
-interface SaveRecipeProps {
+interface SaveRecipeActionProps {
   userId: string | undefined;
   recipeId: number;
   isSaved: boolean;
 }
 
-function SaveRecipe({ isSaved, userId, recipeId }: SaveRecipeProps) {
+function SaveRecipeAction({ isSaved, userId, recipeId }: SaveRecipeActionProps) {
   const { isSavedOptimistic, handleSaveRecipe } = useSaveRecipe({ recipeId, userId, isSaved });
 
   const iconOptions = isSavedOptimistic ? { fill: '#000000' } : {};
   return <HeaderIconButton Icon={<Bookmark {...iconOptions} />} onClick={handleSaveRecipe} />;
 }
 
-export { SaveRecipe };
+export { SaveRecipeAction };

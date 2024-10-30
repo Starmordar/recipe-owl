@@ -6,12 +6,12 @@ export { createRecipe } from './api/create-recipe';
 export { updateRecipe } from './api/update-recipe';
 export { deleteRecipe } from './api/delete-recipe';
 
-export { getRecipeJsonLdScheme } from './model/json-ld';
-export { isRecipeSaved } from './model/is-recipe-saved';
+export { getRecipeJsonLdSchema } from './model/json-ld-schema';
 
 export { ingredientsCategory, onlySavedCategory, filterCategories } from './config/search-recipes';
 
 export { RecipeCard } from './ui/recipe-card';
+export { RecipeAuthor } from './ui/recipe-author';
 
 export type {
   RecipeSearchResult,
