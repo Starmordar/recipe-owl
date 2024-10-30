@@ -12,4 +12,4 @@ function EmptySavedRecipes() {
   );
 }
 
-export default EmptySavedRecipes;
+export { EmptySavedRecipes };

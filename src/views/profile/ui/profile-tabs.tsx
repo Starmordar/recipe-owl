@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
 import { RecipesPageSkeleton } from '@/src/views/recipes';
 
-import SavedRecipes from './saved-recipes';
+import { SavedRecipes } from './saved-recipes';
 
 import type { User } from 'lucia';
 
@@ -34,4 +34,4 @@ function ProfileTabs({ user }: ProfileTabsProps) {
   );
 }
 
-export default ProfileTabs;
+export { ProfileTabs };

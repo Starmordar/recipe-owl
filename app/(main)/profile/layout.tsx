@@ -1,6 +1,6 @@
 import { validateRequest } from '@/src/entities/session';
 
-import ProfileHeader from './_components/profile-header';
+import ProfileHeader from '../../../src/views/profile/ui/profile-header';
 
 interface LayoutProps {
   children: React.ReactNode;

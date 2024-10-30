@@ -32,4 +32,4 @@ function ProfileHeader({ user }: ProfileHeaderProps) {
   );
 }
 
-export default ProfileHeader;
+export { ProfileHeader };

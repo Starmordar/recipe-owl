@@ -2,7 +2,7 @@ import { User } from 'lucia';
 
 import { getSavedRecipes, RecipeCard } from '@/src/entities/recipe';
 
-import EmptySavedRecipes from './components/empty-saved-recipes';
+import { EmptySavedRecipes } from './empty-saved-recipes';
 
 interface SavedRecipesProps {
   user: User;
@@ -21,4 +21,4 @@ async function SavedRecipes({ user }: SavedRecipesProps) {
   );
 }
 
-export default SavedRecipes;
+export { SavedRecipes };
