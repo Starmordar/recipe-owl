@@ -7,12 +7,12 @@ import { CardTitle } from '@/src/shared/ui/card';
 
 import type { RecipeItemInCart } from '@/src/entities/cart';
 
-interface CartRecipeHeaderProps {
+interface RecipeHeaderProps {
   recipe: NonNullable<RecipeItemInCart['recipe']>;
   quantity: number;
 }
 
-function CartRecipeHeader({ recipe, quantity }: CartRecipeHeaderProps) {
+function RecipeHeader({ recipe, quantity }: RecipeHeaderProps) {
   return (
     <>
       <div className='relative min-w-15 w-15 h-15'>
@@ -38,4 +38,4 @@ function CartRecipeHeader({ recipe, quantity }: CartRecipeHeaderProps) {
   );
 }
 
-export { CartRecipeHeader };
+export { RecipeHeader };

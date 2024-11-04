@@ -10,7 +10,8 @@ import { disableCartSharing } from '@/src/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/src/features/cart/leave-shared-cart';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
-import { SwitchCartDrawer } from '@/src/widgets/switch-cart-drawer';
+
+import { SwitchCartDrawer } from './switch-cart-drawer';
 
 import type { PropsWithChildren } from 'react';
 
