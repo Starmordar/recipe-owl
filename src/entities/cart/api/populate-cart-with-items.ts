@@ -1,6 +1,6 @@
 import groupBy from '@/src/shared/lib/groupBy';
 
-import type { CartDetails, CartWithRecipes } from './type';
+import type { CartDetails, CartWithRecipes } from '../model/types';
 
 function populateCartWithItems(cart: CartDetails): CartWithRecipes {
   const checked = getCheckedIngredients(cart);

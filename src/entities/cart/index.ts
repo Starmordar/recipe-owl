@@ -1,14 +1,14 @@
-export { getCartDetails } from './model/get-cart-details';
-export { getCartByShareToken } from './model/get-cart-by-token';
-export { getOrCreateCart } from './model/get-or-create-cart';
-export { populateCartWithItems } from './model/populate-cart-with-items';
-export { getSharedCarts } from './model/get-shared-carts';
-export { updateCartItemCheckStatus } from './model/update-item-check-status';
+export { getCartDetails } from './api/get-cart-details';
+export { getCartByShareToken } from './api/get-cart-by-token';
+export { getOrCreateCart } from './api/get-or-create-cart';
+export { populateCartWithItems } from './api/populate-cart-with-items';
+export { getSharedCarts } from './api/get-shared-carts';
+export { updateCartItemCheckStatus } from './api/update-item-check-status';
 
 export { storeShareToken } from './model/cookies';
 
-export { CartProvider, useCart } from './ui/cart-provider';
-export { useCartDetails } from './hooks/useCartDetails';
+export { CartDetailsProvider, useCart } from './ui/cart-details-provider';
+export { useCartDetails } from './lib/use-cart-details';
 
 export { applyQuantityToUnit } from './lib/add-quantity-to-units';
 export { groupCartIngredient } from './lib/group-cart-ingredients';
@@ -23,4 +23,4 @@ export type {
   CartWithRecipes,
   RecipeItemInCart,
   CartSharedIngredient,
-} from './model/type';
+} from './model/types';

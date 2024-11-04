@@ -2,7 +2,7 @@ import { prisma } from '@/src/shared/api';
 
 import { cartWithUserPayload } from './payload';
 
-import type { CartWithUser } from './type';
+import type { CartWithUser } from '../model/types';
 
 async function getSharedCarts(userId: string): Promise<Array<CartWithUser>> {
   const sharedCarts = await prisma.sharedCart.findMany({

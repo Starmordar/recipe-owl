@@ -21,18 +21,18 @@ interface CartContextType extends CartContext {
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
 
-interface CartProviderProps extends CartContext, PropsWithChildren {
+interface CartDetailsProviderProps extends CartContext, PropsWithChildren {
   cartDetails: CartWithRecipes;
 }
 
-function CartProvider({
+function CartDetailsProvider({
   children,
   userId,
   cartId,
   isCartOwner,
   sharedCarts,
   cartDetails,
-}: CartProviderProps) {
+}: CartDetailsProviderProps) {
   const [details, setDetails] = useState(cartDetails);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ function useCart(): CartContextType {
   return useContext(CartContext);
 }
 
-export { CartProvider, useCart };
+export { CartDetailsProvider, useCart };

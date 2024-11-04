@@ -1,7 +1,7 @@
 import { getCartDetails } from './get-cart-details';
 import { populateCartWithItems } from './populate-cart-with-items';
 
-import type { CartWithRecipes } from './type';
+import type { CartWithRecipes } from '../model/types';
 
 async function getCartByShareToken(shareToken: string): Promise<CartWithRecipes | null> {
   const cartDetails = await getCartDetails({ shareToken });

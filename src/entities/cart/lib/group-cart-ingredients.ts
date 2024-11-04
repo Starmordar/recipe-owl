@@ -1,6 +1,6 @@
 import { applyQuantityToUnit } from './add-quantity-to-units';
 
-import type { CartSharedIngredient } from '../model/type';
+import type { CartSharedIngredient } from '../model/types';
 
 function parseQuantityAndUnit(quantityWithUnit: string) {
   const match = quantityWithUnit.match(/^(\d*\.?\d+|\d+)\s*(\D+)?$/);

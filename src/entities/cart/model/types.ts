@@ -1,4 +1,4 @@
-import { cartDetailsPayload, cartWithUserPayload } from './payload';
+import { cartDetailsPayload, cartWithUserPayload } from '../api/payload';
 
 import type { Prisma, Ingredient } from '@prisma/client';
 
