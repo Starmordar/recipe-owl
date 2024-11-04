@@ -2,7 +2,7 @@
 
 import { Share2 } from 'lucide-react';
 
-import useWebShare from '@/src/shared/lib/use-web-share';
+import { useWebShare } from '@/src/shared/lib/use-web-share';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 
 import { shareInfo } from '../config/share-info';
