@@ -5,7 +5,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/src/share
 import { Input } from '@/src/shared/ui/input';
 import { PasswordInput } from '@/src/shared/ui/password-input';
 
-import { useLoginForm } from '../hooks/useLoginForm';
+import { useLoginForm } from '../lib/use-login-form';
 
 function LoginForm() {
   const { form, pending, onSubmit } = useLoginForm();

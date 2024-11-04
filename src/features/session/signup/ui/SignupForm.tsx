@@ -5,7 +5,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/src/share
 import { Input } from '@/src/shared/ui/input';
 import { PasswordInput } from '@/src/shared/ui/password-input';
 
-import { useSignupForm } from '../hooks/useSignupForm';
+import { useSignupForm } from '../lib/use-signup-form';
 
 function SignupForm() {
   const { form, pending, onSubmit } = useSignupForm();

@@ -9,7 +9,7 @@ import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
-import type { SignUpFormSchema } from './schema';
+import type { SignUpFormSchema } from '../model/schema';
 
 async function signUp(values: SignUpFormSchema): Promise<{ error: string }> {
   const exists = await prisma.user.findFirst({ where: { email: values.email } });

@@ -8,7 +8,7 @@ import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
-import type { LoginFormSchema } from './schema';
+import type { LoginFormSchema } from '../model/schema';
 
 async function login(values: LoginFormSchema): Promise<{ error: string }> {
   const user = await prisma.user.findUnique({ where: { email: values.email } });

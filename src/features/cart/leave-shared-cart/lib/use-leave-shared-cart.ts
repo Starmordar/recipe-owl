@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { publicUrls } from '@/src/shared/config/url';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 
-import { leaveSharedCart } from '../model/leave-shared-cart';
+import { leaveSharedCart } from '../api/leave-shared-cart';
 
 interface UseLeaveSharedCart {
   userId: string;

@@ -2,8 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { signUp } from '../api/signup';
 import { signupSchema, defaultSignUpFormValues } from '../model/schema';
-import { signUp } from '../model/signUp';
 
 import type { SignUpFormSchema } from '../model/schema';
 

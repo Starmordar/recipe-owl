@@ -1,3 +1,5 @@
+'use server';
+
 import { prisma } from '@/src/shared/api';
 
 async function leaveSharedCart(userId: string, cartId: number) {

@@ -4,8 +4,8 @@ import { publicUrls } from '@/src/shared/config/url';
 import useServerAction from '@/src/shared/hooks/useServerAction';
 import useWebShare from '@/src/shared/hooks/useWebShare';
 
+import { enableCartSharing } from '../api/enable-cart-sharing';
 import { cartShareInfo } from '../config/share-info';
-import { enableCartSharing } from '../model/enable-cart-share';
 
 interface UseShareCartOptions {
   cart: { id: number; shareToken: string | null };
