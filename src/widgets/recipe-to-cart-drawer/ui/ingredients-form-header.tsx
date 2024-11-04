@@ -3,8 +3,7 @@
 import { Button } from '@/src/shared/ui/button';
 import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
 
-import { FormValues } from '../model/schema';
-
+import type { FormValues } from '../model/schema';
 import type { RecipeDetails } from '@/src/entities/recipe';
 import type { UseFormReturn } from 'react-hook-form';
 

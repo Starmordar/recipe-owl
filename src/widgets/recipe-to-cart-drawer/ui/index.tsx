@@ -12,12 +12,12 @@ import {
   DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
-import { useIngredientsForm } from '../hooks/useIngredientsForm';
-import { FormValues } from '../model/schema';
+import { useIngredientsForm } from '../lib/use-ingredients-form';
 
 import { IngredientsForm } from './ingredients-form';
 import { IngredientsFormHeader } from './ingredients-form-header';
 
+import type { FormValues } from '../model/schema';
 import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface AddRecipeToCartDrawerProps extends PropsWithChildren {

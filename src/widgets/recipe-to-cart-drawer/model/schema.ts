@@ -13,5 +13,4 @@ const defaultValues: FormValues = {
 };
 
 export type { FormValues };
-
 export { schema, defaultValues };
