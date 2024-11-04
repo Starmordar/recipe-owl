@@ -7,7 +7,7 @@ import { AuthWithGoogle } from './auth-with-google';
 
 function SignUpWidget() {
   return (
-    <>
+    <div className='flex flex-col gap-y-4 w-[360px] md:w-[480px] max-w-full bg-card py-6 md:px-8 px-6 rounded-3xl shadow-xl'>
       <AuthHeader title='Join Recipe OWL'>
         <p>Store all your favorite recipes in one place.</p>
         <p>Share your own recipes with others.</p>
@@ -23,7 +23,7 @@ function SignUpWidget() {
         linkTitle='Sign In'
         redirectTo={publicUrls.signIn}
       />
-    </>
+    </div>
   );
 }
 
