@@ -18,4 +18,4 @@ function useWebShare({ shareData }: UseWebShareOptions) {
   return { isShareSupported, shareContent };
 }
 
-export default useWebShare;
+export { useWebShare };

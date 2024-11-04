@@ -48,4 +48,4 @@ function useValueToPathname() {
   return { valueToPathname, valuesToPathname, valueFromPathname, valuesFromPathname };
 }
 
-export default useValueToPathname;
+export { useValueToPathname };

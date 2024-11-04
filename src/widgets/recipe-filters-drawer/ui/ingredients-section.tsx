@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 
-import { searchIngredients } from '@/src/entities/ingredient';
+import { ingredientQueries } from '@/src/entities/ingredient';
 import Search from '@/src/shared/ui/search';
 
 import { CategorySection } from './category-section';
@@ -26,17 +26,7 @@ function IngredientsSection({
   const [searchTerm, setSearchTerm] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 100);
-  const { data: ingredients } = useQuery({
-    queryKey: ['ingredients', debouncedSearchTerm],
-    queryFn: () => searchIngredients(debouncedSearchTerm),
-    placeholderData: prev => prev,
-    select: data => {
-      const exactMatch = data.some(
-        ({ title }) => title.toLocaleLowerCase() === searchTerm.toLocaleLowerCase(),
-      );
-      return exactMatch ? data : [{ id: -1, title: searchTerm }, ...data];
-    },
-  });
+  const { data: ingredients } = useQuery(ingredientQueries.filterSearch(debouncedSearchTerm));
 
   useEffect(() => handleSearchReset(), [isSectionOpen]);
 

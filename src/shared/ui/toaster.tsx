@@ -1,6 +1,5 @@
 'use client';
 
-import { useToast } from '@/src/shared/hooks/useToast';
 import {
   Toast,
   ToastClose,
@@ -9,6 +8,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from '@/src/shared/ui/toast';
+import { useToast } from '@/src/shared/ui/use-toast';
 
 export function Toaster() {
   const { toasts } = useToast();

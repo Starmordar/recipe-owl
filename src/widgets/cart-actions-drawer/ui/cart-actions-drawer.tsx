@@ -8,7 +8,7 @@ import { useCart } from '@/src/entities/cart';
 import { clearCart } from '@/src/features/cart/clear-cart';
 import { disableCartSharing } from '@/src/features/cart/disable-sharing';
 import { useLeaveSharedCart } from '@/src/features/cart/leave-shared-cart';
-import useServerAction from '@/src/shared/hooks/useServerAction';
+import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
 
 import { SwitchCartDrawer } from './switch-cart-drawer';

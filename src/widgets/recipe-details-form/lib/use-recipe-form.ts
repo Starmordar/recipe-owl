@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
-import useServerAction from '@/src/shared/hooks/useServerAction';
-import { errorToast, toast } from '@/src/shared/hooks/useToast';
+import { useServerAction } from '@/src/shared/lib/use-server-action';
+import { errorToast, toast } from '@/src/shared/ui/use-toast';
 
 import { schema, defaultValues } from '../model/schema';
 import { valuesToFormData } from '../model/values-to-form-data';

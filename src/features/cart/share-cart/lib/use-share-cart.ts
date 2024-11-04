@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import { publicUrls } from '@/src/shared/config/url';
-import useServerAction from '@/src/shared/hooks/useServerAction';
-import useWebShare from '@/src/shared/hooks/useWebShare';
+import { useServerAction } from '@/src/shared/lib/use-server-action';
+import { useWebShare } from '@/src/shared/lib/use-web-share';
 
 import { enableCartSharing } from '../api/enable-cart-sharing';
 import { cartShareInfo } from '../config/share-info';

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { publicUrls } from '@/src/shared/config/url';
-import useValueToPathname from '@/src/shared/hooks/useValueToPathname';
+import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 
 import { SearchInput } from './search-input';
 

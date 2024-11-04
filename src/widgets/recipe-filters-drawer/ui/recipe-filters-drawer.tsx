@@ -4,7 +4,7 @@ import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
 import { filterCategories, ingredientsCategory, onlySavedCategory } from '@/src/entities/recipe';
-import useValueToPathname from '@/src/shared/hooks/useValueToPathname';
+import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 import {
   Drawer,

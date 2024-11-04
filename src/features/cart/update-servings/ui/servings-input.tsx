@@ -4,7 +4,7 @@ import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 
 import { useCart } from '@/src/entities/cart';
-import useServerAction from '@/src/shared/hooks/useServerAction';
+import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
 
 import { updateServings } from '../model/update-servings';

@@ -3,7 +3,7 @@
 import { X } from 'lucide-react';
 
 import { useCart } from '@/src/entities/cart';
-import useServerAction from '@/src/shared/hooks/useServerAction';
+import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { Button } from '@/src/shared/ui/button';
 
 import { clearCheckedItems } from '../model/clear-checked';

@@ -8,9 +8,23 @@ const ingredientQueries = {
   searchKey: () => [...ingredientQueries.allKey(), 'search'],
   search: (searchTerm: string) =>
     queryOptions({
-      queryKey: [...ingredientQueries.searchKey()],
+      queryKey: [...ingredientQueries.searchKey(), searchTerm],
       queryFn: () => searchIngredients(searchTerm),
       placeholderData: prev => prev,
+    }),
+
+  filterSearchKey: () => [...ingredientQueries.allKey(), 'filter-search'],
+  filterSearch: (searchTerm: string) =>
+    queryOptions({
+      queryKey: [...ingredientQueries.filterSearchKey(), searchTerm],
+      queryFn: () => searchIngredients(searchTerm),
+      placeholderData: prev => prev,
+      select: data => {
+        const exactMatch = data.some(
+          ({ title }) => title.toLocaleLowerCase() === searchTerm.toLocaleLowerCase(),
+        );
+        return exactMatch ? data : [{ id: -1, title: searchTerm }, ...data];
+      },
     }),
 };
 

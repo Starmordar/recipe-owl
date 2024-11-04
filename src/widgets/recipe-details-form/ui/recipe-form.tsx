@@ -1,6 +1,6 @@
 'use client';
 
-import usePageLeaveConfirmation from '@/src/shared/hooks/usePageLeaveConfirmation';
+import { usePageLeaveConfirmation } from '@/src/shared/lib/use-page-leave-confirmation';
 import { Form } from '@/src/shared/ui/form';
 
 import { DetailsFieldset } from './details-fieldset';

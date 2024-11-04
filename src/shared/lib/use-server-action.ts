@@ -35,4 +35,4 @@ function useServerAction<P extends Array<unknown>, R>(
   return [runAction, isPending];
 }
 
-export default useServerAction;
+export { useServerAction };

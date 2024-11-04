@@ -28,4 +28,4 @@ function usePageLeaveConfirmation({
   }, [shouldConfirm, confirmationMessage, router]);
 }
 
-export default usePageLeaveConfirmation;
+export { usePageLeaveConfirmation };
