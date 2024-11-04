@@ -1,7 +1,7 @@
-import { SignInWidget } from '@/src/widgets/auth';
+import { SignInPage } from '@/src/views/sign-in/ui/sign-in-page';
 
-function SignInPage() {
-  return <SignInWidget />;
+function Page() {
+  return <SignInPage />;
 }
 
-export default SignInPage;
+export default Page;

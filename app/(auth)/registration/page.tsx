@@ -1,7 +1,7 @@
-import { SignUpWidget } from '@/src/widgets/auth';
+import { SignUpPage } from '@/src/views/sign-up';
 
-function SignUpPage() {
-  return <SignUpWidget />;
+function Page() {
+  return <SignUpPage />;
 }
 
-export default SignUpPage;
+export default Page;

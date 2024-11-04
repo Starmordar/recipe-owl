@@ -1,7 +1,7 @@
-import { SignUpWithEmailWidget } from '@/src/widgets/auth';
+import { SignUpWithEmailPage } from '@/src/views/sign-up-with-email';
 
-function SignUpWithEmailPage() {
-  return <SignUpWithEmailWidget />;
+function Page() {
+  return <SignUpWithEmailPage />;
 }
 
-export default SignUpWithEmailPage;
+export default Page;
