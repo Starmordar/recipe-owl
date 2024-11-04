@@ -3,11 +3,11 @@
 import { revalidatePath } from 'next/cache';
 import invariant from 'tiny-invariant';
 
-import { imageUploadService } from '@/src/entities/image';
 import { prisma } from '@/src/shared/api';
 import { validateRequest } from '@/src/shared/api/auth';
 import { elastic } from '@/src/shared/api/elastic';
 import { publicUrls } from '@/src/shared/config/url';
+import { imageUploadService } from '@/src/shared/lib/image';
 import pick from '@/src/shared/lib/pick';
 
 import { mapToElastic } from '../model/map-to-elastic';

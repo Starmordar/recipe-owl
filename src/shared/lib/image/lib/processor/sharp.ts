@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-import { acceptedImageMimeTypes } from '../../config/options';
+import { acceptedImageMimeTypes } from '@/src/shared/config/image';
 
 import type { ImageProcessOptions, ImageProcessor } from '../../model/type';
 

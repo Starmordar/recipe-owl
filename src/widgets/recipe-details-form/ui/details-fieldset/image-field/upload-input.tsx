@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 
-import { acceptedImageMimeTypes } from '@/src/entities/image/config';
+import { acceptedImageMimeTypes } from '@/src/shared/config/image';
 import { Input } from '@/src/shared/ui/input';
 
 interface UploadInputProps extends React.ButtonHTMLAttributes<HTMLInputElement> {

@@ -1,7 +1,5 @@
 import type { ImageProcessOptions } from '../model/type';
 
-const acceptedImageMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/avif'];
-
 const imageProcessOptions: ImageProcessOptions = {
   maxWidth: 1000,
   format: 'jpeg',
@@ -10,4 +8,4 @@ const imageProcessOptions: ImageProcessOptions = {
 
 const signedUrlExpires = 60 * 60 * 1000; // 1 hour
 
-export { acceptedImageMimeTypes, signedUrlExpires, imageProcessOptions };
+export { signedUrlExpires, imageProcessOptions };
