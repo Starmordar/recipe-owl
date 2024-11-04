@@ -3,7 +3,7 @@
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { Textarea } from '@/src/shared/ui/textarea';
 
-import type { FormValues } from '../../model/shema';
+import type { FormValues } from '../../model/schema';
 import type { FieldArrayWithId, UseFormReturn } from 'react-hook-form';
 
 interface StepFieldProps {

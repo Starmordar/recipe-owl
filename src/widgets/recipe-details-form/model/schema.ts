@@ -40,7 +40,6 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
-type FormDataValues = Omit<FormValues, 'image'>;
 
 const defaultValues: FormValues = {
   image: undefined,
@@ -51,5 +50,5 @@ const defaultValues: FormValues = {
   steps: [{ description: '' }],
 };
 
-export type { FormValues, FormDataValues };
+export type { FormValues };
 export { defaultValues, schema };

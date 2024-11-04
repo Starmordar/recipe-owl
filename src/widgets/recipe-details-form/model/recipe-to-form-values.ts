@@ -1,4 +1,4 @@
-import type { FormValues } from './shema';
+import type { FormValues } from './schema';
 import type { RecipeDetails } from '@/src/entities/recipe';
 
 function recipeToFormValues(recipe: RecipeDetails): FormValues {

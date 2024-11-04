@@ -5,9 +5,9 @@ import { Form } from '@/src/shared/ui/form';
 
 import { DetailsFieldset } from './details-fieldset';
 import { IngredientsFieldset } from './ingredients-fieldset';
-import { StepsFieldset } from './method-fieldset';
+import { StepsFieldset } from './steps-fieldset';
 
-import type { FormValues } from '../model/shema';
+import type { FormValues } from '../model/schema';
 import type { UseFormReturn } from 'react-hook-form';
 
 export interface RecipeFormProps {

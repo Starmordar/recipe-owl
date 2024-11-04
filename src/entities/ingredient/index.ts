@@ -1,1 +1,1 @@
-export { searchIngredients } from './model/search-ingredients';
+export { ingredientQueries } from './api/ingredient.queries';

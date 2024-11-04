@@ -4,10 +4,9 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/f
 import { Input } from '@/src/shared/ui/input';
 import { Textarea } from '@/src/shared/ui/textarea';
 
-import { type FormValues } from '../model/shema';
+import { ImageField } from './image-field';
 
-import ImageUploadField from './image-field';
-
+import type { FormValues } from '../../model/schema';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface DetailsFieldsetProps {
@@ -17,7 +16,7 @@ interface DetailsFieldsetProps {
 function DetailsFieldset({ form }: DetailsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-4'>
-      <ImageUploadField form={form} />
+      <ImageField form={form} />
 
       <FormField
         control={form.control}

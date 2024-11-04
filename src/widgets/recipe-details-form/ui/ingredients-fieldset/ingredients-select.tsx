@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useState } from 'react';
 
-import { searchIngredients } from '@/src/entities/ingredient';
+import { ingredientQueries } from '@/src/entities/ingredient';
 import { FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import Search from '@/src/shared/ui/search';
 
-import type { FormValues } from '../../model/shema';
+import type { FormValues } from '../../model/schema';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface IngredientsSelectProps {
@@ -20,13 +20,9 @@ interface IngredientsSelectProps {
 function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelectProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(initialValue);
-  const debouncedSearchTerm = useDebounce(searchTerm, 100);
 
-  const { data: ingredients } = useQuery({
-    queryKey: ['ingredients', debouncedSearchTerm],
-    queryFn: () => searchIngredients(debouncedSearchTerm),
-    placeholderData: prev => prev,
-  });
+  const debouncedSearchTerm = useDebounce(searchTerm, 100);
+  const { data: ingredients } = useQuery(ingredientQueries.search(debouncedSearchTerm));
 
   function handleSearch(nextValue: string, onChange: (v: string) => void) {
     onChange(nextValue);

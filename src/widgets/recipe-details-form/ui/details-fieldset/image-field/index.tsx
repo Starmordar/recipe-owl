@@ -9,14 +9,14 @@ import { ImageUploadDrawer } from '@/src/shared/ui/image-upload-drawer';
 
 import { FileInputs, FileUploadHandles } from './file-inputs';
 
-import type { FormValues } from '../../model/shema';
+import type { FormValues } from '../../../model/schema';
 import type { UseFormReturn } from 'react-hook-form';
 
-interface ImageUploadFieldProps {
+interface ImageFieldProps {
   form: UseFormReturn<FormValues>;
 }
 
-function ImageUploadField({ form }: ImageUploadFieldProps) {
+function ImageField({ form }: ImageFieldProps) {
   const initialImage = form.getValues('image') || null;
   const [selectedImage, setSelectedImage] = useState<string | null>(initialImage);
   const fileInputsRef = useRef<FileUploadHandles>(null);
@@ -96,4 +96,4 @@ function ImageUploadField({ form }: ImageUploadFieldProps) {
   );
 }
 
-export default ImageUploadField;
+export { ImageField };

@@ -1,10 +1,10 @@
 'use client';
 
-import { useRecipeForm } from '../hooks/useRecipeForm';
+import { useRecipeForm } from '../lib/use-recipe-form';
 import { recipeToFormValues } from '../model/recipe-to-form-values';
 
 import { RecipeForm } from './recipe-form';
-import { RecipeDetailsFormHeader } from './recipe-form-header';
+import { RecipeFormHeader } from './recipe-form-header';
 
 import type { RecipeDetails } from '@/src/entities/recipe';
 
@@ -24,7 +24,7 @@ function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
 
   return (
     <>
-      <RecipeDetailsFormHeader
+      <RecipeFormHeader
         title={title}
         prevUrl={prevUrl}
         isPending={isPending}

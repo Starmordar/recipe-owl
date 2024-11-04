@@ -13,7 +13,7 @@ import {
 
 import { IngredientField } from './ingredient-field';
 
-import type { FormValues } from '../../model/shema';
+import type { FormValues } from '../../model/schema';
 import type { DropResult } from '@hello-pangea/dnd';
 
 interface IngredientsFieldsetProps {

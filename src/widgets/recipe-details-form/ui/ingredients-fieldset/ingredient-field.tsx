@@ -7,7 +7,7 @@ import { Input } from '@/src/shared/ui/input';
 
 import { IngredientsSelect } from './ingredients-select';
 
-import type { FormValues } from '../../model/shema';
+import type { FormValues } from '../../model/schema';
 
 interface IngredientFieldProps {
   form: UseFormReturn<FormValues>;
