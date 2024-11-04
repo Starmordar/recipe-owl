@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client';
 
 interface RecipeSearchResult {
-  id: string;
+  id: number;
   title: string;
   imageUrl: string;
 }

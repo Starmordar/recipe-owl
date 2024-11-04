@@ -27,7 +27,7 @@ async function searchRecipes(
 
   const hits = searchResult?.body?.hits?.hits ?? [];
 
-  const recipes = hits.map(hit => ({ id: hit._id, ...hit._source }));
+  const recipes = hits.map(hit => ({ id: parseInt(hit._id, 10), ...hit._source }));
   return recipes;
 }
 
