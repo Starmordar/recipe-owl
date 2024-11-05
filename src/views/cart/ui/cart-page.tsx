@@ -37,7 +37,7 @@ async function CartPage({ shareToken }: CartPageProps) {
     >
       <CartPageHeader userId={user.id} cart={cartDetails.cart} />
 
-      <main className='page-container px-0 pb-0'>
+      <main className='page-container max-w-[60rem] px-0 pb-0'>
         <CartTabs cartWithRecipes={cartDetails} />
       </main>
     </CartDetailsProvider>
