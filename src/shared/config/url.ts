@@ -13,6 +13,10 @@ const publicUrls = {
   register: '/registration',
   registerWithEmail: '/registration/email',
 
+  // TODO: Add legal information to the pages
+  termsOfService: '/legal/terms-of-service-agreement',
+  privacyPolicy: '/legal/privacy-policy',
+
   signUp: '/signUp',
   signIn: '/signin',
 };
