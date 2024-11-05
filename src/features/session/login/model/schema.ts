@@ -1,23 +1,18 @@
 import { z } from 'zod';
 
-const passwordSchema = z
-  .string()
-  .min(8, { message: 'Incorrect Password' })
-  .max(30, { message: 'Incorrect Password' })
-  .regex(/[a-zA-Z]/, { message: 'Incorrect Password' })
-  .regex(/\d/, { message: 'Incorrect Password' });
+import { passwordSchema, emailSchema } from '@/src/entities/user';
 
-const loginFormSchema = z.object({
-  email: z.string().email(),
+const schema = z.object({
+  email: emailSchema,
   password: passwordSchema,
 });
 
-type LoginFormSchema = z.infer<typeof loginFormSchema>;
+type FormValues = z.infer<typeof schema>;
 
-const defaultLoginFormValues: LoginFormSchema = {
+const defaultFormValues: FormValues = {
   email: '',
   password: '',
 };
 
-export type { LoginFormSchema };
-export { loginFormSchema, defaultLoginFormValues };
+export type { FormValues };
+export { schema, defaultFormValues };

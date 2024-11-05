@@ -17,4 +17,8 @@ const publicUrls = {
   signIn: '/signin',
 };
 
-export { publicUrls };
+const apiUrls = {
+  google_oauth: '/api/auth/google',
+};
+
+export { publicUrls, apiUrls };

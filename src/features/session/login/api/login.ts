@@ -8,21 +8,20 @@ import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
-import type { LoginFormSchema } from '../model/schema';
+import type { FormValues } from '../model/schema';
 
-async function login(values: LoginFormSchema): Promise<{ error: string }> {
+async function login(values: FormValues): Promise<{ error: string }> {
   const user = await prisma.user.findUnique({ where: { email: values.email } });
-  if (!user) return { error: 'Incorrect username' };
-  if (!user.hashedPassword)
-    return { error: 'This email is linked to a Google account. Please log in with Google.' };
+  if (!user || !user.hashedPassword) return { error: 'Incorrect username or password' };
 
   const validPassword = await new Argon2id().verify(user.hashedPassword, values.password);
-  if (!validPassword) return { error: 'Incorrect password' };
+  if (!validPassword) return { error: 'Incorrect username or password' };
 
   const session = await lucia.createSession(user.id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
+  // TODO: Redirect to previously visited page instead of profile
   redirect(publicUrls.profile);
 }
 

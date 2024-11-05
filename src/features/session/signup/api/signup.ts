@@ -9,11 +9,11 @@ import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
-import type { SignUpFormSchema } from '../model/schema';
+import type { FromValues } from '../model/schema';
 
-async function signUp(values: SignUpFormSchema): Promise<{ error: string }> {
+async function signUp(values: FromValues): Promise<{ error: string }> {
   const exists = await prisma.user.findFirst({ where: { email: values.email } });
-  if (exists) return { error: 'Sorry, that email address is already associated with an account.' };
+  if (exists) return { error: 'This email address is already in use. Please try another one.' };
 
   const hashedPassword = await new Argon2id().hash(values.password);
   const userId = generateIdFromEntropySize(10);
@@ -26,6 +26,7 @@ async function signUp(values: SignUpFormSchema): Promise<{ error: string }> {
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
+  // TODO: Redirect to previously visited page instead of profile
   redirect(publicUrls.profile);
 }
 

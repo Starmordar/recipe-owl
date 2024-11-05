@@ -3,19 +3,19 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { signUp } from '../api/signup';
-import { signupSchema, defaultSignUpFormValues } from '../model/schema';
+import { schema, defaultFormValues } from '../model/schema';
 
-import type { SignUpFormSchema } from '../model/schema';
+import type { FromValues } from '../model/schema';
 
 function useSignupForm() {
   const [pending, setPending] = useState(false);
 
-  const form = useForm<SignUpFormSchema>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: defaultSignUpFormValues,
+  const form = useForm<FromValues>({
+    resolver: zodResolver(schema),
+    defaultValues: defaultFormValues,
   });
 
-  async function onSubmit(values: SignUpFormSchema) {
+  async function onSubmit(values: FromValues) {
     setPending(true);
     const result = await signUp(values).finally(() => setPending(false));
     if (result?.error) form.setError('email', { message: result.error });

@@ -3,22 +3,22 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { login } from '../api/login';
-import { defaultLoginFormValues, loginFormSchema } from '../model/schema';
+import { defaultFormValues, schema } from '../model/schema';
 
-import type { LoginFormSchema } from '../model/schema';
+import type { FormValues } from '../model/schema';
 
 function useLoginForm() {
   const [pending, setPending] = useState(false);
 
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: defaultLoginFormValues,
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: defaultFormValues,
   });
 
-  async function onSubmit(values: LoginFormSchema) {
+  async function onSubmit(values: FormValues) {
     setPending(true);
     const result = await login(values).finally(() => setPending(false));
-    if (result?.error) form.setError('email', { message: result.error });
+    if (result?.error) form.setError('root.globalError', { type: '400', message: result.error });
   }
 
   return { form, pending, onSubmit };
