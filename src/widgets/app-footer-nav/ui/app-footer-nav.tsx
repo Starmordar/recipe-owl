@@ -21,16 +21,16 @@ function AppFooterNav() {
   }
 
   return (
-    <nav className='sticky bottom-0 w-full flex bg-background border-t'>
+    <nav className='sticky bottom-0 w-full flex justify-center bg-background border-t'>
       {items.map(({ href, title, isTitleHidden, match, render }) => {
         const link = typeof href === 'string' ? href : href();
-        const opacity = isActiveLink(link, match) ? 'opacity-100' : 'opacity-60';
+        const opacity = isActiveLink(link, match) ? 'opacity-100' : 'opacity-55';
 
         return (
           <Link
             key={link}
             href={link}
-            className={cn('flex-1 flex justify-center items-center py-1 text-primary')}
+            className={cn('flex-1 max-w-24 flex justify-center items-center py-1')}
             aria-label={title}
           >
             <div className='flex flex-col justify-center items-center'>
