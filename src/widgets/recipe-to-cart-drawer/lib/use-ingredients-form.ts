@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 
+import { shareTokenCookieName } from '@/src/entities/cart/config/share-token';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { toast } from '@/src/shared/ui/use-toast';
 
@@ -23,7 +24,7 @@ function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
   });
 
   async function onSubmit(values: FormValues, quantity: number) {
-    const shareToken = Cookies.get('shareToken');
+    const shareToken = Cookies.get(shareTokenCookieName);
 
     await addToCartAction(recipe.id, values.ingredients, quantity, shareToken)
       .then(() => toast({ title: 'Recipe successfully added to your cart!' }))

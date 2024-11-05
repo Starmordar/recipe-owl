@@ -4,7 +4,9 @@ import { OAuth2RequestError } from 'arctic';
 import { generateIdFromEntropySize } from 'lucia';
 import { cookies } from 'next/headers';
 
+import { authRedirectUrlKey } from '@/src/entities/session';
 import { prisma } from '@/src/shared/api';
+import { publicUrls } from '@/src/shared/config/url';
 
 import { lucia } from '../../lib/lucia';
 import { google } from '../../lib/oauth';
@@ -19,6 +21,8 @@ async function storeAuthResults(request: Request): Promise<Response> {
 
   const storedState = cookies().get('google_oauth_state')?.value;
   const storedCodeVerifier = cookies().get('google_oauth_code_verifier')?.value;
+
+  const redirectUrl = cookies().get(authRedirectUrlKey)?.value ?? publicUrls.home;
 
   if (!code || !state || !storedState || !storedCodeVerifier || state !== storedState) {
     return new Response(null, { status: 400 });
@@ -48,7 +52,7 @@ async function storeAuthResults(request: Request): Promise<Response> {
       const sessionCookie = lucia.createSessionCookie(session.id);
 
       cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-      return new Response(null, { status: 302, headers: { Location: '/' } });
+      return new Response(null, { status: 302, headers: { Location: redirectUrl } });
     }
 
     const userId = generateIdFromEntropySize(10);
@@ -67,7 +71,7 @@ async function storeAuthResults(request: Request): Promise<Response> {
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-    return new Response(null, { status: 302, headers: { Location: '/' } });
+    return new Response(null, { status: 302, headers: { Location: redirectUrl } });
   } catch (e) {
     if (e instanceof OAuth2RequestError) return new Response(null, { status: 400 });
     return new Response(null, { status: 500 });

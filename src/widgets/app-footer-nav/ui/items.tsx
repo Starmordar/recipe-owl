@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { ShoppingCart, User, Search, CirclePlus, House } from 'lucide-react';
 import Image from 'next/image';
 
+import { shareTokenCookieName } from '@/src/entities/cart/config/share-token';
 import { publicUrls } from '@/src/shared/config/url';
 
 import type { NavbarItem } from '../model/types';
@@ -33,7 +34,7 @@ const items: Array<NavbarItem> = [
   {
     title: 'My Cart',
     isTitleHidden: false,
-    href: () => publicUrls.cartWithToken(Cookies.get('shareToken')),
+    href: () => publicUrls.cartWithToken(Cookies.get(shareTokenCookieName)),
     match: (pathname: string) => pathname.startsWith(publicUrls.cart),
     render: (_, className) => <ShoppingCart size={20} className={className} />,
   },

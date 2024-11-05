@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
+import { authRedirectUrlKey } from '@/src/entities/session';
 import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
@@ -21,8 +22,8 @@ async function login(values: FormValues): Promise<{ error: string }> {
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  // TODO: Redirect to previously visited page instead of profile
-  redirect(publicUrls.profile);
+  const redirectUrl = cookies().get(authRedirectUrlKey)?.value ?? publicUrls.home;
+  redirect(redirectUrl);
 }
 
 export { login };
