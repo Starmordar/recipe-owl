@@ -15,7 +15,7 @@ function AppHeader({ children, prevUrl, className }: AppHeaderProps) {
       <div className={cn(className, 'container flex items-center justify-between py-2')}>
         {prevUrl && (
           <Link href={prevUrl} aria-label='Return Back'>
-            <ArrowLeft className='h-5 w-5' />
+            <ArrowLeft className='h-6 w-6' />
           </Link>
         )}
 

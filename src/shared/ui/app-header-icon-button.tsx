@@ -20,7 +20,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
         ref={ref}
         {...props}
       >
-        {cloneElement(Icon, { className: 'h-5 w-5' })}
+        {cloneElement(Icon, { className: 'h-6 w-6' })}
         {children}
       </Button>
     );
