@@ -26,7 +26,7 @@ interface RecipeSourceProps {
 }
 
 function RecipeSource({ source }: RecipeSourceProps) {
-  if (source === null) return null;
+  if (!source) return null;
 
   return (
     <p className={cn('relative flex gap-x-2 text-base mt-2')}>
