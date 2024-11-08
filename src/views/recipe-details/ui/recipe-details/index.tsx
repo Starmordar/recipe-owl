@@ -19,7 +19,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
 
   return (
     <>
-      <section className='flex flex-col w-full'>
+      <section className='flex flex-col gap-y-4'>
         <RecipeDescription recipe={recipe} />
         <RecipeImage recipe={recipe} />
       </section>

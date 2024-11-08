@@ -7,12 +7,11 @@ interface RecipeDescriptionProps {
 
 function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
-    <div className='w-full mb-2'>
-      <h1 className='text-xl font-bold break-words line-clamp-2'>{recipe.title}</h1>
+    <div>
+      <h1 className='text-2xl font-bold break-words line-clamp-2'>{recipe.title}</h1>
+      <p className='text-base leading-5 break-words my-2'>{recipe.description}</p>
+
       <RecipeAuthor author={recipe.user} />
-
-      <p className='text-sm leading-5 mt-2 break-words'>{recipe.description}</p>
-
       <RecipeSource source={recipe.source} />
     </div>
   );

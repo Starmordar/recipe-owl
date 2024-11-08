@@ -24,8 +24,8 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
   const isSaved = await isRecipeSaved(user?.id, recipeId);
 
   return (
-    <AppHeader prevUrl={publicUrls.recipes} className='pr-2'>
-      <div className='flex items-center gap-x-3'>
+    <AppHeader prevUrl={publicUrls.recipes} className='pr-3'>
+      <div className='flex gap-x-4'>
         <AddToCartAction recipe={recipe} />
 
         <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
