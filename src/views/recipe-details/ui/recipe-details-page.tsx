@@ -26,7 +26,7 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
 
       <RecipeDetailsHeader recipeId={recipeId} />
 
-      <main className='page-container'>
+      <main className='page-container mt-2'>
         <Suspense key={recipeId} fallback={<RecipeDetailsPageSkeleton />}>
           <RecipeDetails recipeId={recipeId} />
         </Suspense>
