@@ -73,6 +73,8 @@ const config = {
       },
       backgroundImage: {
         'fade-to-bg': 'linear-gradient(to right, transparent, theme(colors.background) 15%)',
+        'fade-vertically':
+          'linear-gradient(to bottom, hsla(var(--gradient-bg-1)) 5%, hsla(var(--gradient-bg-2)) 30%, transparent, hsla(var(--gradient-bg-2)) 70%, hsla(var(--gradient-bg-1)) 95%)',
       },
       keyframes: {
         'accordion-down': {
