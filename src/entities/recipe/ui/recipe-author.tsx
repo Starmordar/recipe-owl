@@ -23,10 +23,12 @@ function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
           alt='Profile Picture'
         />
       ) : (
-        <div className={cn(`h-[${cssSize}] w-[${cssSize}]`, 'rounded-full bg-purple-600')}></div>
+        <div className={cn(`h-[${cssSize}] w-[${cssSize}]`, 'rounded-full bg-primary')}></div>
       )}
 
-      <p className='text-md'>{author.fullName}</p>
+      <p className='text-md'>
+        by <span className='underline'>{author.fullName}</span>
+      </p>
     </div>
   );
 }

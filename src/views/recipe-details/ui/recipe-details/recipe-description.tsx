@@ -1,5 +1,7 @@
 import { RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
+import { cn } from '@/src/shared/lib/classnames';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
+import { ReadMoreText } from '@/src/shared/ui/read-more-text';
 
 interface RecipeDescriptionProps {
   recipe: RecipeDetails;
@@ -9,9 +11,11 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
     <div>
       <h1 className='text-2xl font-bold break-words line-clamp-2'>{recipe.title}</h1>
-      <p className='text-base leading-5 break-words my-2'>{recipe.description}</p>
+      <ReadMoreText className='text-base leading-5 break-words my-2'>
+        {recipe.description}
+      </ReadMoreText>
 
-      <RecipeAuthor author={recipe.user} />
+      <RecipeAuthor author={recipe.user} avatarSize={28} />
       <RecipeSource source={recipe.source} />
     </div>
   );
@@ -24,20 +28,24 @@ interface RecipeSourceProps {
 function RecipeSource({ source }: RecipeSourceProps) {
   if (source === null) return null;
 
-  if (isValidURL(source)) {
-    return (
-      <a
-        className='block text-sm truncate text-sky-600'
-        href={source}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {source}
-      </a>
-    );
-  }
+  return (
+    <p className={cn('relative flex gap-x-2 text-base mt-2')}>
+      <span>Source</span>
 
-  return <p className='truncate text-sm'>{source}</p>;
+      {isValidURL(source) ? (
+        <a
+          className='text-base truncate text-primary'
+          href={source}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {source}
+        </a>
+      ) : (
+        <span className='truncate'>{source}</span>
+      )}
+    </p>
+  );
 }
 
 export { RecipeDescription };

@@ -24,7 +24,7 @@ const UserAvatar = forwardRef<HTMLDivElement, UserAvatarProps>(({ className, ...
         alt='User Avatar'
       />
     ) : (
-      <div className={cn(props.fallbackClassName, 'h-6 w-6 rounded-full bg-purple-600')}></div>
+      <div className={cn(props.fallbackClassName, 'h-6 w-6 rounded-full bg-primary')}></div>
     )}
   </div>
 ));

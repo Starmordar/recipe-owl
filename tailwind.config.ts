@@ -71,6 +71,9 @@ const config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backgroundImage: {
+        'fade-to-bg': 'linear-gradient(to right, transparent, theme(colors.background) 15%)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
