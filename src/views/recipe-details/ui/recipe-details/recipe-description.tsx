@@ -17,6 +17,7 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
 
       <RecipeAuthor author={recipe.user} avatarSize={28} />
       <RecipeSource source={recipe.source} />
+      {recipe.cookTime && <p className='mt-1'>Cook Time: {recipe.cookTime}</p>}
     </div>
   );
 }
@@ -30,7 +31,7 @@ function RecipeSource({ source }: RecipeSourceProps) {
 
   return (
     <p className={cn('relative flex gap-x-2 text-base mt-2')}>
-      <span>Source</span>
+      <span>Source: </span>
 
       {isValidURL(source) ? (
         <a

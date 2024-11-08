@@ -64,12 +64,13 @@ function ItemWheel({ items, defaultValue, onChange }: ItemWheelProps) {
       onChange(selectedItem);
     }
 
-    ref.scrollTo({ top: defaultValue * itemHeight, behavior: 'smooth' });
+    console.log('new trigger');
+    ref.scrollTo({ top: defaultValue * itemHeight });
     ref.addEventListener('scroll', handleScroll);
     return () => {
       ref.removeEventListener('scroll', handleScroll);
     };
-  }, [defaultValue, onChange]);
+  }, [defaultValue]);
 
   return (
     <ul

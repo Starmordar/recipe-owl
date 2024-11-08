@@ -1,9 +1,16 @@
 'use client';
 
-import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
 import { Textarea } from '@/src/shared/ui/textarea';
 
+import { CookTimeDrawer } from './cook-time-drawer';
 import { ImageField } from './image-field';
 
 import type { FormValues } from '../../model/schema';
@@ -57,6 +64,22 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
             <FormControl>
               <Input placeholder='Source or link to the original recipe' {...field} />
             </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name='cookTime'
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <CookTimeDrawer onChange={field.onChange} value={field.value}>
+                <Input placeholder='Cook Time' {...field} />
+              </CookTimeDrawer>
+            </FormControl>
+            <FormDescription>How long does it take to cook this recipe?</FormDescription>
             <FormMessage />
           </FormItem>
         )}

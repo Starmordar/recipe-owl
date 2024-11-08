@@ -33,6 +33,7 @@ const schema = z.object({
     message: 'Description should be no longer than 1000 characters.',
   }),
   source: z.string(),
+  cookTime: z.string(),
   ingredients: z
     .array(ingredientSchema)
     .min(1, { message: 'The recipe must include at least one ingredient.' }),
@@ -46,6 +47,7 @@ const defaultValues: FormValues = {
   title: '',
   description: '',
   source: '',
+  cookTime: '',
   ingredients: [{ name: '', unit: '' }],
   steps: [{ description: '' }],
 };
