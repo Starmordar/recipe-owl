@@ -66,12 +66,17 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
     const ref = containerRef.current;
 
     function handleScroll({ target }: Event) {
-      requestAnimationFrame(() => {
-        const scrollHeight = (target as HTMLElement)?.scrollTop ?? 0;
-        const selectedItem = Math.floor(scrollHeight / itemHeight);
+      const tolerance = 2; // 2 pixels to accommodate rounding on mobile
 
-        onChange(selectedItem);
-      });
+      const scrollHeight = (target as HTMLElement)?.scrollTop ?? 0;
+      const exactItem = Math.floor(scrollHeight / itemHeight);
+
+      const selectedItem =
+        Math.abs(Math.round(exactItem) - exactItem) < tolerance
+          ? Math.round(exactItem)
+          : Math.floor(exactItem);
+
+      onChange(selectedItem);
     }
 
     ref.addEventListener('scroll', handleScroll);
