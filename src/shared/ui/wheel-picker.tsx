@@ -91,23 +91,18 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
   }, []);
 
   return (
-    <>
-      <div className='absolute w-32 break-words insety-0 pointer-events-none'>
-        {JSON.stringify(state)}
-      </div>
-      <ul
-        ref={containerRef}
-        className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
-      >
-        <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
-        {items.map(item => (
-          <li key={item.value} style={{ height: `${itemHeight}px` }} className='py-3 snap-center'>
-            {item.label}
-          </li>
-        ))}
-        <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
-      </ul>
-    </>
+    <ul
+      ref={containerRef}
+      className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
+    >
+      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
+      {items.map(item => (
+        <li key={item.value} style={{ height: `${itemHeight}px` }} className='py-3 snap-center'>
+          {item.label}
+        </li>
+      ))}
+      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
+    </ul>
   );
 }
 
