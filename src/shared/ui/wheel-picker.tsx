@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const minuteItems = Array.from({ length: 60 }, (_, index) => ({
   value: index,
@@ -60,6 +60,7 @@ interface ItemWheelProps {
 
 function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps) {
   const containerRef = useRef<HTMLUListElement>(null);
+  const [state, setState] = useState<unknown>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -69,13 +70,14 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
       const tolerance = 2; // 2 pixels to accommodate rounding on mobile
 
       const scrollHeight = (target as HTMLElement)?.scrollTop ?? 0;
-      const exactItem = Math.floor(scrollHeight / itemHeight);
+      const exactItem = scrollHeight / itemHeight;
 
       const selectedItem =
         Math.abs(Math.round(exactItem) - exactItem) < tolerance
           ? Math.round(exactItem)
           : Math.floor(exactItem);
 
+      setState({ scrollHeight, exactItem, selectedItem });
       onChange(selectedItem);
     }
 
@@ -89,18 +91,23 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
   }, []);
 
   return (
-    <ul
-      ref={containerRef}
-      className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
-    >
-      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
-      {items.map(item => (
-        <li key={item.value} style={{ height: `${itemHeight}px` }} className='py-3 snap-center'>
-          {item.label}
-        </li>
-      ))}
-      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
-    </ul>
+    <>
+      <div className='absolute w-32 break-words insety-0 pointer-events-none'>
+        {JSON.stringify(state)}
+      </div>
+      <ul
+        ref={containerRef}
+        className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
+      >
+        <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
+        {items.map(item => (
+          <li key={item.value} style={{ height: `${itemHeight}px` }} className='py-3 snap-center'>
+            {item.label}
+          </li>
+        ))}
+        <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
+      </ul>
+    </>
   );
 }
 
