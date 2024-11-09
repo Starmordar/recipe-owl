@@ -60,7 +60,6 @@ interface ItemWheelProps {
 
 function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps) {
   const containerRef = useRef<HTMLUListElement>(null);
-  const [state, setState] = useState<unknown>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -77,7 +76,6 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
           ? Math.round(exactItem)
           : Math.floor(exactItem);
 
-      setState({ scrollHeight, exactItem, selectedItem });
       onChange(selectedItem);
     }
 
