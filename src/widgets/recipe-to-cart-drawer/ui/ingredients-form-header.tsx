@@ -35,17 +35,17 @@ function IngredientsFormHeader({
   return (
     <div className='flex flex-col gap-y-4 px-6'>
       <div className='flex items-center justify-between gap-x-2'>
-        <span className='font-semibold truncate '>{recipe.title}</span>
+        <span className='font-semibold truncate text-lg'>{recipe.title}</span>
         <NumberInputSpinner value={quantity} onValueChange={setQuantity} />
       </div>
 
-      <div className='flex items-center justify-between mb-2 text-sm'>
+      <div className='flex items-center justify-between mb-3 text-base'>
         <p className='opacity-70'>Items to Add</p>
 
         <Button
-          className='px-0 opacity-70 hover:bg-transparent hover:text-current'
+          className='px-0 opacity-70 hover:bg-transparent hover:text-current text-base'
           variant='ghost'
-          size='xss'
+          size='xs'
           onClick={showDeselect ? handleDeselect : handleSelectAll}
         >
           {showDeselect ? ' Deselect All' : 'Select All'}

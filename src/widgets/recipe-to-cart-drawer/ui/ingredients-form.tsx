@@ -21,7 +21,7 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
       <form
         id='ingredients-to-cart-form'
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-4 max-h-[60vh] overflow-scroll px-6'
+        className='space-y-4 max-h-[60vh] overflow-y-auto px-6'
       >
         <FormField
           control={form.control}
@@ -39,7 +39,7 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
                         key={item.id}
                         className='flex justify-between items-start space-x-3 space-y-0 gap-2 w-full'
                       >
-                        <div className='flex flex-col gap-y-2 text-sm min-w-0'>
+                        <div className='flex flex-col gap-y-1 text-base min-w-0'>
                           <span className='font-medium leading-none truncate'>{item.name}</span>
                           <span className='text-muted-foreground truncate'>
                             {applyQuantityToUnit(item.unit, quantity)}

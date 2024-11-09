@@ -1,14 +1,15 @@
 'use client';
 
-import { DialogTitle } from '@radix-ui/react-dialog';
 import { PropsWithChildren, useState } from 'react';
 
 import { Button } from '@/src/shared/ui/button';
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
+  DrawerTitle,
   DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
@@ -46,7 +47,7 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
 
       <DrawerContent>
         <DrawerHeader>
-          <DialogTitle>Add to Cart</DialogTitle>
+          <DrawerTitle>Add to Cart</DrawerTitle>
         </DrawerHeader>
 
         <IngredientsFormHeader
@@ -62,10 +63,13 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
           ingredients={recipe.ingredients}
         />
 
-        <DrawerFooter>
+        <DrawerFooter className='flex flex-row w-full'>
+          <DrawerClose className='flex-1' asChild>
+            <Button variant='outline'>Cancel</Button>
+          </DrawerClose>
           <Button
             form='ingredients-to-cart-form'
-            className='w-full'
+            className='flex-1'
             loading={isPending}
             loadingText='Adding...'
           >
