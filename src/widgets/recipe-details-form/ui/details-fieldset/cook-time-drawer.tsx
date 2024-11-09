@@ -37,7 +37,7 @@ function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
 
     const hoursSection = timeString.hours ? `${timeString.hours} ${hoursLabel}` : '';
     const minutesSection = timeString.minutes ? `${timeString.minutes} ${minutesLabel}` : '';
-    onChange(`${hoursSection} ${minutesSection}`);
+    onChange(`${hoursSection} ${minutesSection}`.trim());
   }
 
   return (

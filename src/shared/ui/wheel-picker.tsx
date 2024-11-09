@@ -18,7 +18,7 @@ interface WheelPickerProps {
   itemHeight?: number;
 }
 
-function WheelPicker({ defaultValue, itemHeight = 44, onChange }: WheelPickerProps) {
+function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerProps) {
   return (
     <div
       style={{ height: `${itemHeight * 3}px` }}
@@ -85,13 +85,13 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
       ref={containerRef}
       className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
     >
-      <li className='h-[2.75rem] snap-center'></li>
+      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
       {items.map(item => (
-        <li key={item.value} className='py-2 snap-center'>
+        <li key={item.value} style={{ height: `${itemHeight}px` }} className='py-3 snap-center'>
           {item.label}
         </li>
       ))}
-      <li className='h-[2.75rem] snap-center'></li>
+      <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>
     </ul>
   );
 }
