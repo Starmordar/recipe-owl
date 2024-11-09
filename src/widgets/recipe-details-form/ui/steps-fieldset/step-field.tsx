@@ -21,7 +21,7 @@ function StepField({ form, field, index }: StepFieldProps) {
         <FormItem className='flex-1'>
           <FormControl>
             <Textarea
-              placeholder='e.g., Mix ingredients in a bowl'
+              placeholder='Describe each step of your recipe in detail. Include tips, techniques, etc...'
               className='min-h-[40px] resize-none'
               autoResize
               {...field}

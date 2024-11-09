@@ -72,12 +72,12 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
       onChange(selectedItem);
     }
 
-    console.log('new trigger');
     ref.scrollTo({ top: defaultValue * itemHeight });
     ref.addEventListener('scroll', handleScroll);
     return () => {
       ref.removeEventListener('scroll', handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

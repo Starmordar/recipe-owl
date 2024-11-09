@@ -54,6 +54,7 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
             setOpen={setOpen}
             showSearch={false}
             showClear={false}
+            allowFocus
           />
           <FormMessage />
         </FormItem>

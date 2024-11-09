@@ -38,6 +38,7 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 };
 
 interface CommandInputProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> {
+  allowFocus?: boolean;
   showSearch: boolean;
   showClear: boolean;
   onClear: () => void;
@@ -46,8 +47,14 @@ interface CommandInputProps extends React.ComponentPropsWithoutRef<typeof Comman
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input & { onClear: () => void }>,
   CommandInputProps
->(({ className, showClear, showSearch, onClear, ...props }, ref) => (
-  <div className='flex items-center border rounded-md px-3' cmdk-input-wrapper=''>
+>(({ className, allowFocus, showClear, showSearch, onClear, ...props }, ref) => (
+  <div
+    className={cn(
+      allowFocus && 'focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+      'flex items-center border rounded-md px-3',
+    )}
+    cmdk-input-wrapper=''
+  >
     {showSearch && <Search className='mr-2 h-4 w-4 shrink-0 opacity-50' />}
     <CommandPrimitive.Input
       ref={ref}

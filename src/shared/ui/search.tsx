@@ -23,6 +23,7 @@ interface SearchProps {
 
   showSearch?: boolean;
   showClear?: boolean;
+  allowFocus?: boolean;
 }
 
 function Search({
@@ -35,6 +36,7 @@ function Search({
   data,
   showSearch,
   showClear,
+  allowFocus,
 }: SearchProps) {
   function handleValueChange(value: string) {
     setSearchTerm(value);
@@ -70,6 +72,7 @@ function Search({
           showClear={showClear ?? !!searchTerm}
           onClear={handleClear}
           showSearch={showSearch ?? true}
+          allowFocus={allowFocus}
         />
 
         <div className='relative'>
