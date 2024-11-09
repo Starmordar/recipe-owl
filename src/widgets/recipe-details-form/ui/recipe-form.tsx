@@ -23,7 +23,7 @@ function RecipeForm({ form, onSubmit }: RecipeFormProps) {
 
   return (
     <Form {...form}>
-      <form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+      <form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
         <DetailsFieldset form={form} />
         <IngredientsFieldset form={form} />
         <StepsFieldset form={form} />

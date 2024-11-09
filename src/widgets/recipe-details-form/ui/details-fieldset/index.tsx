@@ -5,6 +5,7 @@ import {
   FormDescription,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
@@ -29,9 +30,10 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         control={form.control}
         name='title'
         render={({ field }) => (
-          <FormItem>
+          <FormItem className='space-y-1'>
+            <FormLabel>Title</FormLabel>
             <FormControl>
-              <Input placeholder='e.g., Ultimate Chocolate Chip Cookies' {...field} />
+              <Input placeholder='Give your recipe a name' {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -42,10 +44,11 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         control={form.control}
         name='description'
         render={({ field }) => (
-          <FormItem>
+          <FormItem className='space-y-1'>
+            <FormLabel>Description</FormLabel>
             <FormControl>
               <Textarea
-                placeholder='Share a bit more about the origin or inspiration behind this dish.'
+                placeholder='Introduce your recipe, add notes, cooking tips, serving suggestions, etc...'
                 className='resize-none'
                 autoResize
                 {...field}
@@ -60,7 +63,8 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         control={form.control}
         name='source'
         render={({ field }) => (
-          <FormItem>
+          <FormItem className='space-y-1'>
+            <FormLabel>Source</FormLabel>
             <FormControl>
               <Input placeholder='Source or link to the original recipe' {...field} />
             </FormControl>
@@ -73,13 +77,18 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         control={form.control}
         name='cookTime'
         render={({ field }) => (
-          <FormItem>
+          <FormItem className='space-y-1'>
+            <FormLabel>Cook Time</FormLabel>
             <FormControl>
               <CookTimeDrawer onChange={field.onChange} value={field.value}>
-                <Input placeholder='Cook Time' {...field} />
+                <Input
+                  placeholder='How long does it take to cook this recipe?'
+                  type='text'
+                  readOnly
+                  {...field}
+                />
               </CookTimeDrawer>
             </FormControl>
-            <FormDescription>How long does it take to cook this recipe?</FormDescription>
             <FormMessage />
           </FormItem>
         )}

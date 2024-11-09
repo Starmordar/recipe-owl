@@ -90,22 +90,22 @@ interface DraggableFieldsHeader extends PropsWithChildren {
 function DraggableFieldsHeader({ title, isDraggable, setIsDraggable }: DraggableFieldsHeader) {
   return (
     <div className='flex justify-between'>
-      <legend className='text-lg font-medium'>{title}</legend>
+      <legend className='text-lg font-semibold'>{title}</legend>
 
       <Button
-        className='gap-x-2'
-        size='xss'
+        className='gap-x-2 text-base'
+        size='xs'
         variant='outline'
         type='button'
         onClick={() => setIsDraggable(!isDraggable)}
       >
         {isDraggable ? (
           <>
-            Done <CheckCheck className='h-4 w-4' />
+            Done <CheckCheck className='h-5 w-5' />
           </>
         ) : (
           <>
-            Reorder <Shuffle className='h-4 w-4' />
+            Reorder <Shuffle className='h-5 w-5' />
           </>
         )}
       </Button>
@@ -140,11 +140,11 @@ function DraggableAction({
     <>
       {isDraggable ? (
         <Button {...buttonProps} {...dragHandleProps}>
-          <GripVertical className='h-5 w-5' />
+          <GripVertical className='h-6 w-6' />
         </Button>
       ) : (
         <Button disabled={disabled} onClick={onAction} {...buttonProps}>
-          {cloneElement(Icon, { className: 'h-5 w-5' })}
+          {cloneElement(Icon, { className: 'h-6 w-6' })}
         </Button>
       )}
     </>

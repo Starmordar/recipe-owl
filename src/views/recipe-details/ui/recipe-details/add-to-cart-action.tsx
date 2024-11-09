@@ -15,7 +15,7 @@ function AddToCartAction({ recipe }: AddToCartActionProps) {
   return (
     <AddRecipeToCartDrawer recipe={recipe}>
       <Button className='gap-x-3 text-base' variant='outline' size='xs'>
-        Add to Cart <CirclePlus className='h-6 w-6' />
+        Add to Cart <CirclePlus className='h-5 w-5' />
       </Button>
     </AddRecipeToCartDrawer>
   );

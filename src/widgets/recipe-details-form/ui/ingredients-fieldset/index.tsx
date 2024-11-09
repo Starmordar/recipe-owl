@@ -64,9 +64,14 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
         )}
       />
 
-      <div className='flex justify-center mt-4'>
-        <Button variant='ghost' type='button' onClick={() => append({ name: '', unit: '' })}>
-          <Plus className='h-5 w-5 mr-2' />
+      <div className='flex justify-center mt-2'>
+        <Button
+          className='text-base'
+          variant='ghost'
+          type='button'
+          onClick={() => append({ name: '', unit: '' })}
+        >
+          <Plus className='h-6 w-6 mr-2' />
           Ingredient
         </Button>
       </div>

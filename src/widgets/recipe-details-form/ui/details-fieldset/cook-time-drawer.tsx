@@ -15,37 +15,34 @@ import {
 } from '@/src/shared/ui/drawer';
 import { WheelPicker } from '@/src/shared/ui/wheel-picker';
 
+import { hoursLabel, minutesLabel, parseTimeString } from './lib/parse-time-string';
+
 interface CookTimeDrawerProps extends PropsWithChildren {
   value: string;
   onChange: (value: string) => void;
 }
 
-function parseHoursAndMinutes(time: string) {
-  const parts = time?.split(' ') ?? [];
-  if (parts.length !== 4) return { hours: 1, minutes: 15 };
-
-  const [hours, , minutes] = parts;
-  return { hours: parseInt(hours), minutes: parseInt(minutes) };
-}
-
 function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
-  const [timeString, setTimeString] = useState(parseHoursAndMinutes(value));
+  const [timeString, setTimeString] = useState(parseTimeString(value));
 
-  function onChangeCookTime(field: 'hour' | 'min', fieldValue: number) {
-    setTimeString(value => ({
-      hours: field === 'hour' ? fieldValue : value.hours,
-      minutes: field === 'min' ? fieldValue : value.minutes,
+  function onChangeCookTime(field: 'hours' | 'minutes', nextValue: number) {
+    setTimeString(state => ({
+      hours: field === 'hours' ? nextValue : state.hours,
+      minutes: field === 'minutes' ? nextValue : state.minutes,
     }));
   }
 
   function handleSetCookTime({ reset }: { reset?: boolean }) {
-    if (reset) onChange('');
-    onChange(`${timeString.hours} hr ${timeString.minutes} mins`);
+    if (reset || (timeString.hours === 0 && timeString.minutes === 0)) return onChange('');
+
+    const hoursSection = timeString.hours ? `${timeString.hours} ${hoursLabel}` : '';
+    const minutesSection = timeString.minutes ? `${timeString.minutes} ${minutesLabel}` : '';
+    onChange(`${hoursSection} ${minutesSection}`);
   }
 
   return (
     <Drawer>
-      <DrawerTrigger className='w-full'>{children}</DrawerTrigger>
+      <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
         <DrawerHeader>
@@ -53,7 +50,7 @@ function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
           <DrawerDescription>How long does it take to cook this recipe?</DrawerDescription>
         </DrawerHeader>
 
-        <WheelPicker onChange={onChangeCookTime} />
+        <WheelPicker onChange={onChangeCookTime} defaultValue={timeString} />
 
         <DrawerFooter className='flex flex-row w-full'>
           <DrawerClose className='flex-1' asChild>

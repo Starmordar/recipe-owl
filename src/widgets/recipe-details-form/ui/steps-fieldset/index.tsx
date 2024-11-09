@@ -62,9 +62,14 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
         )}
       />
 
-      <div className='flex justify-center'>
-        <Button variant='ghost' type='button' onClick={() => append({ description: '' })}>
-          <Plus className='h-5 w-5 mr-2' />
+      <div className='flex justify-center mt-2'>
+        <Button
+          className='text-base'
+          variant='ghost'
+          type='button'
+          onClick={() => append({ description: '' })}
+        >
+          <Plus className='h-6 w-6 mr-2' />
           Step
         </Button>
       </div>

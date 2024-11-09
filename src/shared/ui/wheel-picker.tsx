@@ -12,17 +12,22 @@ const hourItems = Array.from({ length: 24 }, (_, index) => ({
   label: `${index} ${index === 1 ? 'hour' : 'hours'}`,
 }));
 
-const defaultTime = { min: 15, hour: 1 };
-const itemHeight = 44;
-
 interface WheelPickerProps {
-  onChange: (field: 'hour' | 'min', value: number) => void;
+  onChange: (field: 'hours' | 'minutes', value: number) => void;
+  defaultValue: { hours: number; minutes: number };
+  itemHeight?: number;
 }
 
-function WheelPicker({ onChange }: WheelPickerProps) {
+function WheelPicker({ defaultValue, itemHeight = 44, onChange }: WheelPickerProps) {
   return (
-    <div className='relative flex justify-around text-lg h-[8.25rem] overflow-hidden'>
-      <div className='absolute top-1/2 -translate-y-1/2 inset-x-0 h-[2.75rem] flex flex-col justify-between pointer-events-none'>
+    <div
+      style={{ height: `${itemHeight * 3}px` }}
+      className='relative flex justify-around text-lg overflow-hidden'
+    >
+      <div
+        style={{ height: `${itemHeight}px` }}
+        className='absolute top-1/2 -translate-y-1/2 inset-x-0 flex flex-col justify-between pointer-events-none'
+      >
         <div className='w-full border-t'></div>
         <div className='w-full border-t'></div>
       </div>
@@ -30,15 +35,17 @@ function WheelPicker({ onChange }: WheelPickerProps) {
       <div className='absolute inset-0 bg-fade-vertically pointer-events-none'></div>
 
       <ItemWheel
-        defaultValue={defaultTime.hour}
+        defaultValue={defaultValue.hours}
         items={hourItems}
-        onChange={value => onChange('hour', value)}
+        itemHeight={itemHeight}
+        onChange={value => onChange('hours', value)}
       />
 
       <ItemWheel
-        defaultValue={defaultTime.min}
+        defaultValue={defaultValue.minutes}
         items={minuteItems}
-        onChange={value => onChange('min', value)}
+        itemHeight={itemHeight}
+        onChange={value => onChange('minutes', value)}
       />
     </div>
   );
@@ -47,10 +54,11 @@ function WheelPicker({ onChange }: WheelPickerProps) {
 interface ItemWheelProps {
   items: Array<{ value: number; label: string }>;
   defaultValue: number;
+  itemHeight: number;
   onChange: (value: number) => void;
 }
 
-function ItemWheel({ items, defaultValue, onChange }: ItemWheelProps) {
+function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps) {
   const containerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -70,7 +78,7 @@ function ItemWheel({ items, defaultValue, onChange }: ItemWheelProps) {
     return () => {
       ref.removeEventListener('scroll', handleScroll);
     };
-  }, [defaultValue]);
+  }, []);
 
   return (
     <ul
