@@ -72,8 +72,9 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
       onChange(selectedItem);
     }
 
-    ref.scrollTo({ top: defaultValue * itemHeight });
     ref.addEventListener('scroll', handleScroll);
+    ref.scrollTo({ top: defaultValue * itemHeight });
+
     return () => {
       ref.removeEventListener('scroll', handleScroll);
     };
