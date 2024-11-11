@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { validateRequest } from '@/src/shared/api/auth';
+
 import { AddToCartAction } from './add-to-cart-action';
 import { RecipeIngredientsSection } from './ingredients-table';
 import { RecipeDescription } from './recipe-description';
@@ -13,6 +15,8 @@ interface RecipeDetailsProps {
 }
 
 async function RecipeDetails({ recipe }: RecipeDetailsProps) {
+  const { user } = await validateRequest();
+
   return (
     <>
       <section className='flex flex-col gap-y-4'>
@@ -23,7 +27,7 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
       <section>
         <div className='flex justify-between items-center mb-3'>
           <h2 className='text-xl font-bold'>Ingredients</h2>
-          <AddToCartAction recipe={recipe} />
+          <AddToCartAction recipe={recipe} userId={user?.id} />
         </div>
 
         <RecipeIngredientsSection ingredients={recipe.ingredients} />

@@ -1,12 +1,17 @@
 'use client';
 
-import { DialogTitle } from '@radix-ui/react-dialog';
 import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { DeleteRecipeModal } from '@/src/features/recipe/delete-recipe';
 import { publicUrls } from '@/src/shared/config/url';
-import { Drawer, DrawerActionButton, DrawerContent, DrawerTrigger } from '@/src/shared/ui/drawer';
+import {
+  Drawer,
+  DrawerActionButton,
+  DrawerContent,
+  DrawerTrigger,
+  DrawerTitle,
+} from '@/src/shared/ui/drawer';
 
 import type { PropsWithChildren } from 'react';
 
@@ -20,7 +25,7 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DialogTitle className='sr-only'>Action Buttons</DialogTitle>
+        <DrawerTitle className='sr-only'>Action Buttons</DrawerTitle>
 
         <ul className='my-4'>
           <li>

@@ -1,8 +1,8 @@
+import { AuthLegalSection } from '@/src/entities/session';
 import { publicUrls } from '@/src/shared/config/url';
 
 import { AuthChangeOption } from './auth-change-option';
 import { AuthHeader } from './auth-header';
-import { AuthLegalSection } from './auth-legal-section';
 import { AuthWithEmail } from './auth-with-email';
 import { AuthWithGoogle } from './auth-with-google';
 

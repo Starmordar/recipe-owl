@@ -19,18 +19,21 @@ async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
   const { user } = await validateRequest();
 
   const isSaved = await isRecipeSaved(user?.id, recipe.id);
+  const isCurrentUserOwner = user && user.id === recipe.user.id;
 
   return (
     <AppHeader prevUrl={publicUrls.recipes} className='pr-3'>
       <div className='flex gap-x-4'>
-        <AddToCartAction recipe={recipe} />
+        <AddToCartAction recipe={recipe} userId={user?.id} />
 
         <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
         <ShareRecipeAction />
 
-        <RecipeActionsDrawer recipeId={recipe.id}>
-          <HeaderIconButton Icon={<EllipsisVertical />} />
-        </RecipeActionsDrawer>
+        {isCurrentUserOwner && (
+          <RecipeActionsDrawer recipeId={recipe.id}>
+            <HeaderIconButton Icon={<EllipsisVertical />} />
+          </RecipeActionsDrawer>
+        )}
       </div>
     </AppHeader>
   );
