@@ -1,7 +1,4 @@
-import { notFound } from 'next/navigation';
 import React from 'react';
-
-import { getRecipeDetails } from '@/src/entities/recipe';
 
 import { AddToCartAction } from './add-to-cart-action';
 import { RecipeIngredientsSection } from './ingredients-table';
@@ -9,14 +6,13 @@ import { RecipeDescription } from './recipe-description';
 import { RecipeImage } from './recipe-image';
 import { RecipeMethod } from './recipe-method';
 
-interface RecipeProps {
-  recipeId: number;
+import type { RecipeDetails as RecipeDetailsType } from '@/src/entities/recipe';
+
+interface RecipeDetailsProps {
+  recipe: RecipeDetailsType;
 }
 
-async function RecipeDetails({ recipeId }: RecipeProps) {
-  const recipe = await getRecipeDetails(recipeId);
-  if (!recipe) return notFound();
-
+async function RecipeDetails({ recipe }: RecipeDetailsProps) {
   return (
     <>
       <section className='flex flex-col gap-y-4'>

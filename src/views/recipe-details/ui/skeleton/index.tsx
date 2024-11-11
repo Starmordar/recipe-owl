@@ -5,19 +5,18 @@ function RecipeDetailsPageSkeleton() {
 
   return (
     <>
-      <section>
-        <Skeleton className='h-7 w-[200px] mb-1' />
-        <Skeleton className='h-20 mb-1' />
-      </section>
+      <div className='h-11 w-full'></div>
 
-      <section>
+      <main className='page-container mt-2'>
+        <Skeleton className='h-8 w-[250px]' />
+        <Skeleton className='h-28' />
+
+        <Skeleton className='h-6 w-[100px]' />
+
         <Skeleton className='h-[40vh] rounded-lg' />
-      </section>
 
-      <section>
-        <Skeleton className='h-7 mb-2 w-[200px]' />
-
-        <div className='flex flex-col gap-2'>
+        <Skeleton className='h-9 mb-2 w-[200px]' />
+        <div className='flex flex-col gap-y-4'>
           {ingredients.map((_, index) => (
             <div key={index} className='flex justify-between'>
               <Skeleton className='h-4 w-[65vw]' />
@@ -25,7 +24,7 @@ function RecipeDetailsPageSkeleton() {
             </div>
           ))}
         </div>
-      </section>
+      </main>
     </>
   );
 }

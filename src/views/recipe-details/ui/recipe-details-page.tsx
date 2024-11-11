@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
 
 import { getRecipeJsonLdSchema, getRecipeDetails } from '@/src/entities/recipe';
 
 import { RecipeDetailsHeader } from './page-header';
 import { RecipeDetails } from './recipe-details';
-import { RecipeDetailsPageSkeleton } from './skeleton';
 
 interface RecipeDetailsPageProps {
   recipeId: number;
@@ -24,12 +22,10 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <RecipeDetailsHeader recipeId={recipeId} />
+      <RecipeDetailsHeader recipe={recipe} />
 
       <main className='page-container mt-2'>
-        <Suspense key={recipeId} fallback={<RecipeDetailsPageSkeleton />}>
-          <RecipeDetails recipeId={recipeId} />
-        </Suspense>
+        <RecipeDetails recipe={recipe} />
       </main>
     </>
   );

@@ -1,6 +1,6 @@
 import { EllipsisVertical } from 'lucide-react';
 
-import { getRecipeDetails } from '@/src/entities/recipe';
+import { getRecipeDetails, type RecipeDetails } from '@/src/entities/recipe';
 import { isRecipeSaved, SaveRecipeAction } from '@/src/features/recipe/save-recipe';
 import { ShareRecipeAction } from '@/src/features/recipe/share-recipe';
 import { validateRequest } from '@/src/shared/api/auth';
@@ -12,16 +12,13 @@ import { RecipeActionsDrawer } from '@/src/widgets/recipe-actions-drawer';
 import { AddToCartAction } from './add-to-cart-action';
 
 interface RecipeDetailsHeaderProps {
-  recipeId: number;
+  recipe: RecipeDetails;
 }
 
-async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
+async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
   const { user } = await validateRequest();
 
-  const recipe = await getRecipeDetails(recipeId);
-  if (!recipe) return null;
-
-  const isSaved = await isRecipeSaved(user?.id, recipeId);
+  const isSaved = await isRecipeSaved(user?.id, recipe.id);
 
   return (
     <AppHeader prevUrl={publicUrls.recipes} className='pr-3'>
@@ -31,7 +28,7 @@ async function RecipeDetailsHeader({ recipeId }: RecipeDetailsHeaderProps) {
         <SaveRecipeAction recipeId={recipe.id} userId={user?.id} isSaved={isSaved} />
         <ShareRecipeAction />
 
-        <RecipeActionsDrawer recipeId={recipeId}>
+        <RecipeActionsDrawer recipeId={recipe.id}>
           <HeaderIconButton Icon={<EllipsisVertical />} />
         </RecipeActionsDrawer>
       </div>
