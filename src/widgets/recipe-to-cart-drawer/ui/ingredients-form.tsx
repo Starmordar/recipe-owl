@@ -35,27 +35,26 @@ function IngredientsForm({ form, onSubmit, ingredients, quantity }: IngredientsF
                   name='ingredients'
                   render={({ field }) => {
                     return (
-                      <FormItem
-                        key={item.id}
-                        className='flex justify-between items-start space-x-3 space-y-0 gap-2 w-full'
-                      >
-                        <div className='flex flex-col gap-y-1 text-base min-w-0'>
-                          <span className='font-medium leading-none truncate'>{item.name}</span>
-                          <span className='text-muted-foreground truncate'>
-                            {applyQuantityToUnit(item.unit, quantity)}
-                          </span>
-                        </div>
-
+                      <FormItem key={item.id} className='w-full'>
                         <FormControl>
-                          <Checkbox
-                            className='h-5 w-5'
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={checked => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(field.value?.filter(value => value !== item.id));
-                            }}
-                          />
+                          <label className='flex justify-between items-start space-x-3 space-y-0 gap-2 w-full'>
+                            <span className='flex flex-col gap-y-1 text-base min-w-0'>
+                              <span className='font-medium leading-none truncate'>{item.name}</span>
+                              <span className='text-muted-foreground truncate'>
+                                {applyQuantityToUnit(item.unit, quantity)}
+                              </span>
+                            </span>
+
+                            <Checkbox
+                              className='h-5 w-5'
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={checked => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(field.value?.filter(value => value !== item.id));
+                              }}
+                            />
+                          </label>
                         </FormControl>
                       </FormItem>
                     );
