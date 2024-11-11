@@ -34,6 +34,7 @@ const schema = z.object({
   }),
   source: z.string(),
   cookTime: z.string(),
+  tags: z.array(z.string()).max(5, { message: 'You can add up to 5 tags only.' }),
   ingredients: z
     .array(ingredientSchema)
     .min(1, { message: 'The recipe must include at least one ingredient.' }),
@@ -48,6 +49,7 @@ const defaultValues: FormValues = {
   description: '',
   source: '',
   cookTime: '',
+  tags: [],
   ingredients: [{ name: '', unit: '' }],
   steps: [{ description: '' }],
 };

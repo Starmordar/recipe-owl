@@ -28,6 +28,7 @@ interface UpdateRecipePayload {
   source: string;
   image: File | string;
   cookTime: string;
+  tags: Array<string>;
 
   ingredients: Array<{
     order: number;

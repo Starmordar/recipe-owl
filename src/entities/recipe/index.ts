@@ -6,6 +6,8 @@ export { createRecipe } from './api/create-recipe';
 export { updateRecipe } from './api/update-recipe';
 export { deleteRecipe } from './api/delete-recipe';
 
+export { recipeQueries } from './api/recipe.query';
+
 export { getRecipeJsonLdSchema } from './model/json-ld-schema';
 
 export { ingredientsCategory, onlySavedCategory, filterCategories } from './config/search-recipes';

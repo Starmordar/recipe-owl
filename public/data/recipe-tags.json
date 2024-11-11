@@ -1,0 +1,117 @@
+[
+    {
+      "type": "Cuisine",
+      "categories": [
+        "Italian",
+        "French",
+        "American",
+        "Chinese",
+        "Indian",
+        "Japanese",
+        "Mexican",
+        "Thai",
+        "Mediterranean",
+        "Middle Eastern",
+        "Spanish",
+        "Korean",
+        "Greek",
+        "Vietnamese",
+        "Caribbean",
+        "African"
+      ]
+    },
+    {
+      "type": "Dietary Preferences",
+      "categories": [
+        "Vegetarian",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low-Carb",
+        "Keto",
+        "Paleo",
+        "Whole30",
+        "Halal",
+        "Kosher"
+      ]
+    },
+    {
+      "type": "Meal Type",
+      "categories": [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Snack",
+        "Dessert",
+        "Appetizer",
+        "Side Dish",
+        "Main Course",
+        "Drink"
+      ]
+    },
+    {
+      "type": "Ingredients",
+      "categories": [
+        "Chicken",
+        "Beef",
+        "Pork",
+        "Fish",
+        "Tofu",
+        "Eggs",
+        "Cheese",
+        "Vegetables",
+        "Fruits",
+        "Grains",
+        "Legumes",
+        "Nuts",
+        "Seeds",
+        "Spices"
+      ]
+    },
+    {
+      "type": "Occasion",
+      "categories": [
+        "Holiday",
+        "Birthday",
+        "Dinner Party",
+        "Family Meal",
+        "Solo Meal",
+        "Picnic",
+        "Brunch",
+        "Potluck"
+      ]
+    },
+    {
+      "type": "Time",
+      "categories": [
+        "Quick (under 30 minutes)",
+        "Under 1 hour",
+        "1–2 hours",
+        "Slow Cooking"
+      ]
+    },
+    {
+      "type": "Preparation Method",
+      "categories": [
+        "Baking",
+        "Grilling",
+        "Frying",
+        "Steaming",
+        "Sautéing",
+        "Boiling",
+        "Roasting",
+        "Slow Cooking",
+        "Microwaving",
+        "Raw"
+      ]
+    },
+    {
+      "type": "Seasonal",
+      "categories": [
+        "Spring",
+        "Summer",
+        "Fall",
+        "Winter"
+      ]
+    }
+  ]

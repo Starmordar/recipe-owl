@@ -17,6 +17,7 @@ model Recipe {
   cookTime    String?
   imageUrl    String
 
+  tags           String[]
   steps          String[]
   ingredients    Ingredient[]
   savedRecipes   SavedRecipe[]

@@ -13,6 +13,7 @@ import { Textarea } from '@/src/shared/ui/textarea';
 
 import { CookTimeDrawer } from './cook-time-drawer';
 import { ImageField } from './image-field';
+import { TagsField } from './tags-field';
 
 import type { FormValues } from '../../model/schema';
 import type { UseFormReturn } from 'react-hook-form';
@@ -93,6 +94,8 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
           </FormItem>
         )}
       />
+
+      <TagsField form={form} />
     </fieldset>
   );
 }

@@ -8,6 +8,7 @@ function formValuesToPayload(values: FormValues): UpdateRecipePayload {
     source: values.source,
     image: values.image,
     cookTime: values.cookTime,
+    tags: values.tags,
     ingredients: values.ingredients.map((ingredient, i) => ({ ...ingredient, order: i })),
     steps: values.steps.map(s => s.description),
   };

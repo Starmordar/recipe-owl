@@ -1,5 +1,6 @@
 import { RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
 import { cn } from '@/src/shared/lib/classnames';
+import { hashColor } from '@/src/shared/lib/color';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
 import { ReadMoreText } from '@/src/shared/ui/read-more-text';
 
@@ -17,7 +18,29 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
 
       <RecipeAuthor author={recipe.user} avatarSize={28} />
       <RecipeSource source={recipe.source} />
-      {recipe.cookTime && <p className='mt-1'>Cook Time: {recipe.cookTime}</p>}
+      {recipe.cookTime && <p className='mt-2'>Cook Time: {recipe.cookTime}</p>}
+      {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
+    </div>
+  );
+}
+
+interface RecipeTagsProps {
+  tags: Array<string>;
+}
+
+function RecipeTags({ tags }: RecipeTagsProps) {
+  return (
+    <div className='flex flex-wrap gap-x-3 gap-y-2 items-center mt-2'>
+      Tags:
+      {tags.map(tag => (
+        <div
+          key={tag}
+          style={{ borderColor: hashColor(tag) }}
+          className='py-1 px-2.5 border rounded-lg'
+        >
+          {tag}
+        </div>
+      ))}
     </div>
   );
 }
