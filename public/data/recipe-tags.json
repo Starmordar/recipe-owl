@@ -1,117 +1,72 @@
-[
+  [
+    {
+      "type": "Mood",
+      "categories": [
+        "Bad Day",
+        "Chill",
+        "Curious",
+        "Date Night",
+        "Energized",
+        "Feel Good",
+        "Guilty",
+        "Happy",
+        "Impress",
+        "Lazy",
+        "Party"
+      ]
+    },
+    {
+      "type": "Main Ingredient",
+      "categories": [
+        "Beef",
+        "Bread",
+        "Chicken",
+        "Eggs",
+        "Noodles",
+        "Pasta",
+        "Vegetables"
+      ]
+    },
     {
       "type": "Cuisine",
       "categories": [
+        "American",
+        "Asian",
         "Italian",
         "French",
-        "American",
-        "Chinese",
         "Indian",
-        "Japanese",
         "Mexican",
-        "Thai",
         "Mediterranean",
-        "Middle Eastern",
         "Spanish",
-        "Korean",
         "Greek",
         "Vietnamese",
-        "Caribbean",
         "African"
       ]
     },
     {
-      "type": "Dietary Preferences",
+      "type": "Nutrition",
       "categories": [
-        "Vegetarian",
+        "Gluten Free",
+        "High Protein",
+        "Low Fat",
         "Vegan",
-        "Gluten-Free",
-        "Dairy-Free",
-        "Low-Carb",
-        "Keto",
-        "Paleo",
-        "Whole30",
-        "Halal",
-        "Kosher"
+        "Vegetarian"
       ]
     },
     {
-      "type": "Meal Type",
+      "type": "Complexity",
       "categories": [
-        "Breakfast",
-        "Lunch",
-        "Dinner",
-        "Snack",
-        "Dessert",
-        "Appetizer",
-        "Side Dish",
-        "Main Course",
-        "Drink"
-      ]
-    },
-    {
-      "type": "Ingredients",
-      "categories": [
-        "Chicken",
-        "Beef",
-        "Pork",
-        "Fish",
-        "Tofu",
-        "Eggs",
-        "Cheese",
-        "Vegetables",
-        "Fruits",
-        "Grains",
-        "Legumes",
-        "Nuts",
-        "Seeds",
-        "Spices"
-      ]
-    },
-    {
-      "type": "Occasion",
-      "categories": [
-        "Holiday",
-        "Birthday",
-        "Dinner Party",
-        "Family Meal",
-        "Solo Meal",
-        "Picnic",
-        "Brunch",
-        "Potluck"
+        "Easy",
+        "Level Up",
+        "Skilled"
       ]
     },
     {
       "type": "Time",
       "categories": [
-        "Quick (under 30 minutes)",
-        "Under 1 hour",
-        "1–2 hours",
-        "Slow Cooking"
-      ]
-    },
-    {
-      "type": "Preparation Method",
-      "categories": [
-        "Baking",
-        "Grilling",
-        "Frying",
-        "Steaming",
-        "Sautéing",
-        "Boiling",
-        "Roasting",
-        "Slow Cooking",
-        "Microwaving",
-        "Raw"
-      ]
-    },
-    {
-      "type": "Seasonal",
-      "categories": [
-        "Spring",
-        "Summer",
-        "Fall",
-        "Winter"
+        "Quick",
+        "Under 1 Hour",
+        "I Got Time"
       ]
     }
   ]
