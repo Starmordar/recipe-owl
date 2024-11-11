@@ -11,7 +11,7 @@ function RecipeMethod({ recipe }: RecipeMethodProps) {
         return (
           <li key={index} className='flex items-start'>
             <div className='min-w-10 w-10 pt-1 pl-1'>
-              <div className='flex justify-center items-center bg-primary opacity-80 w-[22px] h-[22px] rounded-full text-primary-foreground text-sm'>
+              <div className='flex justify-center items-center text-primary-foreground bg-foreground w-6 h-6 rounded-full text-base'>
                 <span>{index + 1}</span>
               </div>
             </div>

@@ -25,7 +25,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
       </section>
 
       <section>
-        <div className='flex justify-between items-center mb-2'>
+        <div className='flex justify-between items-center mb-3'>
           <h2 className='text-xl font-bold'>Ingredients</h2>
           <AddToCartAction recipe={recipe} />
         </div>
@@ -34,7 +34,7 @@ async function RecipeDetails({ recipeId }: RecipeProps) {
       </section>
 
       <section>
-        <h2 className='text-xl font-bold mb-2'>Method</h2>
+        <h2 className='text-xl font-bold mb-3'>Method</h2>
         <RecipeMethod recipe={recipe} />
       </section>
     </>
