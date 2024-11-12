@@ -1,5 +1,4 @@
 import { RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
-import { cn } from '@/src/shared/lib/classnames';
 import { hashColor } from '@/src/shared/lib/color';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
 import { ReadMoreText } from '@/src/shared/ui/read-more-text';

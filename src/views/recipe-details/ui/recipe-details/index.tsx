@@ -24,8 +24,8 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
         <RecipeImage recipe={recipe} />
       </section>
 
-      <section>
-        <div className='flex justify-between items-center mb-3'>
+      <section className='flex flex-col gap-y-3'>
+        <div className='flex justify-between items-center'>
           <h2 className='text-xl font-bold'>Ingredients</h2>
           <AddToCartAction recipe={recipe} userId={user?.id} />
         </div>
@@ -33,8 +33,8 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
         <RecipeIngredientsSection ingredients={recipe.ingredients} />
       </section>
 
-      <section>
-        <h2 className='text-xl font-bold mb-3'>Method</h2>
+      <section className='flex flex-col gap-y-3'>
+        <h2 className='text-xl font-bold'>Method</h2>
         <RecipeMethod recipe={recipe} />
       </section>
     </>
