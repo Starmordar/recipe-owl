@@ -9,6 +9,8 @@ import { toast } from '@/src/shared/ui/use-toast';
 import { addIngredientsToCart } from '../api/add-ingredients-to-cart';
 import { FormValues, schema } from '../model/schema';
 
+import { alreadyInCartToast, successToast } from './toast';
+
 import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface UseIngredientsFormOptions {
@@ -27,10 +29,8 @@ function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
     const shareToken = Cookies.get(shareTokenCookieName);
 
     await addToCartAction(recipe.id, values.ingredients, quantity, shareToken)
-      .then(() => toast({ title: 'Recipe successfully added to your cart!' }))
-      .catch(() =>
-        toast({ title: 'This recipe is already in your cart.', variant: 'destructive' }),
-      );
+      .then(() => toast(successToast))
+      .catch(() => toast(alreadyInCartToast));
   }
 
   return { form, isPending, onSubmit };

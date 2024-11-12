@@ -13,16 +13,16 @@ async function addIngredientsToCart(
   quantity: number,
   shareToken?: string | null,
 ): Promise<{ id: number }> {
-  const items = ingredientIds.map(ingredientId => ({ recipeId, ingredientId, quantity }));
+  const ingredients = ingredientIds.map(ingredientId => ({ recipeId, ingredientId, quantity }));
 
   const [cartId, userId] = await getCartInfo(shareToken);
   if (cartId === undefined) {
-    return prisma.cart.create({ data: { userId, items: { create: items } } });
+    return prisma.cart.create({ data: { userId, items: { create: ingredients } } });
   }
 
   await prisma.cart.update({
     where: { id: cartId, userId },
-    data: { items: { create: items } },
+    data: { items: { create: ingredients } },
   });
 
   revalidatePath(publicUrls.cart);

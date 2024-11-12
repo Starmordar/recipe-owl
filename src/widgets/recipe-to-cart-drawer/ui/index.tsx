@@ -7,6 +7,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -48,6 +49,9 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Add to Cart</DrawerTitle>
+          <DrawerDescription className='sr-only'>
+            Drawer for adding a recipe to the cart.
+          </DrawerDescription>
         </DrawerHeader>
 
         <IngredientsFormHeader

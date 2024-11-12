@@ -70,7 +70,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Slottable>{loading ? `${loadingText ?? 'Loading...'}` : children}</Slottable>
-        {loading && <LoaderCircle className={cn('h-4 w-4 animate-spin', loadingClassName)} />}
+        {loading && <LoaderCircle className={cn('h-4 w-4 animate-spin ml-2', loadingClassName)} />}
       </Comp>
     );
   },

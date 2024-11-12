@@ -11,6 +11,8 @@ import {
   DrawerContent,
   DrawerTrigger,
   DrawerTitle,
+  DrawerHeader,
+  DrawerDescription,
 } from '@/src/shared/ui/drawer';
 
 import type { PropsWithChildren } from 'react';
@@ -25,7 +27,10 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DrawerTitle className='sr-only'>Action Buttons</DrawerTitle>
+        <DrawerHeader className='sr-only'>
+          <DrawerTitle>Action Buttons</DrawerTitle>
+          <DrawerDescription>Drawer for recipe management</DrawerDescription>
+        </DrawerHeader>
 
         <ul className='my-4'>
           <li>
