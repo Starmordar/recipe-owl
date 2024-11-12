@@ -10,15 +10,20 @@ interface RecipeDescriptionProps {
 
 function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   return (
-    <div>
+    <div className='flex flex-col gap-y-2'>
       <h1 className='text-2xl font-bold break-words line-clamp-2'>{recipe.title}</h1>
-      <ReadMoreText className='text-base leading-5 break-words my-2'>
-        {recipe.description}
-      </ReadMoreText>
+      <ReadMoreText className='text-base leading-5 break-words'>{recipe.description}</ReadMoreText>
 
       <RecipeAuthor author={recipe.user} avatarSize={28} />
+
+      <div aria-hidden='true'></div>
       <RecipeSource source={recipe.source} />
-      {recipe.cookTime && <p className='mt-2'>Cook Time: {recipe.cookTime}</p>}
+
+      {recipe.cookTime && (
+        <p>
+          Time: <span className='font-semibold'>{recipe.cookTime}</span>
+        </p>
+      )}
       {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
     </div>
   );
@@ -30,13 +35,13 @@ interface RecipeTagsProps {
 
 function RecipeTags({ tags }: RecipeTagsProps) {
   return (
-    <div className='flex flex-wrap gap-x-3 gap-y-2 items-center mt-2'>
+    <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
       Tags:
       {tags.map(tag => (
         <div
           key={tag}
           style={{ borderColor: hashColor(tag) }}
-          className='py-1 px-2.5 border rounded-lg'
+          className='py-0.5 px-2.5 border rounded-lg'
         >
           {tag}
         </div>
@@ -53,12 +58,12 @@ function RecipeSource({ source }: RecipeSourceProps) {
   if (!source) return null;
 
   return (
-    <p className={cn('relative flex gap-x-2 text-base mt-2')}>
+    <p className='relative flex gap-x-2 text-base'>
       <span>Source: </span>
 
       {isValidURL(source) ? (
         <a
-          className='text-base truncate text-primary'
+          className='truncate text-primary'
           href={source}
           target='_blank'
           rel='noopener noreferrer'
