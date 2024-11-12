@@ -8,6 +8,9 @@ import {
   DrawerActionButton,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
   DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
@@ -24,7 +27,10 @@ function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawe
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DialogTitle className='sr-only'>Action Buttons</DialogTitle>
+        <DrawerHeader className='sr-only'>
+          <DrawerTitle>Add Recipe Photo</DrawerTitle>
+          <DrawerDescription>Take a Picture or Choose from Gallery</DrawerDescription>
+        </DrawerHeader>
 
         <ul className='my-4'>
           <li>

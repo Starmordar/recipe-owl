@@ -17,7 +17,7 @@ function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeForm
         <Button
           form='recipe-form'
           size='xss'
-          className='px-3'
+          className='px-3 text-base'
           disabled={!dataChanged}
           loading={isPending}
           loadingText='Saving...'

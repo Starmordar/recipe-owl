@@ -32,7 +32,7 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         name='title'
         render={({ field }) => (
           <FormItem className='space-y-1'>
-            <FormLabel>Title</FormLabel>
+            <FormLabel className='text-lg'>Title</FormLabel>
             <FormControl>
               <Input placeholder='Give your recipe a name' {...field} />
             </FormControl>

@@ -72,8 +72,8 @@ function ImageField({ form }: ImageFieldProps) {
 
           <ImageUploadDrawer onTakePhoto={handleTriggerTakePhoto} onUpload={handleTriggerUpload}>
             <div className='absolute bottom-3 right-3 cursor-pointer'>
-              <div className='bg-background h-7 w-7 border rounded-full flex items-center justify-center'>
-                <Pencil className='h-4 w-4' strokeWidth={1} />
+              <div className='bg-background h-9 w-9 border rounded-full flex items-center justify-center'>
+                <Pencil className='h-5 w-5' />
               </div>
             </div>
           </ImageUploadDrawer>
@@ -82,10 +82,10 @@ function ImageField({ form }: ImageFieldProps) {
         <ImageUploadDrawer onTakePhoto={handleTriggerTakePhoto} onUpload={handleTriggerUpload}>
           <div className='flex w-full justify-center items-center cursor-pointer'>
             <div className='flex w-full justify-center items-center'>
-              <LucideImage className='h-20 w-20 opacity-50' strokeWidth={1} />
+              <LucideImage className='h-28 w-28 opacity-50' strokeWidth={1} />
 
               <div className='absolute bottom-6 mx-auto flex items-center gap-x-2'>
-                <Camera className='h-5 w-5 text-muted-foreground' />
+                <Camera className='h-6 w-6 text-muted-foreground' />
                 <p className='text-muted-foreground'>Add Recipe Photo</p>
               </div>
             </div>
