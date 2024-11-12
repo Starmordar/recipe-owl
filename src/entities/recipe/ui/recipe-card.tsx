@@ -11,8 +11,9 @@ interface RecipeCardProps {
 
 function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <Link href={publicUrls.recipe(recipe.id)}>
-      <div className='relative h-[20vh]'>
+    <Link href={publicUrls.recipe(recipe.id)} className='relative'>
+      <TagsSection recipe={recipe} />
+      <div className='relative h-[25vh]'>
         <Image
           className='rounded-lg'
           src={recipe.imageUrl}
@@ -23,8 +24,25 @@ function RecipeCard({ recipe }: RecipeCardProps) {
         />
       </div>
 
-      <p className='text-base font-medium leading-5 mt-1'>{recipe.title}</p>
+      <p className='text-base leading-5 mt-2 line-clamp-2'>{recipe.title}</p>
     </Link>
+  );
+}
+
+interface TagsSectionProps {
+  recipe: RecipeSearchResult;
+}
+
+function TagsSection({ recipe }: TagsSectionProps) {
+  return (
+    <div className='absolute top-2 left-2 z-10 text-sm flex gap-2'>
+      {recipe.cookTime && (
+        <div className='bg-orange-200 rounded-xl px-2 py-0.5'>{recipe.cookTime}</div>
+      )}
+      {recipe.tags.length > 0 && (
+        <div className='bg-lime-200 rounded-xl  px-2 py-0.5'>{recipe.tags[0]}</div>
+      )}
+    </div>
   );
 }
 

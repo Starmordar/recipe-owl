@@ -9,7 +9,7 @@ import type { ElasticRecipe, RecipeSearchResult } from '../model/types';
 
 type Filters = Record<string, string | Array<string> | undefined>;
 
-const sourceFields = ['title', 'imageUrl'] as const;
+const sourceFields = ['title', 'imageUrl', 'cookTime', 'tags'] as const;
 type SearchResult = ElasticSearchResult<Pick<ElasticRecipe, (typeof sourceFields)[number]>>;
 
 async function searchRecipes(
@@ -65,7 +65,6 @@ function getSearchTermFilter(searchTerm: string) {
 
 function getIngredientsFilter(filters: Filters) {
   const ingredients = getIngredientsFromFilters(filters);
-
   if (ingredients.length === 0) return [];
 
   return [

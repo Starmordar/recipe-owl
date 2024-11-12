@@ -18,7 +18,7 @@ function RecipesPage({ searchParams }: RecipesPageProps) {
     <>
       <RecipesPageHeader />
 
-      <main className='page-container'>
+      <main className='page-container pt-2'>
         <Suspense key={JSON.stringify(searchParams)} fallback={<RecipesPageSkeleton />}>
           <RecipeCards search={search} filters={searchParams} />
         </Suspense>

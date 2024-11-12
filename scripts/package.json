@@ -4,9 +4,11 @@
     "description": "Scripts for handling external operations",
     "main": "scripts1.js",
     "scripts": {
-        "create-elastic-indices": "ts-node elastic/create-indices.ts"
+        "create-elastic-indices": "ts-node elastic/create-indices.ts",
+        "backfill-elastic-recipes": "ts-node elastic/backfill-recipes.ts"
     },
     "dependencies": {
+        "@prisma/client": "^5.22.0",
         "dotenv": "^16.4.5"
     },
     "devDependencies": {

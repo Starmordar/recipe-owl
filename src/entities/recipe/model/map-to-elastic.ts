@@ -7,6 +7,8 @@ function mapToElastic(recipe: Recipe, ingredients: Array<string>): ElasticRecipe
     description: recipe.description,
     ingredients: ingredients,
     imageUrl: recipe.imageUrl,
+    tags: recipe.tags,
+    cookTime: recipe.cookTime,
     createdById: recipe.createdById,
     createdAt: recipe.createdAt,
   };

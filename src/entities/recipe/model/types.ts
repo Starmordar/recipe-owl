@@ -4,6 +4,8 @@ interface RecipeSearchResult {
   id: number;
   title: string;
   imageUrl: string;
+  cookTime: string | null;
+  tags: Array<string>;
 }
 
 type RecipeDetails = Prisma.RecipeGetPayload<{ include: { ingredients: true; user: true } }>;
@@ -18,6 +20,8 @@ interface ElasticRecipe {
   description: string | null;
   ingredients: Array<string>;
   imageUrl: string;
+  tags: Array<string>;
+  cookTime: string | null;
   createdById: string;
   createdAt: Date;
 }

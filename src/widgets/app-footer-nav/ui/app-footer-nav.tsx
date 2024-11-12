@@ -21,7 +21,7 @@ function AppFooterNav() {
   }
 
   return (
-    <nav className='sticky bottom-0 w-full flex justify-center bg-background border-t'>
+    <nav className='sticky bottom-0 w-full flex justify-center bg-background border-t z-50'>
       {items.map(({ href, title, isTitleHidden, match, render }) => {
         const link = typeof href === 'string' ? href : href();
         const opacity = isActiveLink(link, match) ? 'opacity-100' : 'opacity-55';
