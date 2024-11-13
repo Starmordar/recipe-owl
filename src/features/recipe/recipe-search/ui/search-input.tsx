@@ -1,37 +1,50 @@
 'use client';
 
-import React from 'react';
+import { ArrowLeft, Search, X } from 'lucide-react';
+import Link from 'next/link';
+import React, { useRef, useState } from 'react';
 
-import { Command, CommandList, CommandInput } from '@/src/shared/ui/command';
+import { publicUrls } from '@/src/shared/config/url';
+import { Button } from '@/src/shared/ui/button';
+
+import { SearchSuggestions } from './search-suggestions';
 
 interface SearchInputProps {
   placeholder: string;
+  suggestions: Array<string>;
 
   searchTerm: string;
   selectedValue: string;
   setSelected: (value: string) => void;
   setSearchTerm: (value: string) => void;
-
-  showSearch?: boolean;
-  showClear?: boolean;
 }
 
 function SearchInput({
-  placeholder,
+  suggestions,
   searchTerm,
   selectedValue,
   setSearchTerm,
   setSelected,
-  showSearch,
-  showClear,
 }: SearchInputProps) {
-  function handleValueChange(value: string) {
-    setSearchTerm(value);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [focus, setFocus] = useState(false);
+
+  function handleFocus() {
+    setFocus(true);
+  }
+
+  function handleBlur() {
+    setFocus(false);
   }
 
   function handleClear() {
     setSearchTerm('');
     setSelected('');
+    inputRef.current?.focus();
+  }
+
+  function handleCancel() {
+    setSearchTerm(selectedValue);
   }
 
   function handleKeyDown(evt: React.KeyboardEvent<HTMLDivElement> | undefined) {
@@ -39,23 +52,65 @@ function SearchInput({
       evt.preventDefault();
       setSearchTerm(searchTerm);
       setSelected(searchTerm);
+      inputRef.current?.blur();
     }
   }
 
   return (
     <React.Fragment>
-      <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>
-        <CommandInput
-          placeholder={placeholder}
+      {!focus && selectedValue !== '' && (
+        <Link href={publicUrls.recipes} aria-label='Clear Search' onMouseDown={handleClear} replace>
+          <ArrowLeft className='h-5 w-5' />
+        </Link>
+      )}
+
+      <div className='flex items-center border rounded-3xl px-3 w-full focus-within:ring-2 focus-within:ring-ring'>
+        <Search className='mr-3 h-5 w-5 shrink-0 opacity-50' />
+
+        <input
+          ref={inputRef}
+          className='flex h-8 w-full bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
+          type='text'
+          placeholder='Search Recipe OWL'
           value={searchTerm}
-          onValueChange={handleValueChange}
-          showClear={showClear ?? !!searchTerm}
-          onClear={handleClear}
-          showSearch={showSearch ?? true}
-          onBlur={() => handleValueChange(selectedValue)}
+          onChange={evt => setSearchTerm(evt.target.value)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
         />
-        <CommandList></CommandList>
-      </Command>
+
+        {!!searchTerm && (
+          <X
+            className='ml-2 h-5 w-5 cursor-pointer shrink-0 opacity-50'
+            onMouseDown={evt => {
+              evt.preventDefault();
+              handleClear();
+            }}
+          />
+        )}
+      </div>
+
+      {focus && (
+        <Button
+          className='text-primary text-base px-1'
+          variant='ghost'
+          size='xss'
+          onMouseDown={handleCancel}
+        >
+          Cancel
+        </Button>
+      )}
+
+      {focus && (
+        <div className='fixed top-[50px] inset-x-0 h-[calc(100vh-94px)] bg-card container'>
+          <SearchSuggestions
+            suggestions={suggestions}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setSelected={setSelected}
+          />
+        </div>
+      )}
     </React.Fragment>
   );
 }

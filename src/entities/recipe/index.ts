@@ -1,4 +1,5 @@
 export { searchRecipes } from './api/search-recipes';
+export { searchSuggestions as searchRecipeSuggestions } from './api/search-suggestions';
 export { getSavedRecipes } from './api/get-saved-recipes';
 export { getRecipeDetails } from './api/get-recipe-details';
 

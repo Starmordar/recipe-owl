@@ -7,7 +7,7 @@ function RecipesPageHeader() {
     <AppHeader>
       <div className='flex w-full items-center gap-x-2'>
         <RecipeSearch />
-        <RecipeFiltersDrawer />
+        {/* <RecipeFiltersDrawer /> */}
       </div>
     </AppHeader>
   );
