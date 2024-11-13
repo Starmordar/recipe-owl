@@ -9,7 +9,7 @@ interface InputSuggestionsProps {
 
 function InputSuggestions({ suggestions, onSearchOption }: InputSuggestionsProps) {
   return (
-    <ul className='flex flex-col gap-2 font-semibold text-lg'>
+    <ul className='flex flex-col gap-2 font-semibold text-lg py-4'>
       {suggestions.map(suggestion => (
         <li
           key={suggestion}

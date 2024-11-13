@@ -102,7 +102,7 @@ function SearchInput({
       )}
 
       {focus && (
-        <div className='fixed top-[50px] inset-x-0 h-[calc(100vh-94px)] bg-card container'>
+        <div className='fixed top-[49px] inset-x-0 h-[calc(100vh-93px)] bg-card container'>
           <SearchSuggestions
             suggestions={suggestions}
             searchTerm={searchTerm}
