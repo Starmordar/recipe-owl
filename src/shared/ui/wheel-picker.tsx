@@ -23,6 +23,7 @@ function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerPro
     <div
       style={{ height: `${itemHeight * 3}px` }}
       className='relative flex justify-around text-lg overflow-hidden'
+      data-vaul-no-drag={true}
     >
       <div
         style={{ height: `${itemHeight}px` }}
