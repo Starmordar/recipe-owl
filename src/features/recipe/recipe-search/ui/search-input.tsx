@@ -104,7 +104,7 @@ function SearchInput({
 
       {focus && (
         <RemoveScroll forwardProps>
-          <div className='fixed top-[49px] inset-x-0 h-[calc(100vh-93px)] bg-card container overflow-y-auto'>
+          <div className='fixed top-[49px] inset-x-0 h-[calc(100svh-93px)] bg-card container overflow-y-auto'>
             <SearchSuggestions
               suggestions={suggestions}
               searchTerm={searchTerm}
