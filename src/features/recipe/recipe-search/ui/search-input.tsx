@@ -3,6 +3,7 @@
 import { ArrowLeft, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { publicUrls } from '@/src/shared/config/url';
 import { Button } from '@/src/shared/ui/button';
@@ -102,14 +103,16 @@ function SearchInput({
       )}
 
       {focus && (
-        <div className='fixed top-[49px] inset-x-0 h-[calc(100vh-93px)] bg-card container'>
-          <SearchSuggestions
-            suggestions={suggestions}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            setSelected={setSelected}
-          />
-        </div>
+        <RemoveScroll forwardProps>
+          <div className='fixed top-[49px] inset-x-0 h-[calc(100vh-93px)] bg-card container overflow-y-auto'>
+            <SearchSuggestions
+              suggestions={suggestions}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              setSelected={setSelected}
+            />
+          </div>
+        </RemoveScroll>
       )}
     </React.Fragment>
   );
