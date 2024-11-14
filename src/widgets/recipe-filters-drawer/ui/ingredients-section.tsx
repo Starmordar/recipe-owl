@@ -49,26 +49,26 @@ function IngredientsSection({
   }
 
   return (
-    <div className='flex flex-col pb-4'>
+    <div className='flex flex-col pb-3 space-y-2'>
       <h6 className='text-base font-semibold leading-tight'>Search By Ingredients</h6>
 
-      <div className='my-2'>
-        <Search
-          placeholder='Add Item'
-          data={ingredients ?? []}
-          searchTerm={searchTerm}
-          setSearchTerm={nextValue => handleSearch(nextValue)}
-          setSelected={nextValue => handleValueSelect(nextValue)}
-          open={open}
-          setOpen={setOpen}
-        />
-      </div>
-
-      <CategorySection
-        selected={selected}
-        options={selected}
-        onChange={values => onFilterChange(category, values)}
+      <Search
+        placeholder='Add Item'
+        data={ingredients ?? []}
+        searchTerm={searchTerm}
+        setSearchTerm={nextValue => handleSearch(nextValue)}
+        setSelected={nextValue => handleValueSelect(nextValue)}
+        open={open}
+        setOpen={setOpen}
       />
+
+      {selected.length > 0 && (
+        <CategorySection
+          selected={selected}
+          options={selected}
+          onChange={values => onFilterChange(category, values)}
+        />
+      )}
     </div>
   );
 }

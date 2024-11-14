@@ -1,1 +1,1 @@
-export { RecipeFiltersDrawer } from './ui/recipe-filters-drawer';
+export { RecipeFiltersDrawer } from './ui';

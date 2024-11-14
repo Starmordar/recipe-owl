@@ -31,16 +31,14 @@ function RecipeSearch() {
   }
 
   return (
-    <>
-      <SearchInput
-        placeholder='Search for recipes'
-        searchTerm={searchTerm}
-        selectedValue={selectedValue}
-        setSearchTerm={setSearchTerm}
-        setSelected={handleSearch}
-        suggestions={suggestions ?? []}
-      />
-    </>
+    <SearchInput
+      placeholder='Search for recipes'
+      searchTerm={searchTerm}
+      selectedValue={selectedValue}
+      setSearchTerm={setSearchTerm}
+      setSelected={handleSearch}
+      suggestions={suggestions ?? []}
+    />
   );
 }
 

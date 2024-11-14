@@ -58,7 +58,7 @@ function SearchInput({
   }
 
   return (
-    <React.Fragment>
+    <div className='flex w-full items-center gap-x-2'>
       {!focus && selectedValue !== '' && (
         <Link href={publicUrls.recipes} aria-label='Clear Search' onMouseDown={handleClear} replace>
           <ArrowLeft className='h-5 w-5' />
@@ -104,7 +104,7 @@ function SearchInput({
 
       {focus && (
         <RemoveScroll forwardProps>
-          <div className='fixed top-[49px] inset-x-0 h-[calc(100svh-93px)] bg-card container overflow-y-auto'>
+          <div className='fixed top-[49px] inset-x-0 h-[calc(100svh-93px)] bg-card container overflow-y-auto z-10'>
             <SearchSuggestions
               suggestions={suggestions}
               searchTerm={searchTerm}
@@ -114,7 +114,7 @@ function SearchInput({
           </div>
         </RemoveScroll>
       )}
-    </React.Fragment>
+    </div>
   );
 }
 

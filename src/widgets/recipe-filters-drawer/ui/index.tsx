@@ -1,23 +1,22 @@
 'use client';
 
-import { SlidersHorizontal } from 'lucide-react';
 import * as React from 'react';
 
 import { filterCategories, ingredientsCategory, onlySavedCategory } from '@/src/entities/recipe';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
-import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
+import { Button } from '@/src/shared/ui/button';
 import {
   Drawer,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from '@/src/shared/ui/drawer';
 
 import { Footer } from './drawer-footer';
 import { IngredientsSection } from './ingredients-section';
 import { OnlySavedSection } from './only-saved-section';
+import { RecipeTags } from './recipe-tags';
 
 import type { SelectedFilters } from '../model/types';
 
@@ -39,30 +38,51 @@ function RecipeFiltersDrawer() {
     setFilters(valuesFromPathname(filterCategories));
   }
 
-  const filtersCount = Object.values(valuesFromPathname(filterCategories)).reduce(
-    (acc, filter) => acc + filter.length,
-    0,
-  );
+  const filterCount = valuesFromPathname(filterCategories);
+  console.log('filterCount :>> ', filterCount);
+
+  // const filtersCount = Object.values(valuesFromPathname(filterCategories)).reduce(
+  //   (acc, filter) => acc + filter.length,
+  //   0,
+  // );
+
+  const tags = [
+    'Ingredients',
+    'Mood',
+    'Cuisine',
+    'Nutrition',
+    'Main Ingredient',
+    'Complexity',
+    'Time',
+  ];
 
   return (
-    <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
-      <DrawerTrigger asChild>
-        <HeaderIconButton Icon={<SlidersHorizontal />} aria-label='Search Filters'>
-          {filtersCount > 0 && (
-            <span className='flex justify-center items-center absolute w-3.5 h-3.5 text-accent top-0 right-0 bg-primary rounded-full text-xs'>
-              {filtersCount}
-            </span>
-          )}
-        </HeaderIconButton>
-      </DrawerTrigger>
-
-      <DrawerContent>
-        <div className='mx-auto w-full max-w-sm'>
+    <>
+      <div className='flex w-full flex-nowrap overflow-auto justify-start gap-x-2 hide-scrollbar'>
+        {tags.map(tag => (
+          <Button
+            key={tag}
+            className='relative rounded-3xl py-0.5 gap-x-2'
+            variant='outline'
+            size='xss'
+            onClick={() => setIsDrawerOpen(true)}
+          >
+            {tag}
+            {filterCount[tag]?.length > 0 && (
+              <span className='flex justify-center items-center w-4 h-4 text-accent bg-foreground rounded-full text-sm'>
+                {filterCount[tag]?.length}
+              </span>
+            )}
+          </Button>
+        ))}
+      </div>
+      <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
+        <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>Filters</DrawerTitle>
+            <DrawerTitle>Recipes Filters</DrawerTitle>
           </DrawerHeader>
 
-          <div className='flex flex-col h-[40vh]'>
+          <div className='flex flex-col h-[70vh] divide-y overflow-auto px-4'>
             <IngredientsSection
               category={ingredientsCategory}
               isSectionOpen={isDrawerOpen}
@@ -70,21 +90,21 @@ function RecipeFiltersDrawer() {
               onFilterChange={handleFiltersChange}
             />
 
-            <hr className='h-0.5 border-t-0 bg-muted' />
-
             <OnlySavedSection
               category={onlySavedCategory}
               selected={filters[onlySavedCategory] ?? []}
               onFilterChange={handleFiltersChange}
             />
+
+            <RecipeTags filters={filters} onFilterChange={handleFiltersChange} />
           </div>
 
           <DrawerFooter className='flex flex-row w-full'>
             <Footer filters={filters} setFilters={setFilters} categoryIds={filterCategories} />
           </DrawerFooter>
-        </div>
-      </DrawerContent>
-    </Drawer>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 }
 
