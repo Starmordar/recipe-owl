@@ -21,6 +21,7 @@ async function searchRecipes(
     body: {
       query: getSearchFilter(searchTerm, filters),
       _source: sourceFields,
+      sort: [{ _score: 'desc' }, { createdAt: 'asc' }],
     },
     pretty: true,
   });

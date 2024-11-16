@@ -42,7 +42,7 @@ function RecipeFiltersDrawer() {
   }
 
   const filterValues = valuesFromPathname(filterCategories);
-  const sortedCategoriesByCount = quickFilterCategories.toSorted((a, b) =>
+  const sortedCategoriesByCount = [...quickFilterCategories].sort((a, b) =>
     (filterValues[a]?.length ?? 0) > (filterValues[b]?.length ?? 0) ? -1 : 1,
   );
 
