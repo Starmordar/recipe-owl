@@ -20,33 +20,37 @@ function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) 
       const focusedElement = document.activeElement as HTMLElement;
       if (focusedElement instanceof HTMLInputElement || keyboardIsOpen.current) {
         const visualViewportHeight = window.visualViewport?.height || 0;
-        const diffFromInitial = window.innerHeight - visualViewportHeight;
-        const drawerHeight = drawerRef.current.getBoundingClientRect().height || 0;
+        const drawerTop = drawerRef.current.getBoundingClientRect().top || 0;
+        // const drawerHeight = drawerRef.current.getBoundingClientRect().height || 0;
 
-        if (!initialDrawerHeight.current) initialDrawerHeight.current = drawerHeight;
+        drawerRef.current.style.height = `${visualViewportHeight - drawerTop}px`;
 
-        if (Math.abs(previousDiffFromInitial.current - diffFromInitial) > 60) {
-          keyboardIsOpen.current = !keyboardIsOpen.current;
-        }
+        // const diffFromInitial = window.innerHeight - visualViewportHeight;
 
-        previousDiffFromInitial.current = diffFromInitial;
+        // if (!initialDrawerHeight.current) initialDrawerHeight.current = drawerHeight;
 
-        if (drawerHeight > visualViewportHeight || keyboardIsOpen.current) {
-          const height = drawerRef.current.getBoundingClientRect().height;
-          drawerRef.current.style.height = `${height - Math.max(diffFromInitial, 0)}px`;
-        } else {
-          drawerRef.current.style.height = `${initialDrawerHeight.current}px`;
-        }
+        // if (Math.abs(previousDiffFromInitial.current - diffFromInitial) > 60) {
+        //   keyboardIsOpen.current = !keyboardIsOpen.current;
+        // }
 
-        drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
+        // previousDiffFromInitial.current = diffFromInitial;
 
-        setState({
-          visualViewportHeight,
-          diffFromInitial,
-          drawerHeight,
-          keyboardIsOpen,
-          currentHeight: drawerRef.current.getBoundingClientRect().height,
-        });
+        // if (drawerHeight > visualViewportHeight || keyboardIsOpen.current) {
+        //   const height = drawerRef.current.getBoundingClientRect().height;
+        //   drawerRef.current.style.height = `${height - Math.max(diffFromInitial, 0)}px`;
+        // } else {
+        //   drawerRef.current.style.height = `${initialDrawerHeight.current}px`;
+        // }
+
+        // drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
+
+        // setState({
+        //   visualViewportHeight,
+        //   diffFromInitial,
+        //   drawerHeight,
+        //   keyboardIsOpen,
+        //   currentHeight: drawerRef.current.getBoundingClientRect().height,
+        // });
       }
     }
 
