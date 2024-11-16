@@ -22,6 +22,7 @@ async function searchRecipes(
       query: getSearchFilter(searchTerm, filters),
       _source: sourceFields,
       sort: [{ _score: 'desc' }, { createdAt: 'asc' }],
+      size: 20,
     },
     pretty: true,
   });

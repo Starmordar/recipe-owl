@@ -1,18 +1,20 @@
 import React, { Suspense } from 'react';
 
+import { searchFilter } from '@/src/entities/recipe';
+
 import { RecipeCards } from './recipe-cards';
 import { RecipesPageHeader } from './recipes-page-header';
 import { RecipesPageSkeleton } from './skeleton';
 
 interface RecipesPageProps {
   searchParams: {
-    search?: string;
+    [searchFilter]?: string;
     [key: string]: string | Array<string> | undefined;
   };
 }
 
 function RecipesPage({ searchParams }: RecipesPageProps) {
-  const search = searchParams?.search ?? '';
+  const search = searchParams?.[searchFilter] ?? '';
 
   return (
     <>
