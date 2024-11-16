@@ -33,7 +33,7 @@ function SearchSuggestions({
   const [recent, setRecent] = useState(retrieveRecipeRecentSearches());
   const drawerRef = useRef<null | HTMLDivElement>(null);
 
-  const { state } = useVisualViewportChange({ drawerRef });
+  useVisualViewportChange({ drawerRef });
 
   function onSearchOption(search: string) {
     setSearchTerm(search);
@@ -49,7 +49,6 @@ function SearchSuggestions({
   return (
     <RemoveScroll ref={drawerRef} forwardProps>
       <div className='fixed top-[56px] inset-x-0 h-[calc(100vh-100px)] bg-card container overflow-y-auto z-10'>
-        <div>{JSON.stringify(state)}</div>
         {searchTerm.length > 0 ? (
           <InputSuggestions
             suggestions={[...suggestions, searchTerm]}
