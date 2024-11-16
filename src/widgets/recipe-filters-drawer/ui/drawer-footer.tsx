@@ -31,7 +31,7 @@ function Footer({ filters, setFilters, categoryIds }: FooterProps) {
     <>
       <DrawerClose className='flex-1' asChild>
         <Button className='w-full' variant='outline' onClick={handleResetFilters}>
-          Reset
+          Clear Filters
         </Button>
       </DrawerClose>
 

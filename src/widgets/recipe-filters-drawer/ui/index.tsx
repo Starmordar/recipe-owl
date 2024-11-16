@@ -20,8 +20,8 @@ import {
 } from '@/src/shared/ui/drawer';
 
 import { Footer } from './drawer-footer';
-import { OnlySavedSection } from './only-saved-section';
 import { RecipeIngredientsFilters } from './recipe-ingredients-filters';
+import { RecipeSavedFilter } from './recipe-saved-filter';
 import { RecipeTagsFilters } from './recipe-tags-filters';
 
 import type { SelectedFilters } from '../model/types';
@@ -87,11 +87,11 @@ function RecipeFiltersDrawer() {
                 onFilterChange={handleFiltersChange}
               />
 
-              <OnlySavedSection
-                category={onlySavedCategory}
+              {/* TODO: Implement only saved recipe filter */}
+              {/* <RecipeSavedFilter
                 selected={filters[onlySavedCategory] ?? []}
                 onFilterChange={handleFiltersChange}
-              />
+              /> */}
 
               <RecipeTagsFilters filters={filters} onFilterChange={handleFiltersChange} />
             </div>
