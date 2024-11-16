@@ -38,8 +38,8 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
       flushSync(() => form.reset({}, { keepValues: true }));
 
       return recipe ?? null;
-    } catch {
-      toast(errorToast);
+    } catch (error) {
+      toast({ ...errorToast, title: error as string });
       return null;
     }
   }
