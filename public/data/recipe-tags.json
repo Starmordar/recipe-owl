@@ -16,39 +16,35 @@
       ]
     },
     {
-      "type": "Main Ingredient",
-      "categories": [
-        "Beef",
-        "Bread",
-        "Chicken",
-        "Eggs",
-        "Noodles",
-        "Pasta",
-        "Vegetables"
-      ]
-    },
-    {
       "type": "Cuisine",
       "categories": [
+        "African",
         "American",
         "Asian",
-        "Italian",
+        "British",
+        "Chinese",
+        "European",
         "French",
-        "Indian",
-        "Mexican",
-        "Mediterranean",
-        "Spanish",
+        "German",
+        "Georgian",
         "Greek",
-        "Vietnamese",
-        "African"
+        "Indian",
+        "Israeli",
+        "Italian",
+        "Mediterranean",
+        "Mexican",
+        "Spanish",
+        "Vietnamese"
       ]
     },
     {
       "type": "Nutrition",
       "categories": [
-        "Gluten Free",
+        "Healthy",
         "High Protein",
+        "Low Energy",
         "Low Fat",
+        "Low Sugars",
         "Vegan",
         "Vegetarian"
       ]
