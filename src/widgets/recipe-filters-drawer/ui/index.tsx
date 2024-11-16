@@ -1,8 +1,13 @@
 'use client';
 
-import * as React from 'react';
+import { useState } from 'react';
 
-import { filterCategories, ingredientsCategory, onlySavedCategory } from '@/src/entities/recipe';
+import {
+  filterCategories,
+  ingredientsCategory,
+  onlySavedCategory,
+  quickFilterCategories,
+} from '@/src/entities/recipe';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 import { Button } from '@/src/shared/ui/button';
 import {
@@ -22,10 +27,8 @@ import type { SelectedFilters } from '../model/types';
 
 function RecipeFiltersDrawer() {
   const { valuesFromPathname } = useValueToPathname();
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [filters, setFilters] = React.useState<SelectedFilters>(
-    valuesFromPathname(filterCategories),
-  );
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [filters, setFilters] = useState<SelectedFilters>(valuesFromPathname(filterCategories));
 
   function handleFiltersChange(category: string, values: Array<string>) {
     setFilters({ ...filters, [category]: values });
@@ -38,44 +41,33 @@ function RecipeFiltersDrawer() {
     setFilters(valuesFromPathname(filterCategories));
   }
 
-  const filterCount = valuesFromPathname(filterCategories);
-  console.log('filterCount :>> ', filterCount);
-
-  // const filtersCount = Object.values(valuesFromPathname(filterCategories)).reduce(
-  //   (acc, filter) => acc + filter.length,
-  //   0,
-  // );
-
-  const tags = [
-    'Ingredients',
-    'Mood',
-    'Cuisine',
-    'Nutrition',
-    'Main Ingredient',
-    'Complexity',
-    'Time',
-  ];
+  const filterValues = valuesFromPathname(filterCategories);
+  const sortedCategoriesByCount = quickFilterCategories.toSorted((a, b) =>
+    (filterValues[a]?.length ?? 0) > (filterValues[b]?.length ?? 0) ? -1 : 1,
+  );
 
   return (
     <>
       <div className='flex w-full flex-nowrap overflow-auto justify-start gap-x-2 hide-scrollbar'>
-        {tags.map(tag => (
+        {sortedCategoriesByCount.map(tag => (
           <Button
             key={tag}
-            className='relative rounded-3xl py-0.5 gap-x-2'
+            className='relative rounded-3xl py-0.5 gap-x-2 font-semibold'
             variant='outline'
             size='xss'
             onClick={() => setIsDrawerOpen(true)}
           >
             {tag}
-            {filterCount[tag]?.length > 0 && (
+
+            {filterValues[tag]?.length > 0 && (
               <span className='flex justify-center items-center w-4 h-4 text-accent bg-foreground rounded-full text-sm'>
-                {filterCount[tag]?.length}
+                {filterValues[tag]?.length}
               </span>
             )}
           </Button>
         ))}
       </div>
+
       <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
         <DrawerContent>
           <DrawerHeader>

@@ -1,16 +1,9 @@
-const ingredientsCategory = 'ingredients';
-const onlySavedCategory = 'only-saved';
+const ingredientsCategory = 'Ingredients';
+const onlySavedCategory = 'Only Saved';
 
-const tagsCategories = [
-  'Ingredients',
-  'Mood',
-  'Cuisine',
-  'Nutrition',
-  'Main Ingredient',
-  'Complexity',
-  'Time',
-];
+const tagsCategories = ['Mood', 'Cuisine', 'Nutrition', 'Main Ingredient', 'Complexity', 'Time'];
 
+const quickFilterCategories = [ingredientsCategory, ...tagsCategories];
 const filterCategories = [ingredientsCategory, onlySavedCategory, ...tagsCategories];
 
-export { ingredientsCategory, onlySavedCategory, tagsCategories, filterCategories };
+export { ingredientsCategory, onlySavedCategory, quickFilterCategories, filterCategories };

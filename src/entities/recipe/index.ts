@@ -11,7 +11,12 @@ export { recipeQueries } from './api/recipe.query';
 
 export { getRecipeJsonLdSchema } from './model/json-ld-schema';
 
-export { ingredientsCategory, onlySavedCategory, filterCategories } from './config/search-recipes';
+export {
+  ingredientsCategory,
+  onlySavedCategory,
+  quickFilterCategories,
+  filterCategories,
+} from './config/search-recipes';
 
 export { RecipeCard } from './ui/recipe-card';
 export { RecipeAuthor } from './ui/recipe-author';

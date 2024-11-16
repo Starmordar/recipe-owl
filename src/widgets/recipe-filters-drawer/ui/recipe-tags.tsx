@@ -1,10 +1,8 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { PropsWithChildren, useState } from 'react';
 
 import { recipeQueries } from '@/src/entities/recipe';
-import { tagsCategories } from '@/src/entities/recipe/config/search-recipes';
 import { ToggleGroup, ToggleGroupItem } from '@/src/shared/ui/toggle-group';
 
 import type { SelectedFilters } from '../model/types';
