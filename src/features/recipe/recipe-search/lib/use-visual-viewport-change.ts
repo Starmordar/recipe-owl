@@ -1,4 +1,4 @@
-import { RefObject, useRef, useEffect } from 'react';
+import { RefObject, useRef, useEffect, useState } from 'react';
 
 interface UseVisualViewportChangeOptions {
   drawerRef: RefObject<HTMLElement>;
@@ -9,7 +9,11 @@ function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) 
   const previousDiffFromInitial = useRef(0);
   const keyboardIsOpen = useRef(false);
 
+  const [state, setState] = useState({});
+
   useEffect(() => {
+    if (!drawerRef.current) return;
+
     function onVisualViewportChange() {
       if (!drawerRef.current) return;
 
@@ -20,7 +24,6 @@ function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) 
         const drawerHeight = drawerRef.current.getBoundingClientRect().height || 0;
 
         if (!initialDrawerHeight.current) initialDrawerHeight.current = drawerHeight;
-        const offsetFromTop = drawerRef.current.getBoundingClientRect().top;
 
         if (Math.abs(previousDiffFromInitial.current - diffFromInitial) > 60) {
           keyboardIsOpen.current = !keyboardIsOpen.current;
@@ -36,6 +39,14 @@ function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) 
         }
 
         drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
+
+        setState({
+          visualViewportHeight,
+          diffFromInitial,
+          drawerHeight,
+          keyboardIsOpen,
+          currentHeight: drawerRef.current.getBoundingClientRect().height,
+        });
       }
     }
 
@@ -44,6 +55,8 @@ function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) 
       window.visualViewport?.removeEventListener('resize', onVisualViewportChange);
     };
   }, [drawerRef]);
+
+  return { state };
 }
 
 export { useVisualViewportChange };
