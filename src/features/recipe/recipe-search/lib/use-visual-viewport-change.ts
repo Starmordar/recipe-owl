@@ -1,48 +1,49 @@
 import { RefObject, useRef, useEffect } from 'react';
 
 interface UseVisualViewportChangeOptions {
-  containerRef: RefObject<HTMLElement>;
+  drawerRef: RefObject<HTMLElement>;
 }
 
-function useVisualViewportChange({ containerRef }: UseVisualViewportChangeOptions) {
-  const initialContainerHeight = useRef(0);
+function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) {
+  const initialDrawerHeight = useRef(0);
   const previousDiffFromInitial = useRef(0);
   const keyboardIsOpen = useRef(false);
 
   useEffect(() => {
     function onVisualViewportChange() {
-      if (!containerRef.current) return;
+      if (!drawerRef.current) return;
 
       const focusedElement = document.activeElement as HTMLElement;
-      if (!(focusedElement instanceof HTMLInputElement) && !keyboardIsOpen.current) return;
+      if (focusedElement instanceof HTMLInputElement || keyboardIsOpen.current) {
+        const visualViewportHeight = window.visualViewport?.height || 0;
+        const diffFromInitial = window.innerHeight - visualViewportHeight;
+        const drawerHeight = drawerRef.current.getBoundingClientRect().height || 0;
 
-      const visualViewportHeight = window.visualViewport?.height || 0;
-      const keyboardHeight = window.innerHeight - visualViewportHeight;
+        if (!initialDrawerHeight.current) initialDrawerHeight.current = drawerHeight;
+        const offsetFromTop = drawerRef.current.getBoundingClientRect().top;
 
-      const containerHeight = containerRef.current.getBoundingClientRect().height || 0;
-      if (!initialContainerHeight.current) initialContainerHeight.current = containerHeight;
+        if (Math.abs(previousDiffFromInitial.current - diffFromInitial) > 60) {
+          keyboardIsOpen.current = !keyboardIsOpen.current;
+        }
 
-      if (Math.abs(previousDiffFromInitial.current - keyboardHeight) > 60) {
-        keyboardIsOpen.current = !keyboardIsOpen.current;
+        previousDiffFromInitial.current = diffFromInitial;
+
+        if (drawerHeight > visualViewportHeight || keyboardIsOpen.current) {
+          const height = drawerRef.current.getBoundingClientRect().height;
+          drawerRef.current.style.height = `${height - Math.max(diffFromInitial, 0)}px`;
+        } else {
+          drawerRef.current.style.height = `${initialDrawerHeight.current}px`;
+        }
+
+        drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
       }
-
-      previousDiffFromInitial.current = keyboardHeight;
-
-      if (containerHeight > visualViewportHeight || keyboardIsOpen.current) {
-        const height = containerRef.current.getBoundingClientRect().height;
-        containerRef.current.style.height = `${height - Math.max(keyboardHeight, 0)}px`;
-      } else {
-        containerRef.current.style.height = `${initialContainerHeight.current}px`;
-      }
-
-      containerRef.current.style.bottom = `${Math.max(keyboardHeight, 0)}px`;
     }
 
     window.visualViewport?.addEventListener('resize', onVisualViewportChange);
     return () => {
       window.visualViewport?.removeEventListener('resize', onVisualViewportChange);
     };
-  }, [containerRef]);
+  }, [drawerRef]);
 }
 
 export { useVisualViewportChange };
