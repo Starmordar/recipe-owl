@@ -3,7 +3,7 @@
 import { elastic, type ElasticSearchResult } from '@/src/shared/api/elastic';
 
 import { elasticIndexName } from '../config/elastic-index-name';
-import { ingredientsCategory } from '../config/search-recipes';
+import { ingredientsCategory, tagsCategories } from '../config/search-recipes';
 
 import type { ElasticRecipe, RecipeSearchResult } from '../model/types';
 
@@ -34,11 +34,12 @@ async function searchRecipes(
 function getSearchFilter(searchTerm: string, filters: Filters) {
   const searchTermFilter = getSearchTermFilter(searchTerm);
   const ingredientsFilter = getIngredientsFilter(filters);
+  const tagsFilter = getTagsFilter(filters);
   const matchAllsFilter = getMatchAllFilter(searchTerm, filters);
 
   return {
     bool: {
-      must: [...searchTermFilter, ...ingredientsFilter],
+      must: [...searchTermFilter, ...ingredientsFilter, ...tagsFilter],
       ...matchAllsFilter,
     },
   };
@@ -85,6 +86,34 @@ function getIngredientsFromFilters(filters: Filters): Array<string> {
   }
 
   return [];
+}
+
+function getTagsFilter(filters: Filters) {
+  const tags = getTagsFromFilter(filters);
+  if (tags.length === 0) return [];
+
+  return [
+    {
+      bool: {
+        should: tags.map(tag => ({
+          match: { tags: tag },
+        })),
+      },
+    },
+  ];
+}
+
+function getTagsFromFilter(filters: Filters): Array<string> {
+  const tags = [];
+
+  for (const categoryName of tagsCategories) {
+    if (!filters[categoryName]) continue;
+
+    if (typeof filters[categoryName] === 'string') tags.push(filters[categoryName]);
+    else tags.push(...filters[categoryName]);
+  }
+
+  return tags;
 }
 
 export { searchRecipes };

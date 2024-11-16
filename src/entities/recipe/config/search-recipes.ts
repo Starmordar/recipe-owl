@@ -6,4 +6,10 @@ const tagsCategories = ['Mood', 'Cuisine', 'Nutrition', 'Main Ingredient', 'Comp
 const quickFilterCategories = [ingredientsCategory, ...tagsCategories];
 const filterCategories = [ingredientsCategory, onlySavedCategory, ...tagsCategories];
 
-export { ingredientsCategory, onlySavedCategory, quickFilterCategories, filterCategories };
+export {
+  ingredientsCategory,
+  onlySavedCategory,
+  quickFilterCategories,
+  tagsCategories,
+  filterCategories,
+};

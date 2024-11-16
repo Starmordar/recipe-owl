@@ -48,11 +48,11 @@ function RecipeFiltersDrawer() {
 
   return (
     <>
-      <div className='flex w-full flex-nowrap overflow-auto justify-start gap-x-2 hide-scrollbar'>
+      <div className='flex w-full flex-nowrap overflow-auto justify-start gap-x-2 hide-scrollbar pt-2'>
         {sortedCategoriesByCount.map(tag => (
           <Button
             key={tag}
-            className='relative rounded-3xl py-0.5 gap-x-2 font-semibold'
+            className='relative text-base rounded-3xl py-0.5 gap-x-2 font-semibold'
             variant='outline'
             size='xss'
             onClick={() => setIsDrawerOpen(true)}

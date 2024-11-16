@@ -15,6 +15,7 @@ export {
   ingredientsCategory,
   onlySavedCategory,
   quickFilterCategories,
+  tagsCategories,
   filterCategories,
 } from './config/search-recipes';
 

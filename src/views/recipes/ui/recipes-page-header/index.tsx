@@ -5,7 +5,7 @@ import { RecipeFiltersDrawer } from '@/src/widgets/recipe-filters-drawer';
 function RecipesPageHeader() {
   return (
     <AppHeader>
-      <div className='flex flex-col w-full items-center gap-y-3'>
+      <div className='flex flex-col w-full items-center'>
         <RecipeSearch />
         <RecipeFiltersDrawer />
       </div>
