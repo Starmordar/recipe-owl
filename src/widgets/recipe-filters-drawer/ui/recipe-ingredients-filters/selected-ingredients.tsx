@@ -1,12 +1,12 @@
 import { ToggleGroup, ToggleGroupItem } from '@/src/shared/ui/toggle-group';
 
-interface FiltersOpenProps {
+interface SelectedIngredientsProps {
   options: Array<string>;
   selected: Array<string>;
   onChange: (values: Array<string>) => void;
 }
 
-function CategorySection({ options, selected, onChange }: FiltersOpenProps) {
+function SelectedIngredients({ options, selected, onChange }: SelectedIngredientsProps) {
   return (
     <ToggleGroup
       value={selected}
@@ -16,12 +16,7 @@ function CategorySection({ options, selected, onChange }: FiltersOpenProps) {
       className='flex flex-wrap justify-start gap-2'
     >
       {options.map(option => (
-        <ToggleGroupItem
-          key={option}
-          value={option}
-          size='sm'
-          className='data-[state=on]:border-primary'
-        >
+        <ToggleGroupItem key={option} value={option} size='sm'>
           {option}
         </ToggleGroupItem>
       ))}
@@ -29,4 +24,4 @@ function CategorySection({ options, selected, onChange }: FiltersOpenProps) {
   );
 }
 
-export { CategorySection };
+export { SelectedIngredients };

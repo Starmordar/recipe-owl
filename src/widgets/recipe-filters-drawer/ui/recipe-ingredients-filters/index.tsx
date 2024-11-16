@@ -5,23 +5,22 @@ import { useDebounce } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 
 import { ingredientQueries } from '@/src/entities/ingredient';
+import { ingredientsCategory } from '@/src/entities/recipe';
 import Search from '@/src/shared/ui/search';
 
-import { CategorySection } from './category-section';
+import { SelectedIngredients } from './selected-ingredients';
 
-interface IngredientsSectionProps {
-  category: string;
+interface RecipeIngredientsFiltersProps {
   isSectionOpen: boolean;
   selected: Array<string>;
   onFilterChange: (category: string, values: Array<string>) => void;
 }
 
-function IngredientsSection({
-  category,
+function RecipeIngredientsFilters({
   isSectionOpen,
   selected,
   onFilterChange,
-}: IngredientsSectionProps) {
+}: RecipeIngredientsFiltersProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -41,16 +40,17 @@ function IngredientsSection({
 
   function handleValueSelect(nextValue: string) {
     handleSearchReset();
+    if (!nextValue) return;
 
     const alreadySelected = selected.some(s => s === nextValue);
     if (alreadySelected) return;
 
-    onFilterChange(category, [...selected, nextValue]);
+    onFilterChange(ingredientsCategory, [...selected, nextValue]);
   }
 
   return (
-    <div className='flex flex-col pb-3 space-y-2'>
-      <h6 className='text-base font-semibold leading-tight'>Search By Ingredients</h6>
+    <div className='flex flex-col pb-4 space-y-3'>
+      <h6 className='text-lg font-semibold leading-tight'>Search By Ingredients</h6>
 
       <Search
         placeholder='Add Item'
@@ -63,14 +63,14 @@ function IngredientsSection({
       />
 
       {selected.length > 0 && (
-        <CategorySection
+        <SelectedIngredients
           selected={selected}
           options={selected}
-          onChange={values => onFilterChange(category, values)}
+          onChange={values => onFilterChange(ingredientsCategory, values)}
         />
       )}
     </div>
   );
 }
 
-export { IngredientsSection };
+export { RecipeIngredientsFilters };

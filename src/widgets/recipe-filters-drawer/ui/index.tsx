@@ -13,14 +13,15 @@ import { Button } from '@/src/shared/ui/button';
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from '@/src/shared/ui/drawer';
 
 import { Footer } from './drawer-footer';
-import { IngredientsSection } from './ingredients-section';
 import { OnlySavedSection } from './only-saved-section';
+import { RecipeIngredientsFilters } from './recipe-ingredients-filters';
 import { RecipeTagsFilters } from './recipe-tags-filters';
 
 import type { SelectedFilters } from '../model/types';
@@ -72,12 +73,15 @@ function RecipeFiltersDrawer() {
         <DrawerContent className='h-[85%]'>
           <DrawerHeader>
             <DrawerTitle>Recipes Filters</DrawerTitle>
+            <DrawerDescription className='sr-only'>
+              Refine your recipe search by selecting specific cuisines, ingredients, or dietary
+              preferences.
+            </DrawerDescription>
           </DrawerHeader>
 
-          <div className='overflow-y-auto p-4'>
+          <div className='overflow-y-auto p-4' data-vaul-no-drag>
             <div className='flex flex-col divide-y max-w-md mx-auto'>
-              <IngredientsSection
-                category={ingredientsCategory}
+              <RecipeIngredientsFilters
                 isSectionOpen={isDrawerOpen}
                 selected={filters[ingredientsCategory] ?? []}
                 onFilterChange={handleFiltersChange}
