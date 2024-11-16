@@ -21,7 +21,7 @@ import {
 import { Footer } from './drawer-footer';
 import { IngredientsSection } from './ingredients-section';
 import { OnlySavedSection } from './only-saved-section';
-import { RecipeTags } from './recipe-tags';
+import { RecipeTagsFilters } from './recipe-tags-filters';
 
 import type { SelectedFilters } from '../model/types';
 
@@ -69,26 +69,28 @@ function RecipeFiltersDrawer() {
       </div>
 
       <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
-        <DrawerContent>
+        <DrawerContent className='h-[85%]'>
           <DrawerHeader>
             <DrawerTitle>Recipes Filters</DrawerTitle>
           </DrawerHeader>
 
-          <div className='flex flex-col h-[70vh] divide-y overflow-auto px-4'>
-            <IngredientsSection
-              category={ingredientsCategory}
-              isSectionOpen={isDrawerOpen}
-              selected={filters[ingredientsCategory] ?? []}
-              onFilterChange={handleFiltersChange}
-            />
+          <div className='overflow-y-auto p-4'>
+            <div className='flex flex-col divide-y max-w-md mx-auto'>
+              <IngredientsSection
+                category={ingredientsCategory}
+                isSectionOpen={isDrawerOpen}
+                selected={filters[ingredientsCategory] ?? []}
+                onFilterChange={handleFiltersChange}
+              />
 
-            <OnlySavedSection
-              category={onlySavedCategory}
-              selected={filters[onlySavedCategory] ?? []}
-              onFilterChange={handleFiltersChange}
-            />
+              <OnlySavedSection
+                category={onlySavedCategory}
+                selected={filters[onlySavedCategory] ?? []}
+                onFilterChange={handleFiltersChange}
+              />
 
-            <RecipeTags filters={filters} onFilterChange={handleFiltersChange} />
+              <RecipeTagsFilters filters={filters} onFilterChange={handleFiltersChange} />
+            </div>
           </div>
 
           <DrawerFooter className='flex flex-row w-full'>

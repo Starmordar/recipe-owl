@@ -15,6 +15,7 @@ async function searchSuggestions(searchTerm: string): Promise<Array<string>> {
     body: {
       query: getSearchFilter(searchTerm),
       _source: sourceFields,
+      size: 20,
     },
     pretty: true,
   });
