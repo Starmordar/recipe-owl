@@ -34,6 +34,8 @@ function useVisualViewportChange({ containerRef }: UseVisualViewportChangeOption
       } else {
         containerRef.current.style.height = `${initialContainerHeight.current}px`;
       }
+
+      containerRef.current.style.bottom = `${Math.max(keyboardHeight, 0)}px`;
     }
 
     window.visualViewport?.addEventListener('resize', onVisualViewportChange);
