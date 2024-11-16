@@ -12,6 +12,7 @@ export { recipeQueries } from './api/recipe.query';
 export { getRecipeJsonLdSchema } from './model/json-ld-schema';
 
 export {
+  searchFilter,
   ingredientsCategory,
   onlySavedCategory,
   quickFilterCategories,

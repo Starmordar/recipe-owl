@@ -5,7 +5,7 @@ import { useDebounce } from '@uidotdev/usehooks';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { filterCategories, recipeQueries } from '@/src/entities/recipe';
+import { filterCategories, recipeQueries, searchFilter } from '@/src/entities/recipe';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 
 import { storeRecipeRecentSearches } from '../model/recent-searches';
@@ -16,10 +16,8 @@ function RecipeSearch() {
   const { replace } = useRouter();
   const { valueToPathname, valueFromPathname, valuesFromPathname } = useValueToPathname();
 
-  const [searchTerm, setSearchTerm] = useState(valueFromPathname('search'));
-  const [selectedValue, setSelectedValue] = useState(valueFromPathname('search'));
-
-  const filterValues = valuesFromPathname(filterCategories);
+  const [searchTerm, setSearchTerm] = useState(valueFromPathname(searchFilter));
+  const [selectedValue, setSelectedValue] = useState(valueFromPathname(searchFilter));
 
   const debouncedSearchTerm = useDebounce(searchTerm, 100);
   const { data: suggestions } = useQuery(recipeQueries.searchSuggestions(debouncedSearchTerm));
@@ -28,9 +26,11 @@ function RecipeSearch() {
     setSelectedValue(value);
     storeRecipeRecentSearches(value);
 
-    const pathname = valueToPathname('search', value);
+    const pathname = valueToPathname(searchFilter, value);
     replace(pathname);
   }
+
+  const filterValues = valuesFromPathname(filterCategories);
 
   return (
     <SearchInput

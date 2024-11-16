@@ -1,3 +1,4 @@
+const searchFilter = 'Search';
 const ingredientsCategory = 'Ingredients';
 const onlySavedCategory = 'Only Saved';
 
@@ -7,6 +8,7 @@ const quickFilterCategories = [ingredientsCategory, ...tagsCategories];
 const filterCategories = [ingredientsCategory, onlySavedCategory, ...tagsCategories];
 
 export {
+  searchFilter,
   ingredientsCategory,
   onlySavedCategory,
   quickFilterCategories,
