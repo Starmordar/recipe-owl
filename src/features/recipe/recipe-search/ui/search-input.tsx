@@ -13,6 +13,7 @@ import { SearchSuggestions } from './search-suggestions';
 interface SearchInputProps {
   placeholder: string;
   suggestions: Array<string>;
+  filterCount: number;
 
   searchTerm: string;
   selectedValue: string;
@@ -24,6 +25,7 @@ function SearchInput({
   suggestions,
   searchTerm,
   selectedValue,
+  filterCount,
   setSearchTerm,
   setSelected,
 }: SearchInputProps) {
@@ -59,7 +61,7 @@ function SearchInput({
 
   return (
     <div className='flex w-full items-center gap-x-2'>
-      {!focus && selectedValue !== '' && (
+      {((!focus && selectedValue !== '') || filterCount > 0) && (
         <Link href={publicUrls.recipes} aria-label='Clear Search' onMouseDown={handleClear} replace>
           <ArrowLeft className='h-5 w-5' />
         </Link>
