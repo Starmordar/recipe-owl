@@ -12,9 +12,12 @@ type Filters = Record<string, string | Array<string> | undefined>;
 const sourceFields = ['title', 'imageUrl', 'cookTime', 'tags'] as const;
 type SearchResult = ElasticSearchResult<Pick<ElasticRecipe, (typeof sourceFields)[number]>>;
 
+const PAGE_SIZE = 10;
+
 async function searchRecipes(
   searchTerm: string,
   filters: Filters,
+  from: number,
 ): Promise<Array<RecipeSearchResult>> {
   const searchResult = await elastic.search<SearchResult>({
     index: elasticIndexName,
@@ -22,7 +25,8 @@ async function searchRecipes(
       query: getSearchFilter(searchTerm, filters),
       _source: sourceFields,
       sort: [{ _score: 'desc' }, { createdAt: 'asc' }],
-      size: 20,
+      size: PAGE_SIZE,
+      from: PAGE_SIZE * from,
     },
     pretty: true,
   });
