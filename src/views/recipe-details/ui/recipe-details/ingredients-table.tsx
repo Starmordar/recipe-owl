@@ -26,8 +26,8 @@ function RecipeIngredientsSection({ ingredients }: RecipeIngredientsSectionProps
       <TableBody>
         {ingredients.map(ingredient => (
           <TableRow key={ingredient.name} className='[&>td]:p-2 [&>td]:pl-0 [&>td]:pr-4'>
-            <TableCell className='max-w-[60vw] truncate'>{ingredient.name}</TableCell>
-            <TableCell className='max-w-[10vw] truncate font-semibold text-right'>
+            <TableCell className='break-words'>{ingredient.name}</TableCell>
+            <TableCell className='w-[12ch] max-w-[12ch] font-semibold break-words text-right'>
               {ingredient.unit}
             </TableCell>
           </TableRow>
