@@ -29,12 +29,8 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
     setSearchTerm(nextValue);
   }
 
-  function handleValueSelect(
-    currentValue: string,
-    nextValue: string,
-    onChange: (v: string) => void,
-  ) {
-    onChange(nextValue === currentValue ? '' : nextValue);
+  function handleValueSelect(nextValue: string, onChange: (v: string) => void) {
+    onChange(nextValue);
     setOpen(false);
   }
 
@@ -49,7 +45,7 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
             data={ingredients ?? []}
             searchTerm={field.value}
             setSearchTerm={nextValue => handleSearch(nextValue, field.onChange)}
-            setSelected={nextValue => handleValueSelect(field.value, nextValue, field.onChange)}
+            setSelected={nextValue => handleValueSelect(nextValue, field.onChange)}
             open={open}
             setOpen={setOpen}
             showSearch={false}
