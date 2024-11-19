@@ -1,16 +1,16 @@
-import AppHeader from '@/src/shared/ui/app-header';
+import AppHeaderClient from '@/src/shared/ui/app-header-client';
 import { Button } from '@/src/shared/ui/button';
 
 interface RecipeFormHeaderProps {
   isPending: boolean;
   dataChanged: boolean;
   title: string;
-  prevUrl: string;
+  prevUrl?: string;
 }
 
 function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeFormHeaderProps) {
   return (
-    <AppHeader prevUrl={prevUrl}>
+    <AppHeaderClient prevUrl={prevUrl} replacePrevUrl>
       <div className='flex justify-between grow items-center ml-5'>
         <h1 className='text-lg font-semibold leading-none'>{title}</h1>
 
@@ -25,7 +25,7 @@ function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeForm
           Save
         </Button>
       </div>
-    </AppHeader>
+    </AppHeaderClient>
   );
 }
 

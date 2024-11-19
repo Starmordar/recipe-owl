@@ -34,7 +34,7 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
 
         <ul className='my-4'>
           <li>
-            <Link href={publicUrls.editRecipe(recipeId)}>
+            <Link href={publicUrls.editRecipe(recipeId)} replace>
               <DrawerActionButton>
                 <Pencil className='h-5 w-5 opacity-60' /> Edit Recipe
               </DrawerActionButton>

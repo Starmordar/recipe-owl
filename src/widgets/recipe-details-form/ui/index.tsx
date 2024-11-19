@@ -10,7 +10,7 @@ import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface RecipeProps {
   title: string;
-  prevUrl: string;
+  prevUrl?: string;
   recipe?: RecipeDetails;
 }
 

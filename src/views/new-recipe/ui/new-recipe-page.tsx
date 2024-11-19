@@ -8,7 +8,7 @@ async function NewRecipePage() {
   const { user } = await validateRequest();
   if (user === null) redirect(publicUrls.signIn);
 
-  return <RecipeDetailsForm title='Add Recipe' prevUrl={publicUrls.recipes} />;
+  return <RecipeDetailsForm title='Add Recipe' />;
 }
 
 export { NewRecipePage };
