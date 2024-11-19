@@ -1,36 +1,46 @@
-import { Suspense } from 'react';
+'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
-import { RecipesPageSkeleton } from '@/src/views/recipes';
+import { LazyMotion } from 'framer-motion';
+import { useMemo } from 'react';
 
+import SwipableTabs from '@/src/shared/ui/swipable-tabs';
+
+import { CreatedRecipes } from './created-recipes';
+import { ProfileTabsSkeleton } from './profile-tabs-skeleton';
 import { SavedRecipes } from './saved-recipes';
 
+import type { RecipeWithUser } from '@/src/entities/recipe';
+import type { Recipe } from '@prisma/client';
 import type { User } from 'lucia';
 
 interface ProfileTabsProps {
   user: User;
+  savedRecipes: Array<RecipeWithUser>;
+  createdRecipes: Array<Recipe>;
 }
 
-function ProfileTabs({ user }: ProfileTabsProps) {
+function ProfileTabs({ savedRecipes, createdRecipes, user }: ProfileTabsProps) {
+  const tabs = useMemo(
+    () => ({
+      saved: {
+        title: 'Saved',
+        content: <SavedRecipes recipes={savedRecipes} />,
+      },
+      created: {
+        title: 'Created',
+        content: <CreatedRecipes recipes={createdRecipes} />,
+      },
+    }),
+    [createdRecipes, savedRecipes],
+  );
+
+  const loadAnimationFeatures = () =>
+    import('@/src/shared/lib/framer-motion').then(res => res.default);
+
   return (
-    <Tabs defaultValue='saved' className='relative mr-auto w-full'>
-      <TabsList className='inline-flex h-9 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
-        <TabsTrigger className='flex-1' value='saved'>
-          Saved
-        </TabsTrigger>
-        <TabsTrigger className='flex-1' value='yourRecipes'>
-          Your Recipes
-        </TabsTrigger>
-      </TabsList>
-
-      <TabsContent value='saved'>
-        <Suspense fallback={<RecipesPageSkeleton />}>
-          <SavedRecipes user={user} />
-        </Suspense>
-      </TabsContent>
-
-      <TabsContent value='yourRecipes'>Recipes here</TabsContent>
-    </Tabs>
+    <LazyMotion features={loadAnimationFeatures} strict>
+      <SwipableTabs tabs={tabs} loader={<ProfileTabsSkeleton />} defaultTab='saved' />
+    </LazyMotion>
   );
 }
 

@@ -1,15 +1,14 @@
-import { User } from 'lucia';
+'use client';
 
-import { getSavedRecipes, RecipeCard } from '@/src/entities/recipe';
+import { RecipeCard, RecipeWithUser } from '@/src/entities/recipe';
 
 import { EmptySavedRecipes } from './empty-saved-recipes';
 
 interface SavedRecipesProps {
-  user: User;
+  recipes: Array<RecipeWithUser>;
 }
 
-async function SavedRecipes({ user }: SavedRecipesProps) {
-  const recipes = await getSavedRecipes(user.id);
+function SavedRecipes({ recipes }: SavedRecipesProps) {
   if (recipes.length === 0) return <EmptySavedRecipes />;
 
   return (
