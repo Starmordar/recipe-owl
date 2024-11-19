@@ -24,10 +24,10 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
       onClick={() => removeRecipeAction(cartId, recipeId)}
       loading={isPending}
       loadingText=''
-      loadingClassName='h-5 w-5'
+      loadingClassName='h-6 w-6'
       aria-label='Remove Recipe from Cart'
     >
-      <X className='h-5 w-5' />
+      <X className='h-6 w-6' />
     </Button>
   );
 }

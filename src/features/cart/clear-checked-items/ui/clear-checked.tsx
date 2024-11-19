@@ -20,9 +20,9 @@ function ClearChecked() {
       onClick={() => clearCheckedAction(cartId)}
       loading={isPending}
       loadingText=''
-      loadingClassName='h-5 w-5'
+      loadingClassName='h-6 w-6'
     >
-      <X className='h-5 w-5' />
+      <X className='h-6 w-6' />
     </Button>
   );
 }
