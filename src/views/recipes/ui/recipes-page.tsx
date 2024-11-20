@@ -16,18 +16,20 @@ interface RecipesPageProps {
 
 async function RecipesPage({ searchParams }: RecipesPageProps) {
   const search = searchParams?.[searchFilter] ?? '';
-
   const recipes = await searchRecipes(search, searchParams, 0);
-  if (recipes.length === 0) return <EmptySearchResults />;
 
   return (
     <>
       <RecipesPageHeader />
 
       <main className='page-container pt-2'>
-        <InfiniteLoad search={search} filters={searchParams}>
-          <RecipeCards recipes={recipes} />
-        </InfiniteLoad>
+        {recipes.length === 0 ? (
+          <EmptySearchResults />
+        ) : (
+          <InfiniteLoad search={search} filters={searchParams}>
+            <RecipeCards recipes={recipes} />
+          </InfiniteLoad>
+        )}
       </main>
     </>
   );
