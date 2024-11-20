@@ -20,7 +20,6 @@ function RecipeSearch() {
   const [selectedValue, setSelectedValue] = useState(valueFromPathname(searchFilter));
 
   const debouncedSearchTerm = useDebounce(searchTerm, 100);
-  console.log('debouncedSearchTerm :>> ', debouncedSearchTerm);
   const { data: suggestions } = useQuery(recipeQueries.searchSuggestions(debouncedSearchTerm));
 
   function handleSearch(value: string) {
@@ -34,19 +33,14 @@ function RecipeSearch() {
   const filterValues = valuesFromPathname(filterCategories);
 
   return (
-    <>
-      <span>{debouncedSearchTerm}</span>
-      <span>{JSON.stringify(suggestions)}</span>
-
-      <SearchInput
-        searchTerm={searchTerm}
-        selectedValue={selectedValue}
-        setSearchTerm={setSearchTerm}
-        setSelected={handleSearch}
-        suggestions={suggestions ?? []}
-        hasSelectedFilters={Object.keys(filterValues).length > 0}
-      />
-    </>
+    <SearchInput
+      searchTerm={searchTerm}
+      selectedValue={selectedValue}
+      setSearchTerm={setSearchTerm}
+      setSelected={handleSearch}
+      suggestions={suggestions ?? []}
+      hasSelectedFilters={Object.keys(filterValues).length > 0}
+    />
   );
 }
 

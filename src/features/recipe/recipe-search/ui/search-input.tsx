@@ -108,7 +108,7 @@ function SearchInput({
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           setSelected={setSelected}
-          heights={{ top: 100, bottom: 45 }}
+          heights={{ top: 55, bottom: 45 }}
         />
       )}
     </div>
