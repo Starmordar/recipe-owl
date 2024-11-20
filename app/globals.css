@@ -88,4 +88,12 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .hide-search-actions::-ms-clear { display: none; width : 0; height: 0; }
+  .hide-search-actions::-ms-reveal { display: none; width : 0; height: 0; }
+
+  .hide-search-actions::-webkit-search-decoration,
+  .hide-search-actions::-webkit-search-cancel-button,
+  .hide-search-actions::-webkit-search-results-button,
+  .hide-search-actions::-webkit-search-results-decoration { display: none; }
 }

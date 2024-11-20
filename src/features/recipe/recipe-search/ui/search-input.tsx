@@ -72,8 +72,8 @@ function SearchInput({
 
         <input
           ref={inputRef}
-          className='flex h-10 w-full bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground'
-          type='text'
+          className='flex h-10 w-full bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground hide-search-actions'
+          type='search'
           placeholder='Search Recipe OWL'
           value={searchTerm}
           onChange={evt => setSearchTerm(evt.target.value)}
