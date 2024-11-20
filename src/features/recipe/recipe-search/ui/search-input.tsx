@@ -18,8 +18,6 @@ interface SearchInputProps {
   setSearchTerm: (value: string) => void;
 }
 
-const searchInputHeight = 55;
-
 function SearchInput({
   suggestions,
   hasSelectedFilters,

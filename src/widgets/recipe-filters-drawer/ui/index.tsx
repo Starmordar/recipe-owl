@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 import {
@@ -28,6 +29,7 @@ function RecipeFiltersDrawer() {
   const { valuesFromPathname } = useValueToPathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [filters, setFilters] = useState<SelectedFilters>(valuesFromPathname(filterCategories));
+  const [scrollIntoSection, setScrollIntoSection] = useState<string | null>(null);
 
   function handleFiltersChange(category: string, values: Array<string>) {
     setFilters({ ...filters, [category]: values });
@@ -38,6 +40,11 @@ function RecipeFiltersDrawer() {
 
     if (!open) return;
     setFilters(valuesFromPathname(filterCategories));
+  }
+
+  function filterCategoryClick(category: string) {
+    setScrollIntoSection(category);
+    setIsDrawerOpen(true);
   }
 
   const filterValues = valuesFromPathname(filterCategories);
@@ -54,7 +61,7 @@ function RecipeFiltersDrawer() {
             className='relative text-base rounded-3xl py-1 gap-x-2 font-semibold'
             variant='outline'
             size='xs'
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={() => filterCategoryClick(tag)}
           >
             {tag}
 
@@ -91,7 +98,12 @@ function RecipeFiltersDrawer() {
                 onFilterChange={handleFiltersChange}
               /> */}
 
-              <RecipeTagsFilters filters={filters} onFilterChange={handleFiltersChange} />
+              <RecipeTagsFilters
+                filters={filters}
+                onFilterChange={handleFiltersChange}
+                scrollIntoSection={scrollIntoSection}
+                setScrollIntoSection={setScrollIntoSection}
+              />
             </div>
           </div>
 
