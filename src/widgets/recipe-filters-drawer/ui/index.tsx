@@ -5,7 +5,6 @@ import { useState } from 'react';
 import {
   filterCategories,
   ingredientsCategory,
-  onlySavedCategory,
   quickFilterCategories,
 } from '@/src/entities/recipe';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
@@ -21,7 +20,6 @@ import {
 
 import { Footer } from './drawer-footer';
 import { RecipeIngredientsFilters } from './recipe-ingredients-filters';
-import { RecipeSavedFilter } from './recipe-saved-filter';
 import { RecipeTagsFilters } from './recipe-tags-filters';
 
 import type { SelectedFilters } from '../model/types';
@@ -49,13 +47,13 @@ function RecipeFiltersDrawer() {
 
   return (
     <>
-      <div className='flex w-full flex-nowrap overflow-auto justify-start gap-x-2 hide-scrollbar pt-2'>
+      <div className='flex w-full flex-nowrap overflow-x-auto justify-start gap-x-2 hide-scrollbar'>
         {sortedCategoriesByCount.map(tag => (
           <Button
             key={tag}
-            className='relative text-base rounded-3xl py-0.5 gap-x-2 font-semibold'
+            className='relative text-base rounded-3xl py-1 gap-x-2 font-semibold'
             variant='outline'
-            size='xss'
+            size='xs'
             onClick={() => setIsDrawerOpen(true)}
           >
             {tag}

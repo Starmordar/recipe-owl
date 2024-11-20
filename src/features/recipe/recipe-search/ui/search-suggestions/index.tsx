@@ -1,6 +1,6 @@
 'use client';
 
-import { CircleX } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
 
@@ -18,6 +18,7 @@ import { SearchOptions } from './search-options';
 
 interface SearchSuggestionsProps {
   suggestions: Array<string>;
+  heights: { top: number; bottom: number };
 
   searchTerm: string;
   setSelected: (value: string) => void;
@@ -26,6 +27,7 @@ interface SearchSuggestionsProps {
 
 function SearchSuggestions({
   suggestions,
+  heights,
   searchTerm,
   setSearchTerm,
   setSelected,
@@ -48,7 +50,13 @@ function SearchSuggestions({
 
   return (
     <RemoveScroll ref={drawerRef} forwardProps>
-      <div className='fixed top-[56px] inset-x-0 h-[calc(100vh-100px)] bg-card container overflow-y-auto z-10'>
+      <div
+        className='fixed inset-x-0 bg-card container overflow-y-auto z-10'
+        style={{
+          top: `${heights.top}px`,
+          height: `calc(100vh - ${heights.top + heights.bottom}px)`,
+        }}
+      >
         {searchTerm.length > 0 ? (
           <InputSuggestions
             suggestions={[...suggestions, searchTerm]}
@@ -78,7 +86,7 @@ function SearchSuggestions({
                     size='icon-xs'
                     variant='ghost'
                   >
-                    <CircleX className='w-5 h-5 opacity-60' />
+                    <X className='w-5 h-5 opacity-60' />
                   </Button>
                 )}
               />

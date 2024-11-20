@@ -34,13 +34,12 @@ function RecipeSearch() {
 
   return (
     <SearchInput
-      placeholder='Search for recipes'
       searchTerm={searchTerm}
       selectedValue={selectedValue}
       setSearchTerm={setSearchTerm}
       setSelected={handleSearch}
       suggestions={suggestions ?? []}
-      filterCount={Object.keys(filterValues).length}
+      hasSelectedFilters={Object.keys(filterValues).length > 0}
     />
   );
 }

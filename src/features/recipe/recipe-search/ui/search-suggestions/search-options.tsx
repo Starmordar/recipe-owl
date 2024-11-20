@@ -21,7 +21,7 @@ function SearchOptions({ title, options, renderAction, onSearch }: SearchOptions
             onMouseDown={() => onSearch(option)}
           >
             {option}
-            {typeof renderAction === 'function' && renderAction(option)}
+            {renderAction?.(option)}
           </li>
         ))}
       </ul>

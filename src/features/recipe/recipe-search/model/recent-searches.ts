@@ -4,9 +4,7 @@ const storageLimit = 10;
 function storeRecipeRecentSearches(search: string) {
   if (!search) return;
 
-  const recentSearches = retrieveRecipeRecentSearches();
-  if (recentSearches.some(recent => recent === search)) return;
-
+  const recentSearches = retrieveRecipeRecentSearches().filter(recent => recent !== search);
   if (recentSearches.length > storageLimit - 1) {
     const [_, ...rest] = recentSearches;
     localStorage.setItem(storageKey, JSON.stringify([search, ...rest]));
@@ -17,7 +15,7 @@ function storeRecipeRecentSearches(search: string) {
 }
 
 function retrieveRecipeRecentSearches(): Array<string> {
-  if (!window.localStorage) return [];
+  if (!window?.localStorage) return [];
 
   const storedSearches = localStorage.getItem(storageKey);
   if (!storedSearches) return [];
