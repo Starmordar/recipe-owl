@@ -30,10 +30,9 @@ function getSearchFilter(searchTerm: string) {
   if (!searchTerm) return { match_all: {} };
 
   return {
-    match: {
+    prefix: {
       title: {
-        query: searchTerm,
-        fuzziness: 'AUTO',
+        value: searchTerm,
       },
     },
   };
