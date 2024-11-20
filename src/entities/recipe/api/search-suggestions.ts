@@ -30,10 +30,24 @@ function getSearchFilter(searchTerm: string) {
   if (!searchTerm) return { match_all: {} };
 
   return {
-    prefix: {
-      title: {
-        value: searchTerm,
-      },
+    bool: {
+      should: [
+        {
+          prefix: {
+            title: {
+              value: searchTerm.toLocaleLowerCase(),
+            },
+          },
+        },
+        {
+          match: {
+            title: {
+              query: searchTerm,
+              fuzziness: 'AUTO',
+            },
+          },
+        },
+      ],
     },
   };
 }
