@@ -8,6 +8,7 @@ interface RecipeSearchResult {
   tags: Array<string>;
 }
 
+type RecipeBase = Prisma.RecipeGetPayload<true>;
 type RecipeDetails = Prisma.RecipeGetPayload<{ include: { ingredients: true; user: true } }>;
 type RecipeWithUser = Prisma.RecipeGetPayload<{ include: { user: true } }>;
 
@@ -46,6 +47,7 @@ interface UpdateRecipePayload {
 export type {
   ElasticRecipe,
   RecipeSearchResult,
+  RecipeBase,
   RecipeDetails,
   RecipeWithUser,
   RecipeOfTheDayDetails,

@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { RecipeAuthor, RecipeTagsSection, type RecipeWithUser } from '@/src/entities/recipe';
+import { RecipeTagsSection, type RecipeBase } from '@/src/entities/recipe';
 
 interface LatestRecipeCardProps {
-  recipe: RecipeWithUser;
+  recipe: RecipeBase;
 }
 
 function LatestRecipeCard({ recipe }: LatestRecipeCardProps) {
@@ -23,8 +23,6 @@ function LatestRecipeCard({ recipe }: LatestRecipeCardProps) {
       </div>
 
       <p className='text-base font-medium leading-5 my-2 line-clamp-2'>{recipe.title}</p>
-
-      <RecipeAuthor author={recipe.user} avatarSize={24} />
     </Link>
   );
 }

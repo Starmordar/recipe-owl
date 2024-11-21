@@ -2,13 +2,12 @@
 
 import { prisma } from '@/src/shared/api';
 
-import type { RecipeWithUser } from '@/src/entities/recipe';
+import type { RecipeBase } from '@/src/entities/recipe';
 
-async function getLatestRecipes(): Promise<Array<RecipeWithUser>> {
+async function getLatestRecipes(): Promise<Array<RecipeBase>> {
   const recipes = await prisma.recipe.findMany({
     orderBy: { createdAt: 'desc' },
-    take: 5,
-    include: { user: true },
+    take: 10,
   });
 
   return recipes;

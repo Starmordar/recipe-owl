@@ -25,6 +25,7 @@ export { RecipeAuthor } from './ui/recipe-author';
 
 export type {
   RecipeSearchResult,
+  RecipeBase,
   RecipeDetails,
   RecipeWithUser,
   RecipeOfTheDayDetails,
