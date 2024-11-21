@@ -1,3 +1,4 @@
 const elasticIndexName = 'recipes';
+const elasticRecipeViews = 'recipes-views';
 
-export { elasticIndexName };
+export { elasticIndexName, elasticRecipeViews };

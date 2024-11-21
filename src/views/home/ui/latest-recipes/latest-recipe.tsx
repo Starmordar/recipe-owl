@@ -10,7 +10,7 @@ interface LatestRecipeCardProps {
 function LatestRecipeCard({ recipe }: LatestRecipeCardProps) {
   return (
     <Link href={`/recipes/${recipe.id}`} className='min-w-56'>
-      <div className='relative h-[30vh]'>
+      <div className='relative h-[25vh]'>
         <RecipeTagsSection recipe={recipe} />
         <Image
           className='rounded-lg'

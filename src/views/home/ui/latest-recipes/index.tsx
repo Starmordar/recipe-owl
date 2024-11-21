@@ -7,7 +7,7 @@ async function LatestRecipes() {
   if (latestRecipes.length === 0) return null;
 
   return (
-    <section className='page-container gap-y-2 pt-2'>
+    <section className='page-container gap-y-2 pt-2 pb-0'>
       <h2 className='text-xl font-semibold'>Our Latest Recipes</h2>
       <div className='flex flex-nowrap gap-x-3 pb-2 overflow-x-auto hide-scrollbar'>
         {latestRecipes.map(recipe => (

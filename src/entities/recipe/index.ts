@@ -9,6 +9,8 @@ export { deleteRecipe } from './api/delete-recipe';
 
 export { recipeQueries } from './api/recipe.query';
 
+export { getRecentlyViewed } from './api/get-recently-viewed';
+export { logRecipeView } from './api/log-recipe-view';
 export { getRecipeJsonLdSchema } from './model/json-ld-schema';
 
 export {

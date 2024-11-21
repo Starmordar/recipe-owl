@@ -5,6 +5,7 @@
     "main": "scripts1.js",
     "scripts": {
         "create-elastic-indices": "ts-node elastic/create-indices.ts",
+        "create-views-index": "ts-node elastic/create-views-index.ts",
         "backfill-elastic-recipes": "ts-node elastic/backfill-recipes.ts"
     },
     "dependencies": {

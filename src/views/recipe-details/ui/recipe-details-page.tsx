@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { getRecipeJsonLdSchema, getRecipeDetails } from '@/src/entities/recipe';
+import { getRecipeJsonLdSchema, getRecipeDetails, logRecipeView } from '@/src/entities/recipe';
 
 import { RecipeDetailsHeader } from './page-header';
 import { RecipeDetails } from './recipe-details';
@@ -10,6 +10,8 @@ interface RecipeDetailsPageProps {
 }
 
 async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
+  logRecipeView(recipeId);
+
   const recipe = await getRecipeDetails(recipeId);
   if (!recipe) return notFound();
 

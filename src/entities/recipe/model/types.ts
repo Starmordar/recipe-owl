@@ -16,6 +16,11 @@ type RecipeOfTheDayDetails = Prisma.RecipeOfTheDayGetPayload<{
   include: { recipe: { include: { user: true } } };
 }>;
 
+interface ElasticRecipeView {
+  recipeId: number;
+  userId: string;
+}
+
 interface ElasticRecipe {
   title: string;
   description: string | null;
@@ -46,6 +51,7 @@ interface UpdateRecipePayload {
 
 export type {
   ElasticRecipe,
+  ElasticRecipeView,
   RecipeSearchResult,
   RecipeBase,
   RecipeDetails,
