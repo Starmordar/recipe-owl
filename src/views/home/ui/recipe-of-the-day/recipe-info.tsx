@@ -12,15 +12,25 @@ interface RecipeInfoProps {
 
 const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref) => {
   return (
-    <Link href={publicUrls.recipe(recipe.id)} aria-label='Read more about Recipe of the Day'>
+    <Link
+      href={publicUrls.recipe(recipe.id)}
+      aria-label='Read more about Recipe of the Day'
+      className='flex justify-center'
+    >
       <article
         ref={ref}
-        className='transform -translate-y-10 -mb-6 mx-auto flex flex-col p-4 w-[80vw] rounded-lg bg-secondary z-100'
+        className='relative transform -translate-y-10 -mb-6 flex flex-col p-4 max-w-md mx-4 rounded-lg bg-orange-100 z-100'
       >
-        <span className='text-base'>Recipe of the Day</span>
-        <h1 className='text-2xl font-semibold mb-3'>{recipe.title}</h1>
+        <div className='absolute top-4 right-4 z-10 text-sm flex gap-2'>
+          {recipe.tags.length > 0 && (
+            <div className='bg-lime-200 rounded-xl px-2 py-0.5'>{recipe.tags[0]}</div>
+          )}
+        </div>
 
-        <RecipeAuthor author={recipe.user} avatarSize={20} />
+        <span className='text-base mb-2'>Recipe of the Day</span>
+        <h1 className='text-3xl font-semibold mb-4'>{recipe.title}</h1>
+
+        <RecipeAuthor author={recipe.user} avatarSize={28} />
       </article>
     </Link>
   );
