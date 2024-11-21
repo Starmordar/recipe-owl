@@ -46,4 +46,4 @@ function TagsSection({ recipe }: TagsSectionProps) {
   );
 }
 
-export { RecipeCard };
+export { RecipeCard, TagsSection };

@@ -20,7 +20,7 @@ export {
   filterCategories,
 } from './config/search-recipes';
 
-export { RecipeCard } from './ui/recipe-card';
+export { RecipeCard, TagsSection as RecipeTagsSection } from './ui/recipe-card';
 export { RecipeAuthor } from './ui/recipe-author';
 
 export type {
