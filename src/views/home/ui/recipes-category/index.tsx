@@ -1,16 +1,19 @@
+import { getWeekPopularRecipes } from '@/src/entities/recipe/api/get-week-popular-recipe';
 import { Carousel, CarouselContent, CarouselDots, CarouselItem } from '@/src/shared/ui/carousel';
-
-import { getMostPopularRecipes } from '../../model/get-most-popular-recipes';
 
 import { RecipeCard } from './recipe-card';
 
 async function RecipesCategory() {
-  const latestRecipes = await getMostPopularRecipes();
+  const latestRecipes = await getWeekPopularRecipes();
+  console.log(
+    'latestRecipes :>> ',
+    latestRecipes.map(r => r.title),
+  );
   if (latestRecipes.length === 0) return null;
 
   return (
-    <section className='page-container gap-y-2'>
-      <h2 className='text-xl font-semibold'>Our Most Popular Recipes</h2>
+    <section className='page-container gap-y-2 pt-0'>
+      <h2 className='text-xl font-semibold'>Popular Recipes This Week</h2>
 
       <Carousel className='w-full'>
         <CarouselContent>

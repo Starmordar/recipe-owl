@@ -248,8 +248,8 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.ComponentProps<typeo
             <div
               key={index}
               className={cn(
-                index === selectedScrollSnap ? 'bg-black' : 'bg-muted-foreground',
-                ' w-3 h-3 rounded-full',
+                index === selectedScrollSnap ? 'bg-primary' : 'bg-muted-foreground',
+                ' w-2 h-2 rounded-full',
               )}
             ></div>
           ))}

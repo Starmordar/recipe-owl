@@ -5,7 +5,7 @@ import { RecipesCategory } from './recipes-category';
 
 function HomePage() {
   return (
-    <main className='page-container px-0 overflow-x-hidden'>
+    <main className='page-container px-0 overflow-x-hidden gap-x-2'>
       <RecipeOfTheDay />
       <LatestRecipes />
       <RecentlyViewed />

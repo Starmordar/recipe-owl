@@ -1,16 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
+import { type RecipeBase, RecipeTagsSection } from '@/src/entities/recipe';
+import { publicUrls } from '@/src/shared/config/url';
 
-interface Props {
-  recipe: RecipeWithUser;
+interface RecipeCardProps {
+  recipe: RecipeBase;
 }
 
-async function RecipeCard({ recipe }: Props) {
+async function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <Link href={`/recipes/${recipe.id}`} className='grow w-full min-w-full'>
-      <div className='relative h-[40vh]'>
+    <Link href={publicUrls.recipe(recipe.id)} className='grow w-full min-w-full'>
+      <div className='relative h-[30vh]'>
+        <RecipeTagsSection recipe={recipe} />
         <Image
           className='rounded-lg'
           src={recipe.imageUrl}
@@ -22,7 +24,6 @@ async function RecipeCard({ recipe }: Props) {
       </div>
 
       <p className='text-base font-medium leading-5 my-2'>{recipe.title}</p>
-      <RecipeAuthor author={recipe.user} avatarSize={20} />
     </Link>
   );
 }
