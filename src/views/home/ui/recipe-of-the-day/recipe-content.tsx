@@ -1,5 +1,6 @@
 'use client';
 
+import { LazyMotion } from 'framer-motion';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 import { RecipeImage } from './recipe-image';
@@ -23,17 +24,22 @@ function RecipeContent({ recipe }: RecipeContentProps) {
     setInfoHeight((infoContainerRef.current?.offsetHeight ?? 0) - 40);
   }, []);
 
-  return (
-    <section className='relative'>
-      <RecipeImage
-        ref={imageContainerRef}
-        imageHeight={imageHeight}
-        infoHeight={infoHeight}
-        recipe={recipe}
-      />
+  const loadAnimationFeatures = () =>
+    import('@/src/shared/lib/framer-motion/dom-animation').then(res => res.default);
 
-      <RecipeInfo ref={infoContainerRef} recipe={recipe} />
-    </section>
+  return (
+    <LazyMotion features={loadAnimationFeatures} strict>
+      <section className='relative'>
+        <RecipeImage
+          ref={imageContainerRef}
+          imageHeight={imageHeight}
+          infoHeight={infoHeight}
+          recipe={recipe}
+        />
+
+        <RecipeInfo ref={infoContainerRef} recipe={recipe} />
+      </section>
+    </LazyMotion>
   );
 }
 

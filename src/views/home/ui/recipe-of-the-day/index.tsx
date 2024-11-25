@@ -1,4 +1,4 @@
-import { getRecipeOfTheDay } from '../../model/get-recipe-of-the-day';
+import { getRecipeOfTheDay } from '../../api/get-recipe-of-the-day';
 
 import { RecipeContent } from './recipe-content';
 

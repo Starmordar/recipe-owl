@@ -39,7 +39,8 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
 
       return recipe ?? null;
     } catch (error) {
-      toast({ ...errorToast, title: error as string });
+      console.log('error :>> ', error);
+      toast({ ...errorToast, title: JSON.stringify(error) as string });
       return null;
     }
   }

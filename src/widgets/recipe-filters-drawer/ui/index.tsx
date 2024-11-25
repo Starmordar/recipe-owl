@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 
 import {
@@ -36,6 +35,7 @@ function RecipeFiltersDrawer() {
   }
 
   function handleOpenDrawer(open: boolean) {
+    console.log('on open drawer change trigger, open:', open);
     setIsDrawerOpen(open);
 
     if (!open) return;

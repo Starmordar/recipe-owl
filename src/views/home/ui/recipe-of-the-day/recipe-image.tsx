@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { forwardRef } from 'react';
 
@@ -20,16 +20,7 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
       offset: ['start start', 'end start'],
     });
 
-    const finalScale = 1.05;
-    const scale = useTransform(scrollY, [0, infoHeight], [1, finalScale]);
-
-    const clipBottom = useTransform(
-      scrollY,
-      [infoHeight, imageHeight * finalScale + infoHeight],
-      [`${imageHeight}px`, '0px'],
-    );
-
-    const clipPath = useMotionTemplate`polygon(0 0, 100% 0, 100% ${clipBottom}, 0 ${clipBottom})`;
+    const scale = useTransform(scrollY, [0, infoHeight], [1, 1.1]);
 
     return (
       <>
@@ -39,10 +30,10 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
           role='img'
           aria-label={`Recipe image for ${recipe.title}`}
         >
-          <motion.div
+          <m.div
             className='absolute inset-0 z-0 bg-center bg-cover'
             initial={{ clipPath: 'none' }}
-            style={{ scale, clipPath }}
+            style={{ scale }}
           >
             <Image
               className='object-cover'
@@ -52,7 +43,7 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
               sizes='(max-width: 768px) 75vw, 33vw'
               priority
             />
-          </motion.div>
+          </m.div>
         </div>
 
         <div className='h-[55vh]' aria-hidden='true'></div>
