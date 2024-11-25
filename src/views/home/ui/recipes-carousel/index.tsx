@@ -11,7 +11,7 @@ interface RecipesCarouselProps {
 
 async function RecipesCarousel({ sectionTitle, recipes }: RecipesCarouselProps) {
   return (
-    <section className='page-container gap-y-2 pt-0'>
+    <section className='flex flex-col px-4 gap-y-2'>
       <h2 className='text-xl font-semibold'>{sectionTitle}</h2>
 
       <Carousel className='w-full'>

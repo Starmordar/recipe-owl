@@ -12,9 +12,9 @@ interface RecipePreviewSectionProps {
 
 function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionProps) {
   return (
-    <section className='page-container pt-0 gap-y-2 pb-0'>
+    <section className='flex flex-col px-4 gap-y-2'>
       <h2 className='text-xl font-semibold'>{sectionTitle}</h2>
-      <div className='flex flex-nowrap gap-x-3 pb-2 overflow-x-auto hide-scrollbar'>
+      <div className='flex flex-nowrap gap-x-3 overflow-x-auto hide-scrollbar'>
         {recipes.map(recipe => (
           <RecipePreview key={recipe.id} recipe={recipe} />
         ))}
