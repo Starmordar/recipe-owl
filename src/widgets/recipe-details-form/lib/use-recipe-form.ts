@@ -47,7 +47,7 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
 
   async function onSubmit(values: FormValues) {
     const recipe = await applyChanges(values);
-    if (recipe) router.push(publicUrls.recipe(recipe.id));
+    if (recipe) router.replace(publicUrls.recipe(recipe.id));
   }
 
   return { form, onSubmit, isPending: isPendingCreate || isPendingUpdate };
