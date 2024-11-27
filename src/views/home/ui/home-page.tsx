@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 
 import { LatestRecipes } from './latest-recipes';
+import { RendomTagsRecipes } from './random-tags-recipes';
 import { RecentlyViewed } from './recently-viewed';
 import { RecipeOfTheDay } from './recipe-of-the-day';
 import { RecipePreviewSectionSkeleton } from './recipe-preview';
-import { RecipesByTagSection } from './recipes-by-tag';
 import { TopWeekRecipes } from './top-week-recipes';
 
 function HomePage() {
@@ -26,11 +26,7 @@ function HomePage() {
         </Suspense>
 
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
-          <RecipesByTagSection sectionTitle='Master the Kitchen' tagName='Level Up' />
-        </Suspense>
-
-        <Suspense fallback={<RecipePreviewSectionSkeleton />}>
-          <RecipesByTagSection sectionTitle='Flavors of Asia' tagName='Asian' />
+          <RendomTagsRecipes />
         </Suspense>
       </div>
     </main>

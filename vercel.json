@@ -1,7 +1,7 @@
 {
     "crons": [
       {
-        "path": "/api/recipes/change-of-the-day",
+        "path": "/api/home/daily-refresh",
         "schedule": "0 0 * * *"
       }
     ]
