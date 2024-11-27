@@ -1,22 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { RecipeTagsSection, type RecipeBase } from '@/src/entities/recipe';
+import { type RecipePreview, RecipeTagsSection } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { Skeleton } from '@/src/shared/ui/skeleton';
 
 interface RecipePreviewSectionProps {
   sectionTitle: string;
-  recipes: Array<RecipeBase>;
+  recipes: Array<RecipePreview>;
 }
 
 function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionProps) {
+  if (recipes.length === 0) return null;
+
   return (
     <section className='flex flex-col px-4 gap-y-2'>
       <h2 className='text-xl font-semibold'>{sectionTitle}</h2>
       <div className='flex flex-nowrap gap-x-3 overflow-x-auto hide-scrollbar'>
         {recipes.map(recipe => (
-          <RecipePreview key={recipe.id} recipe={recipe} />
+          <SingleRecipePreview key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </section>
@@ -24,10 +26,10 @@ function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionPro
 }
 
 interface RecipePreviewProps {
-  recipe: RecipeBase;
+  recipe: RecipePreview;
 }
 
-function RecipePreview({ recipe }: RecipePreviewProps) {
+function SingleRecipePreview({ recipe }: RecipePreviewProps) {
   return (
     <Link href={publicUrls.recipe(recipe.id)} className='min-w-56 w-56'>
       <div className='relative min-h-48 h-[25vh]'>

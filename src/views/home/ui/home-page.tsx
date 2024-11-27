@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 
 import { LatestRecipes } from './latest-recipes';
-import { RendomTagsRecipes } from './random-tags-recipes';
 import { RecentlyViewed } from './recently-viewed';
+import { RecipeCategories } from './recipe-categories';
 import { RecipeOfTheDay } from './recipe-of-the-day';
 import { RecipePreviewSectionSkeleton } from './recipe-preview';
 import { TopWeekRecipes } from './top-week-recipes';
@@ -26,7 +26,7 @@ function HomePage() {
         </Suspense>
 
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
-          <RendomTagsRecipes />
+          <RecipeCategories />
         </Suspense>
       </div>
     </main>

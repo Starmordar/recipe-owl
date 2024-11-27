@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import { publicUrls } from '@/src/shared/config/url';
 
-import type { RecipeSearchResult } from '../model/types';
+import type { RecipePreview } from '../model/types';
 
 interface RecipeCardProps {
-  recipe: RecipeSearchResult;
+  recipe: RecipePreview;
 }
 
 function RecipeCard({ recipe }: RecipeCardProps) {
@@ -30,7 +30,7 @@ function RecipeCard({ recipe }: RecipeCardProps) {
 }
 
 interface TagsSectionProps {
-  recipe: RecipeSearchResult;
+  recipe: RecipePreview;
 }
 
 function TagsSection({ recipe }: TagsSectionProps) {

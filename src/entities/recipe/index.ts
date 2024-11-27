@@ -28,8 +28,10 @@ export { RecipeAuthor } from './ui/recipe-author';
 export type {
   RecipeSearchResult,
   RecipeBase,
+  RecipePreview,
   RecipeDetails,
   RecipeWithUser,
   RecipeOfTheDayDetails,
   UpdateRecipePayload,
+  RecipeCategory,
 } from './model/types';

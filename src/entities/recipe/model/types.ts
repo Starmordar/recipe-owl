@@ -8,6 +8,9 @@ interface RecipeSearchResult {
   tags: Array<string>;
 }
 
+type RecipePreview = Prisma.RecipeGetPayload<{
+  select: { id: true; title: true; tags: true; imageUrl: true; cookTime: true };
+}>;
 type RecipeBase = Prisma.RecipeGetPayload<true>;
 type RecipeDetails = Prisma.RecipeGetPayload<{ include: { ingredients: true; user: true } }>;
 type RecipeWithUser = Prisma.RecipeGetPayload<{ include: { user: true } }>;
@@ -49,13 +52,27 @@ interface UpdateRecipePayload {
   steps: Array<string>;
 }
 
+interface RecipeCategory {
+  title: string;
+  tag: string;
+  recipes: Array<{
+    id: number;
+    title: string;
+    imageUrl: string;
+    cookTime: string | null;
+    tags: Array<string>;
+  }>;
+}
+
 export type {
   ElasticRecipe,
   ElasticRecipeView,
   RecipeSearchResult,
   RecipeBase,
+  RecipePreview,
   RecipeDetails,
   RecipeWithUser,
   RecipeOfTheDayDetails,
   UpdateRecipePayload,
+  RecipeCategory,
 };
