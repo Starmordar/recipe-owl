@@ -6,6 +6,8 @@ const publicUrls = {
   cartWithToken: (token?: string | null) => (!token ? '/cart' : `/cart?shareToken=${token}`),
 
   recipes: '/recipes',
+  recipesSearch: (query: string) => `/recipes/?${query}`,
+
   recipe: (recipeId: number | string) => `/recipes/${recipeId}`,
   editRecipe: (recipeId: number | string) => `/recipes/${recipeId}/edit`,
   newRecipe: '/recipes/new',

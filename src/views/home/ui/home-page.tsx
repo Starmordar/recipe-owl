@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import { LatestRecipes } from './latest-recipes';
+import { QuickLinks } from './quick-links';
 import { RecentlyViewed } from './recently-viewed';
 import { RecipeCategories } from './recipe-categories';
 import { RecipeOfTheDay } from './recipe-of-the-day';
@@ -28,6 +29,8 @@ function HomePage() {
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
           <RecipeCategories />
         </Suspense>
+
+        <QuickLinks />
       </div>
     </main>
   );
