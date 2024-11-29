@@ -39,7 +39,7 @@ function SingleRecipePreview({ recipe }: RecipePreviewProps) {
           src={recipe.imageUrl}
           alt={recipe.title ?? ''}
           fill
-          sizes='(max-width: 768px) 50vw, 33vw'
+          sizes='250px'
           style={{ objectFit: 'cover' }}
         />
       </div>

@@ -1,9 +1,9 @@
 import type { ImageProcessOptions } from '../model/type';
 
 const imageProcessOptions: ImageProcessOptions = {
-  maxWidth: 1000,
-  format: 'jpeg',
-  quality: 75,
+  maxWidth: 750,
+  format: 'webp',
+  quality: 70,
 };
 
 const signedUrlExpires = 60 * 60 * 1000; // 1 hour

@@ -40,7 +40,7 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
               src={recipe.imageUrl}
               alt={`Recipe of the day: ${recipe.title}`}
               fill
-              sizes='(max-width: 768px) 75vw, 33vw'
+              sizes='(max-width: 768px) 400px, 33vw'
               priority
             />
           </m.div>

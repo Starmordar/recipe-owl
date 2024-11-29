@@ -6,11 +6,14 @@
     "scripts": {
         "create-elastic-indices": "ts-node elastic/create-indices.ts",
         "create-views-index": "ts-node elastic/create-views-index.ts",
-        "backfill-elastic-recipes": "ts-node elastic/backfill-recipes.ts"
+        "backfill-elastic-recipes": "ts-node elastic/backfill-recipes.ts",
+        "process-google-images": "ts-node images/process-google-images.ts"
     },
     "dependencies": {
+        "@google-cloud/storage": "^7.14.0",
         "@prisma/client": "^5.22.0",
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "sharp": "^0.33.5"
     },
     "devDependencies": {
         "ts-node": "^10.9.2",
