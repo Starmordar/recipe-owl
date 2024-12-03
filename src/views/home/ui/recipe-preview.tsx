@@ -56,7 +56,7 @@ function RecipePreviewSectionSkeleton() {
 
       <div className='flex flex-nowrap gap-x-3 pb-2 overflow-x-auto hide-scrollbar'>
         {new Array(5).fill(0).map((_, index) => (
-          <Skeleton key={index} className='min-h-48 h-[25vh]min-w-56' />
+          <Skeleton key={index} className='min-h-48 h-[25vh] min-w-56' />
         ))}
       </div>
     </section>

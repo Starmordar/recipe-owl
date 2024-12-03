@@ -20,7 +20,6 @@ async function getRecipeOfTheDay(): Promise<RecipeWithUser | null> {
   const newData = await createRecipeOfTheDay();
   if (!newData) return null;
 
-  revalidatePath(publicUrls.home);
   return newData.recipe;
 }
 
