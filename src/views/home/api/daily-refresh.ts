@@ -1,13 +1,25 @@
-import { RecipeCategory } from '@/src/entities/recipe';
+import { prisma } from '@/src/shared/api';
 import { redis } from '@/src/shared/api/redis/client';
 import { recipeCategoriesKey } from '@/src/shared/api/redis/keys';
 
 import { recipeCategoryGroups } from '../config/recipe-category-groups';
 
-import { createRecipeOfTheDay } from './create-recipe-of-the-day';
-import { getRecipesByTag } from './get-recipes-by-tag';
+import { chooseRecipeOfTheDay } from './get-recipe-of-the-day';
+
+import type { RecipeCategory, RecipePreview } from '@/src/entities/recipe';
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
+
+async function getRecipesByTag(tag: string, limit = 15): Promise<Array<RecipePreview>> {
+  const recipes = await prisma.recipe.findMany({
+    where: { tags: { has: tag } },
+    orderBy: { createdAt: 'desc' },
+    select: { id: true, title: true, tags: true, imageUrl: true, cookTime: true },
+    take: limit,
+  });
+
+  return recipes;
+}
 
 async function chooseDailyRecipeCategories() {
   const recipeCategories: Array<RecipeCategory> = [];
@@ -23,7 +35,7 @@ async function chooseDailyRecipeCategories() {
 }
 
 async function dailyRefresh() {
-  await Promise.allSettled([chooseDailyRecipeCategories(), createRecipeOfTheDay()]);
+  await Promise.allSettled([chooseDailyRecipeCategories(), chooseRecipeOfTheDay()]);
 }
 
 export { dailyRefresh };

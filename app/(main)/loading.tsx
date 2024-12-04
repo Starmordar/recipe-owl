@@ -1,5 +1,4 @@
-import { RecipeOfTheDaySkeleton } from '@/src/views/home/ui/recipe-of-the-day/skeleton';
-import { RecipePreviewSectionSkeleton } from '@/src/views/home/ui/recipe-preview';
+import { RecipeOfTheDaySkeleton, RecipePreviewSectionSkeleton } from '@/src/views/home';
 
 export default function Loading() {
   return (
