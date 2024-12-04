@@ -13,7 +13,7 @@ const items: Array<NavbarItem> = [
   {
     title: 'Home',
     isTitleHidden: false,
-    href: '/',
+    href: publicUrls.home,
     match: (pathname: string) => pathname === publicUrls.home,
     render: (_, className) => <House size={20} className={className} />,
   },
@@ -29,7 +29,7 @@ const items: Array<NavbarItem> = [
     title: 'New Recipe',
     isTitleHidden: true,
     href: publicUrls.newRecipe,
-    render: (_, className) => <CirclePlus size={28} className={className} />,
+    render: (_, className) => <CirclePlus size={32} className={className} />,
   },
   {
     title: 'My Cart',
@@ -41,10 +41,9 @@ const items: Array<NavbarItem> = [
   {
     title: 'Profile',
     isTitleHidden: false,
-    href: '/profile',
-
+    href: publicUrls.profile,
     render: (user, className) => {
-      if (!user?.picture) return <User className={className} />;
+      if (!user?.picture) return <User size={20} className={className} />;
 
       return (
         <Image
