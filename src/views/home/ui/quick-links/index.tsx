@@ -5,8 +5,9 @@ import { recipeQuickLinks } from '../../config/recipe-quick-links';
 
 function QuickLinks() {
   return (
-    <section className='flex flex-col px-4 gap-y-2'>
+    <section className='space-y-2'>
       <h2 className='text-xl font-semibold'>Quick Links For You</h2>
+
       <div className='flex flex-nowrap gap-x-3 overflow-x-auto hide-scrollbar'>
         {recipeQuickLinks.map(({ picture, url, title }) => (
           <Link key={title} href={url} className='relative min-w-32 w-32'>

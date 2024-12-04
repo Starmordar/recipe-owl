@@ -241,7 +241,7 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.ComponentProps<typeo
     const { api, selectedScrollSnap } = useCarousel();
 
     return (
-      <div ref={ref} className='flex w-full justify-center gap-x-2 mt-2'>
+      <div ref={ref} className='flex w-full justify-center gap-x-2 py-3'>
         {api
           ?.slideNodes()
           ?.map((node, index) => (
@@ -249,7 +249,7 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.ComponentProps<typeo
               key={index}
               className={cn(
                 index === selectedScrollSnap ? 'bg-primary' : 'bg-muted-foreground',
-                ' w-2 h-2 rounded-full',
+                ' w-2.5 h-2.5 rounded-full',
               )}
             ></div>
           ))}

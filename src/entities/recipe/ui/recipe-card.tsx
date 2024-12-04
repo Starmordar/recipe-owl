@@ -40,7 +40,7 @@ function TagsSection({ recipe }: TagsSectionProps) {
         <div className='bg-orange-200 rounded-xl px-2 py-0.5'>{recipe.cookTime}</div>
       )}
       {recipe.tags.length > 0 && (
-        <div className='bg-lime-200 rounded-xl  px-2 py-0.5'>{recipe.tags[0]}</div>
+        <div className='bg-lime-200 rounded-xl px-2 py-0.5'>{recipe.tags[0]}</div>
       )}
     </div>
   );

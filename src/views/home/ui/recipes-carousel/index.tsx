@@ -11,13 +11,13 @@ interface RecipesCarouselProps {
 
 async function RecipesCarousel({ sectionTitle, recipes }: RecipesCarouselProps) {
   return (
-    <section className='flex flex-col px-4 gap-y-2'>
+    <section className='space-y-2'>
       <h2 className='text-xl font-semibold'>{sectionTitle}</h2>
 
       <Carousel className='w-full'>
         <CarouselContent>
           {recipes.map(recipe => (
-            <CarouselItem key={recipe.id}>
+            <CarouselItem key={recipe.id} className='basis-full sm:basis-1/2 lg:basis-1/3 '>
               <RecipeCard recipe={recipe} />
             </CarouselItem>
           ))}

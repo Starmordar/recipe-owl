@@ -14,7 +14,7 @@ function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionPro
   if (recipes.length === 0) return null;
 
   return (
-    <section className='flex flex-col px-4 gap-y-2'>
+    <section className='space-y-2'>
       <h2 className='text-xl font-semibold'>{sectionTitle}</h2>
       <div className='flex flex-nowrap gap-x-3 overflow-x-auto hide-scrollbar'>
         {recipes.map(recipe => (
@@ -31,7 +31,7 @@ interface RecipePreviewProps {
 
 function SingleRecipePreview({ recipe }: RecipePreviewProps) {
   return (
-    <Link href={publicUrls.recipe(recipe.id)} className='min-w-56 w-56'>
+    <Link href={publicUrls.recipe(recipe.id)} className='min-w-56 w-56 space-y-2'>
       <div className='relative min-h-48 h-[25vh]'>
         <RecipeTagsSection recipe={recipe} />
         <Image
@@ -44,7 +44,7 @@ function SingleRecipePreview({ recipe }: RecipePreviewProps) {
         />
       </div>
 
-      <p className='text-base font-medium leading-5 my-2 line-clamp-2'>{recipe.title}</p>
+      <p className='text-base font-medium leading-5 line-clamp-2'>{recipe.title}</p>
     </Link>
   );
 }
