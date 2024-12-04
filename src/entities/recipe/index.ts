@@ -22,6 +22,8 @@ export {
   filterCategories,
 } from './config/search-recipes';
 
+export { elasticRecipeViews as elasticRecipeViewsIndex } from './config/elastic-index-name';
+
 export { RecipeCard, TagsSection as RecipeTagsSection } from './ui/recipe-card';
 export { RecipeAuthor } from './ui/recipe-author';
 

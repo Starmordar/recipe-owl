@@ -1,16 +1,29 @@
 import { revalidatePath } from 'next/cache';
 
+import {
+  elasticRecipeViewsIndex,
+  type RecipeBase,
+  type RecipeCategory,
+  type RecipePreview,
+  type RecipeWithUser,
+} from '@/src/entities/recipe';
 import { prisma } from '@/src/shared/api';
+import { elastic } from '@/src/shared/api/elastic';
 import { redis } from '@/src/shared/api/redis/client';
-import { recipeCategoriesKey, recipeOfTheDayKey } from '@/src/shared/api/redis/keys';
+import {
+  mostPopularRecipesKey,
+  recipeCategoriesKey,
+  recipeOfTheDayKey,
+} from '@/src/shared/api/redis/keys';
 import { publicUrls } from '@/src/shared/config/url';
 
 import { recipeCategoryGroups } from '../config/recipe-category-groups';
 
-import type { RecipeCategory, RecipePreview, RecipeWithUser } from '@/src/entities/recipe';
+import type { AggregationResult } from '@/src/shared/api/elastic/types';
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
 
+// ================== Daily Recipe Categories ===================
 async function getRecipesByTag(tag: string, limit = 15): Promise<Array<RecipePreview>> {
   const recipes = await prisma.recipe.findMany({
     where: { tags: { has: tag } },
@@ -35,6 +48,7 @@ async function chooseDailyRecipeCategories() {
   await redis.set(recipeCategoriesKey, data);
 }
 
+// ===================== Recipe of the Day ===================
 async function chooseRecipeOfTheDay(): Promise<RecipeWithUser | null> {
   const lastRecipesOfTheDay: Array<RecipeWithUser> = (await redis.get(recipeOfTheDayKey)) ?? [];
   const lastRecipesOfTheDayIds = lastRecipesOfTheDay.map(({ id }) => id) ?? [];
@@ -58,8 +72,44 @@ async function chooseRecipeOfTheDay(): Promise<RecipeWithUser | null> {
   return nextRecipeOfTheDay;
 }
 
+// ===================== Popular Recipes ===================
+async function updateWeekPopularRecipes() {
+  const searchResult = await elastic.search<AggregationResult>({
+    index: elasticRecipeViewsIndex,
+    body: {
+      query: {
+        range: {
+          date: {
+            gte: 'now-7d/d',
+            lte: 'now/d',
+          },
+        },
+      },
+      aggs: {
+        recipes: {
+          terms: { field: 'recipeId', size: 10 },
+        },
+      },
+      size: 0,
+    },
+  });
+
+  const buckets = searchResult.body?.aggregations?.recipes?.buckets;
+  const recipeIds = buckets.map(bucket => parseInt(bucket.key));
+
+  const recipes = await prisma.recipe.findMany({ where: { id: { in: recipeIds } } });
+  const data = recipeIds.flatMap(recipeId => recipes.find(({ id }) => id === recipeId) ?? []);
+
+  await redis.set(mostPopularRecipesKey, JSON.stringify(data));
+}
+
 async function dailyRefresh() {
-  await Promise.allSettled([chooseDailyRecipeCategories(), chooseRecipeOfTheDay()]);
+  await Promise.allSettled([
+    chooseDailyRecipeCategories(),
+    chooseRecipeOfTheDay(),
+    updateWeekPopularRecipes(),
+  ]);
+
   revalidatePath(publicUrls.home, 'page');
 }
 
