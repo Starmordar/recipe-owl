@@ -1,12 +1,13 @@
+import { revalidatePath } from 'next/cache';
+
 import { prisma } from '@/src/shared/api';
 import { redis } from '@/src/shared/api/redis/client';
-import { recipeCategoriesKey } from '@/src/shared/api/redis/keys';
+import { recipeCategoriesKey, recipeOfTheDayKey } from '@/src/shared/api/redis/keys';
+import { publicUrls } from '@/src/shared/config/url';
 
 import { recipeCategoryGroups } from '../config/recipe-category-groups';
 
-import { chooseRecipeOfTheDay } from './get-recipe-of-the-day';
-
-import type { RecipeCategory, RecipePreview } from '@/src/entities/recipe';
+import type { RecipeCategory, RecipePreview, RecipeWithUser } from '@/src/entities/recipe';
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
 
@@ -34,8 +35,32 @@ async function chooseDailyRecipeCategories() {
   await redis.set(recipeCategoriesKey, data);
 }
 
+async function chooseRecipeOfTheDay(): Promise<RecipeWithUser | null> {
+  const lastRecipesOfTheDay: Array<RecipeWithUser> = (await redis.get(recipeOfTheDayKey)) ?? [];
+  const lastRecipesOfTheDayIds = lastRecipesOfTheDay.map(({ id }) => id) ?? [];
+
+  const recipesCount = await prisma.recipe.count({
+    where: { id: { notIn: lastRecipesOfTheDayIds } },
+  });
+  const skip = Math.floor(Math.random() * recipesCount);
+
+  const nextRecipeOfTheDay = await prisma.recipe.findFirst({
+    where: { id: { notIn: lastRecipesOfTheDayIds } },
+    include: { user: true },
+    skip: skip,
+  });
+  if (!nextRecipeOfTheDay) return null;
+
+  lastRecipesOfTheDay.push(nextRecipeOfTheDay);
+  if (lastRecipesOfTheDay.length > 3) lastRecipesOfTheDay.shift();
+
+  await redis.set(recipeOfTheDayKey, JSON.stringify(lastRecipesOfTheDay));
+  return nextRecipeOfTheDay;
+}
+
 async function dailyRefresh() {
   await Promise.allSettled([chooseDailyRecipeCategories(), chooseRecipeOfTheDay()]);
+  revalidatePath(publicUrls.home, 'page');
 }
 
 export { dailyRefresh };
