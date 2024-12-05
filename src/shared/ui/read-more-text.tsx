@@ -31,9 +31,9 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
       <div
         ref={containerRef}
         className={cn(
+          'relative text-base overflow-hidden bg-background',
           className,
           !isExpanded && 'line-clamp-5',
-          'relative text-base overflow-hidden bg-background',
         )}
       >
         <p>

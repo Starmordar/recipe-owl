@@ -192,7 +192,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         className={cn(
           'absolute  h-8 w-8 rounded-full',
           orientation === 'horizontal'
-            ? '-left-12 top-1/2 -translate-y-1/2'
+            ? '-left-4 top-1/2 -translate-y-1/2'
             : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
           className,
         )}
@@ -220,7 +220,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         className={cn(
           'absolute h-8 w-8 rounded-full',
           orientation === 'horizontal'
-            ? '-right-12 top-1/2 -translate-y-1/2'
+            ? '-right-4 top-1/2 -translate-y-1/2'
             : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
           className,
         )}
@@ -241,7 +241,7 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.ComponentProps<typeo
     const { api, selectedScrollSnap } = useCarousel();
 
     return (
-      <div ref={ref} className='flex w-full justify-center gap-x-2 py-3'>
+      <div ref={ref} className={cn(className, 'flex w-full justify-center gap-x-2 py-4')}>
         {api
           ?.slideNodes()
           ?.map((node, index) => (
@@ -249,7 +249,7 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.ComponentProps<typeo
               key={index}
               className={cn(
                 index === selectedScrollSnap ? 'bg-primary' : 'bg-muted-foreground',
-                ' w-2.5 h-2.5 rounded-full',
+                ' w-2 h-2 rounded-full',
               )}
             ></div>
           ))}

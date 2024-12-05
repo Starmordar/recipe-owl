@@ -10,7 +10,7 @@ interface RecipeCardProps {
 
 async function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <Link href={publicUrls.recipe(recipe.id)} className='grow w-full min-w-full space-y-2'>
+    <Link href={publicUrls.recipe(recipe.id)} className='w-full space-y-2'>
       <div className='relative h-[30vh] min-h-48'>
         <RecipeTagsSection recipe={recipe} />
         <Image

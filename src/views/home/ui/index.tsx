@@ -13,7 +13,7 @@ function HomePage() {
     <main className='page-container px-0 overflow-x-hidden gap-0'>
       <RecipeOfTheDay />
 
-      <div className='flex flex-col gap-y-6 bg-background z-50 p-4'>
+      <div className='flex flex-col gap-y-6 lg:gap-y-8 bg-background z-50 p-4 md:container md:py-8'>
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
           <LatestRecipes />
         </Suspense>

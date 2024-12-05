@@ -26,7 +26,7 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
       <>
         <div
           ref={ref}
-          className='fixed w-full h-[55vh]'
+          className='fixed inset-x-0 h-[55vh] md:relative md:h-full md:w-full col-span-2 order-2'
           role='img'
           aria-label={`Recipe image for ${recipe.title}`}
         >
@@ -40,13 +40,13 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
               src={recipe.imageUrl}
               alt={`Recipe of the day: ${recipe.title}`}
               fill
-              sizes='(max-width: 768px) 400px, 33vw'
+              sizes='(max-width: 768px) 100vw, 500px'
               priority
             />
           </m.div>
         </div>
 
-        <div className='h-[55vh]' aria-hidden='true'></div>
+        <div className='md:hidden h-[55vh]' aria-hidden='true'></div>
       </>
     );
   },
