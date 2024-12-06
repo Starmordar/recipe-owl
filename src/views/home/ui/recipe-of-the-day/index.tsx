@@ -4,8 +4,6 @@ import { RecipeContent } from './recipe-content';
 
 async function RecipeOfTheDay() {
   const recipe = await getRecipeOfTheDay();
-  await new Promise(resolve => setTimeout(resolve, 50000));
-
   if (!recipe) return null;
 
   return <RecipeContent recipe={recipe} />;
