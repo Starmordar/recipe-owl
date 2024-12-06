@@ -20,10 +20,10 @@ function QuickLinks() {
         <CarouselContent>
           {recipeQuickLinks.map(({ picture, url, title, textColor }) => (
             <CarouselItem key={title} className='basis-36'>
-              <Link key={title} href={url} className='relative w-full'>
-                <div className='relative min-h-32 h-32'>
+              <Link key={title} href={url} className='relative group'>
+                <div className='relative min-h-32 h-32 rounded-lg overflow-hidden'>
                   <Image
-                    className='rounded-lg'
+                    className='transition-transform group-hover:scale-110 duration-300'
                     src={picture}
                     alt={title ?? ''}
                     fill

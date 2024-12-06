@@ -1,8 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
-import { type RecipePreview, RecipeTagsSection } from '@/src/entities/recipe';
-import { publicUrls } from '@/src/shared/config/url';
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +6,10 @@ import {
   CarouselPrevious,
 } from '@/src/shared/ui/carousel';
 import { Skeleton } from '@/src/shared/ui/skeleton';
+
+import { RecipeCard } from './recipe-card';
+
+import type { RecipePreview } from '@/src/entities/recipe';
 
 interface RecipePreviewSectionProps {
   sectionTitle: string;
@@ -27,7 +26,12 @@ function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionPro
         <CarouselContent>
           {recipes.map(recipe => (
             <CarouselItem key={recipe.id} className='basis-60'>
-              <SingleRecipePreview key={recipe.id} recipe={recipe} />
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+                className='min-h-48 max-h-72 h-[25vh]'
+                imageSizes='290px'
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -36,30 +40,6 @@ function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionPro
         <CarouselNext className='hidden lg:flex' />
       </Carousel>
     </section>
-  );
-}
-
-interface RecipePreviewProps {
-  recipe: RecipePreview;
-}
-
-function SingleRecipePreview({ recipe }: RecipePreviewProps) {
-  return (
-    <Link href={publicUrls.recipe(recipe.id)} className='w-full space-y-2'>
-      <div className='relative min-h-48 max-h-72 h-[25vh]'>
-        <RecipeTagsSection recipe={recipe} />
-        <Image
-          className='rounded-lg'
-          src={recipe.imageUrl}
-          alt={recipe.title ?? ''}
-          fill
-          sizes='250px'
-          style={{ objectFit: 'cover' }}
-        />
-      </div>
-
-      <p className='text-base font-medium leading-5 line-clamp-2'>{recipe.title}</p>
-    </Link>
   );
 }
 
