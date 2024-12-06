@@ -45,12 +45,12 @@ function RecipePreviewSection({ sectionTitle, recipes }: RecipePreviewSectionPro
 
 function RecipePreviewSectionSkeleton() {
   return (
-    <section className='page-container pt-0 gap-y-2 pb-0'>
-      <Skeleton className='h-6 w-1/2' />
+    <section className='flex flex-col gap-y-4'>
+      <Skeleton className='h-8 w-1/2' />
 
       <div className='flex flex-nowrap gap-x-3 pb-2 overflow-x-auto hide-scrollbar'>
         {new Array(5).fill(0).map((_, index) => (
-          <Skeleton key={index} className='min-h-48 h-[25vh] min-w-56' />
+          <Skeleton key={index} className='min-h-48 max-h-72 h-[25vh] min-w-60' />
         ))}
       </div>
     </section>

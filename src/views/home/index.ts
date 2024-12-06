@@ -1,3 +1,2 @@
 export { HomePage } from './ui';
-export { RecipeOfTheDaySkeleton } from './ui/recipe-of-the-day/skeleton';
-export { RecipePreviewSectionSkeleton } from './ui/recipe-preview';
+export { PageSkeleton as HomePageSkeleton } from './ui/skeleton';
