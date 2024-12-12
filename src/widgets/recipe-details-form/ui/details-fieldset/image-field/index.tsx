@@ -17,9 +17,14 @@ interface ImageFieldProps {
 }
 
 function ImageField({ form }: ImageFieldProps) {
-  const initialImage = form.getValues('image') || null;
-  const [selectedImage, setSelectedImage] = useState<string | null>(initialImage);
+  const [selectedImage, setSelectedImage] = useState<string | null>(getInitialImage);
   const fileInputsRef = useRef<FileUploadHandles>(null);
+
+  function getInitialImage() {
+    const initialImage = form.getValues('image') || null;
+    if (initialImage === null || typeof initialImage === 'string') return initialImage;
+    return URL.createObjectURL(initialImage);
+  }
 
   function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
