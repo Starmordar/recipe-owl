@@ -31,7 +31,11 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
             {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
           </div>
 
-          <Link href={publicUrls.recipe(recipe.id)} aria-label='Read more about Recipe of the Day'>
+          <Link
+            href={publicUrls.recipe(recipe.id)}
+            className='self-start'
+            aria-label='Read more about Recipe of the Day'
+          >
             <Button size='lg' className='text-base'>
               Let&apos;s Cook!
             </Button>
