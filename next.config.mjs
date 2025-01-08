@@ -1,5 +1,8 @@
 import withPWA from 'next-pwa'; 
 import withBundleAnalyzer from '@next/bundle-analyzer'
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/shared/i18n/requests.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -30,7 +33,7 @@ const nextConfig = {
 
 
 
-export default withBundleAnalyzer({
+export default withNextIntl(withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true'
 })(
   withPWA({
@@ -40,4 +43,4 @@ export default withBundleAnalyzer({
     skipWaiting: true,
   })
     (nextConfig)
-)
+))

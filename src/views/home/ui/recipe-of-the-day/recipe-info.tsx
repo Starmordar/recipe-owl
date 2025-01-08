@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { forwardRef } from 'react';
 
 import { RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
@@ -13,10 +14,12 @@ interface RecipeInfoProps {
 }
 
 const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref) => {
+  const t = useTranslations('HomePage');
+
   return (
     <>
       <article className='hidden md:flex flex-col relative col-span-2 pr-4 lg:pr-8 py-6'>
-        <span className='text-lg mb-2'>Recipe of the Day</span>
+        <span className='text-lg mb-2'>{t('title')}</span>
 
         <div className='flex flex-col gap-y-4'>
           <h1 className='md:text-4xl lg:text-5xl font-semibold md:font-bold'>{recipe.title}</h1>
