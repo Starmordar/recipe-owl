@@ -1,13 +1,15 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import invariant from 'tiny-invariant';
 
 import { prisma } from '@/src/shared/api';
-import { publicUrls } from '@/src/shared/config/url';
+import { validateRequest } from '@/src/shared/api/auth';
 
-async function unsaveRecipe(userId: string, recipeId: number): Promise<void> {
-  await prisma.savedRecipe.deleteMany({ where: { userId, recipeId } });
-  revalidatePath(publicUrls.recipe(recipeId));
+async function unsaveRecipe(recipeId: number): Promise<void> {
+  const { user } = await validateRequest();
+  invariant(user, 'An authorized user is required');
+
+  await prisma.savedRecipe.deleteMany({ where: { userId: user.id, recipeId } });
 }
 
 export { unsaveRecipe };

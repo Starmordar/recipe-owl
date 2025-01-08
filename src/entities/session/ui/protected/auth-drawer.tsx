@@ -16,12 +16,12 @@ import {
 
 import type { PropsWithChildren } from 'react';
 
-interface RequireAuthDrawerProps extends PropsWithChildren {
+interface AuthDrawerProps extends PropsWithChildren {
   title: string;
   description: string;
 }
 
-function RequireAuthDrawer({ title, description, children }: RequireAuthDrawerProps) {
+function AuthDrawer({ title, description, children }: AuthDrawerProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -44,4 +44,4 @@ function RequireAuthDrawer({ title, description, children }: RequireAuthDrawerPr
   );
 }
 
-export { RequireAuthDrawer };
+export { AuthDrawer };

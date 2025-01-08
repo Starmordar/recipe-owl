@@ -4,20 +4,18 @@ import { saveRecipe } from '../api/save-recipe';
 import { unsaveRecipe } from '../api/unsave-recipe';
 
 interface UseSaveRecipeOptions {
-  userId: string | undefined;
   recipeId: number;
   isSaved: boolean;
 }
 
-function useSaveRecipe({ recipeId, userId, isSaved }: UseSaveRecipeOptions) {
+function useSaveRecipe({ recipeId, isSaved }: UseSaveRecipeOptions) {
   const [isSavedOptimistic, setIsSavedOptimistic] = useOptimistic(isSaved);
 
   async function handleSaveRecipe() {
-    if (!userId) return;
     startTransition(() => setIsSavedOptimistic(prevData => !prevData));
 
     const handleSaveOrRemove = isSavedOptimistic ? unsaveRecipe : saveRecipe;
-    handleSaveOrRemove(userId, recipeId).catch(() =>
+    handleSaveOrRemove(recipeId).catch(() =>
       startTransition(() => setIsSavedOptimistic(prev => prev)),
     );
   }
