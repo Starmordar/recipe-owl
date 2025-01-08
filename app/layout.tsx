@@ -18,7 +18,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
         <body className={cn('flex flex-col min-h-[100vh]', font.className)}>
           <ThemeProvider
             attribute='class'
-            defaultTheme='light'
+            defaultTheme='system'
             storageKey='theme'
             enableSystem
             disableTransitionOnChange

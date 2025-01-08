@@ -65,7 +65,7 @@ function SearchInput({
         </Link>
       )}
 
-      <div className='flex items-center border rounded-3xl space-x-3 px-3 w-full focus-within:ring-2 focus-within:ring-ring'>
+      <div className='flex items-center border border-input bg-background rounded-3xl space-x-3 px-3 w-full focus-within:ring-2 focus-within:ring-ring'>
         <Search className='opacity-50' />
 
         <input

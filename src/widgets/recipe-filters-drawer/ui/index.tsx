@@ -66,7 +66,7 @@ function RecipeFiltersDrawer() {
             {tag}
 
             {filterValues[tag]?.length > 0 && (
-              <span className='flex justify-center items-center w-4 h-4 text-accent bg-foreground rounded-full text-sm'>
+              <span className='flex justify-center items-center w-5 h-5 text-accent bg-foreground rounded-full text-sm font-medium'>
                 {filterValues[tag]?.length}
               </span>
             )}
