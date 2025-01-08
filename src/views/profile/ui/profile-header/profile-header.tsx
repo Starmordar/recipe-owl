@@ -17,10 +17,7 @@ function ProfileHeader({ user }: ProfileHeaderProps) {
 
   return (
     <AppHeader>
-      <div className='flex gap-x-3 items-center'>
-        <UserAvatar src={user.picture} height={28} width={28} />
-        <span className='text-lg font-semibold'>{user.fullName}</span>
-      </div>
+      <div className='flex gap-x-3 items-center'></div>
       <div className='flex gap-x-3'>
         <ShareProfile user={user} />
         <HeaderIconButton Icon={<Settings />} />

@@ -6,6 +6,7 @@ import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
 
 import { ProfileHeader } from './profile-header/profile-header';
+import { ProfileStats } from './profile-stats';
 import { ProfileTabs } from './profile-tabs';
 
 async function ProfilePage() {
@@ -18,6 +19,7 @@ async function ProfilePage() {
   return (
     <>
       <ProfileHeader user={user} />
+      <ProfileStats user={user} />
       <ProfileTabs user={user} savedRecipes={savedRecipes} createdRecipes={createdRecipes} />
     </>
   );
