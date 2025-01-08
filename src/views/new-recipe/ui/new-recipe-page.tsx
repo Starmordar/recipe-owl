@@ -5,8 +5,8 @@ import { publicUrls } from '@/src/shared/config/url';
 import { RecipeDetailsForm } from '@/src/widgets/recipe-details-form';
 
 async function NewRecipePage() {
-  // const { user } = await validateRequest();
-  // if (user === null) redirect(publicUrls.signIn);
+  const { user } = await validateRequest();
+  if (user === null) redirect(publicUrls.signIn);
 
   return <RecipeDetailsForm title='Add Recipe' />;
 }
