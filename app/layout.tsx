@@ -19,6 +19,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
           <ThemeProvider
             attribute='class'
             defaultTheme='light'
+            storageKey='theme'
             enableSystem
             disableTransitionOnChange
           >

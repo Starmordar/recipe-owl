@@ -2,7 +2,8 @@ import { Settings } from 'lucide-react';
 
 import AppHeader from '@/src/shared/ui/app-header';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
-import { UserAvatar } from '@/src/shared/ui/user-avatar';
+
+import { SettingsDrawer } from '../settings-drawer';
 
 import { ShareProfile } from './share-profile';
 
@@ -20,7 +21,9 @@ function ProfileHeader({ user }: ProfileHeaderProps) {
       <div className='flex gap-x-3 items-center'></div>
       <div className='flex gap-x-3'>
         <ShareProfile user={user} />
-        <HeaderIconButton Icon={<Settings />} />
+        <SettingsDrawer>
+          <HeaderIconButton Icon={<Settings />} />
+        </SettingsDrawer>
       </div>
     </AppHeader>
   );
