@@ -6,11 +6,13 @@ const recipeQuickLinks = [
     title: 'Breakfast',
     picture: '/images/breakfast.webp',
     url: publicUrls.recipesSearch(`${searchFilter}=Завтрак`),
+    textColor: '#0c0a09',
   },
   {
     title: 'Pasta',
     picture: '/images/pasta.jpg',
     url: publicUrls.recipesSearch(`${searchFilter}=Паста`),
+    textColor: '#0c0a09',
   },
   {
     title: 'Chicken',
@@ -28,6 +30,7 @@ const recipeQuickLinks = [
     title: 'Soup',
     picture: '/images/soup.jpg',
     url: publicUrls.recipesSearch(`${searchFilter}=Суп`),
+    textColor: '#0c0a09',
   },
   {
     title: 'Bread',
@@ -39,6 +42,7 @@ const recipeQuickLinks = [
     title: 'Healthy',
     picture: '/images/healthy.webp',
     url: publicUrls.recipesSearch(`${searchFilter}=Полезное`),
+    textColor: '#0c0a09',
   },
   {
     title: 'Keto',
@@ -50,6 +54,7 @@ const recipeQuickLinks = [
     title: 'Salad',
     picture: '/images/salad.jpg',
     url: publicUrls.recipesSearch(`${searchFilter}=Салат`),
+    textColor: '#0c0a09',
   },
 ];
 

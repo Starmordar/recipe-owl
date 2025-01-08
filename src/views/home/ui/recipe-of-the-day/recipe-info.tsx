@@ -51,11 +51,13 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
       >
         <article
           ref={ref}
-          className='relative transform -translate-y-10 -mb-6 md:transform-none lex flex-col p-4 min-w-96 mx-6 rounded-lg bg-orange-100 z-100'
+          className='relative transform -translate-y-10 -mb-6 md:transform-none lex flex-col p-4 min-w-96 mx-6 rounded-lg bg-orange-100 dark:bg-orange-400 z-100'
         >
           <div className='absolute top-4 right-4 z-10 text-sm flex gap-2'>
             {recipe.tags.length > 0 && (
-              <div className='bg-lime-200 rounded-xl px-2 py-0.5'>{recipe.tags[0]}</div>
+              <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>
+                {recipe.tags[0]}
+              </div>
             )}
           </div>
 
