@@ -1,12 +1,8 @@
 'use client';
 
-import { Camera, Image as ImageIcon } from 'lucide-react';
-
 import { Accordion } from '@/src/shared/ui/accordion';
 import {
   Drawer,
-  DrawerActionButton,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
@@ -15,6 +11,7 @@ import {
 } from '@/src/shared/ui/drawer';
 
 import { DisplaySettings } from './display-settings';
+import { LanguageSettings } from './language-settings';
 
 import type { PropsWithChildren } from 'react';
 
@@ -32,7 +29,10 @@ function SettingsDrawer({ children }: SettingsDrawerProps) {
         </DrawerHeader>
 
         <div className='p-4'>
-          <DisplaySettings />
+          <Accordion type='multiple'>
+            <DisplaySettings />
+            <LanguageSettings />
+          </Accordion>
         </div>
       </DrawerContent>
     </Drawer>
