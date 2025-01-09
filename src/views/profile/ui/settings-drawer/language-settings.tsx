@@ -2,6 +2,7 @@
 
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { i18nConfig } from '@/src/shared/i18n/config';
 import { AccordionItem, AccordionTrigger, AccordionContent } from '@/src/shared/ui/accordion';
@@ -9,6 +10,7 @@ import { Label } from '@/src/shared/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/src/shared/ui/radio-group';
 
 function LanguageSettings() {
+  const t = useTranslations('ProfilePage.SettingsDrawer');
   const router = useRouter();
 
   function onLocaleChange(locale: string) {
@@ -18,7 +20,7 @@ function LanguageSettings() {
 
   return (
     <AccordionItem value='language'>
-      <AccordionTrigger>Language</AccordionTrigger>
+      <AccordionTrigger>{t('languageTitle')}</AccordionTrigger>
 
       <AccordionContent>
         <RadioGroup
@@ -27,11 +29,11 @@ function LanguageSettings() {
         >
           <div className='flex items-center space-x-2'>
             <RadioGroupItem value='en' id='en' />
-            <Label htmlFor='en'>English</Label>
+            <Label htmlFor='en'>{t('languageEnglish')}</Label>
           </div>
           <div className='flex items-center space-x-2'>
             <RadioGroupItem value='ru' id='ru' />
-            <Label htmlFor='ru'>Russian</Label>
+            <Label htmlFor='ru'>{t('languageRussian')}</Label>
           </div>
         </RadioGroup>
       </AccordionContent>

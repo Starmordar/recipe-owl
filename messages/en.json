@@ -225,6 +225,7 @@
     "shareCartText": "Here are the items I want to share with you.",
     "recipesTabTitle": "Recipes",
     "ingredientsTabTitle": "All Ingredients",
+
     "ActionsDrawer": {
       "title": "Action Buttons",
       "removeAllItems": "Remove All Items",
@@ -233,6 +234,27 @@
       "switchLists": " Switch Lists",
       "switchListsTitle": "Switch Grocery Carts",
       "myCart": "My Grocery Cart"
+    }
+  },
+  "ProfilePage": {
+    "shareUserTitle": "Explore {username} recipes | Recipe OWL App",
+    "shareUserText": "Explore {username}'s unique, delisious recipe!",
+    "following": "Following",
+    "followers": "Followers",
+    "editProfile": "Edit Profile",
+    "savedTabTitle": "Saved",
+    "createdTabTitle": "Created",
+
+    "SettingsDrawer": {
+      "title": "System Settings",
+      "description": "Update App Settings",
+      "displayTitle": "Display",
+      "displaySystem": "Use System Default",
+      "displayLight": "Light",
+      "displayDark": "Dark",
+      "languageTitle": "Language",
+      "languageEnglish": "English",
+      "languageRussian": "Russian"
     }
   },
   "QuickLinks": {

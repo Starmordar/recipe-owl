@@ -1,6 +1,7 @@
 'use client';
 
 import { LazyMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import SwipableTabs from '@/src/shared/ui/swipable-tabs';
@@ -20,18 +21,19 @@ interface ProfileTabsProps {
 }
 
 function ProfileTabs({ savedRecipes, createdRecipes, user }: ProfileTabsProps) {
+  const t = useTranslations('ProfilePage');
   const tabs = useMemo(
     () => ({
       saved: {
-        title: 'Saved',
+        title: t('savedTabTitle'),
         content: <SavedRecipes recipes={savedRecipes} />,
       },
       created: {
-        title: 'Created',
+        title: t('createdTabTitle'),
         content: <CreatedRecipes recipes={createdRecipes} />,
       },
     }),
-    [createdRecipes, savedRecipes],
+    [createdRecipes, savedRecipes, t],
   );
 
   const loadAnimationFeatures = () =>

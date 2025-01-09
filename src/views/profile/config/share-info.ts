@@ -1,8 +1,10 @@
+import { useTranslations } from 'next-intl';
+
 import type { User } from 'lucia';
 
-const profileShareInfo = (user: User) => ({
-  title: `Explore ${user.fullName} recipes | Recipe OWL App`,
-  text: `Explore ${user.fullName}'s unique, delisious recipe!`,
+const profileShareInfo = (user: User, t: ReturnType<typeof useTranslations>) => ({
+  title: t('ProfilePage.shareUserTitle', { username: user.fullName }),
+  text: t('ProfilePage.shareUserText', { username: user.fullName }),
 });
 
 export { profileShareInfo };
