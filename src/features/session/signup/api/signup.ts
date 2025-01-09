@@ -14,7 +14,7 @@ import type { FromValues } from '../model/schema';
 
 async function signUp(values: FromValues): Promise<{ error: string }> {
   const exists = await prisma.user.findFirst({ where: { email: values.email } });
-  if (exists) return { error: 'This email address is already in use. Please try another one.' };
+  if (exists) return { error: 'emailIsAlreadyInUse' };
 
   const hashedPassword = await new Argon2id().hash(values.password);
   const userId = generateIdFromEntropySize(10);

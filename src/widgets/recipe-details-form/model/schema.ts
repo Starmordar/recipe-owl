@@ -1,47 +1,52 @@
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 import { acceptedImageMimeTypes } from '@/src/shared/config/image';
 
-const ingredientSchema = z.object({
-  id: z.any(),
-  name: z.string().min(1, { message: 'Ingredient is required.' }),
-  unit: z.string().min(1, { message: 'Quantity.' }),
-});
+function useSchema() {
+  const t = useTranslations('RecipeForm.ClientErrors');
 
-const stepSchema = z.object({
-  description: z.string().min(1, { message: 'Description is required.' }),
-});
+  const ingredientSchema = z.object({
+    id: z.any(),
+    name: z.string().min(1, { message: t('ingredientNameRequired') }),
+    unit: z.string().min(1, { message: t('ingredientQuantityRequired') }),
+  });
 
-const schema = z.object({
-  image: z
-    .any()
-    .refine(file => file !== undefined && file !== null, {
-      message: 'Please upload an image of your recipe',
-    })
-    .refine(file => typeof file === 'string' || acceptedImageMimeTypes.includes(file?.type), {
-      message: 'Only .jpg, .jpeg, .png .avif and .webp formats are supported.',
+  const stepSchema = z.object({
+    description: z.string().min(1, { message: t('stepDescriptionRequired') }),
+  });
+
+  const schema = z.object({
+    image: z
+      .any()
+      .refine(file => file !== undefined && file !== null, {
+        message: t('noImage'),
+      })
+      .refine(file => typeof file === 'string' || acceptedImageMimeTypes.includes(file?.type), {
+        message: t('forbiddenImageFormat'),
+      }),
+    title: z
+      .string()
+      .min(2, {
+        message: t('titleMinChar', { len: 2 }),
+      })
+      .max(150, {
+        message: t('titleMaxChar', { len: 150 }),
+      }),
+    description: z.string().max(1000, {
+      message: t('descriptionMaxChar', { len: 1000 }),
     }),
-  title: z
-    .string()
-    .min(2, {
-      message: 'Title must be at least 2 characters.',
-    })
-    .max(150, {
-      message: 'Title should be no longer than 150 characters.',
-    }),
-  description: z.string().max(1000, {
-    message: 'Description should be no longer than 1000 characters.',
-  }),
-  source: z.string(),
-  cookTime: z.string(),
-  tags: z.array(z.string()).max(8, { message: 'You can add up to 8 tags only.' }),
-  ingredients: z
-    .array(ingredientSchema)
-    .min(1, { message: 'The recipe must include at least one ingredient.' }),
-  steps: z.array(stepSchema).min(1, { message: 'At least one step is required for the recipe.' }),
-});
+    source: z.string(),
+    cookTime: z.string(),
+    tags: z.array(z.string()).max(8, { message: t('tagsMaxCount', { count: 8 }) }),
+    ingredients: z.array(ingredientSchema).min(1, { message: t('ingredientsRequired') }),
+    steps: z.array(stepSchema).min(1, { message: t('stepsRequired') }),
+  });
 
-type FormValues = z.infer<typeof schema>;
+  return schema;
+}
+
+type FormValues = z.infer<ReturnType<typeof useSchema>>;
 
 const defaultValues: FormValues = {
   image: undefined,
@@ -55,4 +60,4 @@ const defaultValues: FormValues = {
 };
 
 export type { FormValues };
-export { defaultValues, schema };
+export { defaultValues, useSchema };

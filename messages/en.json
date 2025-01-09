@@ -66,7 +66,14 @@
       "submitPending": "Adding...",
       "itemsToAdd": "Items to Add",
       "itemsSelectAll": "Select All",
-      "itemsDeselectAll": "Deselect All"
+      "itemsDeselectAll": "Deselect All",
+      "ClientErrors": {
+        "selectAtLeastOneIngredient": "You have to select at least one ingredient."
+      },
+      "Toast": {
+        "successfullyAdded": "The ingredients added to your cart.",
+        "alreadyInCart": "This recipe is already in your cart."
+      }
     },
     "ManageRecipe": {
       "title": "Action Buttons",
@@ -108,6 +115,22 @@
       "tags": "Tags",
       "tagsAction": "Set Tags",
       "tagsPlaceholder": "Tags help categorize your recipe and make it easier for others to find."
+    },
+    "ClientErrors": {
+      "noImage": "Please upload an image of your recipe",
+      "forbiddenImageFormat": "Only .jpg, .jpeg, .png .avif and .webp formats are supported.",
+      "titleMinChar": "Title must be at least {len} characters.",
+      "titleMaxChar": "Title should be no longer than {len} characters.",
+      "descriptionMaxChar": "Description should be no longer than 1000 characters.",
+      "tagsMaxCount": "You can add up to {count} tags only.",
+      "ingredientsRequired": "The recipe must include at least one ingredient.",
+      "stepsRequired": "At least one step is required for the recipe.",
+      "ingredientNameRequired": "Ingredient is required.",
+      "ingredientQuantityRequired": "Quantity is required.",
+      "stepDescriptionRequired": "Description is required."
+    },
+    "ServerErrors": {
+      "unexpectedError": "There was a problem with your request."
     },
     "Ingredients": {
       "title": "Ingredients",
@@ -341,6 +364,24 @@
     "signUpFormTitle": "Please add your name, email and password.",
     "termsWarning": "By signing up you agree to the <terms>Terms of Service</terms> and <policy>Privacy Policy</policy>",
     "signInAction": "Sign In"
+  },
+  "AuthForm": {
+    "ClientErrors": {
+      "passwordMinChar": "Password must be at least {len} characters long.",
+      "passwordMaxChar": "Password must not exceed {len} characters.",
+      "passwordOneLowercase": "Password must contain at least one lowercase letter.",
+      "passwordOneUppercase": "Password must contain at least one uppercase letter.",
+      "passwordOneNumber": "Password must contain at least one number.",
+      "passwordsDoNotMatch": "Passwords do not match. Please ensure both fields are identical.",
+      "emailInvalidFormat": "Please enter a valid email address.",
+      "fullnameMinChar": "Full name must be at least {len} characters long.",
+      "fullnameMaxChar": "Full name cannot exceed 100 characters.",
+      "fullNameForbiddenChar": "Full name can only contain letters and spaces."
+    },
+    "ServerErrors": {
+      "incorrectData": "Incorrect username or password",
+      "emailIsAlreadyInUse": "This email address is already in use. Please try another one."
+    }
   },
   "QuickLinks": {
     "Breakfast": "Breakfast",

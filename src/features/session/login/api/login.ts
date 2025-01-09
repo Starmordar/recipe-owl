@@ -13,10 +13,10 @@ import type { FormValues } from '../model/schema';
 
 async function login(values: FormValues): Promise<{ error: string }> {
   const user = await prisma.user.findUnique({ where: { email: values.email } });
-  if (!user || !user.hashedPassword) return { error: 'Incorrect username or password' };
+  if (!user || !user.hashedPassword) return { error: 'incorrectData' };
 
   const validPassword = await new Argon2id().verify(user.hashedPassword, values.password);
-  if (!validPassword) return { error: 'Incorrect username or password' };
+  if (!validPassword) return { error: 'incorrectData' };
 
   const session = await lucia.createSession(user.id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);

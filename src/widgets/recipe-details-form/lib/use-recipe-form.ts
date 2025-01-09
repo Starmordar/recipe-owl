@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
@@ -8,7 +9,7 @@ import { publicUrls } from '@/src/shared/config/url';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { toast } from '@/src/shared/ui/use-toast';
 
-import { schema, defaultValues } from '../model/schema';
+import { useSchema, defaultValues } from '../model/schema';
 import { valuesToFormData } from '../model/values-to-form-data';
 
 import type { FormValues } from '../model/schema';
@@ -19,11 +20,13 @@ interface UseRecipeFormOptions {
 }
 
 function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
+  const t = useTranslations('RecipeForm.ServerErrors');
   const [createAction, isPendingCreate] = useServerAction(createRecipe);
   const [updateAction, isPendingUpdate] = useServerAction(updateRecipe);
 
   const router = useRouter();
 
+  const schema = useSchema();
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: initialValues ?? defaultValues,
@@ -42,7 +45,7 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
       console.log('error :>> ', error);
       toast({
         variant: 'destructive',
-        description: 'There was a problem with your request.',
+        description: t('unexpectedError'),
         duration: 2000,
         title: JSON.stringify(error) as string,
       });

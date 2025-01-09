@@ -1,20 +1,27 @@
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 import { passwordSchema, emailSchema, fullNameSchema } from '@/src/entities/user';
 
-const schema = z
-  .object({
-    fullName: fullNameSchema,
-    email: emailSchema,
-    password: passwordSchema,
-    confirmPassword: passwordSchema,
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'Passwords do not match. Please ensure both fields are identical.',
-    path: ['confirmPassword'],
-  });
+function useSchema() {
+  const t = useTranslations('AuthForm');
 
-type FromValues = z.infer<typeof schema>;
+  const schema = z
+    .object({
+      fullName: fullNameSchema(t),
+      email: emailSchema(t),
+      password: passwordSchema(t),
+      confirmPassword: passwordSchema(t),
+    })
+    .refine(data => data.password === data.confirmPassword, {
+      message: t('passwordsDoNotMatchError'),
+      path: ['confirmPassword'],
+    });
+
+  return schema;
+}
+
+type FromValues = z.infer<ReturnType<typeof useSchema>>;
 
 const defaultFormValues: FromValues = {
   fullName: '',
@@ -24,4 +31,4 @@ const defaultFormValues: FromValues = {
 };
 
 export type { FromValues };
-export { schema, defaultFormValues };
+export { useSchema, defaultFormValues };

@@ -1,15 +1,17 @@
-// import { ToastAction } from '@/src/shared/ui/toast';
+import { useTranslations } from 'next-intl';
 
 import type { ToasterToast } from '@/src/shared/ui/use-toast';
 
-const successToast: Omit<ToasterToast, 'id'> = {
-  title: 'The ingredients added to your cart.',
-  // action: <ToastAction altText='Go to Cart'>Go to Cart</ToastAction>,
-};
+function successToast(t: ReturnType<typeof useTranslations>): Omit<ToasterToast, 'id'> {
+  return {
+    title: t('successfullyAdded'),
+  };
+}
 
-const alreadyInCartToast: Omit<ToasterToast, 'id'> = {
-  title: 'This recipe is already in your cart.',
-  variant: 'destructive',
-};
-
+function alreadyInCartToast(t: ReturnType<typeof useTranslations>): Omit<ToasterToast, 'id'> {
+  return {
+    title: t('alreadyInCart'),
+    variant: 'destructive',
+  };
+}
 export { successToast, alreadyInCartToast };

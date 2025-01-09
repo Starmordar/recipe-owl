@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Cookies from 'js-cookie';
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { shareTokenCookieName } from '@/src/entities/cart/config/share-token';
@@ -7,7 +8,7 @@ import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { toast } from '@/src/shared/ui/use-toast';
 
 import { addIngredientsToCart } from '../api/add-ingredients-to-cart';
-import { FormValues, schema } from '../model/schema';
+import { FormValues, useSchema } from '../model/schema';
 
 import { alreadyInCartToast, successToast } from './toast';
 
@@ -18,8 +19,10 @@ interface UseIngredientsFormOptions {
 }
 
 function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
+  const t = useTranslations('RecipeDetails.AddToCart.Toast');
   const [addToCartAction, isPending] = useServerAction(addIngredientsToCart);
 
+  const schema = useSchema();
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { ingredients: recipe.ingredients.map(ingredient => ingredient.id) },
@@ -29,8 +32,8 @@ function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
     const shareToken = Cookies.get(shareTokenCookieName);
 
     await addToCartAction(recipe.id, values.ingredients, quantity, shareToken)
-      .then(() => toast(successToast))
-      .catch(() => toast(alreadyInCartToast));
+      .then(() => toast(successToast(t)))
+      .catch(() => toast(alreadyInCartToast(t)));
   }
 
   return { form, isPending, onSubmit };
