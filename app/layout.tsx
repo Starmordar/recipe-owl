@@ -1,16 +1,17 @@
 import './globals.css';
 import { Open_Sans } from 'next/font/google';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 import { ThemeProvider, ReactQueryClientProvider, appMetadata, I18nProvider } from '@/src/app';
 import { cn } from '@/src/shared/lib/classnames';
 import { Toaster } from '@/src/shared/ui/toaster';
 
-import type { Metadata } from 'next';
-
 const font = Open_Sans({ subsets: ['latin', 'cyrillic'] });
 
-export const metadata: Metadata = appMetadata;
+export async function generateMetadata() {
+  const t = await getTranslations('Metadata');
+  return appMetadata(t);
+}
 
 async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const locale = await getLocale();

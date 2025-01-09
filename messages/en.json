@@ -1,4 +1,12 @@
 {
+  "Metadata": {
+    "App": {
+      "title": "Recipe OWL",
+      "description": "Discover, organize, and manage your favorite recipes with ease. Recipe OWL lets you add personal recipes, create grocery lists, and bring your culinary ideas to life—all in one place!",
+      "keywords": "Recipe OWL, recipe manager, personal recipes, grocery list, organize recipes, cooking app, save recipes, recipe book",
+      "authorName": "Roman Borovik"
+    }
+  },
   "Shared": {
     "readMore": "Read more",
     "readLess": "Read Less"
