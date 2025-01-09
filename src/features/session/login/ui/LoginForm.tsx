@@ -1,6 +1,7 @@
 'use client';
 
 import { AlertCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Alert, AlertDescription, AlertTitle } from '@/src/shared/ui/alert';
 import { Button } from '@/src/shared/ui/button';
@@ -11,6 +12,7 @@ import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useLoginForm } from '../lib/use-login-form';
 
 function LoginForm() {
+  const t = useTranslations('AuthPage');
   const { form, pending, onSubmit } = useLoginForm();
   const globalError = form.formState.errors.root?.globalError ?? {};
 
@@ -20,7 +22,7 @@ function LoginForm() {
         {globalError.type === '400' && (
           <Alert variant='destructive'>
             <AlertCircle className='h-5 w-5' />
-            <AlertTitle>Validation Error</AlertTitle>
+            <AlertTitle>{t('validationError')}</AlertTitle>
             <AlertDescription>{globalError.message}</AlertDescription>
           </Alert>
         )}
@@ -31,7 +33,7 @@ function LoginForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <Input placeholder='Enter your email address' {...field} />
+                <Input placeholder={t('emailPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -44,7 +46,7 @@ function LoginForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <PasswordInput placeholder='Enter your password' {...field} />
+                <PasswordInput placeholder={t('passwordPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -55,10 +57,10 @@ function LoginForm() {
           className='gap-2 w-full'
           type='submit'
           loading={pending}
-          loadingText='Signing In... '
+          loadingText={t('signInPending')}
           loadingClassName='h-5 w-5'
         >
-          Sign In
+          {t('signInLink')}
         </Button>
       </form>
     </Form>

@@ -257,6 +257,31 @@
       "languageRussian": "Russian"
     }
   },
+  "AuthPage": {
+    "signInTitle": "Log in to your account",
+    "signInText": "Access your Recipe OWL account to continue exploring and managing your favorite recipes!",
+    "or": "or",
+    "signInChangeOption": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signInLink": "Sign In",
+    "signInPending": "Signing In...",
+    "signUpPending": "Creating an Account...",
+    "signInWithGoogle": "Sign in with Google",
+    "validationError": "Validation Error",
+    "fullnamePlaceholder": "Enter a full name",
+    "emailPlaceholder": "Enter your email address",
+    "passwordPlaceholder": "Enter your password",
+    "createPasswordPlaceholder": "Create a password",
+    "confirmPasswordPlaceholder": "Create a password",
+    "signUpTitle": "Join Recipe OWL",
+    "signUpText1": "Store all your favorite recipes in one place.",
+    "signUpText2": "Share your own recipes with others.",
+    "signUpWithGoogle": "Sign up with Google",
+    "signUpWithEmail": "Sign up with email",
+    "signUpChangeOption": "Already have an account?",
+    "signUpFormTitle": "Please add your name, email and password.",
+    "termsWarning": "By signing up you agree to the <terms>Terms of Service</terms> and <policy>Privacy Policy</policy>"
+  },
   "QuickLinks": {
     "Breakfast": "Breakfast",
     "Pasta": "Pasta",

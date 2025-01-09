@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Button } from '@/src/shared/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
@@ -8,6 +10,7 @@ import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useSignupForm } from '../lib/use-signup-form';
 
 function SignupForm() {
+  const t = useTranslations('AuthPage');
   const { form, pending, onSubmit } = useSignupForm();
 
   return (
@@ -19,7 +22,7 @@ function SignupForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <Input placeholder='Enter a full name' {...field} />
+                <Input placeholder={t('fullnamePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -31,7 +34,7 @@ function SignupForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <Input placeholder='Enter your email address' {...field} />
+                <Input placeholder={t('emailPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -44,7 +47,7 @@ function SignupForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <PasswordInput placeholder='Create a password' {...field} />
+                <PasswordInput placeholder={t('createPasswordPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,7 +59,7 @@ function SignupForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <PasswordInput placeholder='Enter your password again' {...field} />
+                <PasswordInput placeholder={t('confirmPasswordPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -67,10 +70,10 @@ function SignupForm() {
           className='gap-2 w-full'
           type='submit'
           loading={pending}
-          loadingText='Creating an Account... '
+          loadingText={t('signUpPending')}
           loadingClassName='h-5 w-5'
         >
-          Sign Up
+          {t('signUpLink')}
         </Button>
       </form>
     </Form>
