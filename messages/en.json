@@ -161,6 +161,45 @@
         "Quick": "Quick",  
         "Under 1 Hour": "Under 1 Hour",  
         "I Got Time": "I Got Time"
+      },
+      "Descriptions": {
+        "Bad Day": "Comfort Food for Tough Times",  
+        "Chill": "Relax and Savor the Moment",  
+        "Curious": "Taste the Unexpected",  
+        "Date Night": "Make It a Night to Remember",  
+        "Energized": "Power Up with Every Bite",  
+        "Feel Good": "Food to Make You Smile",  
+        "Guilty": "Cheat Day Covered",  
+        "Happy": "Celebrate Every Bite",  
+        "Impress": "Cook to Impress",  
+        "Lazy": "Cook Smart, Relax Hard",  
+        "Party": "The Life of the Party",  
+        "African": "A Bite of Africa",  
+        "American": "Burgers, Fries, and Freedom",  
+        "Asian": "Asia on a Plate",  
+        "British": "Timeless British Traditions",  
+        "Chinese": "Savor the Taste of China",  
+        "European": "Passport to Flavor",  
+        "French": "The Art of French Cuisine",  
+        "German": "Hearty German Classics",  
+        "Georgian": "Georgia Tastes, Every Bite",  
+        "Greek": "Feta Than Ever",  
+        "Indian": "Spices and Soul from India",  
+        "Israeli": "Taste the Vibrancy of Israel",  
+        "Italian": "Mamma Mia, That’s Good!",  
+        "Mexican": "Vibrant Mexican Dishes",  
+        "Spanish": "A Feast of Spanish Flavors",  
+        "Vietnamese": "Bánh Mì and Beyond",  
+        "Healthy": "Healthy Can Be Tasty!",  
+        "High Protein": "Fuel Up with Protein Meals",  
+        "Low Energy": "Eat Light, Stay Bright!",  
+        "Low Fat": "No Fat, All Flavor!",  
+        "Low Sugars": "Sweetness Without the Sugar",  
+        "Vegan": "Plant-Based Perfection",  
+        "Vegetarian": "No Meat, No Problem!",  
+        "Easy": "No Sweat, Just Eat!",  
+        "Level Up": "Master the Kitchen",  
+        "Skilled": "Chef Mode: Activated"
       }
     },
     "Drawer": {
@@ -171,6 +210,23 @@
     }
   },
   "HomePage": {
-    "title": "Recipe of the Day"
+    "title": "Recipe of the Day",
+    "readMoreLink": "Read more about Recipe of the Day",
+    "letsCook": "Let's cook!",
+    "latestRecipes": "Our Latest Recipes",
+    "recentlyViewed": "Recently Viewed",
+    "popularThisWeek": "Popular Recipes This Week",
+    "quickLinks": "Quick Links For You"
+  },
+  "QuickLinks": {
+    "Breakfast": "Breakfast",
+    "Pasta": "Pasta",
+    "Chicken": "Chicken",
+    "Salmon": "Salmon",
+    "Soup": "Soup",
+    "Bread": "Bread",
+    "Healthy": "Healthy",
+    "Keto": "Keto",
+    "Salad": "Salad"
   }
 } 

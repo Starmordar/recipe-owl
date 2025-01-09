@@ -19,7 +19,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
   return (
     <>
       <article className='hidden md:flex flex-col relative col-span-2 pr-4 lg:pr-8 py-6'>
-        <span className='text-lg mb-2'>{t('title')}</span>
+        <span className='text-lg mb-2'>{t('HomePage.title')}</span>
 
         <div className='flex flex-col gap-y-4'>
           <h1 className='md:text-4xl lg:text-5xl font-semibold md:font-bold'>{recipe.title}</h1>
@@ -42,10 +42,10 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
           <Link
             href={publicUrls.recipe(recipe.id)}
             className='self-start'
-            aria-label='Read more about Recipe of the Day'
+            aria-label={t('HomePage.readMoreLink')}
           >
             <Button size='lg' className='text-base'>
-              Let&apos;s Cook!
+              {t('HomePage.letsCook')}
             </Button>
           </Link>
           <RecipeAuthor author={recipe.user} avatarSize={28} />
@@ -54,7 +54,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
 
       <Link
         href={publicUrls.recipe(recipe.id)}
-        aria-label='Read more about Recipe of the Day'
+        aria-label={t('HomePage.readMoreLink')}
         className='flex justify-center md:hidden'
       >
         <article
@@ -69,7 +69,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
             )}
           </div>
 
-          <span className='text-base'>Recipe of the Day</span>
+          <span className='text-base'>{t('HomePage.title')}</span>
 
           <div className='flex flex-col gap-y-4 mt-2'>
             <h1 className='text-3xl font-semibold'>{recipe.title}</h1>

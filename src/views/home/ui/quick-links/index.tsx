@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import {
   Carousel,
@@ -12,9 +13,11 @@ import {
 import { recipeQuickLinks } from '../../config/recipe-quick-links';
 
 function QuickLinks() {
+  const t = useTranslations();
+
   return (
     <section className='space-y-2 md:space-y-4'>
-      <h2 className='text-xl md:text-2xl font-semibold'>Quick Links For You</h2>
+      <h2 className='text-xl md:text-2xl font-semibold'>{t('HomePage.quickLinks')}</h2>
 
       <Carousel className='w-full'>
         <CarouselContent>
@@ -36,7 +39,7 @@ function QuickLinks() {
                   className='absolute inset-x-0 bottom-2 text-base text-center font-medium'
                   style={{ color: textColor ?? 'inherit' }}
                 >
-                  {title}
+                  {t(`QuickLinks.${title}`)}
                 </p>
               </Link>
             </CarouselItem>

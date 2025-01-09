@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import { getRecentlyViewed } from '@/src/entities/recipe';
 import { validateRequest } from '@/src/shared/api/auth';
 
@@ -10,7 +12,8 @@ async function RecentlyViewed() {
   const recipes = await getRecentlyViewed(user.id);
   if (recipes.length === 0) return null;
 
-  return <RecipePreviewSection sectionTitle='Recently Viewed' recipes={recipes} />;
+  const t = await getTranslations('HomePage');
+  return <RecipePreviewSection sectionTitle={t('recentlyViewed')} recipes={recipes} />;
 }
 
 export { RecentlyViewed };
