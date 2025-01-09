@@ -1,6 +1,7 @@
 'use client';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import * as React from 'react';
 
 import { cn } from '@/src/shared/lib/classnames';
@@ -9,6 +10,7 @@ import { Input, type InputProps } from '@/src/shared/ui/input';
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
+    const t = useTranslations('PasswordInput');
     const [showPassword, setShowPassword] = React.useState(false);
     const disabled = props.value === '' || props.value === undefined || props.disabled;
 
@@ -34,7 +36,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           ) : (
             <EyeOffIcon className='h-4 w-4' aria-hidden='true' />
           )}
-          <span className='sr-only'>{showPassword ? 'Hide password' : 'Show password'}</span>
+          <span className='sr-only'>{showPassword ? t('hidePassword') : t('showPassword')}</span>
         </Button>
       </div>
     );

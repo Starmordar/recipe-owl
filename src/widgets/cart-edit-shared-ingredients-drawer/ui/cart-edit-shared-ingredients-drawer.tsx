@@ -1,6 +1,7 @@
 'use client';
 
 import { DialogTitle } from '@radix-ui/react-dialog';
+import { useTranslations } from 'next-intl';
 
 import { applyQuantityToUnit } from '@/src/entities/cart';
 import { RemoveIngredient } from '@/src/features/cart/remove-ingredient';
@@ -14,15 +15,17 @@ interface EditSharedIngredietDrawerProps extends PropsWithChildren {
 }
 
 function EditSharedIngredietDrawer({ children, item }: EditSharedIngredietDrawerProps) {
+  const t = useTranslations('CartPage.EditShareIngredientsDrawer');
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DialogTitle className='sr-only'>Action Buttons</DialogTitle>
+        <DialogTitle className='sr-only'>{t('title')}</DialogTitle>
 
         <ul className='my-4 space-y-4'>
-          {item.ingredients.length === 0 && 'No Ingredients'}
+          {item.ingredients.length === 0 && t('noIngredients')}
 
           {item.ingredients.map(ingredient => (
             <li key={ingredient.id} className='flex gap-4 px-4'>

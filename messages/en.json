@@ -7,7 +7,7 @@
       "authorName": "Roman Borovik"
     }
   },
-  "Shared": {
+  "ReadMoreText": {
     "readMore": "Read more",
     "readLess": "Read Less"
   },
@@ -19,6 +19,27 @@
   "DraggableFields": {
     "done": "Done",
     "reorder": "Reorder"
+  },
+  "InputSpinner": {
+    "decreaseValue": "Decrease value",
+    "increaseValue": "Increase value"
+  },
+  "PasswordInput": {
+    "hidePassword": "Hide password",
+    "showPassword": "Show password"
+  },
+  "NavBar": {
+    "home": "Home",
+    "recipes": "Discover",
+    "newRecipe": "New Recipe",
+    "cart": "My Cart",
+    "profile": "Profile",
+    "profilePictureAlt": "Profile Picture"
+  },
+  "RecipesPage": {
+    "loadingRecipes": "Fetching...",
+    "emptySearchResultTitle": "No Recipes Found",
+    "emptySearchResultText": "We couldn't find any recipes that match your search."
   },
   "RecipeDetails": {
     "Description": {
@@ -63,6 +84,12 @@
       "title": "Recipe OWL: Discover, Cook, Share – The Wise Way"
     }
   },
+  "DeleteRecipeModal": {
+    "title": "Are you absolutely sure?",
+    "description": "This action cannot be undone. This will permanently delete your recipe.",
+    "cancel": "Cancel",
+    "submit": "Delete"
+  },
   "RecipeForm": {
     "createTitle": "Add Recipe",
     "updateTitle": "Edit Recipe",
@@ -99,6 +126,13 @@
       "takePicture": "Take a Picture",
       "chooseFromGallery": "Choose from Gallery"
     },
+    "AddTagsDrawer": {
+      "title": "Search By Tag Names",
+      "description": "Tags help categorize your recipe and make it easier for others to find.",
+      "searchPlaceholder": "Search Tag",
+      "cancel": "Reset",
+      "submit": "Apply"
+    },
     "CookTimeDrawer": {
       "title": "Cook Time",
       "description": "How long does it take to cook this recipe?",
@@ -112,7 +146,8 @@
       "clear": "Clear Search and Filters",
       "cancel": "Cancel",
       "popularSearches": "Popular searches",
-      "recentSearches": "Recent searches"
+      "recentSearches": "Recent searches",
+      "savedRecipes": "Recipes I've Saved"
     },
     "Ingredients": {
       "title": "Search By Ingredients",
@@ -233,8 +268,16 @@
     "shareCartText": "Here are the items I want to share with you.",
     "recipesTabTitle": "Recipes",
     "ingredientsTabTitle": "All Ingredients",
+    "emptyCartTitle": "Empty Cart",
+    "emtyCartText": "Place the recipe here to buy them right away or not to forget later.",
+    "checkIngredient": "Check item",
+    "uncheckIngredient": "Uncheck item",
+    "checkIngredientLabel": "Check item",
+    "removeRecipeLabel": "Remove Recipe from Cart",
+    "sharedIngredients": "Shared Ingredients",
 
     "ActionsDrawer": {
+      "trigger": "More Options",
       "title": "Action Buttons",
       "removeAllItems": "Remove All Items",
       "disableSharing": "Disable Sharing",
@@ -242,6 +285,10 @@
       "switchLists": " Switch Lists",
       "switchListsTitle": "Switch Grocery Carts",
       "myCart": "My Grocery Cart"
+    },
+    "EditShareIngredientsDrawer": {
+      "title": "Action Buttons",
+      "noIngredients": "No Ingredients"
     }
   },
   "ProfilePage": {
@@ -252,6 +299,10 @@
     "editProfile": "Edit Profile",
     "savedTabTitle": "Saved",
     "createdTabTitle": "Created",
+    "emptyCreatedTabTitle": "No created recipes yet",
+    "emptyCreatedTabText": "You haven't created any recipes.",
+    "emptySavedTabTitle": "No saved recipes yet",
+    "emptySavedTabText": "You haven't saved any recipes. Find and save recipes to cook and see them here!",
 
     "SettingsDrawer": {
       "title": "System Settings",
@@ -288,7 +339,8 @@
     "signUpWithEmail": "Sign up with email",
     "signUpChangeOption": "Already have an account?",
     "signUpFormTitle": "Please add your name, email and password.",
-    "termsWarning": "By signing up you agree to the <terms>Terms of Service</terms> and <policy>Privacy Policy</policy>"
+    "termsWarning": "By signing up you agree to the <terms>Terms of Service</terms> and <policy>Privacy Policy</policy>",
+    "signInAction": "Sign In"
   },
   "QuickLinks": {
     "Breakfast": "Breakfast",

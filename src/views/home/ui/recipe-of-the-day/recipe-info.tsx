@@ -88,9 +88,11 @@ interface RecipeTagsProps {
 }
 
 function RecipeTags({ tags }: RecipeTagsProps) {
+  const t = useTranslations('RecipeDetails.Description');
+
   return (
     <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
-      Tags:
+      {t('tags')}
       {tags.map(tag => (
         <div
           key={tag}

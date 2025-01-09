@@ -9,7 +9,6 @@ async function LatestRecipes() {
   if (recipes.length === 0) return null;
 
   const t = await getTranslations('HomePage');
-
   return <RecipePreviewSection sectionTitle={t('latestRecipes')} recipes={recipes} />;
 }
 

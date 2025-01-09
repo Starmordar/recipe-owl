@@ -13,7 +13,7 @@ interface ReadMoreTextProps extends PropsWithChildren {
 
 const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
   ({ className, children }, ref) => {
-    const t = useTranslations('Shared');
+    const t = useTranslations('ReadMoreText');
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [isExpanded, setIsExpanded] = useState(false);

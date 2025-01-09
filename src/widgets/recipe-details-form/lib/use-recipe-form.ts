@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { createRecipe, updateRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
-import { errorToast, toast } from '@/src/shared/ui/use-toast';
+import { toast } from '@/src/shared/ui/use-toast';
 
 import { schema, defaultValues } from '../model/schema';
 import { valuesToFormData } from '../model/values-to-form-data';
@@ -40,7 +40,12 @@ function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
       return recipe ?? null;
     } catch (error) {
       console.log('error :>> ', error);
-      toast({ ...errorToast, title: JSON.stringify(error) as string });
+      toast({
+        variant: 'destructive',
+        description: 'There was a problem with your request.',
+        duration: 2000,
+        title: JSON.stringify(error) as string,
+      });
       return null;
     }
   }

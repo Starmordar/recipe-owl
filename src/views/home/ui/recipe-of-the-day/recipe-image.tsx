@@ -38,7 +38,7 @@ const RecipeImage = forwardRef<HTMLDivElement, RecipeImageProps>(
             <Image
               className='object-cover'
               src={recipe.imageUrl}
-              alt={`Recipe of the day: ${recipe.title}`}
+              alt={`${recipe.title}`}
               fill
               sizes='(max-width: 768px) 100vw, 500px'
               priority

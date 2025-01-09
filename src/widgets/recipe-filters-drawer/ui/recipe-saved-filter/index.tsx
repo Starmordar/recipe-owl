@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { onlySavedCategory } from '@/src/entities/recipe';
 import { Switch } from '@/src/shared/ui/switch';
 
@@ -9,6 +11,7 @@ interface RecipeSavedFilterProps {
 }
 
 function RecipeSavedFilter({ selected, onFilterChange }: RecipeSavedFilterProps) {
+  const t = useTranslations('RecipeFilters.Search');
   const [checked] = selected;
 
   function handleFilterChange(checked: boolean) {
@@ -18,7 +21,7 @@ function RecipeSavedFilter({ selected, onFilterChange }: RecipeSavedFilterProps)
   return (
     <div className='flex justify-between py-4'>
       <label htmlFor='only-saved' className='text-lg font-semibold leading-tight'>
-        Recipes I&apos;ve Saved
+        {t('savedRecipes')}
       </label>
       <Switch id='only-saved' checked={checked === 'true'} onCheckedChange={handleFilterChange} />
     </div>

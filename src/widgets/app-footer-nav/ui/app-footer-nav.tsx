@@ -3,15 +3,18 @@
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 
 import { userQueries } from '@/src/entities/user';
 import { cn } from '@/src/shared/lib/classnames';
 
-import { items } from './items';
+import { items as navbarItems } from './items';
 
 import type { NavbarItem } from '../model/types';
 
 function AppFooterNav() {
+  const t = useTranslations('NavBar');
   const pathname = usePathname();
   const { data: user } = useQuery(userQueries.current());
 
@@ -19,6 +22,10 @@ function AppFooterNav() {
     if (match) return match(pathname);
     return pathname.startsWith(href);
   }
+
+  const items = useMemo(() => {
+    return navbarItems(t);
+  }, [t]);
 
   return (
     <nav className='sticky bottom-0 w-full flex justify-center bg-background border-t z-50'>

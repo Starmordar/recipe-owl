@@ -1,6 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { useCart } from '@/src/entities/cart';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
@@ -13,6 +14,7 @@ interface RemoveRecipeProps {
 }
 
 function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
+  const t = useTranslations('CartPage');
   const { cartId } = useCart();
   const [removeRecipeAction, isPending] = useServerAction(removeRecipe);
 
@@ -25,7 +27,7 @@ function RemoveRecipe({ recipeId }: RemoveRecipeProps) {
       loading={isPending}
       loadingText=''
       loadingClassName='h-6 w-6'
-      aria-label='Remove Recipe from Cart'
+      aria-label={t('removeRecipeLabel')}
     >
       <X className='h-6 w-6' />
     </Button>

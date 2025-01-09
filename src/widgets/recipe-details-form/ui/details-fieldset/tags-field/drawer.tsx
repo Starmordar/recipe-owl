@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
+import { useTranslations } from 'next-intl';
 import { PropsWithChildren, useState } from 'react';
 
 import { recipeQueries } from '@/src/entities/recipe';
@@ -25,6 +26,7 @@ interface TagsDrawerProps extends PropsWithChildren {
 }
 
 function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
+  const t = useTranslations('RecipeForm.AddTagsDrawer');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState(value);
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,16 +48,14 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
       <DrawerContent>
         <div className='mx-auto w-full max-w-sm'>
           <DrawerHeader>
-            <DrawerTitle>Search By Tag Names</DrawerTitle>
-            <DrawerDescription className='sr-only'>
-              Tags help categorize your recipe and make it easier for others to find.
-            </DrawerDescription>
+            <DrawerTitle>{t('title')}</DrawerTitle>
+            <DrawerDescription className='sr-only'>{t('description')}</DrawerDescription>
           </DrawerHeader>
 
           <div className='flex flex-col'>
             <div className='my-2'>
               <Search
-                placeholder='Search Tag'
+                placeholder={t('searchPlaceholder')}
                 data={[]}
                 searchTerm={searchTerm}
                 setSearchTerm={nextValue => setSearchTerm(nextValue)}
@@ -97,13 +97,13 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
           <DrawerFooter className='flex flex-row w-full'>
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' variant='outline' onClick={() => onChange([])}>
-                Reset
+                {t('cancel')}
               </Button>
             </DrawerClose>
 
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' onClick={() => onChange(selectedTags)}>
-                Apply
+                {t('submit')}
               </Button>
             </DrawerClose>
           </DrawerFooter>
