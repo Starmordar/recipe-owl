@@ -21,15 +21,15 @@ interface ProfileTabsProps {
 }
 
 function ProfileTabs({ savedRecipes, createdRecipes, user }: ProfileTabsProps) {
-  const t = useTranslations('ProfilePage');
+  const t = useTranslations('ProfilePage.Tabs');
   const tabs = useMemo(
     () => ({
       saved: {
-        title: t('savedTabTitle'),
+        title: t('savedRecipes'),
         content: <SavedRecipes recipes={savedRecipes} />,
       },
       created: {
-        title: t('createdTabTitle'),
+        title: t('createdRecipes'),
         content: <CreatedRecipes recipes={createdRecipes} />,
       },
     }),

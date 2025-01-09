@@ -15,7 +15,7 @@ interface EditSharedIngredietDrawerProps extends PropsWithChildren {
 }
 
 function EditSharedIngredietDrawer({ children, item }: EditSharedIngredietDrawerProps) {
-  const t = useTranslations('CartPage.EditShareIngredientsDrawer');
+  const t = useTranslations('CartPage.EditIngredientsDrawer');
 
   return (
     <Drawer>
@@ -25,7 +25,7 @@ function EditSharedIngredietDrawer({ children, item }: EditSharedIngredietDrawer
         <DialogTitle className='sr-only'>{t('title')}</DialogTitle>
 
         <ul className='my-4 space-y-4'>
-          {item.ingredients.length === 0 && t('noIngredients')}
+          {item.ingredients.length === 0 && t('noIngredientsText')}
 
           {item.ingredients.map(ingredient => (
             <li key={ingredient.id} className='flex gap-4 px-4'>

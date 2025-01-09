@@ -6,6 +6,8 @@ import { publicUrls } from '@/src/shared/config/url';
 
 import { parseCookTime } from '../lib/parseCookTime';
 
+import { RecipeTagsSummary } from './recipe-tags-summary';
+
 import type { RecipePreview } from '../model/types';
 
 interface RecipeCardProps {
@@ -37,20 +39,16 @@ interface TagsSectionProps {
 }
 
 function TagsSection({ recipe }: TagsSectionProps) {
-  const t = useTranslations();
+  const t = useTranslations('RecipeDetailsPage.General');
 
   return (
     <div className='absolute top-2 left-2 z-10 text-sm flex gap-2'>
       {recipe.cookTime && (
         <div className='bg-orange-200 dark:bg-orange-600 rounded-xl px-2 py-0.5'>
-          {t('RecipeDetails.Description.cookTime', { ...parseCookTime(recipe.cookTime ?? '') })}
+          {t('cookTime', { ...parseCookTime(recipe.cookTime ?? '') })}
         </div>
       )}
-      {recipe.tags.length > 0 && (
-        <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>
-          {t(`RecipeFilters.Tags.Items.${recipe.tags[0]}`)}
-        </div>
-      )}
+      <RecipeTagsSummary tags={recipe.tags} />
     </div>
   );
 }

@@ -26,7 +26,7 @@ interface TagsDrawerProps extends PropsWithChildren {
 }
 
 function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
-  const t = useTranslations('RecipeForm.AddTagsDrawer');
+  const t = useTranslations('RecipeFormPage.AddTagsDrawer');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState(value);
   const [searchTerm, setSearchTerm] = useState('');
@@ -97,13 +97,13 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
           <DrawerFooter className='flex flex-row w-full'>
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' variant='outline' onClick={() => onChange([])}>
-                {t('cancel')}
+                {t('cancelAction')}
               </Button>
             </DrawerClose>
 
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' onClick={() => onChange(selectedTags)}>
-                {t('submit')}
+                {t('submitAction')}
               </Button>
             </DrawerClose>
           </DrawerFooter>

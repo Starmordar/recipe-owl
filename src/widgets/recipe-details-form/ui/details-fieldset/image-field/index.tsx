@@ -18,7 +18,7 @@ interface ImageFieldProps {
 }
 
 function ImageField({ form }: ImageFieldProps) {
-  const t = useTranslations('RecipeForm.AddImage');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   const [selectedImage, setSelectedImage] = useState<string | null>(getInitialImage);
   const fileInputsRef = useRef<FileUploadHandles>(null);
@@ -94,7 +94,7 @@ function ImageField({ form }: ImageFieldProps) {
 
               <div className='absolute bottom-6 mx-auto flex items-center gap-x-2'>
                 <Camera className='h-6 w-6 text-muted-foreground' />
-                <p className='text-muted-foreground'>{t('title')}</p>
+                <p className='text-muted-foreground'>{t('imageTitle')}</p>
               </div>
             </div>
           </div>

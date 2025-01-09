@@ -13,7 +13,7 @@ interface NumberInputSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerProps>(
   ({ className, value, onValueChange, ...props }, ref) => {
-    const t = useTranslations('InputSpinner');
+    const t = useTranslations('Common.InputSpinner');
 
     return (
       <div ref={ref} className={cn('flex flex-row rounded-lg border w-fit', className)} {...props}>
@@ -23,7 +23,7 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
           className='w-9 h-8 p-0 rounded-r-none rounded-l-lg'
           onClick={() => onValueChange(value - 1)}
           disabled={value === 1}
-          aria-label={t('decreaseValue')}
+          aria-label={t('decreaseAction')}
         >
           <Minus className='w-5 h-5' />
         </Button>
@@ -37,7 +37,7 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
           size='xs'
           className='w-9 h-8 p-0 rounded-l-none rounded-r-lg'
           onClick={() => onValueChange(value + 1)}
-          aria-label={t('increaseValue')}
+          aria-label={t('increaseAction')}
         >
           <Plus className='w-5 h-5' />
         </Button>

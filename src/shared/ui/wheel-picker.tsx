@@ -6,14 +6,14 @@ import { useEffect, useRef } from 'react';
 function getMinuteItems(t: ReturnType<typeof useTranslations>) {
   return Array.from({ length: 60 }, (_, index) => ({
     value: index,
-    label: `${index} ${t('minutesLabel')}`,
+    label: `${index} ${t('minuteLabel')}`,
   }));
 }
 
 function getHourItems(t: ReturnType<typeof useTranslations>) {
   return Array.from({ length: 24 }, (_, index) => ({
     value: index,
-    label: `${index} ${index === 1 ? t('hourLabel') : t('hoursLabel')}`,
+    label: `${index} ${index === 1 ? t('hourLabelSingular') : t('hourLabelPlural')}`,
   }));
 }
 
@@ -24,7 +24,7 @@ interface WheelPickerProps {
 }
 
 function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerProps) {
-  const t = useTranslations('TimePicker');
+  const t = useTranslations('Common.TimePicker');
 
   const minuteItems = useRef<ReturnType<typeof getMinuteItems> | null>(null);
   if (minuteItems.current === null) minuteItems.current = getMinuteItems(t);

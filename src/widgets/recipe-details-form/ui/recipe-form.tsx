@@ -18,10 +18,10 @@ export interface RecipeFormProps {
 }
 
 function RecipeForm({ form, onSubmit }: RecipeFormProps) {
-  const t = useTranslations('RecipeForm');
+  const t = useTranslations('RecipeFormPage');
 
   usePageLeaveConfirmation({
-    confirmationMessage: t('confirmationOnLeave'),
+    confirmationMessage: t('confirmationOnLeaveText'),
     shouldConfirm: form.formState.isDirty,
   });
 

@@ -22,7 +22,7 @@ interface StepsFieldsetProps {
 }
 
 function StepsFieldset({ form }: StepsFieldsetProps) {
-  const t = useTranslations('RecipeForm.Method');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
@@ -41,7 +41,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title={t('title')}
+        title={t('stepsTitle')}
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
@@ -72,7 +72,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
           onClick={() => append({ description: '' })}
         >
           <Plus className='h-6 w-6 mr-2' />
-          {t('addTitle')}
+          {t('addStepAction')}
         </Button>
       </div>
     </fieldset>

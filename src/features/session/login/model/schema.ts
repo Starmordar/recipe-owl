@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { passwordSchema, emailSchema } from '@/src/entities/user';
 
 function useSchema() {
-  const t = useTranslations('AuthForm.ClientErrors');
+  const t = useTranslations('AuthPage.Form.ClientErrors');
 
   const schema = z.object({
     email: emailSchema(t),

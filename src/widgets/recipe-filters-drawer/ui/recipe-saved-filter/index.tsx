@@ -11,7 +11,7 @@ interface RecipeSavedFilterProps {
 }
 
 function RecipeSavedFilter({ selected, onFilterChange }: RecipeSavedFilterProps) {
-  const t = useTranslations('RecipeFilters.Search');
+  const t = useTranslations('RecipesPage.FiltersDrawer');
   const [checked] = selected;
 
   function handleFilterChange(checked: boolean) {
@@ -21,7 +21,7 @@ function RecipeSavedFilter({ selected, onFilterChange }: RecipeSavedFilterProps)
   return (
     <div className='flex justify-between py-4'>
       <label htmlFor='only-saved' className='text-lg font-semibold leading-tight'>
-        {t('savedRecipes')}
+        {t('savedRecipesLabel')}
       </label>
       <Switch id='only-saved' checked={checked === 'true'} onCheckedChange={handleFilterChange} />
     </div>

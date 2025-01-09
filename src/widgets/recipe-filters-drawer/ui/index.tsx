@@ -26,8 +26,9 @@ import { RecipeTagsFilters } from './recipe-tags-filters';
 import type { SelectedFilters } from '../model/types';
 
 function RecipeFiltersDrawer() {
-  const t = useTranslations('RecipeFilters');
+  const t = useTranslations();
   const { valuesFromPathname } = useValueToPathname();
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [filters, setFilters] = useState<SelectedFilters>(valuesFromPathname(filterCategories));
   const [scrollIntoSection, setScrollIntoSection] = useState<string | null>(null);
@@ -64,7 +65,7 @@ function RecipeFiltersDrawer() {
             size='xs'
             onClick={() => filterCategoryClick(tag)}
           >
-            {t(`Tags.Categories.${tag}`)}
+            {t(`RecipeTags.Categories.${tag}`)}
 
             {filterValues[tag]?.length > 0 && (
               <span className='flex justify-center items-center w-5 h-5 text-accent bg-foreground rounded-full text-sm font-medium'>
@@ -78,8 +79,10 @@ function RecipeFiltersDrawer() {
       <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
         <DrawerContent className='h-[85%]'>
           <DrawerHeader>
-            <DrawerTitle>{t('Drawer.title')}</DrawerTitle>
-            <DrawerDescription className='sr-only'>{t('Drawer.description')}</DrawerDescription>
+            <DrawerTitle>{t('RecipesPage.FiltersDrawer.title')}</DrawerTitle>
+            <DrawerDescription className='sr-only'>
+              {t('RecipesPage.FiltersDrawer.description')}
+            </DrawerDescription>
           </DrawerHeader>
 
           <div className='overflow-y-auto p-4' data-vaul-no-drag>

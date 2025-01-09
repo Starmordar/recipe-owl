@@ -11,7 +11,7 @@ interface RecipeFormHeaderProps {
 }
 
 function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeFormHeaderProps) {
-  const t = useTranslations('RecipeForm');
+  const t = useTranslations('RecipeFormPage');
 
   return (
     <AppHeaderClient prevUrl={prevUrl} replacePrevUrl>
@@ -24,9 +24,9 @@ function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeForm
           className='px-3 text-base'
           disabled={!dataChanged}
           loading={isPending}
-          loadingText={t('savePending')}
+          loadingText={t('saveActionPending')}
         >
-          {t('save')}
+          {t('saveAction')}
         </Button>
       </div>
     </AppHeaderClient>

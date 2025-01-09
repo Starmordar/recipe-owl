@@ -24,7 +24,7 @@ interface DeleteRecipeModalProps extends PropsWithChildren {
 }
 
 function DeleteRecipeModal({ children, recipeId }: DeleteRecipeModalProps) {
-  const t = useTranslations('DeleteRecipeModal');
+  const t = useTranslations('RecipeDetailsPage.DeleteModal');
   const router = useRouter();
 
   async function handleDeleteRecipe() {
@@ -43,8 +43,8 @@ function DeleteRecipeModal({ children, recipeId }: DeleteRecipeModalProps) {
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteRecipe}>{t('submit')}</AlertDialogAction>
+          <AlertDialogCancel>{t('cancelAction')}</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDeleteRecipe}>{t('submitAction')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

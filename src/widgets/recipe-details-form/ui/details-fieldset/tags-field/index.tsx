@@ -14,7 +14,7 @@ interface TagsFieldProps {
 }
 
 function TagsField({ form }: TagsFieldProps) {
-  const t = useTranslations('RecipeForm.Fields');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   return (
     <FormField

@@ -56,7 +56,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
               loading={isClearPending}
               loadingClassName='h-5 w-5'
             >
-              <CircleX className='h-5 w-5 opacity-60' /> {t('removeAllItems')}
+              <CircleX className='h-5 w-5 opacity-60' /> {t('removeAllItemsAction')}
             </DrawerActionButton>
           </li>
           {isCartOwner && (
@@ -66,7 +66,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
                 loading={isDisablePending}
                 loadingClassName='h-5 w-5'
               >
-                <Lock className='h-5 w-5 opacity-60' /> {t('disableSharing')}
+                <Lock className='h-5 w-5 opacity-60' /> {t('disableSharingAction')}
               </DrawerActionButton>
             </li>
           )}
@@ -77,7 +77,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
                 loading={isPending}
                 loadingClassName='h-5 w-5'
               >
-                <Trash2 className='h-5 w-5 opacity-60' /> {t('leaveList')}
+                <Trash2 className='h-5 w-5 opacity-60' /> {t('leaveListAction')}
               </DrawerActionButton>
             </li>
           )}
@@ -85,7 +85,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
             <li>
               <SwitchCartDrawer onSelect={() => setIsDrawerOpen(false)}>
                 <DrawerActionButton>
-                  <AlignJustify className='h-5 w-5 opacity-60' /> {t('switchLists')}
+                  <AlignJustify className='h-5 w-5 opacity-60' /> {t('switchListsAction')}
                 </DrawerActionButton>
               </SwitchCartDrawer>
             </li>

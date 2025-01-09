@@ -13,7 +13,7 @@ interface ReadMoreTextProps extends PropsWithChildren {
 
 const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
   ({ className, children }, ref) => {
-    const t = useTranslations('ReadMoreText');
+    const t = useTranslations('Common.ReadMoreText');
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -49,7 +49,7 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
               )}
               onClick={() => setIsExpanded(value => !value)}
             >
-              {isExpanded ? t('readLess') : t('readMore')}
+              {isExpanded ? t('showLess') : t('showMore')}
             </span>
           )}
         </p>

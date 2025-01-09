@@ -28,8 +28,9 @@ interface AddRecipeToCartDrawerProps extends PropsWithChildren {
 }
 
 function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps) {
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer');
   const { form, onSubmit, isPending } = useIngredientsForm({ recipe });
-  const t = useTranslations('RecipeDetails.AddToCart');
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -69,15 +70,15 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
 
         <DrawerFooter className='flex flex-row w-full'>
           <DrawerClose className='flex-1' asChild>
-            <Button variant='outline'>{t('cancel')}</Button>
+            <Button variant='outline'>{t('cancelAction')}</Button>
           </DrawerClose>
           <Button
             form='ingredients-to-cart-form'
             className='flex-1'
             loading={isPending}
-            loadingText={t('submitPending')}
+            loadingText={t('submitActionPending')}
           >
-            {t('submit')}
+            {t('submitAction')}
           </Button>
         </DrawerFooter>
       </DrawerContent>

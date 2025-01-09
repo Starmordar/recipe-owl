@@ -9,7 +9,7 @@ async function EditRecipePage({ params }: { params: { slug: string } }) {
   const recipe = await getRecipeDetails(Number(params.slug));
   if (!recipe) return notFound();
 
-  const t = await getTranslations('RecipeForm');
+  const t = await getTranslations('RecipeFormPage');
 
   return (
     <RecipeDetailsForm

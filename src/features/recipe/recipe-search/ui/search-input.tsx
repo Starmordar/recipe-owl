@@ -27,7 +27,7 @@ function SearchInput({
   setSearchTerm,
   setSelected,
 }: SearchInputProps) {
-  const t = useTranslations('RecipeFilters.Search');
+  const t = useTranslations('RecipesPage.SearchInput');
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [focusInput, setFocusInput] = useState(false);
 
@@ -58,7 +58,11 @@ function SearchInput({
   return (
     <div className='flex w-full items-center gap-x-2'>
       {showClear && (
-        <Link href={publicUrls.recipes} aria-label={t('clear')} onMouseDown={clearSelectedValues}>
+        <Link
+          href={publicUrls.recipes}
+          aria-label={t('clearAction')}
+          onMouseDown={clearSelectedValues}
+        >
           <ArrowLeft />
         </Link>
       )}
@@ -70,7 +74,7 @@ function SearchInput({
           ref={inputRef}
           className='flex h-10 w-full bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground hide-search-actions'
           type='search'
-          placeholder={t('searchPlaceholder')}
+          placeholder={t('placeholder')}
           value={searchTerm}
           onChange={evt => setSearchTerm(evt.target.value)}
           onFocus={() => setFocusInput(true)}
@@ -96,7 +100,7 @@ function SearchInput({
           size='xss'
           onMouseDown={cancelSearch}
         >
-          {t('cancel')}
+          {t('cancelAction')}
         </Button>
       )}
 

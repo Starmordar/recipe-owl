@@ -15,7 +15,7 @@ interface ShareProfileProps {
 }
 
 function ShareProfile({ user }: ShareProfileProps) {
-  const t = useTranslations();
+  const t = useTranslations('ProfilePage.ShareProfile');
   const { shareContent } = useWebShare({ shareData: profileShareInfo(user, t) });
   return <HeaderIconButton Icon={<Share2 />} onClick={() => shareContent()} />;
 }

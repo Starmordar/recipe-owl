@@ -24,7 +24,7 @@ function ShareCart({ cart }: ShareCartProps) {
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'
-      aria-label={t('shareCartAction')}
+      aria-label={t('ShareCart.trigger')}
     />
   );
 }

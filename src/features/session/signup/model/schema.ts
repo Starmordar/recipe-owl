@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { passwordSchema, emailSchema, fullNameSchema } from '@/src/entities/user';
 
 function useSchema() {
-  const t = useTranslations('AuthForm');
+  const t = useTranslations('AuthPage.Form.ClientErrors');
 
   const schema = z
     .object({
@@ -14,7 +14,7 @@ function useSchema() {
       confirmPassword: passwordSchema(t),
     })
     .refine(data => data.password === data.confirmPassword, {
-      message: t('passwordsDoNotMatchError'),
+      message: t('passwordsDoNotMatch'),
       path: ['confirmPassword'],
     });
 

@@ -19,7 +19,7 @@ interface UseIngredientsFormOptions {
 }
 
 function useIngredientsForm({ recipe }: UseIngredientsFormOptions) {
-  const t = useTranslations('RecipeDetails.AddToCart.Toast');
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer.Toast');
   const [addToCartAction, isPending] = useServerAction(addIngredientsToCart);
 
   const schema = useSchema();

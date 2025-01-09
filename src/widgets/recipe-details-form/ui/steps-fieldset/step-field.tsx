@@ -15,7 +15,7 @@ interface StepFieldProps {
 }
 
 function StepField({ form, field, index }: StepFieldProps) {
-  const t = useTranslations('RecipeForm.Method');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   return (
     <FormField

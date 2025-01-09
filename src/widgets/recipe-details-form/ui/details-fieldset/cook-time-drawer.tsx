@@ -23,7 +23,7 @@ interface CookTimeDrawerProps extends PropsWithChildren {
 }
 
 function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
-  const t = useTranslations('RecipeForm.CookTimeDrawer');
+  const t = useTranslations('RecipeFormPage.CookTimeDrawer');
   const [timeString, setTimeString] = useState(parseCookTime(value));
 
   function onChangeCookTime(field: 'hours' | 'minutes', nextValue: number) {
@@ -60,13 +60,13 @@ function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
               variant='outline'
               onClick={() => handleSetCookTime({ reset: true })}
             >
-              {t('cancel')}
+              {t('cancelAction')}
             </Button>
           </DrawerClose>
 
           <DrawerClose className='flex-1' asChild>
             <Button className='w-full' onClick={() => handleSetCookTime({})}>
-              {t('save')}
+              {t('submitAction')}
             </Button>
           </DrawerClose>
         </DrawerFooter>

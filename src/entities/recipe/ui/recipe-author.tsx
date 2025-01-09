@@ -11,7 +11,7 @@ interface RecipeAuthorProps {
 }
 
 function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
-  const t = useTranslations('RecipeDetails.Description');
+  const t = useTranslations('RecipeDetailsPage.General');
   const cssSize = `${avatarSize}px`;
 
   return (

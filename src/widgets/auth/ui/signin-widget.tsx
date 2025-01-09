@@ -12,8 +12,8 @@ function SignInWidget() {
 
   return (
     <div className='flex flex-col gap-y-4 w-[360px] md:w-[480px] max-w-full bg-card py-6 md:px-8 px-6 rounded-3xl shadow-xl'>
-      <AuthHeader title={t('signInTitle')}>
-        <p>{t('signInText')}</p>
+      <AuthHeader title={t('SignIn.title')}>
+        <p>{t('SignIn.text')}</p>
       </AuthHeader>
 
       <LoginForm />
@@ -25,12 +25,12 @@ function SignInWidget() {
       </div>
 
       <div className='flex flex-col w-full gap-y-2'>
-        <AuthWithGoogle title={t('signInWithGoogle')} />
+        <AuthWithGoogle title={t('SignIn.googleSignIn')} />
       </div>
 
       <AuthChangeOption
-        title={t('signInChangeOption')}
-        linkTitle={t('signUpLink')}
+        title={t('SignIn.changeOptionTitle')}
+        linkTitle={t('SignIn.changeOptionLinkTitle')}
         redirectTo={publicUrls.register}
       />
     </div>

@@ -14,7 +14,7 @@ import { items as navbarItems } from './items';
 import type { NavbarItem } from '../model/types';
 
 function AppFooterNav() {
-  const t = useTranslations('NavBar');
+  const t = useTranslations('Common.NavBar');
   const pathname = usePathname();
   const { data: user } = useQuery(userQueries.current());
 

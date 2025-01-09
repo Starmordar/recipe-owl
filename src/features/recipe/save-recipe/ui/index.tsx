@@ -12,12 +12,12 @@ interface SaveRecipeActionProps {
 }
 
 function SaveRecipeAction({ isSaved, recipeId }: SaveRecipeActionProps) {
-  const t = useTranslations('RecipeDetails.Protected');
+  const t = useTranslations('RecipeDetailsPage.Save');
 
   return (
     <ProtectedDrawer
-      title={t('saveRecipeTitle')}
-      description={t('saveRecipeDescription')}
+      title={t('requireAuthTitle')}
+      description={t('requireAuthText')}
       renderTrigger={() => <HeaderIconButton Icon={<Bookmark />} />}
     >
       <SaveButton isSaved={isSaved} recipeId={recipeId} />

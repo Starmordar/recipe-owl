@@ -5,7 +5,7 @@ import { RecipePreviewSection } from '../recipe-preview';
 
 async function RecipeCategories() {
   const categories = await getRecipeCategories();
-  const t = await getTranslations('RecipeFilters.Tags.Descriptions');
+  const t = await getTranslations('RecipeTags.Descriptions');
 
   return (
     <>

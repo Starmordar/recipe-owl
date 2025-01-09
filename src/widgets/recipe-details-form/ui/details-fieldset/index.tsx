@@ -18,7 +18,7 @@ interface DetailsFieldsetProps {
 }
 
 function DetailsFieldset({ form }: DetailsFieldsetProps) {
-  const t = useTranslations('RecipeForm.Fields');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   return (
     <fieldset className='flex flex-col gap-y-4'>

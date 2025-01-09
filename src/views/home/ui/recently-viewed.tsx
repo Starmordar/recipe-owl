@@ -13,7 +13,7 @@ async function RecentlyViewed() {
   if (recipes.length === 0) return null;
 
   const t = await getTranslations('HomePage');
-  return <RecipePreviewSection sectionTitle={t('recentlyViewed')} recipes={recipes} />;
+  return <RecipePreviewSection sectionTitle={t('recentlyViewedTitle')} recipes={recipes} />;
 }
 
 export { RecentlyViewed };

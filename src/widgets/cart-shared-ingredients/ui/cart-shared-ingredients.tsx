@@ -18,7 +18,7 @@ function SharedIngredientsSection() {
   return (
     <Card className='flex flex-col gap-y-2 p-4'>
       <div className='flex gap-4'>
-        <CartSectionHeader title={t('sharedIngredients')} Icon={<ClipboardList />} />
+        <CartSectionHeader title={t('sharedIngredientsSectionTitle')} Icon={<ClipboardList />} />
       </div>
 
       <div className='grid gap-2'>

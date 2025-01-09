@@ -10,7 +10,7 @@ interface ProfileStatsProps {
 }
 
 function ProfileStats({ user }: ProfileStatsProps) {
-  const t = useTranslations('ProfilePage');
+  const t = useTranslations('ProfilePage.Statistic');
 
   return (
     <div className='flex justify-self-start px-4 pb-2'>
@@ -29,7 +29,7 @@ function ProfileStats({ user }: ProfileStatsProps) {
           </div>
 
           <Button className='self-start' size='xss' variant='outline'>
-            {t('editProfile')}
+            {t('editProfileAction')}
           </Button>
         </div>
       </div>

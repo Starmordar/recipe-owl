@@ -9,7 +9,7 @@ async function NewRecipePage() {
   const { user } = await validateRequest();
   if (user === null) redirect(publicUrls.signIn);
 
-  const t = await getTranslations('RecipeForm');
+  const t = await getTranslations('RecipeFormPage');
   return <RecipeDetailsForm title={t('createTitle')} />;
 }
 

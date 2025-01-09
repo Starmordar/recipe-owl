@@ -13,7 +13,7 @@ interface UseShareCartOptions {
 }
 
 function useShareCart({ cart }: UseShareCartOptions) {
-  const t = useTranslations();
+  const t = useTranslations('CartPage.ShareCart');
   const [enableCartSharingAction, isPending] = useServerAction(enableCartSharing);
   const { shareContent, isShareSupported } = useWebShare({ shareData: getCartShareInfo(t) });
 

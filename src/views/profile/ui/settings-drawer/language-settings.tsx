@@ -10,7 +10,7 @@ import { Label } from '@/src/shared/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/src/shared/ui/radio-group';
 
 function LanguageSettings() {
-  const t = useTranslations('ProfilePage.SettingsDrawer');
+  const t = useTranslations('ProfilePage.SettingsDrawer.Language');
   const router = useRouter();
 
   function onLocaleChange(locale: string) {
@@ -20,7 +20,7 @@ function LanguageSettings() {
 
   return (
     <AccordionItem value='language'>
-      <AccordionTrigger>{t('languageTitle')}</AccordionTrigger>
+      <AccordionTrigger>{t('title')}</AccordionTrigger>
 
       <AccordionContent>
         <RadioGroup
@@ -29,11 +29,11 @@ function LanguageSettings() {
         >
           <div className='flex items-center space-x-2'>
             <RadioGroupItem value='en' id='en' />
-            <Label htmlFor='en'>{t('languageEnglish')}</Label>
+            <Label htmlFor='en'>{t('english')}</Label>
           </div>
           <div className='flex items-center space-x-2'>
             <RadioGroupItem value='ru' id='ru' />
-            <Label htmlFor='ru'>{t('languageRussian')}</Label>
+            <Label htmlFor='ru'>{t('russian')}</Label>
           </div>
         </RadioGroup>
       </AccordionContent>

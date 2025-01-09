@@ -44,7 +44,7 @@ function InfiniteLoad({ search, filters, children }: InfiniteLoadProps) {
 
       <div className='absolute bottom-10 h-0 w-0' ref={observerRef}></div>
       <div className='text-lg'>
-        {isFetching && !isFetchingNextPage ? t('loadingRecipes') : null}
+        {isFetching && !isFetchingNextPage ? t('loadingRecipesLabel') : null}
       </div>
     </div>
   );

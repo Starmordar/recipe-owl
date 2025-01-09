@@ -22,7 +22,7 @@ interface IngredientsFieldsetProps {
 }
 
 function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
-  const t = useTranslations('RecipeForm.Ingredients');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
@@ -41,7 +41,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title={t('title')}
+        title={t('ingredientsTitle')}
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
@@ -74,7 +74,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
           onClick={() => append({ name: '', unit: '' })}
         >
           <Plus className='h-6 w-6 mr-2' />
-          {t('addTitle')}
+          {t('addIngredientAction')}
         </Button>
       </div>
     </fieldset>

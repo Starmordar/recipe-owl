@@ -20,7 +20,7 @@ function DefaultCartOption({ onSelect }: DefaultCartOptionProps) {
     <Link href={publicUrls.cart} onClick={onSelect}>
       <DrawerActionButton>
         <ShoppingCart className='w-7 h-7' />
-        {t('myCart')}
+        {t('myCartOption')}
       </DrawerActionButton>
     </Link>
   );

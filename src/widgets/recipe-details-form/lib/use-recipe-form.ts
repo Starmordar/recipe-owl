@@ -20,7 +20,7 @@ interface UseRecipeFormOptions {
 }
 
 function useRecipeForm({ recipeId, initialValues }: UseRecipeFormOptions) {
-  const t = useTranslations('RecipeForm.ServerErrors');
+  const t = useTranslations('RecipeFormPage.Form.ServerErrors');
   const [createAction, isPendingCreate] = useServerAction(createRecipe);
   const [updateAction, isPendingUpdate] = useServerAction(updateRecipe);
 

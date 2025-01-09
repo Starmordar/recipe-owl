@@ -16,14 +16,14 @@ interface RecipeIngredientsSectionProps {
 }
 
 function RecipeIngredientsSection({ ingredients }: RecipeIngredientsSectionProps) {
-  const t = useTranslations('RecipeDetails.Ingredients');
+  const t = useTranslations('RecipeDetailsPage.General');
 
   return (
     <Table className='text-base'>
       <TableHeader className='hidden'>
         <TableRow>
-          <TableHead>{t('nameColumn')}</TableHead>
-          <TableHead>{t('amountColumn')}</TableHead>
+          <TableHead>{t('ingredientsNameLabel')}</TableHead>
+          <TableHead>{t('ingredientsAmountLabel')}</TableHead>
         </TableRow>
       </TableHeader>
 

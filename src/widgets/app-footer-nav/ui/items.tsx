@@ -12,14 +12,14 @@ import type { NavbarItem } from '../model/types';
 
 const items = (t: ReturnType<typeof useTranslations>): Array<NavbarItem> => [
   {
-    title: t('home'),
+    title: t('homeLabel'),
     isTitleHidden: false,
     href: publicUrls.home,
     match: (pathname: string) => pathname === publicUrls.home,
     render: (_, className) => <House size={20} className={className} />,
   },
   {
-    title: t('recipes'),
+    title: t('discoverLabel'),
     isTitleHidden: false,
     href: publicUrls.recipes,
     match: (pathname: string) =>
@@ -27,20 +27,20 @@ const items = (t: ReturnType<typeof useTranslations>): Array<NavbarItem> => [
     render: (_, className) => <Search size={20} className={className} />,
   },
   {
-    title: t('newRecipe'),
+    title: t('newRecipeLabel'),
     isTitleHidden: true,
     href: publicUrls.newRecipe,
     render: (_, className) => <CirclePlus size={32} className={className} />,
   },
   {
-    title: t('cart'),
+    title: t('cartLabel'),
     isTitleHidden: false,
     href: () => publicUrls.cartWithToken(Cookies.get(shareTokenCookieName)),
     match: (pathname: string) => pathname.startsWith(publicUrls.cart),
     render: (_, className) => <ShoppingCart size={20} className={className} />,
   },
   {
-    title: t('profile'),
+    title: t('profileLabel'),
     isTitleHidden: false,
     href: publicUrls.profile,
     render: (user, className) => {
@@ -52,7 +52,7 @@ const items = (t: ReturnType<typeof useTranslations>): Array<NavbarItem> => [
           height={20}
           width={20}
           src={user.picture}
-          alt={t('profilePictureAlt')}
+          alt={t('profilePictureAltText')}
         />
       );
     },

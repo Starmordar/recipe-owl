@@ -7,7 +7,7 @@ function AuthLegalSection() {
   const t = useTranslations('AuthPage');
   return (
     <p className='text-center'>
-      {t.rich('termsWarning', {
+      {t.rich('termsAgreementMessage', {
         terms: chunk => (
           <Link href={publicUrls.termsOfService} className='outer-link'>
             {chunk}

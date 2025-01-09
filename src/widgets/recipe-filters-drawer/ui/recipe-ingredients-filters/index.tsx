@@ -22,7 +22,7 @@ function RecipeIngredientsFilters({
   selected,
   onFilterChange,
 }: RecipeIngredientsFiltersProps) {
-  const t = useTranslations('RecipeFilters.Ingredients');
+  const t = useTranslations('RecipesPage.FiltersDrawer');
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -52,10 +52,10 @@ function RecipeIngredientsFilters({
 
   return (
     <div className='flex flex-col pb-4 space-y-3'>
-      <h6 className='text-lg font-semibold leading-tight'>{t('title')}</h6>
+      <h6 className='text-lg font-semibold leading-tight'>{t('ingredientsLabel')}</h6>
 
       <Search
-        placeholder={t('searchPlaceholder')}
+        placeholder={t('searchIngredientsPlaceholder')}
         data={ingredients ?? []}
         searchTerm={searchTerm}
         setSearchTerm={nextValue => handleSearch(nextValue)}

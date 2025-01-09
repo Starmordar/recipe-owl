@@ -10,7 +10,7 @@ import { Input, type InputProps } from '@/src/shared/ui/input';
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
-    const t = useTranslations('PasswordInput');
+    const t = useTranslations('Common.PasswordInput');
     const [showPassword, setShowPassword] = React.useState(false);
     const disabled = props.value === '' || props.value === undefined || props.disabled;
 
@@ -36,7 +36,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           ) : (
             <EyeOffIcon className='h-4 w-4' aria-hidden='true' />
           )}
-          <span className='sr-only'>{showPassword ? t('hidePassword') : t('showPassword')}</span>
+          <span className='sr-only'>
+            {showPassword ? t('toggleHidePassword') : t('toggleShowPassword')}
+          </span>
         </Button>
       </div>
     );

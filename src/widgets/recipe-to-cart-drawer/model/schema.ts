@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 function useSchema() {
-  const t = useTranslations('RecipeDetails.AddToCart.ClientErrors');
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer.ClientErrors');
 
   const schema = z.object({
     ingredients: z.array(z.number()).refine(value => value.some(item => item), {

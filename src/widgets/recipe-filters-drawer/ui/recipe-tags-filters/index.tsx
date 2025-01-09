@@ -25,7 +25,7 @@ function RecipeTagsFilters({
   scrollIntoSection,
   setScrollIntoSection,
 }: RecipeTagsFiltersProps) {
-  const t = useTranslations('RecipeFilters.Tags');
+  const t = useTranslations('RecipeTags');
 
   const { data: tags, isLoading } = useQuery(recipeQueries.searchTags(''));
   const scrolled = useRef(false);

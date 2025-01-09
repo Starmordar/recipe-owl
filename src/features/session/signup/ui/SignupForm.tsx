@@ -10,7 +10,7 @@ import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useSignupForm } from '../lib/use-signup-form';
 
 function SignupForm() {
-  const t = useTranslations('AuthPage');
+  const t = useTranslations('AuthPage.SignUp.Form');
   const { form, pending, onSubmit } = useSignupForm();
 
   return (
@@ -47,7 +47,7 @@ function SignupForm() {
           render={({ field }) => (
             <FormItem className='space-y-0'>
               <FormControl>
-                <PasswordInput placeholder={t('createPasswordPlaceholder')} {...field} />
+                <PasswordInput placeholder={t('passwordPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,10 +70,10 @@ function SignupForm() {
           className='gap-2 w-full'
           type='submit'
           loading={pending}
-          loadingText={t('signUpPending')}
+          loadingText={t('submitPending')}
           loadingClassName='h-5 w-5'
         >
-          {t('signUpLink')}
+          {t('submitButtonLabel')}
         </Button>
       </form>
     </Form>

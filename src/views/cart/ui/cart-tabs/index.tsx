@@ -17,15 +17,15 @@ interface CartTabsProps {
 }
 
 function CartTabs({ cartWithRecipes }: CartTabsProps) {
-  const t = useTranslations('CartPage');
+  const t = useTranslations('CartPage.Tabs');
   const tabs = useMemo(
     () => ({
       recipes: {
-        title: t('recipesTabTitle'),
+        title: t('recipes'),
         content: <RecipesTab cartWithRecipes={cartWithRecipes} />,
       },
       ingredient: {
-        title: t('ingredientsTabTitle'),
+        title: t('ingredients'),
         content: <CartIngredientsTab cartWithRecipes={cartWithRecipes} />,
       },
     }),

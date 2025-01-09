@@ -47,7 +47,7 @@ function AuthSection({ title, description, className }: AuthSectionProps) {
 
       <div className='mx-6 mb-6'>
         <Link href={publicUrls.signIn}>
-          <Button className='relative w-full mb-2'>{t('signInAction')}</Button>
+          <Button className='relative w-full mb-2'>{t('authAction')}</Button>
         </Link>
 
         <AuthLegalSection />

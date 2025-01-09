@@ -12,7 +12,7 @@ import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useLoginForm } from '../lib/use-login-form';
 
 function LoginForm() {
-  const t = useTranslations('AuthPage');
+  const t = useTranslations('AuthPage.SignIn.Form');
   const { form, pending, onSubmit } = useLoginForm();
   const globalError = form.formState.errors.root?.globalError ?? {};
 
@@ -57,10 +57,10 @@ function LoginForm() {
           className='gap-2 w-full'
           type='submit'
           loading={pending}
-          loadingText={t('signInPending')}
+          loadingText={t('submitPending')}
           loadingClassName='h-5 w-5'
         >
-          {t('signInLink')}
+          {t('submitButtonLabel')}
         </Button>
       </form>
     </Form>

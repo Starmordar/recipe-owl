@@ -28,7 +28,7 @@ function SwitchCartDrawer({ onSelect, children }: SwitchCartDrawerProps) {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DialogTitle className='sr-only'>{t('switchListsTitle')}</DialogTitle>
+        <DialogTitle className='sr-only'>{t('switchListsDrawerTitle')}</DialogTitle>
 
         <ul className='my-4'>
           <li>

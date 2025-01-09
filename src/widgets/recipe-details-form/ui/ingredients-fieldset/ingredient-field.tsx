@@ -17,7 +17,7 @@ interface IngredientFieldProps {
 }
 
 function IngredientField({ form, field, index }: IngredientFieldProps) {
-  const t = useTranslations('RecipeForm.Ingredients');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   return (
     <div className='flex flex-1 gap-x-2'>
@@ -29,7 +29,7 @@ function IngredientField({ form, field, index }: IngredientFieldProps) {
         render={({ field }) => (
           <FormItem className='basis-1/3'>
             <FormControl>
-              <Input placeholder={t('quantityPlaceholder')} {...field} />
+              <Input placeholder={t('ingredientQuantityPlaceholder')} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

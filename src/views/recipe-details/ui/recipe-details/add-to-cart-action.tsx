@@ -13,21 +13,21 @@ interface AddToCartActionProps {
 }
 
 function AddToCartAction({ recipe }: AddToCartActionProps) {
-  const t = useTranslations('RecipeDetails');
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer');
 
   return (
     <ProtectedDrawer
-      title={t('Protected.addToCartTitle')}
-      description={t('Protected.addToCartDescription')}
+      title={t('requireAuthTitle')}
+      description={t('requireAuthText')}
       renderTrigger={() => (
         <Button className='gap-x-3 text-base' variant='outline' size='xs'>
-          {t('AddToCart.trigger')} <CirclePlus className='h-5 w-5' />
+          {t('trigger')} <CirclePlus className='h-5 w-5' />
         </Button>
       )}
     >
       <AddRecipeToCartDrawer recipe={recipe}>
         <Button className='gap-x-3 text-base' variant='outline' size='xs'>
-          {t('AddToCart.trigger')} <CirclePlus className='h-5 w-5' />
+          {t('trigger')} <CirclePlus className='h-5 w-5' />
         </Button>
       </AddRecipeToCartDrawer>
     </ProtectedDrawer>

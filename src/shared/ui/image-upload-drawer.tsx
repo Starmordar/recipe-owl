@@ -23,7 +23,7 @@ interface ImageUploadDrawerProps extends PropsWithChildren {
 }
 
 function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawerProps) {
-  const t = useTranslations('RecipeForm.AddImage');
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   return (
     <Drawer>
@@ -31,15 +31,15 @@ function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawe
 
       <DrawerContent>
         <DrawerHeader className='sr-only'>
-          <DrawerTitle>{t('title')}</DrawerTitle>
-          <DrawerDescription>{t('description')}</DrawerDescription>
+          <DrawerTitle>{t('imageTitle')}</DrawerTitle>
+          <DrawerDescription>{t('imageDescription')}</DrawerDescription>
         </DrawerHeader>
 
         <ul className='my-4'>
           <li>
             <DrawerClose asChild>
               <DrawerActionButton onClick={onTakePhoto}>
-                <Camera className='h-5 w-5 opacity-60' /> {t('takePicture')}
+                <Camera className='h-5 w-5 opacity-60' /> {t('takePictureAction')}
               </DrawerActionButton>
             </DrawerClose>
           </li>
@@ -47,7 +47,7 @@ function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawe
           <li>
             <DrawerClose asChild>
               <DrawerActionButton onClick={onUpload}>
-                <ImageIcon className='h-5 w-5 opacity-60' /> {t('chooseFromGallery')}
+                <ImageIcon className='h-5 w-5 opacity-60' /> {t('chooseFromGalleryAction')}
               </DrawerActionButton>
             </DrawerClose>
           </li>

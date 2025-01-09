@@ -15,7 +15,7 @@ interface FooterProps {
 }
 
 function Footer({ filters, setFilters, categoryIds }: FooterProps) {
-  const t = useTranslations('RecipeFilters.Drawer');
+  const t = useTranslations('RecipesPage.FiltersDrawer');
   const { replace } = useRouter();
   const { valuesToPathname } = useValueToPathname();
 
@@ -33,13 +33,13 @@ function Footer({ filters, setFilters, categoryIds }: FooterProps) {
     <>
       <DrawerClose className='flex-1' asChild>
         <Button className='w-full' variant='outline' onClick={handleResetFilters}>
-          {t('cancel')}
+          {t('cancelAction')}
         </Button>
       </DrawerClose>
 
       <DrawerClose className='flex-1' asChild>
         <Button className='w-full' onClick={() => handleFiltersApply(filters)}>
-          {t('apply')}
+          {t('submitAction')}
         </Button>
       </DrawerClose>
     </>

@@ -12,12 +12,12 @@ interface AddToCartActionProps {
 }
 
 function AddToCartAction({ recipe }: AddToCartActionProps) {
-  const t = useTranslations('RecipeDetails.Protected');
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer');
 
   return (
     <ProtectedDrawer
-      title={t('addToCartTitle')}
-      description={t('addToCartDescription')}
+      title={t('requireAuthTitle')}
+      description={t('requireAuthText')}
       renderTrigger={() => <HeaderIconButton Icon={<CirclePlus />} />}
     >
       <AddRecipeToCartDrawer recipe={recipe}>

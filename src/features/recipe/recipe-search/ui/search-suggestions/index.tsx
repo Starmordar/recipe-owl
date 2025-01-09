@@ -33,7 +33,7 @@ function SearchSuggestions({
   setSearchTerm,
   setSelected,
 }: SearchSuggestionsProps) {
-  const t = useTranslations('RecipeFilters.Search');
+  const t = useTranslations('RecipesPage.SearchInput');
   const [recent, setRecent] = useState(retrieveRecipeRecentSearches());
   const drawerRef = useRef<null | HTMLDivElement>(null);
 
@@ -67,7 +67,7 @@ function SearchSuggestions({
         ) : (
           <>
             <SearchOptions
-              title={t('popularSearches')}
+              title={t('popularSearchesLabel')}
               options={popularSearches}
               onSearch={onSearchOption}
             />
@@ -75,7 +75,7 @@ function SearchSuggestions({
             {recent.length > 0 && <hr className='h-0.5 border-t-0 bg-muted' />}
             {recent.length > 0 && (
               <SearchOptions
-                title={t('recentSearches')}
+                title={t('recentSearchesLabel')}
                 options={recent}
                 onSearch={onSearchOption}
                 renderAction={option => (

@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { acceptedImageMimeTypes } from '@/src/shared/config/image';
 
 function useSchema() {
-  const t = useTranslations('RecipeForm.ClientErrors');
+  const t = useTranslations('RecipeFormPage.Form.ClientErrors');
 
   const ingredientSchema = z.object({
     id: z.any(),

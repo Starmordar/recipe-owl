@@ -9,7 +9,7 @@ async function TopWeekRecipes() {
   if (recipes.length === 0) return null;
 
   const t = await getTranslations('HomePage');
-  return <RecipesCarousel sectionTitle={t('popularThisWeek')} recipes={recipes} />;
+  return <RecipesCarousel sectionTitle={t('popularThisWeekTitle')} recipes={recipes} />;
 }
 
 export { TopWeekRecipes };

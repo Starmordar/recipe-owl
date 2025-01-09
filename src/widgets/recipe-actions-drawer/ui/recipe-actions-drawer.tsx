@@ -23,7 +23,7 @@ interface RecipeActionsDrawerProps extends PropsWithChildren {
 }
 
 function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
-  const t = useTranslations('RecipeDetails.ManageRecipe');
+  const t = useTranslations('RecipeDetailsPage.ActionDrawer');
 
   return (
     <Drawer>

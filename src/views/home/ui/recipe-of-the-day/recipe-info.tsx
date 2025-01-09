@@ -4,48 +4,41 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { forwardRef } from 'react';
 
-import { parseCookTime, RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
+import { RecipeAuthor, RecipeCookTime, RecipeTagsSummary } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { hashColor } from '@/src/shared/lib/color';
 import { Button } from '@/src/shared/ui/button';
+
+import type { RecipeWithUser } from '@/src/entities/recipe';
 
 interface RecipeInfoProps {
   recipe: RecipeWithUser;
 }
 
 const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref) => {
-  const t = useTranslations();
+  const t = useTranslations('HomePage.RecipeOfTheDay');
 
   return (
     <>
       <article className='hidden md:flex flex-col relative col-span-2 pr-4 lg:pr-8 py-6'>
-        <span className='text-lg mb-2'>{t('HomePage.title')}</span>
+        <span className='text-lg mb-2'>{t('title')}</span>
 
         <div className='flex flex-col gap-y-4'>
           <h1 className='md:text-4xl lg:text-5xl font-semibold md:font-bold'>{recipe.title}</h1>
           <p className='text-lg break-words line-clamp-5'>{recipe.description}</p>
 
           <div className='flex flex-col gap-y-2 py-3'>
-            {recipe.cookTime && (
-              <p>
-                {t('RecipeDetails.Description.time')}{' '}
-                <span className='font-semibold'>
-                  {t('RecipeDetails.Description.cookTime', {
-                    ...parseCookTime(recipe.cookTime ?? ''),
-                  })}
-                </span>
-              </p>
-            )}
+            <RecipeCookTime cookTime={recipe.cookTime} />
             {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
           </div>
 
           <Link
             href={publicUrls.recipe(recipe.id)}
             className='self-start'
-            aria-label={t('HomePage.readMoreLink')}
+            aria-label={t('readMoreLinkAreaLabel')}
           >
             <Button size='lg' className='text-base'>
-              {t('HomePage.letsCook')}
+              {t('readMoreLinkLabel')}
             </Button>
           </Link>
           <RecipeAuthor author={recipe.user} avatarSize={28} />
@@ -54,7 +47,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
 
       <Link
         href={publicUrls.recipe(recipe.id)}
-        aria-label={t('HomePage.readMoreLink')}
+        aria-label={t('readMoreLinkAreaLabel')}
         className='flex justify-center md:hidden'
       >
         <article
@@ -62,14 +55,10 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
           className='relative transform -translate-y-10 -mb-6 md:transform-none lex flex-col p-4 min-w-96 mx-6 rounded-lg bg-orange-100 dark:bg-orange-400 z-100'
         >
           <div className='absolute top-4 right-4 z-10 text-sm flex gap-2'>
-            {recipe.tags.length > 0 && (
-              <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>
-                {t(`RecipeFilters.Tags.Items.${recipe.tags[0]}`)}
-              </div>
-            )}
+            <RecipeTagsSummary tags={recipe.tags} />
           </div>
 
-          <span className='text-base'>{t('HomePage.title')}</span>
+          <span className='text-base'>{t('title')}</span>
 
           <div className='flex flex-col gap-y-4 mt-2'>
             <h1 className='text-3xl font-semibold'>{recipe.title}</h1>
@@ -88,11 +77,11 @@ interface RecipeTagsProps {
 }
 
 function RecipeTags({ tags }: RecipeTagsProps) {
-  const t = useTranslations('RecipeDetails.Description');
+  const t = useTranslations('RecipeDetailsPage.General');
 
   return (
     <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
-      {t('tags')}
+      {t('tagsLabel')}
       {tags.map(tag => (
         <div
           key={tag}

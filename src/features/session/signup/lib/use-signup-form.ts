@@ -9,7 +9,7 @@ import { defaultFormValues, useSchema } from '../model/schema';
 import type { FromValues } from '../model/schema';
 
 function useSignupForm() {
-  const t = useTranslations('AuthForm.ServerErrors');
+  const t = useTranslations('AuthPage.Form.ServerErrors');
   const [pending, setPending] = useState(false);
 
   const schema = useSchema();
