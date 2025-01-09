@@ -218,6 +218,23 @@
     "popularThisWeek": "Popular Recipes This Week",
     "quickLinks": "Quick Links For You"
   },
+  "CartPage": {
+    "title": "Grocery Cart",
+    "shareCartAction": "Share Recipe With Others",
+    "shareCartTitle": "Recipe OWL: Check out my grocery cart!",
+    "shareCartText": "Here are the items I want to share with you.",
+    "recipesTabTitle": "Recipes",
+    "ingredientsTabTitle": "All Ingredients",
+    "ActionsDrawer": {
+      "title": "Action Buttons",
+      "removeAllItems": "Remove All Items",
+      "disableSharing": "Disable Sharing",
+      "leaveList": "Leave List",
+      "switchLists": " Switch Lists",
+      "switchListsTitle": "Switch Grocery Carts",
+      "myCart": "My Grocery Cart"
+    }
+  },
   "QuickLinks": {
     "Breakfast": "Breakfast",
     "Pasta": "Pasta",

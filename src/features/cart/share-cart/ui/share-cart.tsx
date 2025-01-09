@@ -1,6 +1,7 @@
 'use client';
 
 import { Share2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 
@@ -13,6 +14,7 @@ interface ShareCartProps {
 }
 
 function ShareCart({ cart }: ShareCartProps) {
+  const t = useTranslations('CartPage');
   const { handleCartShare, isPending } = useShareCart({ cart });
 
   return (
@@ -22,7 +24,7 @@ function ShareCart({ cart }: ShareCartProps) {
       loading={isPending}
       loadingText=''
       loadingClassName='h-5 w-5'
-      aria-label='Share Recipe With Others'
+      aria-label={t('shareCartAction')}
     />
   );
 }

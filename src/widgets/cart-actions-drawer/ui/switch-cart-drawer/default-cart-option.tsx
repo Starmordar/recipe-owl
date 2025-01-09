@@ -2,6 +2,7 @@
 
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { publicUrls } from '@/src/shared/config/url';
 import { DrawerActionButton } from '@/src/shared/ui/drawer';
@@ -13,11 +14,13 @@ interface DefaultCartOptionProps extends PropsWithChildren {
 }
 
 function DefaultCartOption({ onSelect }: DefaultCartOptionProps) {
+  const t = useTranslations('CartPage.ActionsDrawer');
+
   return (
     <Link href={publicUrls.cart} onClick={onSelect}>
       <DrawerActionButton>
         <ShoppingCart className='w-7 h-7' />
-        My Grocery Cart
+        {t('myCart')}
       </DrawerActionButton>
     </Link>
   );
