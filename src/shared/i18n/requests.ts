@@ -13,10 +13,12 @@ export default getRequestConfig(async () => {
       headers: { 'accept-language': headers().get('accept-language') ?? '' },
     }).languages();
 
-    const supportedLocale = languages.find(language => {
-      const [locale] = language.split('-');
-      return i18nConfig.allowedLocales.includes(locale);
-    });
+    const supportedLocale = languages
+      .map(lang => {
+        const [locale] = lang.split('-');
+        return locale;
+      })
+      .find(locale => i18nConfig.allowedLocales.includes(locale));
 
     return supportedLocale ?? i18nConfig.defaultLocale;
   }

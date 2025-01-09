@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { forwardRef } from 'react';
 
-import { RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
+import { parseCookTime, RecipeAuthor, type RecipeWithUser } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { hashColor } from '@/src/shared/lib/color';
 import { Button } from '@/src/shared/ui/button';
@@ -14,7 +14,7 @@ interface RecipeInfoProps {
 }
 
 const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref) => {
-  const t = useTranslations('HomePage');
+  const t = useTranslations();
 
   return (
     <>
@@ -28,7 +28,12 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
           <div className='flex flex-col gap-y-2 py-3'>
             {recipe.cookTime && (
               <p>
-                Time: <span className='font-semibold'>{recipe.cookTime}</span>
+                {t('RecipeDetails.Description.time')}{' '}
+                <span className='font-semibold'>
+                  {t('RecipeDetails.Description.cookTime', {
+                    ...parseCookTime(recipe.cookTime ?? ''),
+                  })}
+                </span>
               </p>
             )}
             {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}

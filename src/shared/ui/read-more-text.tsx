@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '../lib/classnames';
@@ -12,6 +13,7 @@ interface ReadMoreTextProps extends PropsWithChildren {
 
 const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
   ({ className, children }, ref) => {
+    const t = useTranslations('Shared');
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -47,7 +49,7 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
               )}
               onClick={() => setIsExpanded(value => !value)}
             >
-              {isExpanded ? 'Read Less' : 'Read more'}
+              {isExpanded ? t('readLess') : t('readMore')}
             </span>
           )}
         </p>

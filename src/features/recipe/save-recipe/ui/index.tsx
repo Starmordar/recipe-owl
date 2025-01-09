@@ -1,4 +1,5 @@
 import { Bookmark } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { ProtectedDrawer } from '@/src/entities/session/server';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
@@ -11,10 +12,12 @@ interface SaveRecipeActionProps {
 }
 
 function SaveRecipeAction({ isSaved, recipeId }: SaveRecipeActionProps) {
+  const t = useTranslations('RecipeDetails.Protected');
+
   return (
     <ProtectedDrawer
-      title='Log In to Save'
-      description='To save your recipes, please log in or create a new account.'
+      title={t('saveRecipeTitle')}
+      description={t('saveRecipeDescription')}
       renderTrigger={() => <HeaderIconButton Icon={<Bookmark />} />}
     >
       <SaveButton isSaved={isSaved} recipeId={recipeId} />

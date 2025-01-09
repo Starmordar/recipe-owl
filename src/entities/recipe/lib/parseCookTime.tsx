@@ -6,7 +6,7 @@ interface Time {
 const hoursLabel = 'hr';
 const minutesLabel = 'min';
 
-function parseTimeString(time: string): Time {
+function parseCookTime(time: string): Time {
   const parts = time?.split(' ') ?? [];
   const [value1, label1, value2, label2] = parts;
 
@@ -17,4 +17,4 @@ function parseTimeString(time: string): Time {
   return { hours: parseInt(value1), minutes: parseInt(value2) };
 }
 
-export { parseTimeString, hoursLabel, minutesLabel };
+export { parseCookTime, hoursLabel, minutesLabel };

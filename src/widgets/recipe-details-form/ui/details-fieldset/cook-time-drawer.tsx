@@ -1,7 +1,9 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState, type PropsWithChildren } from 'react';
 
+import { hoursLabel, minutesLabel, parseCookTime } from '@/src/entities/recipe';
 import { Button } from '@/src/shared/ui/button';
 import {
   Drawer,
@@ -15,15 +17,14 @@ import {
 } from '@/src/shared/ui/drawer';
 import { WheelPicker } from '@/src/shared/ui/wheel-picker';
 
-import { hoursLabel, minutesLabel, parseTimeString } from './lib/parse-time-string';
-
 interface CookTimeDrawerProps extends PropsWithChildren {
   value: string;
   onChange: (value: string) => void;
 }
 
 function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
-  const [timeString, setTimeString] = useState(parseTimeString(value));
+  const t = useTranslations('RecipeForm.CookTimeDrawer');
+  const [timeString, setTimeString] = useState(parseCookTime(value));
 
   function onChangeCookTime(field: 'hours' | 'minutes', nextValue: number) {
     setTimeString(state => ({
@@ -46,8 +47,8 @@ function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
 
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Cook Time</DrawerTitle>
-          <DrawerDescription>How long does it take to cook this recipe?</DrawerDescription>
+          <DrawerTitle>{t('title')}</DrawerTitle>
+          <DrawerDescription>{t('description')}</DrawerDescription>
         </DrawerHeader>
 
         <WheelPicker onChange={onChangeCookTime} defaultValue={timeString} />
@@ -59,13 +60,13 @@ function CookTimeDrawer({ value, onChange, children }: CookTimeDrawerProps) {
               variant='outline'
               onClick={() => handleSetCookTime({ reset: true })}
             >
-              Clear
+              {t('cancel')}
             </Button>
           </DrawerClose>
 
           <DrawerClose className='flex-1' asChild>
             <Button className='w-full' onClick={() => handleSetCookTime({})}>
-              Save
+              {t('save')}
             </Button>
           </DrawerClose>
         </DrawerFooter>

@@ -24,6 +24,8 @@ export {
 
 export { elasticRecipeViews as elasticRecipeViewsIndex } from './config/elastic-index-name';
 
+export { parseCookTime, hoursLabel, minutesLabel } from './lib/parseCookTime';
+
 export { RecipeCard, TagsSection as RecipeTagsSection } from './ui/recipe-card';
 export { RecipeAuthor } from './ui/recipe-author';
 

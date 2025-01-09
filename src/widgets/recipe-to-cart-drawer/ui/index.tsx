@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { PropsWithChildren, useState } from 'react';
 
 import { Button } from '@/src/shared/ui/button';
@@ -28,6 +29,7 @@ interface AddRecipeToCartDrawerProps extends PropsWithChildren {
 
 function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps) {
   const { form, onSubmit, isPending } = useIngredientsForm({ recipe });
+  const t = useTranslations('RecipeDetails.AddToCart');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -48,10 +50,8 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
 
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Add to Cart</DrawerTitle>
-          <DrawerDescription className='sr-only'>
-            Drawer for adding a recipe to the cart.
-          </DrawerDescription>
+          <DrawerTitle>{t('title')}</DrawerTitle>
+          <DrawerDescription className='sr-only'>{t('description')}</DrawerDescription>
         </DrawerHeader>
 
         <IngredientsFormHeader
@@ -69,15 +69,15 @@ function AddRecipeToCartDrawer({ recipe, children }: AddRecipeToCartDrawerProps)
 
         <DrawerFooter className='flex flex-row w-full'>
           <DrawerClose className='flex-1' asChild>
-            <Button variant='outline'>Cancel</Button>
+            <Button variant='outline'>{t('cancel')}</Button>
           </DrawerClose>
           <Button
             form='ingredients-to-cart-form'
             className='flex-1'
             loading={isPending}
-            loadingText='Adding...'
+            loadingText={t('submitPending')}
           >
-            Add items
+            {t('submit')}
           </Button>
         </DrawerFooter>
       </DrawerContent>

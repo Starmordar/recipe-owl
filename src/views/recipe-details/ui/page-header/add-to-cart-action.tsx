@@ -1,4 +1,5 @@
 import { CirclePlus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { ProtectedDrawer } from '@/src/entities/session/server';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
@@ -11,10 +12,12 @@ interface AddToCartActionProps {
 }
 
 function AddToCartAction({ recipe }: AddToCartActionProps) {
+  const t = useTranslations('RecipeDetails.Protected');
+
   return (
     <ProtectedDrawer
-      title='Log In to Add Recipe to Cart'
-      description='To add recipe to your cart, please log in or create a new account.'
+      title={t('addToCartTitle')}
+      description={t('addToCartDescription')}
       renderTrigger={() => <HeaderIconButton Icon={<CirclePlus />} />}
     >
       <AddRecipeToCartDrawer recipe={recipe}>

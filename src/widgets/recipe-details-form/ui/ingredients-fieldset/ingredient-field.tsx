@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { UseFormReturn } from 'react-hook-form';
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
@@ -16,6 +17,8 @@ interface IngredientFieldProps {
 }
 
 function IngredientField({ form, field, index }: IngredientFieldProps) {
+  const t = useTranslations('RecipeForm.Ingredients');
+
   return (
     <div className='flex flex-1 gap-x-2'>
       <IngredientsSelect form={form} fieldIndex={index} initialValue={field.name} />
@@ -26,7 +29,7 @@ function IngredientField({ form, field, index }: IngredientFieldProps) {
         render={({ field }) => (
           <FormItem className='basis-1/3'>
             <FormControl>
-              <Input placeholder='Quantity' {...field} />
+              <Input placeholder={t('quantityPlaceholder')} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

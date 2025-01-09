@@ -1,13 +1,8 @@
 'use client';
 
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/src/shared/ui/form';
+import { useTranslations } from 'next-intl';
+
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
 import { Input } from '@/src/shared/ui/input';
 import { Textarea } from '@/src/shared/ui/textarea';
 
@@ -23,6 +18,8 @@ interface DetailsFieldsetProps {
 }
 
 function DetailsFieldset({ form }: DetailsFieldsetProps) {
+  const t = useTranslations('RecipeForm.Fields');
+
   return (
     <fieldset className='flex flex-col gap-y-4'>
       <ImageField form={form} />
@@ -32,9 +29,9 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         name='title'
         render={({ field }) => (
           <FormItem className='space-y-1'>
-            <FormLabel className='text-lg'>Title</FormLabel>
+            <FormLabel className='text-lg'>{t('title')}</FormLabel>
             <FormControl>
-              <Input placeholder='Give your recipe a name' {...field} />
+              <Input placeholder={t('titlePlaceholder')} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -46,10 +43,10 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         name='description'
         render={({ field }) => (
           <FormItem className='space-y-1'>
-            <FormLabel>Description</FormLabel>
+            <FormLabel>{t('description')}</FormLabel>
             <FormControl>
               <Textarea
-                placeholder='Introduce your recipe, add notes, cooking tips, serving suggestions, etc...'
+                placeholder={t('descriptionPlaceholder')}
                 className='resize-none'
                 autoResize
                 {...field}
@@ -65,9 +62,9 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         name='source'
         render={({ field }) => (
           <FormItem className='space-y-1'>
-            <FormLabel>Source</FormLabel>
+            <FormLabel>{t('source')}</FormLabel>
             <FormControl>
-              <Input placeholder='Source or link to the original recipe' {...field} />
+              <Input placeholder={t('sourcePlaceholder')} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -79,15 +76,10 @@ function DetailsFieldset({ form }: DetailsFieldsetProps) {
         name='cookTime'
         render={({ field }) => (
           <FormItem className='space-y-1'>
-            <FormLabel>Cook Time</FormLabel>
+            <FormLabel>{t('cookTime')}</FormLabel>
             <FormControl>
               <CookTimeDrawer onChange={field.onChange} value={field.value}>
-                <Input
-                  placeholder='How long does it take to cook this recipe?'
-                  type='text'
-                  readOnly
-                  {...field}
-                />
+                <Input placeholder={t('cookTimePlaceholder')} type='text' readOnly {...field} />
               </CookTimeDrawer>
             </FormControl>
             <FormMessage />

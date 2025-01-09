@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@/src/shared/lib/classnames';
 
@@ -10,6 +11,7 @@ interface RecipeAuthorProps {
 }
 
 function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
+  const t = useTranslations('RecipeDetails.Description');
   const cssSize = `${avatarSize}px`;
 
   return (
@@ -20,14 +22,14 @@ function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
           height={avatarSize}
           width={avatarSize}
           src={author.picture}
-          alt='Profile Picture'
+          alt=''
         />
       ) : (
         <div className={cn(`h-[${cssSize}] w-[${cssSize}]`, 'rounded-full bg-primary')}></div>
       )}
 
       <p className='text-md'>
-        by <span className='underline'>{author.fullName}</span>
+        {t.rich('author', { author: () => <span className='underline'>{author.fullName}</span> })}
       </p>
     </div>
   );

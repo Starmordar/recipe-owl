@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
 import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
@@ -8,7 +9,8 @@ async function NewRecipePage() {
   const { user } = await validateRequest();
   if (user === null) redirect(publicUrls.signIn);
 
-  return <RecipeDetailsForm title='Add Recipe' />;
+  const t = await getTranslations('RecipeForm');
+  return <RecipeDetailsForm title={t('createTitle')} />;
 }
 
 export { NewRecipePage };

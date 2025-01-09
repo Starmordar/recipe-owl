@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { usePageLeaveConfirmation } from '@/src/shared/lib/use-page-leave-confirmation';
 import { Form } from '@/src/shared/ui/form';
 
@@ -16,8 +18,10 @@ export interface RecipeFormProps {
 }
 
 function RecipeForm({ form, onSubmit }: RecipeFormProps) {
+  const t = useTranslations('RecipeForm');
+
   usePageLeaveConfirmation({
-    confirmationMessage: 'You have unsaved changes. Are you sure you want to leave?',
+    confirmationMessage: t('confirmationOnLeave'),
     shouldConfirm: form.formState.isDirty,
   });
 

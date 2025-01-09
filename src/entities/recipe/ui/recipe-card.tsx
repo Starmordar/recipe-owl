@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { publicUrls } from '@/src/shared/config/url';
+
+import { parseCookTime } from '../lib/parseCookTime';
 
 import type { RecipePreview } from '../model/types';
 
@@ -34,11 +37,13 @@ interface TagsSectionProps {
 }
 
 function TagsSection({ recipe }: TagsSectionProps) {
+  const t = useTranslations('RecipeDetails.Description');
+
   return (
     <div className='absolute top-2 left-2 z-10 text-sm flex gap-2'>
       {recipe.cookTime && (
         <div className='bg-orange-200 dark:bg-orange-600 rounded-xl px-2 py-0.5'>
-          {recipe.cookTime}
+          {t('cookTime', { ...parseCookTime(recipe.cookTime ?? '') })}
         </div>
       )}
       {recipe.tags.length > 0 && (

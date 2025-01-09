@@ -2,6 +2,7 @@
 
 import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { DeleteRecipeModal } from '@/src/features/recipe/delete-recipe';
 import { publicUrls } from '@/src/shared/config/url';
@@ -22,21 +23,23 @@ interface RecipeActionsDrawerProps extends PropsWithChildren {
 }
 
 function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
+  const t = useTranslations('RecipeDetails.ManageRecipe');
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
         <DrawerHeader className='sr-only'>
-          <DrawerTitle>Action Buttons</DrawerTitle>
-          <DrawerDescription>Drawer for recipe management</DrawerDescription>
+          <DrawerTitle>{t('title')}</DrawerTitle>
+          <DrawerDescription>{t('description')}</DrawerDescription>
         </DrawerHeader>
 
         <ul className='my-4'>
           <li>
             <Link href={publicUrls.editRecipe(recipeId)} replace>
               <DrawerActionButton>
-                <Pencil className='h-5 w-5 opacity-60' /> Edit Recipe
+                <Pencil className='h-5 w-5 opacity-60' /> {t('editAction')}
               </DrawerActionButton>
             </Link>
           </li>
@@ -44,7 +47,7 @@ function RecipeActionsDrawer({ children, recipeId }: RecipeActionsDrawerProps) {
           <li>
             <DeleteRecipeModal recipeId={recipeId}>
               <DrawerActionButton>
-                <Trash2 className='h-5 w-5 opacity-60' /> Delete Recipe
+                <Trash2 className='h-5 w-5 opacity-60' /> {t('deleteAction')}
               </DrawerActionButton>
             </DeleteRecipeModal>
           </li>

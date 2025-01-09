@@ -1,6 +1,7 @@
 'use client';
 
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 
@@ -21,6 +22,7 @@ interface StepsFieldsetProps {
 }
 
 function StepsFieldset({ form }: StepsFieldsetProps) {
+  const t = useTranslations('RecipeForm.Method');
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
@@ -39,7 +41,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title='Method'
+        title={t('title')}
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
@@ -70,7 +72,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
           onClick={() => append({ description: '' })}
         >
           <Plus className='h-6 w-6 mr-2' />
-          Step
+          {t('addTitle')}
         </Button>
       </div>
     </fieldset>

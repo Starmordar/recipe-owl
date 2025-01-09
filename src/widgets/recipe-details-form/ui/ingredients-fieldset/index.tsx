@@ -1,6 +1,7 @@
 'use client';
 
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 
@@ -21,6 +22,7 @@ interface IngredientsFieldsetProps {
 }
 
 function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
+  const t = useTranslations('RecipeForm.Ingredients');
   const [isDraggable, setIsDraggable] = useState(false);
 
   const { fields, append, move, remove } = useFieldArray({
@@ -39,7 +41,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
   return (
     <fieldset className='flex flex-col gap-y-3'>
       <DraggableFieldsHeader
-        title='Ingredients'
+        title={t('title')}
         isDraggable={isDraggable}
         setIsDraggable={setIsDraggable}
       />
@@ -72,7 +74,7 @@ function IngredientsFieldset({ form }: IngredientsFieldsetProps) {
           onClick={() => append({ name: '', unit: '' })}
         >
           <Plus className='h-6 w-6 mr-2' />
-          Ingredient
+          {t('addTitle')}
         </Button>
       </div>
     </fieldset>

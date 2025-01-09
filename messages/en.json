@@ -1,5 +1,104 @@
 {
-    "HomePage": {
-      "title": "Recipe of the Day"
+  "Shared": {
+    "readMore": "Read more",
+    "readLess": "Read Less"
+  },
+  "TimePicker": {
+    "minutesLabel": "min",
+    "hourLabel": "hour",
+    "hoursLabel": "hours"
+  },
+  "DraggableFields": {
+    "done": "Done",
+    "reorder": "Reorder"
+  },
+  "RecipeDetails": {
+    "Description": {
+      "author": "by <author></author>",
+      "source": "Source:",
+      "tags": "Tags:",
+      "time": "Time:",
+      "cookTime": "{hours, plural, =0 {} other {{hours} hr}} {minutes, plural, =0 {} other {{minutes} min}}"
+    },
+    "Ingredients": {
+      "title": "Ingredients",
+      "nameColumn": "Name",
+      "amountColumn": "Amount"
+    },
+    "Method": {
+      "title": "Method"
+    },
+    "AddToCart": {
+      "trigger": "Add to Cart",
+      "title": "Add to Cart",
+      "description": "Drawer for adding a recipe to the cart.",
+      "cancel": "Cancel",
+      "submit": "Add Items",
+      "submitPending": "Adding...",
+      "itemsToAdd": "Items to Add",
+      "itemsSelectAll": "Select All",
+      "itemsDeselectAll": "Deselect All"
+    },
+    "ManageRecipe": {
+      "title": "Action Buttons",
+      "description": "Drawer for recipe management",
+      "editAction": "Edit Recipe",
+      "deleteAction": "Delete Recipe"
+    },
+    "Protected": {
+      "addToCartTitle": "Log In to Add Recipe to Cart",
+      "addToCartDescription": "To add recipe to your cart, please log in or create a new account.",
+      "saveRecipeTitle": "Log In to Save",
+      "saveRecipeDescription": "To save your recipes, please log in or create a new account."
+    },
+    "WebShare": {
+      "title": "Recipe OWL: Discover, Cook, Share – The Wise Way"
     }
-}
+  },
+  "RecipeForm": {
+    "createTitle": "Add Recipe",
+    "updateTitle": "Edit Recipe",
+    "confirmationOnLeave": "You have unsaved changes. Are you sure you want to leave?",
+    "save": "Save",
+    "savePending": "Saving",
+    "Fields": {
+      "title": "Title",
+      "titlePlaceholder": "Give your recipe a name",
+      "description": "Description",
+      "descriptionPlaceholder": "Introduce your recipe, add notes, cooking tips, serving suggestions, etc...",
+      "source": "Source",
+      "sourcePlaceholder": "Source or link to the original recipe",
+      "cookTime": "Cook Time",
+      "cookTimePlaceholder": "How long does it take to cook this recipe?",
+      "tags": "Tags",
+      "tagsAction": "Set Tags",
+      "tagsPlaceholder": "Tags help categorize your recipe and make it easier for others to find."
+    },
+    "Ingredients": {
+      "title": "Ingredients",
+      "namePlaceholder": "Search for ingredients",
+      "quantityPlaceholder": "Quantity",
+      "addTitle": "Ingredient"
+    },
+    "Method": {
+      "title": "Method",
+      "stepPlaceholder": "Describe each step of your recipe in detail. Include tips, techniques, etc...",
+      "addTitle": "Step"
+    },
+    "AddImage": {
+      "title": "Add Recipe Photo",
+      "description": "Take a Picture or Choose from Gallery",
+      "takePicture": "Take a Picture",
+      "chooseFromGallery": "Choose from Gallery"
+    },
+    "CookTimeDrawer": {
+      "title": "Cook Time",
+      "description": "How long does it take to cook this recipe?",
+      "cancel": "Clear",
+      "save": "Save"
+    }
+  },
+  "HomePage": {
+    "title": "Recipe of the Day"
+  }
+} 

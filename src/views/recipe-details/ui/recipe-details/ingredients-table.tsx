@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import {
   Table,
   TableBody,
@@ -14,12 +16,14 @@ interface RecipeIngredientsSectionProps {
 }
 
 function RecipeIngredientsSection({ ingredients }: RecipeIngredientsSectionProps) {
+  const t = useTranslations('RecipeDetails.Ingredients');
+
   return (
     <Table className='text-base'>
       <TableHeader className='hidden'>
         <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHead>{t('nameColumn')}</TableHead>
+          <TableHead>{t('amountColumn')}</TableHead>
         </TableRow>
       </TableHeader>
 
