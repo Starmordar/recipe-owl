@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Search, X } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import React, { useMemo, useRef, useState } from 'react';
 
 import { publicUrls } from '@/src/shared/config/url';
@@ -26,6 +27,7 @@ function SearchInput({
   setSearchTerm,
   setSelected,
 }: SearchInputProps) {
+  const t = useTranslations('RecipeFilters.Search');
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [focusInput, setFocusInput] = useState(false);
 
@@ -56,11 +58,7 @@ function SearchInput({
   return (
     <div className='flex w-full items-center gap-x-2'>
       {showClear && (
-        <Link
-          href={publicUrls.recipes}
-          aria-label='Clear Search and Filters'
-          onMouseDown={clearSelectedValues}
-        >
+        <Link href={publicUrls.recipes} aria-label={t('clear')} onMouseDown={clearSelectedValues}>
           <ArrowLeft />
         </Link>
       )}
@@ -72,7 +70,7 @@ function SearchInput({
           ref={inputRef}
           className='flex h-10 w-full bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground hide-search-actions'
           type='search'
-          placeholder='Search Recipe OWL'
+          placeholder={t('searchPlaceholder')}
           value={searchTerm}
           onChange={evt => setSearchTerm(evt.target.value)}
           onFocus={() => setFocusInput(true)}
@@ -98,7 +96,7 @@ function SearchInput({
           size='xss'
           onMouseDown={cancelSearch}
         >
-          Cancel
+          {t('cancel')}
         </Button>
       )}
 

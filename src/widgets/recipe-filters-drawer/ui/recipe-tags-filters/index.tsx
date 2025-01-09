@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
 
 import { recipeQueries } from '@/src/entities/recipe';
@@ -24,6 +25,8 @@ function RecipeTagsFilters({
   scrollIntoSection,
   setScrollIntoSection,
 }: RecipeTagsFiltersProps) {
+  const t = useTranslations('RecipeFilters.Tags');
+
   const { data: tags, isLoading } = useQuery(recipeQueries.searchTags(''));
   const scrolled = useRef(false);
 
@@ -51,12 +54,12 @@ function RecipeTagsFilters({
           variant='outline'
           className='flex flex-col items-start gap-2 py-4 last:pb-0'
         >
-          <p className='font-semibold text-lg'>{tag.type}</p>
+          <p className='font-semibold text-lg'>{t(`Categories.${tag.type}`)}</p>
 
           <div className='flex flex-wrap justify-start gap-2'>
             {tag.categories.map(category => (
               <ToggleGroupItem key={category} value={category} size='sm'>
-                {category}
+                {t(`Items.${category}`)}
               </ToggleGroupItem>
             ))}
           </div>

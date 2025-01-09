@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import {
@@ -25,6 +26,7 @@ import { RecipeTagsFilters } from './recipe-tags-filters';
 import type { SelectedFilters } from '../model/types';
 
 function RecipeFiltersDrawer() {
+  const t = useTranslations('RecipeFilters');
   const { valuesFromPathname } = useValueToPathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [filters, setFilters] = useState<SelectedFilters>(valuesFromPathname(filterCategories));
@@ -35,7 +37,6 @@ function RecipeFiltersDrawer() {
   }
 
   function handleOpenDrawer(open: boolean) {
-    console.log('on open drawer change trigger, open:', open);
     setIsDrawerOpen(open);
 
     if (!open) return;
@@ -63,7 +64,7 @@ function RecipeFiltersDrawer() {
             size='xs'
             onClick={() => filterCategoryClick(tag)}
           >
-            {tag}
+            {t(`Tags.Categories.${tag}`)}
 
             {filterValues[tag]?.length > 0 && (
               <span className='flex justify-center items-center w-5 h-5 text-accent bg-foreground rounded-full text-sm font-medium'>
@@ -77,11 +78,8 @@ function RecipeFiltersDrawer() {
       <Drawer open={isDrawerOpen} onOpenChange={handleOpenDrawer}>
         <DrawerContent className='h-[85%]'>
           <DrawerHeader>
-            <DrawerTitle>Recipes Filters</DrawerTitle>
-            <DrawerDescription className='sr-only'>
-              Refine your recipe search by selecting specific cuisines, ingredients, or dietary
-              preferences.
-            </DrawerDescription>
+            <DrawerTitle>{t('Drawer.title')}</DrawerTitle>
+            <DrawerDescription className='sr-only'>{t('Drawer.description')}</DrawerDescription>
           </DrawerHeader>
 
           <div className='overflow-y-auto p-4' data-vaul-no-drag>

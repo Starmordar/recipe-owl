@@ -98,6 +98,78 @@
       "save": "Save"
     }
   },
+  "RecipeFilters": {
+    "Search": {
+      "searchPlaceholder": "Search Recipe OWL",
+      "clear": "Clear Search and Filters",
+      "cancel": "Cancel",
+      "popularSearches": "Popular searches",
+      "recentSearches": "Recent searches"
+    },
+    "Ingredients": {
+      "title": "Search By Ingredients",
+      "searchPlaceholder": "Add Item"
+    },
+    "Tags": {
+      "Categories": {
+        "Ingredients": "Ingredients",
+        "Mood":"Mood", 
+        "Cuisine":"Cuisine", 
+        "Nutrition":"Nutrition", 
+        "Complexity":"Complexity", 
+        "Time":"Time"
+      },
+      "Items": {
+        "Bad Day": "Bad Day",  
+        "Chill": "Chill",  
+        "Curious": "Curious",  
+        "Date Night": "Date Night",  
+        "Energized": "Energized",  
+        "Feel Good": "Feel Good",  
+        "Guilty": "Guilty",  
+        "Happy": "Happy",  
+        "Impress": "Impress",  
+        "Lazy": "Lazy",  
+        "Party": "Party",
+        "African": "African",  
+        "American": "American",  
+        "Asian": "Asian",  
+        "British": "British",  
+        "Chinese": "Chinese",  
+        "European": "European",  
+        "French": "French",  
+        "German": "German",  
+        "Georgian": "Georgian",  
+        "Greek": "Greek",  
+        "Indian": "Indian",  
+        "Israeli": "Israeli",  
+        "Italian": "Italian",  
+        "Mediterranean": "Mediterranean",  
+        "Mexican": "Mexican",  
+        "Spanish": "Spanish",  
+        "Vietnamese": "Vietnamese",
+        "Healthy": "Healthy",  
+        "High Protein": "High Protein",  
+        "Low Energy": "Low Energy",  
+        "Low Fat": "Low Fat",  
+        "Low Sugars": "Low Sugars",  
+        "Vegan": "Vegan",  
+        "Vegetarian": "Vegetarian",
+        "Easy": "Easy",  
+        "Level Up": "Level Up",  
+        "Skilled": "Skilled",  
+        "Quick": "Quick",  
+        "Under 1 Hour": "Under 1 Hour",  
+        "I Got Time": "I Got Time"
+      }
+    },
+    "Drawer": {
+      "title": "Recipes Filters",
+      "description": "Refine your recipe search by selecting specific cuisines, ingredients, or dietary preferences.",
+      "cancel": "Clear Filters",
+      "apply": "Apply"
+    }
+  },
   "HomePage": {
     "title": "Recipe of the Day"
   }

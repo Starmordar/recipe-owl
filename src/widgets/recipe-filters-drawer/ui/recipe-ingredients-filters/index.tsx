@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { ingredientQueries } from '@/src/entities/ingredient';
@@ -21,6 +22,7 @@ function RecipeIngredientsFilters({
   selected,
   onFilterChange,
 }: RecipeIngredientsFiltersProps) {
+  const t = useTranslations('RecipeFilters.Ingredients');
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -50,10 +52,10 @@ function RecipeIngredientsFilters({
 
   return (
     <div className='flex flex-col pb-4 space-y-3'>
-      <h6 className='text-lg font-semibold leading-tight'>Search By Ingredients</h6>
+      <h6 className='text-lg font-semibold leading-tight'>{t('title')}</h6>
 
       <Search
-        placeholder='Add Item'
+        placeholder={t('searchPlaceholder')}
         data={ingredients ?? []}
         searchTerm={searchTerm}
         setSearchTerm={nextValue => handleSearch(nextValue)}

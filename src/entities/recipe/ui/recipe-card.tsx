@@ -37,17 +37,19 @@ interface TagsSectionProps {
 }
 
 function TagsSection({ recipe }: TagsSectionProps) {
-  const t = useTranslations('RecipeDetails.Description');
+  const t = useTranslations();
 
   return (
     <div className='absolute top-2 left-2 z-10 text-sm flex gap-2'>
       {recipe.cookTime && (
         <div className='bg-orange-200 dark:bg-orange-600 rounded-xl px-2 py-0.5'>
-          {t('cookTime', { ...parseCookTime(recipe.cookTime ?? '') })}
+          {t('RecipeDetails.Description.cookTime', { ...parseCookTime(recipe.cookTime ?? '') })}
         </div>
       )}
       {recipe.tags.length > 0 && (
-        <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>{recipe.tags[0]}</div>
+        <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>
+          {t(`RecipeFilters.Tags.Items.${recipe.tags[0]}`)}
+        </div>
       )}
     </div>
   );

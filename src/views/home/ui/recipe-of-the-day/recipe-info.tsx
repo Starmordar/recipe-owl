@@ -64,7 +64,7 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
           <div className='absolute top-4 right-4 z-10 text-sm flex gap-2'>
             {recipe.tags.length > 0 && (
               <div className='bg-lime-200 dark:bg-lime-600 rounded-xl px-2 py-0.5'>
-                {recipe.tags[0]}
+                {t(`RecipeFilters.Tags.Items.${recipe.tags[0]}`)}
               </div>
             )}
           </div>
