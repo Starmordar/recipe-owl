@@ -13,7 +13,7 @@ function getMinuteItems(t: ReturnType<typeof useTranslations>) {
 function getHourItems(t: ReturnType<typeof useTranslations>) {
   return Array.from({ length: 24 }, (_, index) => ({
     value: index,
-    label: `${index} ${index === 1 ? t('hourLabelSingular') : t('hourLabelPlural')}`,
+    label: `${index} ${t('hourLabel', { hours: index })}`,
   }));
 }
 

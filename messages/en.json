@@ -15,8 +15,7 @@
     },
     "TimePicker": {
       "minuteLabel": "min",
-      "hourLabelSingular": "hour",
-      "hourLabelPlural": "hours"
+      "hourLabel": "{hours, plural, =1 {hour} other {hours}}"
     },
     "DraggableFields": {
       "actionDone": "Done",

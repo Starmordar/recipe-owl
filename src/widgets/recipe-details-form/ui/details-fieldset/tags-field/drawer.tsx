@@ -26,7 +26,7 @@ interface TagsDrawerProps extends PropsWithChildren {
 }
 
 function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
-  const t = useTranslations('RecipeFormPage.AddTagsDrawer');
+  const t = useTranslations();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState(value);
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,14 +48,16 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
       <DrawerContent>
         <div className='mx-auto w-full max-w-sm'>
           <DrawerHeader>
-            <DrawerTitle>{t('title')}</DrawerTitle>
-            <DrawerDescription className='sr-only'>{t('description')}</DrawerDescription>
+            <DrawerTitle>{t('RecipeFormPage.AddTagsDrawer.title')}</DrawerTitle>
+            <DrawerDescription className='sr-only'>
+              {t('RecipeFormPage.AddTagsDrawer.description')}
+            </DrawerDescription>
           </DrawerHeader>
 
           <div className='flex flex-col'>
             <div className='my-2'>
               <Search
-                placeholder={t('searchPlaceholder')}
+                placeholder={t('RecipeFormPage.AddTagsDrawer.searchPlaceholder')}
                 data={[]}
                 searchTerm={searchTerm}
                 setSearchTerm={nextValue => setSearchTerm(nextValue)}
@@ -75,7 +77,9 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
               >
                 {tags?.map(tag => (
                   <div key={tag.type}>
-                    <p className='mb-1 font-semibold text-lg'>{tag.type}</p>
+                    <p className='mb-1 font-semibold text-lg'>
+                      {t(`RecipeTags.Categories.${tag.type}`)}
+                    </p>
                     <div className='flex flex-wrap justify-start gap-2'>
                       {tag.categories.map(category => (
                         <ToggleGroupItem
@@ -84,7 +88,7 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
                           size='sm'
                           className='data-[state=on]:border-primary'
                         >
-                          {category}
+                          {t(`RecipeTags.Items.${category}`)}
                         </ToggleGroupItem>
                       ))}
                     </div>
@@ -97,13 +101,13 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
           <DrawerFooter className='flex flex-row w-full'>
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' variant='outline' onClick={() => onChange([])}>
-                {t('cancelAction')}
+                {t('RecipeFormPage.AddTagsDrawer.cancelAction')}
               </Button>
             </DrawerClose>
 
             <DrawerClose className='flex-1' asChild>
               <Button className='w-full' onClick={() => onChange(selectedTags)}>
-                {t('submitAction')}
+                {t('RecipeFormPage.AddTagsDrawer.submitAction')}
               </Button>
             </DrawerClose>
           </DrawerFooter>
