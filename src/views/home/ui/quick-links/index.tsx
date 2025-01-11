@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import { Link } from '@/src/shared/i18n/routing';
 import {
   Carousel,
   CarouselContent,

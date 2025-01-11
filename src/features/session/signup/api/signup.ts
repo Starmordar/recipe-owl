@@ -2,13 +2,14 @@
 
 import { generateIdFromEntropySize } from 'lucia';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { getLocale } from 'next-intl/server';
 import { Argon2id } from 'oslo/password';
 
 import { authRedirectUrlKey } from '@/src/entities/session';
 import { prisma } from '@/src/shared/api';
 import { lucia } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
+import { redirect } from '@/src/shared/i18n/routing';
 
 import type { FromValues } from '../model/schema';
 
@@ -28,7 +29,8 @@ async function signUp(values: FromValues): Promise<{ error: string }> {
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
   const redirectUrl = cookies().get(authRedirectUrlKey)?.value ?? publicUrls.home;
-  redirect(redirectUrl);
+  const locale = await getLocale();
+  redirect({ href: redirectUrl, locale });
 }
 
 export { signUp };

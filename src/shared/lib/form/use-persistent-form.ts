@@ -1,6 +1,7 @@
 import { IDBPDatabase, openDB } from 'idb';
-import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+import { useRouter } from '@/src/shared/i18n/routing';
 
 import type { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 

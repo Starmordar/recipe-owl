@@ -1,10 +1,10 @@
 'use client';
 
 import { ShoppingCart } from 'lucide-react';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { DrawerActionButton } from '@/src/shared/ui/drawer';
 
 import type { PropsWithChildren } from 'react';

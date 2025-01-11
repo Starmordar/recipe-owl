@@ -1,10 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import { deleteRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
+import { useRouter } from '@/src/shared/i18n/routing';
 import {
   AlertDialog,
   AlertDialogAction,

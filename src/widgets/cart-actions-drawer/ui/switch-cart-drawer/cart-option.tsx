@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { DrawerActionButton } from '@/src/shared/ui/drawer';
 import { UserAvatar } from '@/src/shared/ui/user-avatar';
 

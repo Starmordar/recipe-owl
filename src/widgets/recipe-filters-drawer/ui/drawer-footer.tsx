@@ -1,7 +1,7 @@
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
+import { useRouter } from '@/src/shared/i18n/routing';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 import { Button } from '@/src/shared/ui/button';
 import { DrawerClose } from '@/src/shared/ui/drawer';

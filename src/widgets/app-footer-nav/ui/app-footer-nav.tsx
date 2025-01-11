@@ -1,12 +1,11 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import { userQueries } from '@/src/entities/user';
+import { usePathname, Link } from '@/src/shared/i18n/routing';
 import { cn } from '@/src/shared/lib/classnames';
 
 import { items as navbarItems } from './items';

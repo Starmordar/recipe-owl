@@ -1,7 +1,6 @@
 const i18nConfig = {
-  cookiesName: 'locale',
+  locales: ['en', 'ru'],
   defaultLocale: 'en',
-  allowedLocales: ['en', 'ru'],
 };
 
 export { i18nConfig };

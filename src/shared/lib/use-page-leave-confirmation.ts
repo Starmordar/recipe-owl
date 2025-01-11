@@ -1,5 +1,6 @@
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+
+import { useRouter } from '@/src/shared/i18n/routing';
 
 import type { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 

@@ -1,42 +1,10 @@
+import { ReactNode } from 'react';
 import './globals.css';
-import { Open_Sans } from 'next/font/google';
-import { getLocale, getTranslations } from 'next-intl/server';
 
-import { ThemeProvider, ReactQueryClientProvider, appMetadata, I18nProvider } from '@/src/app';
-import { cn } from '@/src/shared/lib/classnames';
-import { Toaster } from '@/src/shared/ui/toaster';
-
-const font = Open_Sans({ subsets: ['latin', 'cyrillic'] });
-
-export async function generateMetadata() {
-  const t = await getTranslations('Metadata');
-  return appMetadata(t);
+interface Props {
+  children: ReactNode;
 }
 
-async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const locale = await getLocale();
-
-  return (
-    <ReactQueryClientProvider>
-      <html lang={locale}>
-        <body className={cn('flex flex-col min-h-[100vh]', font.className)}>
-          <I18nProvider>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='system'
-              storageKey='theme'
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-
-              <Toaster />
-            </ThemeProvider>
-          </I18nProvider>
-        </body>
-      </html>
-    </ReactQueryClientProvider>
-  );
+export default function RootLayout({ children }: Props) {
+  return children;
 }
-
-export default RootLayout;

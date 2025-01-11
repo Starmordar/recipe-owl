@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/src/shared/i18n/routing';
 
 interface AuthChangeOptionProps {
   title: string;

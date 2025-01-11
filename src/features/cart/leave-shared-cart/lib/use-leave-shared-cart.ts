@@ -1,6 +1,5 @@
-import { useRouter } from 'next/navigation';
-
 import { publicUrls } from '@/src/shared/config/url';
+import { useRouter } from '@/src/shared/i18n/routing';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
 
 import { leaveSharedCart } from '../api/leave-shared-cart';

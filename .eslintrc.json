@@ -21,6 +21,7 @@
     }    
   },
   "rules": {
+    // "react/jsx-no-literals": "error",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-empty-object-type": ["error", { "allowInterfaces": "with-single-extends" }],
     "@typescript-eslint/array-type": ["error", { "default": "generic" }],
@@ -28,6 +29,18 @@
     "@typescript-eslint/consistent-indexed-object-style": ["error", "record"],
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-restricted-imports": [
+      "error",
+      {
+        "name": "next/link",
+        "message": "Please import from `@/i18n/routing` instead."
+      },
+      {
+        "name": "next/navigation",
+        "importNames": ["redirect", "permanentRedirect", "useRouter", "usePathname"],
+        "message": "Please import from `@/i18n/routing` instead."
+      }
+    ],
 
     "import/no-unresolved": "error",
     "import/order": [

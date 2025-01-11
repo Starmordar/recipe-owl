@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { forwardRef } from 'react';
 
 import { RecipeAuthor, RecipeCookTime, RecipeTagsSummary } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { hashColor } from '@/src/shared/lib/color';
 import { Button } from '@/src/shared/ui/button';
 

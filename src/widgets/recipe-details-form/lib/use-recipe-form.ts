@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { flushSync } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { createRecipe, updateRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
+import { useRouter } from '@/src/shared/i18n/routing';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
 import { toast } from '@/src/shared/ui/use-toast';
 

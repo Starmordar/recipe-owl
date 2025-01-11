@@ -1,32 +1,18 @@
-import Negotiator from 'negotiator';
-import { cookies, headers } from 'next/headers';
 import { getRequestConfig } from 'next-intl/server';
 
-import { i18nConfig } from './config';
+import { routing } from './routing';
 
-export default getRequestConfig(async () => {
-  function getLocale() {
-    const locale = cookies().get(i18nConfig.cookiesName)?.value;
-    if (locale) return locale;
+export type Locale = (typeof routing.locales)[number];
 
-    const languages = new Negotiator({
-      headers: { 'accept-language': headers().get('accept-language') ?? '' },
-    }).languages();
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale;
 
-    const supportedLocale = languages
-      .map(lang => {
-        const [locale] = lang.split('-');
-        return locale;
-      })
-      .find(locale => i18nConfig.allowedLocales.includes(locale));
-
-    return supportedLocale ?? i18nConfig.defaultLocale;
+  if (!locale || !routing.locales.includes(locale as Locale)) {
+    locale = routing.defaultLocale;
   }
 
-  const locale = getLocale();
-
   return {
-    locale: getLocale(),
+    locale,
     messages: (await import(`../../../messages/${locale}.json`)).default,
   };
 });

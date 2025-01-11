@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { AuthLegalSection } from '@/src/entities/session';
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { Button } from '@/src/shared/ui/button';
 import {
   Drawer,
