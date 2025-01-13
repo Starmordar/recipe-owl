@@ -3,8 +3,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 
 import { useRouter } from '@/src/shared/i18n/routing';
 
-import type { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-
 interface ObjectStore {
   name: string;
   entryKey: string;
@@ -142,17 +140,18 @@ function usePersistentForm({
   );
 
   useLayoutEffect(() => {
+    type RouterParams = Parameters<typeof router.push>;
     const originalPush = router.push;
     const originalReplace = router.replace;
 
-    router.push = function (url: string, options?: NavigateOptions) {
+    router.push = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
-      originalPush(url, options);
+      originalPush(href, options);
     };
 
-    router.replace = function (url: string, options?: NavigateOptions) {
+    router.replace = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
-      originalReplace(url, options);
+      originalReplace(href, options);
     };
 
     return () => {
