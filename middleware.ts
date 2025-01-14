@@ -40,5 +40,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/(ru|en)/:path*'],
+  matcher: ['/', '/([\\w-]+)?/(cart|profile)', '/([\\w-]+)?/recipes/(.+)', '/(ru|en)/:path*'],
 };

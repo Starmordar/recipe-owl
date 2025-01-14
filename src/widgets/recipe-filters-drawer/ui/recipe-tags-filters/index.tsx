@@ -47,7 +47,7 @@ function RecipeTagsFilters({
       {tags?.map(tag => (
         <ToggleGroup
           key={tag.type.value}
-          id={`${tag.type}-recipe-filter-section`}
+          id={`${tag.type.value}-recipe-filter-section`}
           value={filters[tag.type.value]}
           onValueChange={value => onFilterChange(tag.type.value, value)}
           type='multiple'

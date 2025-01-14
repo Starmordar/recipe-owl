@@ -28,7 +28,7 @@ async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
         <AddToCartAction recipe={recipe} />
 
         <SaveRecipeAction recipeId={recipe.id} isSaved={isSaved} />
-        <ShareRecipeAction />
+        <ShareRecipeAction recipeId={recipe.id} />
 
         {isCurrentUserOwner && (
           <RecipeActionsDrawer recipeId={recipe.id}>
