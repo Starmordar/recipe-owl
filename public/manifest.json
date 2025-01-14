@@ -2,7 +2,7 @@
   "name": "Recipe OWL",
   "short_name": "Recipe OWL",
   "description": "Discover, organize, and manage your favorite recipes with ease. Recipe OWL lets you add personal recipes, create grocery lists, and bring your culinary ideas to life—all in one place!",
-  "start_url": "/recipes",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffdab9",
   "background_color": "#ffffff",
