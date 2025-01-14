@@ -77,18 +77,18 @@ interface RecipeTagsProps {
 }
 
 function RecipeTags({ tags }: RecipeTagsProps) {
-  const t = useTranslations('RecipeDetailsPage.General');
+  const t = useTranslations();
 
   return (
     <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
-      {t('tagsLabel')}
+      {t('RecipeDetailsPage.General.tagsLabel')}
       {tags.map(tag => (
         <div
           key={tag}
           style={{ borderColor: hashColor(tag) }}
           className='py-0.5 px-2.5 border rounded-lg'
         >
-          {tag}
+          {t(`RecipeTags.Items.${tag}`)}
         </div>
       ))}
     </div>

@@ -166,7 +166,7 @@
       "author": "от <author></author>",
       "cookTime": "{hours, plural, =0 {} other {{hours} ч}} {minutes, plural, =0 {} other {{minutes} мин}}",
 
-      "tagsLabel": "Теги:",
+      "tagsLabel": "Тэги:",
       "sourceLabel": "Источник:",
       "timeLabel": "Время:",
 
@@ -203,8 +203,8 @@
       "submitActionPending": "Добавление...",
 
       "itemsToAddLabel": "Добавляемые ингредиенты",
-      "itemsSelectAllAction": "Выбрать все",
-      "itemsDeselectAllAction": "Снять выбор со всех",
+      "itemsSelectAllAction": "Выбрать всё",
+      "itemsDeselectAllAction": "Отменить всё",
 
       "ClientErrors": {
         "selectAtLeastOneIngredient": "Вы должны выбрать хотя бы один ингредиент."
@@ -250,12 +250,12 @@
     "ActionsDrawer": {
       "trigger": "Дополнительные опции",
       "title": "Кнопки действий",
-      "removeAllItemsAction": "Удалить все элементы",
-      "disableSharingAction": "Отключить общий доступ",
-      "leaveListAction": "Покинуть список",
-      "switchListsAction": "Переключить списки",
+      "removeAllItemsAction": "Удалить все ингредиенты",
+      "disableSharingAction": "Отключить доступ",
+      "leaveListAction": "Покинуть корзину",
+      "switchListsAction": "Переключить корзину",
       "switchListsDrawerTitle": "Переключение корзин продуктов",
-      "myCartOption": "Моя корзина продуктов"
+      "myCartOption": "Моя корзина"
     },
 
     "EditIngredientsDrawer": {
@@ -332,9 +332,9 @@
         "cookTime": "Время приготовления",
         "cookTimePlaceholder": "Сколько времени требуется на приготовление этого рецепта?",
 
-        "tags": "Теги",
-        "tagsAction": "Установить теги",
-        "tagsPlaceholder": "Теги помогают классифицировать рецепт и сделать его более доступным для поиска.",
+        "tags": "Тэги",
+        "tagsAction": "Добавить тэги",
+        "tagsPlaceholder": "Тэги помогают классифицировать рецепт и сделать его более доступным для поиска.",
 
         "ingredientsTitle": "Ингредиенты",
         "ingredientNamePlaceholder": "Поиск ингредиентов",
@@ -342,7 +342,7 @@
         "addIngredientAction": "Ингредиент",
 
         "stepsTitle": "Метод",
-        "stepPlaceholder":"Опишите каждый шаг приготовления вашего рецепта подробно. Включите советы, техники и т.д.",
+        "stepPlaceholder":"Подробно опишите каждый шаг приготовления вашего рецепта. Добавьте советы, техники, особенности и т.д.",
         "addStepAction": "Шаг"
       },
 
@@ -367,7 +367,7 @@
 
     "AddTagsDrawer": {
       "title": "Поиск по названиям тегов",
-      "description": "Теги помогают классифицировать рецепт и сделать его более доступным для поиска.",
+      "description": "Тэги помогают классифицировать рецепт и сделать его более доступным для поиска.",
       "searchPlaceholder": "Поиск по тегу",
       "cancelAction": "Сбросить",
       "submitAction": "Применить"
@@ -386,23 +386,23 @@
       "Ingredients": "Ингредиенты",
       "Mood": "Настроение", 
       "Cuisine": "Кухня", 
-      "Nutrition": "Диета", 
+      "Nutrition": "Питательность", 
       "Complexity": "Сложность", 
       "Time": "Время"
     },
 
     "Items": {
-      "Bad Day": "Трудный день",  
-      "Chill": "Расслабиться",  
-      "Curious": "Любопытный",  
+      "Bad Day": "Плохой день",  
+      "Chill": "Для отдыха",  
+      "Curious": "Для любопытных",  
       "Date Night": "Романтический вечер",  
-      "Energized": "Полон энергии",  
-      "Feel Good": "Отличное настроение",  
-      "Guilty": "Чит-день",  
-      "Happy": "Счастлив",  
-      "Impress": "Произведи впечатление",  
-      "Lazy": "Ленивый",  
-      "Party": "Вечеринка",
+      "Energized": "Для заряда энергией",  
+      "Feel Good": "Для хорошего настроения",  
+      "Guilty": "Сладкий грех",  
+      "Happy": "Для радости",  
+      "Impress": "Чтобы впечатлить",  
+      "Lazy": "Для ленивого дня",  
+      "Party": "Для вечеринки",  
       "African": "Африканская",  
       "American": "Американская",  
       "Asian": "Азиатская",  
@@ -427,12 +427,12 @@
       "Low Sugars": "Низкий уровень сахара",  
       "Vegan": "Веганская",  
       "Vegetarian": "Вегетарианская",
-      "Easy": "Легко",  
-      "Level Up": "Продвинутый",  
-      "Skilled": "Профессионал",  
-      "Quick": "Быстро",
-      "Under 1 Hour": "Менее часа",  
-      "I Got Time": "Куча времени"
+      "Easy": "Простое",  
+      "Level Up": "Для улучшения навыков",  
+      "Skilled": "Для опытных",  
+      "Quick": "Быстрое",  
+      "Under 1 Hour": "До 1 часа",  
+      "I Got Time": "Когда есть время"
     },
 
     "Descriptions": {
@@ -469,10 +469,10 @@
       "Low Fat": "Без жиров, но с вкусом!",  
       "Low Sugars": "Сладость без сахара",  
       "Vegan": "Совершенство на растительной основе",  
-      "Vegetarian": "Без мяса, без проблем!",  
-      "Easy": "Легко, просто ешь!",  
-      "Level Up": "Овладей кухней",  
-      "Skilled": "Режим шеф-повара: включен"
+      "Vegetarian": "Нет мяса, нет проблем!",  
+      "Easy": "Просто готовьте и наслаждайтесь!",  
+      "Level Up": "Покоряйте кулинарные вершины",  
+      "Skilled": "Режим шеф-повара: включён" 
     }
   }
 } 

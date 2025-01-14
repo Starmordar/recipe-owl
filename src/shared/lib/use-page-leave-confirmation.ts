@@ -1,6 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { useRouter as useBaseRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
-import { useRouter } from '@/src/shared/i18n/routing';
 
 interface UsePageLeaveConfirmationOptions {
   confirmationMessage: string;
@@ -13,8 +13,8 @@ function usePageLeaveConfirmation({
   shouldConfirm,
   navigationCallback,
 }: UsePageLeaveConfirmationOptions) {
-  const router = useRouter();
-  type RouterParams = Parameters<typeof router.push>;
+  const baseRouter = useBaseRouter();
+  type RouterParams = Parameters<typeof baseRouter.push>;
 
   useEffect(() => {
     function getGuarded(
@@ -28,19 +28,19 @@ function usePageLeaveConfirmation({
       else if (confirm(confirmationMessage)) original(href, options);
     }
 
-    const originalPush = router.push;
-    const originalReplace = router.replace;
+    const originalPush = baseRouter.push;
+    const originalReplace = baseRouter.replace;
 
-    router.push = (href: RouterParams[0], options: RouterParams[1]) =>
+    baseRouter.push = (href: RouterParams[0], options: RouterParams[1]) =>
       getGuarded(href, options, originalPush);
-    router.replace = (href: RouterParams[0], options: RouterParams[1]) =>
+    baseRouter.replace = (href: RouterParams[0], options: RouterParams[1]) =>
       getGuarded(href, options, originalReplace);
 
     return () => {
-      router.push = originalPush;
-      router.replace = originalReplace;
+      baseRouter.push = originalPush;
+      baseRouter.replace = originalReplace;
     };
-  }, [shouldConfirm, confirmationMessage, navigationCallback, router]);
+  }, [shouldConfirm, confirmationMessage, navigationCallback, baseRouter]);
 
   // useEffect(() => {
   //   function handleBeforeUnload(evt: BeforeUnloadEvent) {

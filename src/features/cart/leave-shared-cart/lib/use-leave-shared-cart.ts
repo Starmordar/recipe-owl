@@ -1,3 +1,6 @@
+import Cookies from 'js-cookie';
+
+import { shareTokenCookieName } from '@/src/entities/cart/config/share-token';
 import { publicUrls } from '@/src/shared/config/url';
 import { useRouter } from '@/src/shared/i18n/routing';
 import { useServerAction } from '@/src/shared/lib/use-server-action';
@@ -15,6 +18,8 @@ function useLeaveSharedCart({ userId, cartId }: UseLeaveSharedCart) {
 
   async function handleLeaveCart() {
     if (cartId) await leaveCartAction(userId, cartId);
+
+    Cookies.set(shareTokenCookieName, '', { path: '/' });
     router.push(publicUrls.cart);
   }
 

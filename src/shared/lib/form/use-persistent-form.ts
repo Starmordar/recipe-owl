@@ -1,7 +1,7 @@
 import { IDBPDatabase, openDB } from 'idb';
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { useRouter as useBaseRouter } from 'next/navigation';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-
-import { useRouter } from '@/src/shared/i18n/routing';
 
 interface ObjectStore {
   name: string;
@@ -27,7 +27,7 @@ function usePersistentForm({
   mapFields,
   rehydrateFields,
 }: UserPersistentFormOption) {
-  const router = useRouter();
+  const router = useBaseRouter();
   const [isRehydrating, setIsRehydrating] = useState(true);
 
   // Any async work within the "visibilitychange" event may be interrupted by a page refresh or transition to a frozen state.

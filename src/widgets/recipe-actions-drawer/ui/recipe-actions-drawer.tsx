@@ -1,9 +1,8 @@
 'use client';
 
 import { Pencil, Trash2 } from 'lucide-react';
-
 import { useTranslations } from 'next-intl';
- 
+
 import { DeleteRecipeModal } from '@/src/features/recipe/delete-recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { Link } from '@/src/shared/i18n/routing';

@@ -32,7 +32,7 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 100);
-  const { data: tags } = useQuery(recipeQueries.searchTags(debouncedSearchTerm));
+  const { data: tags } = useQuery(recipeQueries.searchTags(debouncedSearchTerm, t));
 
   function handleOpenDrawer(open: boolean) {
     setIsDrawerOpen(open);
@@ -76,19 +76,17 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
                 className='flex flex-col flex-wrap items-start gap-4'
               >
                 {tags?.map(tag => (
-                  <div key={tag.type}>
-                    <p className='mb-1 font-semibold text-lg'>
-                      {t(`RecipeTags.Categories.${tag.type}`)}
-                    </p>
+                  <div key={tag.type.value}>
+                    <p className='mb-1 font-semibold text-lg'>{tag.type.title}</p>
                     <div className='flex flex-wrap justify-start gap-2'>
-                      {tag.categories.map(category => (
+                      {tag.categories.map(({ title, value }) => (
                         <ToggleGroupItem
-                          key={category}
-                          value={category}
+                          key={value}
+                          value={value}
                           size='sm'
                           className='data-[state=on]:border-primary'
                         >
-                          {t(`RecipeTags.Items.${category}`)}
+                          {title}
                         </ToggleGroupItem>
                       ))}
                     </div>

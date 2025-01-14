@@ -14,7 +14,7 @@ interface TagsFieldProps {
 }
 
 function TagsField({ form }: TagsFieldProps) {
-  const t = useTranslations('RecipeFormPage.Form.Fields');
+  const t = useTranslations();
 
   return (
     <FormField
@@ -23,16 +23,16 @@ function TagsField({ form }: TagsFieldProps) {
       render={({ field }) => (
         <FormItem className='space-y-1'>
           <div className='flex justify-between items-center'>
-            <FormLabel>{t('tags')}</FormLabel>
+            <FormLabel>{t('RecipeFormPage.Form.Fields.tags')}</FormLabel>
 
             <TagsDrawer value={field.value} onChange={field.onChange}>
               <Button variant='ghost' className='text-primary text-base font-semibold px-0'>
-                {t('tagsAction')}
+                {t('RecipeFormPage.Form.Fields.tagsAction')}
               </Button>
             </TagsDrawer>
           </div>
 
-          {field.value.length === 0 && <p>{t('tagsPlaceholder')}</p>}
+          {field.value.length === 0 && <p>{t('RecipeFormPage.Form.Fields.tagsPlaceholder')}</p>}
 
           <FormControl>
             <ToggleGroup
@@ -49,7 +49,7 @@ function TagsField({ form }: TagsFieldProps) {
                   size='sm'
                   className='data-[state=on]:border-primary'
                 >
-                  {option}
+                  {t(`RecipeTags.Items.${option}`)}
                 </ToggleGroupItem>
               ))}
             </ToggleGroup>
