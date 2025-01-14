@@ -68,7 +68,6 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.13",
     "@types/js-cookie": "^3.0.6",
-    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-beautiful-dnd": "^13.1.8",
