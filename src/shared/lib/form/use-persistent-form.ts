@@ -27,7 +27,7 @@ function usePersistentForm({
   mapFields,
   rehydrateFields,
 }: UserPersistentFormOption) {
-  const router = useBaseRouter();
+  const baseRouter = useBaseRouter();
   const [isRehydrating, setIsRehydrating] = useState(true);
 
   // Any async work within the "visibilitychange" event may be interrupted by a page refresh or transition to a frozen state.
@@ -140,25 +140,25 @@ function usePersistentForm({
   );
 
   useLayoutEffect(() => {
-    type RouterParams = Parameters<typeof router.push>;
-    const originalPush = router.push;
-    const originalReplace = router.replace;
+    type RouterParams = Parameters<typeof baseRouter.push>;
+    const originalPush = baseRouter.push;
+    const originalReplace = baseRouter.replace;
 
-    router.push = function (href: RouterParams[0], options: RouterParams[1]) {
+    baseRouter.push = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
       originalPush(href, options);
     };
 
-    router.replace = function (href: RouterParams[0], options: RouterParams[1]) {
+    baseRouter.replace = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
       originalReplace(href, options);
     };
 
     return () => {
-      router.push = originalPush;
-      router.replace = originalReplace;
+      baseRouter.push = originalPush;
+      baseRouter.replace = originalReplace;
     };
-  }, [router, clearStore]);
+  }, [baseRouter, clearStore]);
 
   return { isRehydrating, getFieldsFromStore, storeFiles };
 }
