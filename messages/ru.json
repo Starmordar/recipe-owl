@@ -1,0 +1,478 @@
+{
+  "Metadata": {
+    "App": {
+      "title": "Recipe OWL",
+      "description": "Открывайте, организуйте и управляйте любимыми рецептами с легкостью. Recipe OWL позволяет добавлять личные рецепты, создавать списки покупок и воплощать кулинарные идеи в жизнь — всё в одном месте!",
+      "keywords": "Recipe OWL, менеджер рецептов, личные рецепты, список покупок, организация рецептов, кулинарное приложение, сохранение рецептов, кулинарная книга",
+      "authorName": "Роман Боровик"
+    }
+  },
+
+  "NotFoundPage": {
+    "title": "Страница не найдена",
+    "description": "Страница, которую вы ищете, возможно, была удалена, её название изменено или она временно недоступна.",
+    "linkTitle": "Главная страница"
+  },
+  
+  "Common": {
+    "ReadMoreText": {
+      "showMore": "Читать больше",
+      "showLess": "Свернуть"
+    },
+    "TimePicker": {
+      "minuteLabel": "мин",
+      "hourLabel": "{hours, plural, =1 {час} =21 {час} =2 {часa} =3 {часa} =22 {часa} =23 {часa}  =4 {часa} other {часов}}"
+    },
+    "DraggableFields": {
+      "actionDone": "Готово",
+      "actionReorder": "Изменить порядок"
+    },
+    "InputSpinner": {
+      "decreaseAction": "Уменьшить значение",
+      "increaseAction": "Увеличить значение"
+    },
+    "PasswordInput": {
+      "toggleHidePassword": "Скрыть пароль",
+      "toggleShowPassword": "Показать пароль"
+    },
+    "NavBar": {
+      "homeLabel": "Главная",
+      "discoverLabel": "Поиск",
+      "newRecipeLabel": "Новый рецепт",
+      "cartLabel": "Корзина",
+      "profileLabel": "Профиль",
+      "profilePictureAltText": "Изображение профиля"
+    }
+},
+
+  "AuthPage": {
+    "termsAgreementMessage": "Регистрируясь, вы соглашаетесь с <terms>Условиями использования</terms> и <policy>Политикой конфиденциальности</policy>",
+    "authAction": "Войти",
+    "or": "или",
+
+    "Form": {
+      "ClientErrors": {
+        "passwordMinChar": "Пароль должен содержать не менее {len} символов.",
+        "passwordMaxChar": "Пароль не должен превышать {len} символов.",
+        "passwordOneLowercase": "Пароль должен содержать хотя бы одну строчную букву.",
+        "passwordOneUppercase": "Пароль должен содержать хотя бы одну заглавную букву.",
+        "passwordOneNumber": "Пароль должен содержать хотя бы одну цифру.",
+        "passwordsDoNotMatch": "Пароли не совпадают. Убедитесь, что оба поля идентичны.",
+        "emailInvalidFormat": "Введите действительный адрес электронной почты.",
+        "fullnameMinChar": "Полное имя должно содержать не менее {len} символов.",
+        "fullnameMaxChar": "Полное имя не должно превышать {len} символов.",
+        "fullNameForbiddenChar": "Полное имя может содержать только буквы и пробелы."
+      },
+      "ServerErrors": {
+        "incorrectData": "Неверное имя пользователя или пароль",
+        "emailIsAlreadyInUse": "Этот адрес электронной почты уже используется. Попробуйте другой."
+      }
+    },
+
+    "SignIn": {
+      "title": "Войдите в свой аккаунт",
+      "text": "Войдите в свой аккаунт Recipe OWL для продолжения работы с любимыми рецептами!",
+      "googleSignIn": "Войти через Google",
+      "changeOptionTitle": "Нет аккаунта?",
+      "changeOptionLinkTitle": "Зарегистрироваться",
+
+      "Form": {
+        "validationError": "Ошибка валидации",
+        "emailPlaceholder": "Введите ваш адрес электронной почты",
+        "passwordPlaceholder": "Введите ваш пароль",
+        "submitPending": "Вход...",
+        "submitButtonLabel": "Войти"
+      }
+    },
+
+    "SignUp": {
+      "title": "Присоединяйтесь к Recipe OWL",
+      "text1": "Храните все свои любимые рецепты в одном месте.",
+      "text2": "Делитесь своими рецептами с другими.",
+      "googleSignUp": "Зарегистрироваться через Google",
+      "emailSignUp": "Зарегистрироваться через email",
+      "emailSignUpTitle": "Пожалуйста, укажите ваше имя, email и пароль.",
+      "changeOptionTitle": "Уже есть аккаунт?",
+      "changeOptionLinkTitle": "Войти",
+
+      "Form": {
+        "fullnamePlaceholder": "Введите полное имя",
+        "emailPlaceholder": "Введите ваш адрес электронной почты",
+        "passwordPlaceholder": "Создайте пароль",
+        "confirmPasswordPlaceholder": "Введите пароль еще раз",
+        "submitPending": "Создание аккаунта...",
+        "submitButtonLabel": "Зарегистрироваться"
+      }
+    }
+  },
+
+  "HomePage": {
+    "latestRecipesTitle": "Наши последние рецепты",
+    "recentlyViewedTitle": "Недавно просмотренные",
+    "popularThisWeekTitle": "Популярные рецепты на этой неделе",
+
+    "RecipeOfTheDay": {
+      "title": "Рецепт дня",
+      "readMoreLinkAreaLabel": "Узнайте больше о рецепте дня",
+      "readMoreLinkLabel": "Давайте готовить!"
+    },
+
+    "QuickLinks": {
+      "title": "Быстрые ссылки для вас",
+
+      "Options": {
+        "Breakfast": "Завтрак",
+        "Pasta": "Паста",
+        "Chicken": "Курица",
+        "Salmon": "Лосось",
+        "Soup": "Суп",
+        "Bread": "Хлеб",
+        "Healthy": "Здоровое питание",
+        "Keto": "Кето",
+        "Salad": "Салат"
+      }
+    }
+  },
+
+  "RecipesPage": {
+    "loadingRecipesLabel": "Загрузка...",
+    "emptySearchResultsTitle": "Рецепты не найдены",
+    "emptySearchResultsText": "Мы не смогли найти рецепты, соответствующие вашему запросу.",
+
+    "SearchInput": {
+      "placeholder": "Поиск Recipe OWL",
+      "clearAction": "Очистить поиск и фильтры",
+      "cancelAction": "Отмена",
+
+      "popularSearchesLabel": "Популярные запросы",
+      "recentSearchesLabel": "Недавние запросы"
+    },
+
+    "FiltersDrawer": {
+      "title": "Фильтры рецептов",
+      "description": "Уточните поиск рецептов, выбрав определенные кухни, ингредиенты или диетические предпочтения.",
+      "cancelAction": "Сбросить фильтры",
+      "submitAction": "Применить",
+
+      "savedRecipesLabel": "Сохраненные мной рецепты",
+
+      "ingredientsLabel": "Поиск по ингредиентам",
+      "searchIngredientsPlaceholder": "Добавить ингредиент"
+    }
+  },
+
+  "RecipeDetailsPage": {
+    "General": {
+      "author": "от <author></author>",
+      "cookTime": "{hours, plural, =0 {} other {{hours} ч}} {minutes, plural, =0 {} other {{minutes} мин}}",
+
+      "tagsLabel": "Тэги:",
+      "sourceLabel": "Источник:",
+      "timeLabel": "Время:",
+
+      "ingredientsTitle": "Ингредиенты",
+      "ingredientsNameLabel": "Название",
+      "ingredientsAmountLabel": "Количество",
+
+      "stepsTitle": "Метод"
+    },
+
+    "ActionDrawer": {
+      "title": "Кнопки действий",
+      "description": "Панель для управления рецептом",
+      "editAction": "Редактировать рецепт",
+      "deleteAction": "Удалить рецепт"
+    },
+
+    "DeleteModal": {
+      "title": "Вы уверены?",
+      "description": "Это действие нельзя отменить. Этот рецепт будет удален навсегда.",
+      "cancelAction": "Отмена",
+      "submitAction": "Удалить"
+    },
+
+    "AddToCartDrawer": {
+      "trigger": "В корзину",
+      "title": "Добавить в корзину",
+      "description": "Панель для добавления рецепта в корзину.",
+      "requireAuthTitle": "Войдите, чтобы добавить рецепт в корзину",
+      "requireAuthText": "Чтобы добавить рецепт в корзину, войдите в систему или создайте новый аккаунт.",
+
+      "cancelAction": "Отмена",
+      "submitAction": "Добавить",
+      "submitActionPending": "Добавление...",
+
+      "itemsToAddLabel": "Добавляемые ингредиенты",
+      "itemsSelectAllAction": "Выбрать всё",
+      "itemsDeselectAllAction": "Отменить всё",
+
+      "ClientErrors": {
+        "selectAtLeastOneIngredient": "Вы должны выбрать хотя бы один ингредиент."
+      },
+
+      "Toast": {
+        "successfullyAdded": "Ингредиенты добавлены в корзину.",
+        "alreadyInCart": "Этот рецепт уже есть в вашей корзине."
+      }
+    },
+
+    "Save": {
+      "requireAuthTitle": "Войдите, чтобы сохранить",
+      "requireAuthText": "Чтобы сохранить ваши рецепты, войдите в систему или создайте новый аккаунт."
+    },
+  
+    "ShareRecipe": {
+      "title": "Recipe OWL: Открой, Готовь, Делись – Мудрый выбор"
+    }
+  },
+
+  "CartPage": {
+    "title": "Корзина продуктов",
+    "emptyCartTitle": "Пустая корзина",
+    "emtyCartText": "Добавьте рецепт сюда, чтобы сразу купить или не забыть позже.",
+    "checkIngredientLabel": "Проверить ингредиент",
+    "checkIngredientAction": "Отметить элемент",
+    "uncheckIngredientAction": "Снять отметку с элемента",
+    "removeRecipeLabel": "Удалить рецепт из корзины",
+    "sharedIngredientsSectionTitle": "Общие ингредиенты",
+
+    "Tabs": {
+      "recipes": "Рецепты",
+      "ingredients": "Все ингредиенты"
+    },
+
+    "ShareCart": {
+      "trigger": "Поделиться рецептом с другими",
+      "title": "Recipe OWL: Посмотрите мою корзину продуктов!",
+      "text": "Вот элементы, которыми я хочу с вами поделиться."
+    },
+
+    "ActionsDrawer": {
+      "trigger": "Дополнительные опции",
+      "title": "Кнопки действий",
+      "removeAllItemsAction": "Удалить все ингредиенты",
+      "disableSharingAction": "Отключить доступ",
+      "leaveListAction": "Покинуть корзину",
+      "switchListsAction": "Переключить корзину",
+      "switchListsDrawerTitle": "Переключение корзин продуктов",
+      "myCartOption": "Моя корзина"
+    },
+
+    "EditIngredientsDrawer": {
+      "title": "Кнопки действий",
+      "noIngredientsText": "Ингредиентов нет"
+      }
+  },
+
+  "ProfilePage": {
+    "Statistic": {
+      "following": "Подписки",
+      "followers": "Подписчики",
+      "editProfileAction": "Редактировать профиль"
+    },
+
+    "Tabs": {
+      "savedRecipes": "Сохраненные",
+      "emptySavedRecipesTitle": "Сохраненных рецептов пока нет",
+      "emptySavedRecipesText": "Вы еще не сохранили ни одного рецепта. Найдите и сохраните рецепты для приготовления, и они появятся здесь!",
+
+      "createdRecipes": "Созданные",
+      "emptyCreatedRecipesTitle": "Созданных рецептов пока нет",
+      "emptyCreatedRecipesText": "Вы еще не создали ни одного рецепта."
+    },
+
+    "ShareProfile": {
+      "title": "Изучите рецепты {username} | Приложение Recipe OWL",
+      "text": "Изучите уникальные и вкусные рецепты от {username}!"
+    },
+
+    "SettingsDrawer": {
+      "title": "Настройки системы",
+      "description": "Обновить настройки приложения",
+
+      "Display": {
+        "title": "Отображение",
+        "systemOption": "Использовать Cистемные Настройки",
+        "lightOption": "Светлая Tема",
+        "darkOption": "Темная Tема"
+      },
+
+      "Language": {
+        "title": "Язык",
+        "english": "English",
+        "russian": "Русский"
+      }
+    }
+  },
+
+  "RecipeFormPage": {
+    "createTitle": "Добавить рецепт",
+    "updateTitle": "Редактировать рецепт",
+
+    "saveAction": "Сохранить",
+    "saveActionPending": "Сохраняется...",
+    "confirmationOnLeaveText": "У вас есть несохраненные изменения. Вы уверены, что хотите покинуть страницу?",
+
+    "Form": {
+      "Fields": {
+        "imageTitle": "Добавить фото рецепта",
+        "imageDescription": "Сделать фото или выбрать из галереи",
+        "takePictureAction": "Сделать фото",
+        "chooseFromGalleryAction": "Выбрать из галереи",
+
+        "title": "Название",
+        "titlePlaceholder": "Дайте своему рецепту название",
+
+        "description": "Описание",
+        "descriptionPlaceholder": "Опишите ваш рецепт, добавьте заметки, советы по приготовлению, предложения по подаче и т.д.",
+
+        "source": "Источник",
+        "sourcePlaceholder": "Источник или ссылка на оригинальный рецепт",
+
+        "cookTime": "Время приготовления",
+        "cookTimePlaceholder": "Сколько времени требуется на приготовление этого рецепта?",
+
+        "tags": "Тэги",
+        "tagsAction": "Добавить тэги",
+        "tagsPlaceholder": "Тэги помогают классифицировать рецепт и сделать его более доступным для поиска.",
+
+        "ingredientsTitle": "Ингредиенты",
+        "ingredientNamePlaceholder": "Поиск ингредиентов",
+        "ingredientQuantityPlaceholder": "Количество",
+        "addIngredientAction": "Ингредиент",
+
+        "stepsTitle": "Метод",
+        "stepPlaceholder":"Подробно опишите каждый шаг приготовления вашего рецепта. Добавьте советы, техники, особенности и т.д.",
+        "addStepAction": "Шаг"
+      },
+
+      "ClientErrors": {
+        "noImage": "Пожалуйста, загрузите изображение вашего рецепта",
+        "forbiddenImageFormat": "Поддерживаются только форматы .jpg, .jpeg, .png, .avif и .webp.",
+        "titleMinChar": "Название должно содержать минимум {len} символов.",
+        "titleMaxChar": "Название не должно превышать {len} символов.",
+        "descriptionMaxChar": "Описание не должно превышать 1000 символов.",
+        "tagsMaxCount": "Можно добавить не более {count} тегов.",
+        "ingredientsRequired": "Рецепт должен включать хотя бы один ингредиент.",
+        "stepsRequired": "Для рецепта требуется хотя бы один шаг.",
+        "ingredientNameRequired": "Необходим ингредиент.",
+        "ingredientQuantityRequired": "Необходимо указать количество.",
+        "stepDescriptionRequired": "Необходимо описание шага."
+      },
+
+      "ServerErrors": {
+        "unexpectedError": "Произошла ошибка при обработке вашего запроса."
+      }
+    },
+
+    "AddTagsDrawer": {
+      "title": "Поиск по названиям тегов",
+      "description": "Тэги помогают классифицировать рецепт и сделать его более доступным для поиска.",
+      "searchPlaceholder": "Поиск по тегу",
+      "cancelAction": "Сбросить",
+      "submitAction": "Применить"
+    },
+
+    "CookTimeDrawer": {
+      "title": "Время приготовления",
+      "description": "Сколько времени требуется на приготовление этого рецепта?",
+      "cancelAction": "Очистить",
+      "submitAction": "Сохранить"
+    }
+  },
+
+  "RecipeTags": {
+    "Categories": {
+      "Ingredients": "Ингредиенты",
+      "Mood": "Настроение", 
+      "Cuisine": "Кухня", 
+      "Nutrition": "Питательность", 
+      "Complexity": "Сложность", 
+      "Time": "Время"
+    },
+
+    "Items": {
+      "Bad Day": "Плохой день",  
+      "Chill": "Для отдыха",  
+      "Curious": "Для любопытных",  
+      "Date Night": "Романтический вечер",  
+      "Energized": "Для заряда энергией",  
+      "Feel Good": "Для хорошего настроения",  
+      "Guilty": "Сладкий грех",  
+      "Happy": "Для радости",  
+      "Impress": "Чтобы впечатлить",  
+      "Lazy": "Для ленивого дня",  
+      "Party": "Для вечеринки",  
+      "African": "Африканская",  
+      "American": "Американская",  
+      "Asian": "Азиатская",  
+      "British": "Британская",  
+      "Chinese": "Китайская",  
+      "European": "Европейская",  
+      "French": "Французская",  
+      "German": "Немецкая",  
+      "Georgian": "Грузинская",  
+      "Greek": "Греческая",  
+      "Indian": "Индийская",  
+      "Israeli": "Израильская",  
+      "Italian": "Итальянская",  
+      "Mediterranean": "Средиземноморская",  
+      "Mexican": "Мексиканская",  
+      "Spanish": "Испанская",  
+      "Vietnamese": "Вьетнамская",
+      "Healthy": "Здоровая",  
+      "High Protein": "Высокий уровень белка",  
+      "Low Energy": "Легкая пища",  
+      "Low Fat": "Низкий уровень жиров",  
+      "Low Sugars": "Низкий уровень сахара",  
+      "Vegan": "Веганская",  
+      "Vegetarian": "Вегетарианская",
+      "Easy": "Простое",  
+      "Level Up": "Для улучшения навыков",  
+      "Skilled": "Для опытных",  
+      "Quick": "Быстрое",  
+      "Under 1 Hour": "До 1 часа",  
+      "I Got Time": "Когда есть время"
+    },
+
+    "Descriptions": {
+      "Bad Day": "Комфортная еда для трудных времен",  
+      "Chill": "Расслабьтесь и наслаждайтесь моментом",  
+      "Curious": "Вкус неожиданных сочетаний",  
+      "Date Night": "Сделай этот вечер незабываемым",  
+      "Energized": "Зарядись энергией с каждым укусом",  
+      "Feel Good": "Еда, которая заставляет улыбаться",  
+      "Guilty": "Чит-день обеспечен",  
+      "Happy": "Празднуй с каждым укусом",  
+      "Impress": "Готовь, чтобы произвести впечатление",  
+      "Lazy": "Готовь умно, расслабляйся по-настоящему",  
+      "Party": "Жизнь вечеринки",  
+      "African": "Вкус Африки",  
+      "American": "Бургеры, картошка и свобода",  
+      "Asian": "Азия на тарелке",  
+      "British": "Вечные британские традиции",  
+      "Chinese": "Почувствуй вкус Китая",  
+      "European": "Паспорт во вкус",  
+      "French": "Искусство французской кухни",  
+      "German": "Сытные немецкие блюда",  
+      "Georgian": "Грузинский вкус в каждом укусе",  
+      "Greek": "Фета, как никогда",  
+      "Indian": "Специи и душа Индии",  
+      "Israeli": "Вкус Израиля",  
+      "Italian": "Мамма миа, как вкусно!",  
+      "Mexican": "Яркие мексиканские блюда",  
+      "Spanish": "Праздник испанских вкусов",  
+      "Vietnamese": "Бань Ми и многое другое",  
+      "Healthy": "Здоровая еда может быть вкусной!",  
+      "High Protein": "Ешь с белком",  
+      "Low Energy": "Легкая еда, яркое настроение!",  
+      "Low Fat": "Без жиров, но с вкусом!",  
+      "Low Sugars": "Сладость без сахара",  
+      "Vegan": "Совершенство на растительной основе",  
+      "Vegetarian": "Нет мяса, нет проблем!",  
+      "Easy": "Просто готовьте и наслаждайтесь!",  
+      "Level Up": "Покоряйте кулинарные вершины",  
+      "Skilled": "Режим шеф-повара: включён" 
+    }
+  }
+} 

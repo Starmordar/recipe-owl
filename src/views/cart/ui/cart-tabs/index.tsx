@@ -1,6 +1,7 @@
 'use client';
 
 import { LazyMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import SwipableTabs from '@/src/shared/ui/swipable-tabs';
@@ -16,18 +17,19 @@ interface CartTabsProps {
 }
 
 function CartTabs({ cartWithRecipes }: CartTabsProps) {
+  const t = useTranslations('CartPage.Tabs');
   const tabs = useMemo(
     () => ({
       recipes: {
-        title: 'Recipes',
+        title: t('recipes'),
         content: <RecipesTab cartWithRecipes={cartWithRecipes} />,
       },
       ingredient: {
-        title: 'All Ingredients',
+        title: t('ingredients'),
         content: <CartIngredientsTab cartWithRecipes={cartWithRecipes} />,
       },
     }),
-    [cartWithRecipes],
+    [cartWithRecipes, t],
   );
 
   const loadAnimationFeatures = () =>

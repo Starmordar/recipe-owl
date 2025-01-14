@@ -1,9 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { deleteRecipe } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
+import { useRouter } from '@/src/shared/i18n/routing';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,6 +24,7 @@ interface DeleteRecipeModalProps extends PropsWithChildren {
 }
 
 function DeleteRecipeModal({ children, recipeId }: DeleteRecipeModalProps) {
+  const t = useTranslations('RecipeDetailsPage.DeleteModal');
   const router = useRouter();
 
   async function handleDeleteRecipe() {
@@ -36,15 +38,13 @@ function DeleteRecipeModal({ children, recipeId }: DeleteRecipeModalProps) {
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your recipe.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t('title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('description')}</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteRecipe}>Delete</AlertDialogAction>
+          <AlertDialogCancel>{t('cancelAction')}</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDeleteRecipe}>{t('submitAction')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

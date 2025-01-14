@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { Textarea } from '@/src/shared/ui/textarea';
 
@@ -13,6 +15,8 @@ interface StepFieldProps {
 }
 
 function StepField({ form, field, index }: StepFieldProps) {
+  const t = useTranslations('RecipeFormPage.Form.Fields');
+
   return (
     <FormField
       control={form.control}
@@ -21,7 +25,7 @@ function StepField({ form, field, index }: StepFieldProps) {
         <FormItem className='flex-1'>
           <FormControl>
             <Textarea
-              placeholder='Describe each step of your recipe in detail. Include tips, techniques, etc...'
+              placeholder={t('stepPlaceholder')}
               className='min-h-[40px] resize-none'
               autoResize
               {...field}

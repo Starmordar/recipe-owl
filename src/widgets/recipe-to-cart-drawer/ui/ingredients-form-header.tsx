@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Button } from '@/src/shared/ui/button';
 import { NumberInputSpinner } from '@/src/shared/ui/number-input-spinner';
 
@@ -21,6 +23,8 @@ function IngredientsFormHeader({
   quantity,
   setQuantity,
 }: IngredientsFormHeaderProps) {
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer');
+
   const watchIngredients = form.watch('ingredients');
   const showDeselect = watchIngredients.length === recipe.ingredients.length;
 
@@ -40,7 +44,7 @@ function IngredientsFormHeader({
       </div>
 
       <div className='flex items-center justify-between mb-3 text-base'>
-        <p className='opacity-70'>Items to Add</p>
+        <p className='opacity-70'>{t('itemsToAddLabel')}</p>
 
         <Button
           className='px-0 opacity-70 hover:bg-transparent hover:text-current text-base'
@@ -48,7 +52,7 @@ function IngredientsFormHeader({
           size='xs'
           onClick={showDeselect ? handleDeselect : handleSelectAll}
         >
-          {showDeselect ? ' Deselect All' : 'Select All'}
+          {showDeselect ? t('itemsDeselectAllAction') : t('itemsSelectAllAction')}
         </Button>
       </div>
     </div>

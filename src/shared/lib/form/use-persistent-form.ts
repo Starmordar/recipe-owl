@@ -1,8 +1,7 @@
 import { IDBPDatabase, openDB } from 'idb';
-import { useRouter } from 'next/navigation';
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { useRouter as useBaseRouter } from 'next/navigation';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-
-import type { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 interface ObjectStore {
   name: string;
@@ -28,7 +27,7 @@ function usePersistentForm({
   mapFields,
   rehydrateFields,
 }: UserPersistentFormOption) {
-  const router = useRouter();
+  const baseRouter = useBaseRouter();
   const [isRehydrating, setIsRehydrating] = useState(true);
 
   // Any async work within the "visibilitychange" event may be interrupted by a page refresh or transition to a frozen state.
@@ -141,24 +140,25 @@ function usePersistentForm({
   );
 
   useLayoutEffect(() => {
-    const originalPush = router.push;
-    const originalReplace = router.replace;
+    type RouterParams = Parameters<typeof baseRouter.push>;
+    const originalPush = baseRouter.push;
+    const originalReplace = baseRouter.replace;
 
-    router.push = function (url: string, options?: NavigateOptions) {
+    baseRouter.push = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
-      originalPush(url, options);
+      originalPush(href, options);
     };
 
-    router.replace = function (url: string, options?: NavigateOptions) {
+    baseRouter.replace = function (href: RouterParams[0], options: RouterParams[1]) {
       clearStore();
-      originalReplace(url, options);
+      originalReplace(href, options);
     };
 
     return () => {
-      router.push = originalPush;
-      router.replace = originalReplace;
+      baseRouter.push = originalPush;
+      baseRouter.replace = originalReplace;
     };
-  }, [router, clearStore]);
+  }, [baseRouter, clearStore]);
 
   return { isRehydrating, getFieldsFromStore, storeFiles };
 }

@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { AuthLegalSection } from '@/src/entities/session';
 import { publicUrls } from '@/src/shared/config/url';
 
@@ -7,22 +9,24 @@ import { AuthWithEmail } from './auth-with-email';
 import { AuthWithGoogle } from './auth-with-google';
 
 function SignUpWidget() {
+  const t = useTranslations('AuthPage.SignUp');
+
   return (
     <>
       <div className='flex flex-col gap-y-4 w-[360px] md:w-[480px] max-w-full bg-card py-6 md:px-8 px-6 rounded-3xl shadow-xl'>
-        <AuthHeader title='Join Recipe OWL'>
-          <p>Store all your favorite recipes in one place.</p>
-          <p>Share your own recipes with others.</p>
+        <AuthHeader title={t('title')}>
+          <p>{t('text1')}</p>
+          <p>{t('text2')}</p>
         </AuthHeader>
 
         <div className='flex flex-col w-full gap-y-2'>
-          <AuthWithGoogle title='Sign up with Google' />
-          <AuthWithEmail title='Sign up with email' />
+          <AuthWithGoogle title={t('googleSignUp')} />
+          <AuthWithEmail title={t('emailSignUp')} />
         </div>
 
         <AuthChangeOption
-          title='Already have an account?'
-          linkTitle='Sign In'
+          title={t('changeOptionTitle')}
+          linkTitle={t('changeOptionLinkTitle')}
           redirectTo={publicUrls.signIn}
         />
       </div>

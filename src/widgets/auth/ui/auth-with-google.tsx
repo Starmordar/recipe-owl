@@ -1,4 +1,5 @@
 import Image from 'next/image';
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import Link from 'next/link';
 
 import googleIcon from '@/public/google-logo.svg';

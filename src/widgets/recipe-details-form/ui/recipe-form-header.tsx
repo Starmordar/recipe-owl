@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import AppHeaderClient from '@/src/shared/ui/app-header-client';
 import { Button } from '@/src/shared/ui/button';
 
@@ -9,6 +11,8 @@ interface RecipeFormHeaderProps {
 }
 
 function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeFormHeaderProps) {
+  const t = useTranslations('RecipeFormPage');
+
   return (
     <AppHeaderClient prevUrl={prevUrl} replacePrevUrl>
       <div className='flex justify-between grow items-center ml-5'>
@@ -20,9 +24,9 @@ function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeForm
           className='px-3 text-base'
           disabled={!dataChanged}
           loading={isPending}
-          loadingText='Saving...'
+          loadingText={t('saveActionPending')}
         >
-          Save
+          {t('saveAction')}
         </Button>
       </div>
     </AppHeaderClient>

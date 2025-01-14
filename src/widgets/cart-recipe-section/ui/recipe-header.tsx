@@ -19,7 +19,7 @@ function RecipeHeader({ recipe, quantity }: RecipeHeaderProps) {
         <Image
           className='rounded-lg'
           src={recipe.imageUrl}
-          alt={`${recipe.title} recipe image`}
+          alt={`${recipe.title}`}
           fill
           sizes='10vw'
           style={{ objectFit: 'cover' }}

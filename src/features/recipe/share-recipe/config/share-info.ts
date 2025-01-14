@@ -1,5 +1,9 @@
-const shareInfo = {
-  title: 'Recipe OWL: Discover, Cook, Share – The Wise Way',
-};
+import { useTranslations } from 'next-intl';
 
-export { shareInfo };
+function getShareInfo(t: ReturnType<typeof useTranslations>) {
+  return {
+    title: t('title'),
+  };
+}
+
+export { getShareInfo };

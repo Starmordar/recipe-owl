@@ -1,0 +1,478 @@
+{
+  "Metadata": {
+    "App": {
+      "title": "Recipe OWL",
+      "description": "Discover, organize, and manage your favorite recipes with ease. Recipe OWL lets you add personal recipes, create grocery lists, and bring your culinary ideas to life—all in one place!",
+      "keywords": "Recipe OWL, recipe manager, personal recipes, grocery list, organize recipes, cooking app, save recipes, recipe book",
+      "authorName": "Roman Borovik"
+    }
+  },
+
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "linkTitle": "Home Page"
+  },
+
+  "Common": {
+    "ReadMoreText": {
+      "showMore": "Read more",
+      "showLess": "Read Less"
+    },
+    "TimePicker": {
+      "minuteLabel": "min",
+      "hourLabel": "{hours, plural, =1 {hour} other {hours}}"
+    },
+    "DraggableFields": {
+      "actionDone": "Done",
+      "actionReorder": "Reorder"
+    },
+    "InputSpinner": {
+      "decreaseAction": "Decrease Value",
+      "increaseAction": "Increase Value"
+    },
+    "PasswordInput": {
+      "toggleHidePassword": "Hide password",
+      "toggleShowPassword": "Show password"
+    },
+    "NavBar": {
+      "homeLabel": "Home",
+      "discoverLabel": "Discover",
+      "newRecipeLabel": "New Recipe",
+      "cartLabel": "My Cart",
+      "profileLabel": "Profile",
+      "profilePictureAltText": "Profile Picture"
+    }
+  },
+
+  "AuthPage": {
+    "termsAgreementMessage": "By signing up you agree to the <terms>Terms of Service</terms> and <policy>Privacy Policy</policy>",
+    "authAction": "Sign In",
+    "or": "or",
+
+    "Form": {
+      "ClientErrors": {
+        "passwordMinChar": "Password must be at least {len} characters long.",
+        "passwordMaxChar": "Password must not exceed {len} characters.",
+        "passwordOneLowercase": "Password must contain at least one lowercase letter.",
+        "passwordOneUppercase": "Password must contain at least one uppercase letter.",
+        "passwordOneNumber": "Password must contain at least one number.",
+        "passwordsDoNotMatch": "Passwords do not match. Please ensure both fields are identical.",
+        "emailInvalidFormat": "Please enter a valid email address.",
+        "fullnameMinChar": "Full name must be at least {len} characters long.",
+        "fullnameMaxChar": "Full name cannot exceed {len} characters.",
+        "fullNameForbiddenChar": "Full name can only contain letters and spaces."
+      },
+      "ServerErrors": {
+        "incorrectData": "Incorrect username or password",
+        "emailIsAlreadyInUse": "This email address is already in use. Please try another one."
+      }
+    },
+    
+    "SignIn": {
+      "title": "Log in to your account",
+      "text": "Access your Recipe OWL account to continue exploring and managing your favorite recipes!",
+      "googleSignIn": "Sign in with Google",
+      "changeOptionTitle": "Don't have an account?",
+      "changeOptionLinkTitle": "Sign Up",
+
+      "Form": {
+        "validationError": "Validation Error",
+        "emailPlaceholder": "Enter your email address",
+        "passwordPlaceholder": "Enter your password",
+        "submitPending": "Signing In...",
+        "submitButtonLabel": "Sign In"
+      }
+    },
+
+    "SignUp": {
+      "title": "Join Recipe OWL",
+      "text1": "Store all your favorite recipes in one place.",
+      "text2": "Share your own recipes with others.",
+      "googleSignUp": "Sign up with Google",
+      "emailSignUp": "Sign up with email",
+      "emailSignUpTitle": "Please add your name, email and password.",
+      "changeOptionTitle": "Already have an account?",
+      "changeOptionLinkTitle": "Sign Up",
+
+      "Form": {
+        "fullnamePlaceholder": "Enter a full name",
+        "emailPlaceholder": "Enter your email address",
+        "passwordPlaceholder": "Create a password",
+        "confirmPasswordPlaceholder": "Enter your password again",
+        "submitPending": "Creating an Account...",
+        "submitButtonLabel": "Sign In"
+      }
+    }
+  },
+
+  "HomePage": {
+    "latestRecipesTitle": "Our Latest Recipes",
+    "recentlyViewedTitle": "Recently Viewed",
+    "popularThisWeekTitle": "Popular Recipes This Week",
+
+    "RecipeOfTheDay": {
+      "title": "Recipe of the Day",
+      "readMoreLinkAreaLabel": "Read more about Recipe of the Day",
+      "readMoreLinkLabel": "Let's cook!"
+    },
+
+    "QuickLinks": {
+      "title": "Quick Links For You",
+
+      "Options": {
+        "Breakfast": "Breakfast",
+        "Pasta": "Pasta",
+        "Chicken": "Chicken",
+        "Salmon": "Salmon",
+        "Soup": "Soup",
+        "Bread": "Bread",
+        "Healthy": "Healthy",
+        "Keto": "Keto",
+        "Salad": "Salad"
+      }
+    }
+  },
+
+  "RecipesPage": {
+    "loadingRecipesLabel": "Fetching...",
+    "emptySearchResultsTitle": "No Recipes Found",
+    "emptySearchResultsText": "We couldn't find any recipes that match your search.",
+
+    "SearchInput": {
+      "placeholder": "Search Recipe OWL",
+      "clearAction": "Clear Search and Filters",
+      "cancelAction": "Cancel",
+
+      "popularSearchesLabel": "Popular searches",
+      "recentSearchesLabel": "Recent searches"
+    },
+
+    "FiltersDrawer": {
+      "title": "Recipes Filters",
+      "description": "Refine your recipe search by selecting specific cuisines, ingredients, or dietary preferences.",
+      "cancelAction": "Clear Filters",
+      "submitAction": "Apply",
+
+      "savedRecipesLabel": "Recipes I've Saved",
+
+      "ingredientsLabel": "Search By Ingredients",
+      "searchIngredientsPlaceholder": "Add Item"
+    }
+  },
+
+  "RecipeDetailsPage": {
+    "General": {
+      "author": "by <author></author>",
+      "cookTime": "{hours, plural, =0 {} other {{hours} hr}} {minutes, plural, =0 {} other {{minutes} min}}",
+
+      "tagsLabel": "Tags:",
+      "sourceLabel": "Source:",
+      "timeLabel": "Time:",
+
+      "ingredientsTitle": "Ingredients",
+      "ingredientsNameLabel": "Name",
+      "ingredientsAmountLabel": "Amount",
+
+      "stepsTitle": "Method"
+    },
+
+    "ActionDrawer": {
+      "title": "Action Buttons",
+      "description": "Drawer for recipe management",
+      "editAction": "Edit Recipe",
+      "deleteAction": "Delete Recipe"
+    },
+
+    "DeleteModal": {
+      "title": "Are you absolutely sure?",
+      "description": "This action cannot be undone. This will permanently delete your recipe.",
+      "cancelAction": "Cancel",
+      "submitAction": "Delete"
+    },
+
+    "AddToCartDrawer": {
+      "trigger": "Add to Cart",
+      "title": "Add to Cart",
+      "description": "Drawer for adding a recipe to the cart.",
+      "requireAuthTitle": "Log In to Add Recipe to Cart",
+      "requireAuthText": "To add recipe to your cart, please log in or create a new account.",
+
+      "cancelAction": "Cancel",
+      "submitAction": "Add Items",
+      "submitActionPending": "Adding...",
+
+      "itemsToAddLabel": "Items to Add",
+      "itemsSelectAllAction": "Select All",
+      "itemsDeselectAllAction": "Deselect All",
+      
+      "ClientErrors": {
+        "selectAtLeastOneIngredient": "You have to select at least one ingredient."
+      },
+
+      "Toast": {
+        "successfullyAdded": "The ingredients added to your cart.",
+        "alreadyInCart": "This recipe is already in your cart."
+      }
+    },
+
+    "Save": {
+      "requireAuthTitle": "Log In to Save",
+      "requireAuthText": "To save your recipes, please log in or create a new account."
+    },
+
+    "ShareRecipe": {
+      "title": "Recipe OWL: Discover, Cook, Share – The Wise Way"
+    }
+  },
+
+  "CartPage": {
+    "title": "Grocery Cart",
+    "emptyCartTitle": "Empty Cart",
+    "emtyCartText": "Place the recipe here to buy them right away or not to forget later.",
+    "checkIngredientLabel": "Check Ingredient",
+    "checkIngredientAction": "Check item",
+    "uncheckIngredientAction": "Uncheck item",
+    "removeRecipeLabel": "Remove Recipe from Cart",
+    "sharedIngredientsSectionTitle": "Shared Ingredients",
+
+    "Tabs": {
+      "recipes": "Recipes",
+      "ingredients": "All Ingredients"
+    },
+
+    "ShareCart": {
+      "trigger": "Share Recipe With Others",
+      "title": "Recipe OWL: Check out my grocery cart!",
+      "text": "Here are the items I want to share with you."
+    },
+
+    "ActionsDrawer": {
+      "trigger": "More Options",
+      "title": "Action Buttons",
+      "removeAllItemsAction": "Remove All Items",
+      "disableSharingAction": "Disable Sharing",
+      "leaveListAction": "Leave List",
+      "switchListsAction": " Switch Lists",
+      "switchListsDrawerTitle": "Switch Grocery Carts",
+      "myCartOption": "My Grocery Cart"
+    },
+
+    "EditIngredientsDrawer": {
+      "title": "Action Buttons",
+      "noIngredientsText": "No Ingredients"
+    }
+  },
+
+  "ProfilePage": {
+    "Statistic": {
+      "following": "Following",
+      "followers": "Followers",
+      "editProfileAction": "Edit Profile"
+    },
+
+    "Tabs": {
+      "savedRecipes": "Saved",
+      "emptySavedRecipesTitle": "No saved recipes yet",
+      "emptySavedRecipesText": "You haven't saved any recipes. Find and save recipes to cook and see them here!",
+
+      "createdRecipes": "Created",
+      "emptyCreatedRecipesTitle": "No created recipes yet",
+      "emptyCreatedRecipesText": "You haven't created any recipes."
+    },
+
+    "ShareProfile": {
+      "title": "Explore {username} recipes | Recipe OWL App",
+      "text": "Explore {username}'s unique, delisious recipe!"
+    },
+
+    "SettingsDrawer": {
+      "title": "System Settings",
+      "description": "Update App Settings",
+
+      "Display": {
+        "title": "Display",
+        "systemOption": "Use System Default",
+        "lightOption": "Light",
+        "darkOption": "Dark"
+      },
+
+      "Language": {
+        "title": "Language",
+        "english": "English",
+        "russian": "Русский"
+      }
+    }
+  },
+
+  "RecipeFormPage": {
+    "createTitle": "Add Recipe",
+    "updateTitle": "Edit Recipe",
+
+    "saveAction": "Save",
+    "saveActionPending": "Saving...",
+    "confirmationOnLeaveText": "You have unsaved changes. Are you sure you want to leave?",
+    
+    "Form": {
+      "Fields": {
+        "imageTitle": "Add Recipe Photo",
+        "imageDescription": "Take a Picture or Choose from Gallery",
+        "takePictureAction": "Take a Picture",
+        "chooseFromGalleryAction": "Choose from Gallery",
+
+        "title": "Title",
+        "titlePlaceholder": "Give your recipe a name",
+        
+        "description": "Description",
+        "descriptionPlaceholder": "Introduce your recipe, add notes, cooking tips, serving suggestions, etc...",
+        
+        "source": "Source",
+        "sourcePlaceholder": "Source or link to the original recipe",
+        
+        "cookTime": "Cook Time",
+        "cookTimePlaceholder": "How long does it take to cook this recipe?",
+        
+        "tags": "Tags",
+        "tagsAction": "Set Tags",
+        "tagsPlaceholder": "Tags help categorize your recipe and make it easier for others to find.",
+
+        "ingredientsTitle": "Ingredients",
+        "ingredientNamePlaceholder": "Search for ingredients",
+        "ingredientQuantityPlaceholder": "Quantity",
+        "addIngredientAction": "Ingredient",
+
+        "stepsTitle": "Method",
+        "stepPlaceholder":"Describe each step of your recipe in detail. Include tips, techniques, etc...",
+        "addStepAction": "Step"
+      },
+
+      "ClientErrors": {
+        "noImage": "Please upload an image of your recipe",
+        "forbiddenImageFormat": "Only .jpg, .jpeg, .png .avif and .webp formats are supported.",
+        "titleMinChar": "Title must be at least {len} characters.",
+        "titleMaxChar": "Title should be no longer than {len} characters.",
+        "descriptionMaxChar": "Description should be no longer than 1000 characters.",
+        "tagsMaxCount": "You can add up to {count} tags only.",
+        "ingredientsRequired": "The recipe must include at least one ingredient.",
+        "stepsRequired": "At least one step is required for the recipe.",
+        "ingredientNameRequired": "Ingredient is required.",
+        "ingredientQuantityRequired": "Quantity is required.",
+        "stepDescriptionRequired": "Description is required."
+      },
+
+      "ServerErrors": {
+        "unexpectedError": "There was a problem with your request."
+      }
+    },
+
+    "AddTagsDrawer": {
+      "title": "Search By Tag Names",
+      "description": "Tags help categorize your recipe and make it easier for others to find.",
+      "searchPlaceholder": "Search Tag",
+      "cancelAction": "Reset",
+      "submitAction": "Apply"
+    },
+
+    "CookTimeDrawer": {
+      "title": "Cook Time",
+      "description": "How long does it take to cook this recipe?",
+      "cancelAction": "Clear",
+      "submitAction": "Save"
+    }
+  },
+
+  "RecipeTags": {
+    "Categories": {
+      "Ingredients": "Ingredients",
+      "Mood":"Mood", 
+      "Cuisine":"Cuisine", 
+      "Nutrition":"Nutrition", 
+      "Complexity":"Complexity", 
+      "Time":"Time"
+    },
+
+    "Items": {
+      "Bad Day": "Bad Day",  
+      "Chill": "Chill",  
+      "Curious": "Curious",  
+      "Date Night": "Date Night",  
+      "Energized": "Energized",  
+      "Feel Good": "Feel Good",  
+      "Guilty": "Guilty",  
+      "Happy": "Happy",  
+      "Impress": "Impress",  
+      "Lazy": "Lazy",  
+      "Party": "Party",
+      "African": "African",  
+      "American": "American",  
+      "Asian": "Asian",  
+      "British": "British",  
+      "Chinese": "Chinese",  
+      "European": "European",  
+      "French": "French",  
+      "German": "German",  
+      "Georgian": "Georgian",  
+      "Greek": "Greek",  
+      "Indian": "Indian",  
+      "Israeli": "Israeli",  
+      "Italian": "Italian",  
+      "Mediterranean": "Mediterranean",  
+      "Mexican": "Mexican",  
+      "Spanish": "Spanish",  
+      "Vietnamese": "Vietnamese",
+      "Healthy": "Healthy",  
+      "High Protein": "High Protein",  
+      "Low Energy": "Low Energy",  
+      "Low Fat": "Low Fat",  
+      "Low Sugars": "Low Sugars",  
+      "Vegan": "Vegan",  
+      "Vegetarian": "Vegetarian",
+      "Easy": "Easy",  
+      "Level Up": "Level Up",  
+      "Skilled": "Skilled",  
+      "Quick": "Quick",  
+      "Under 1 Hour": "Under 1 Hour",  
+      "I Got Time": "I Got Time"
+    },
+
+    "Descriptions": {
+      "Bad Day": "Comfort Food for Tough Times",  
+      "Chill": "Relax and Savor the Moment",  
+      "Curious": "Taste the Unexpected",  
+      "Date Night": "Make It a Night to Remember",  
+      "Energized": "Power Up with Every Bite",  
+      "Feel Good": "Food to Make You Smile",  
+      "Guilty": "Cheat Day Covered",  
+      "Happy": "Celebrate Every Bite",  
+      "Impress": "Cook to Impress",  
+      "Lazy": "Cook Smart, Relax Hard",  
+      "Party": "The Life of the Party",  
+      "African": "A Bite of Africa",  
+      "American": "Burgers, Fries, and Freedom",  
+      "Asian": "Asia on a Plate",  
+      "British": "Timeless British Traditions",  
+      "Chinese": "Savor the Taste of China",  
+      "European": "Passport to Flavor",  
+      "French": "The Art of French Cuisine",  
+      "German": "Hearty German Classics",  
+      "Georgian": "Georgia Tastes, Every Bite",  
+      "Greek": "Feta Than Ever",  
+      "Indian": "Spices and Soul from India",  
+      "Israeli": "Taste the Vibrancy of Israel",  
+      "Italian": "Mamma Mia, That’s Good!",  
+      "Mexican": "Vibrant Mexican Dishes",  
+      "Spanish": "A Feast of Spanish Flavors",  
+      "Vietnamese": "Bánh Mì and Beyond",  
+      "Healthy": "Healthy Can Be Tasty!",  
+      "High Protein": "Fuel Up with Protein Meals",  
+      "Low Energy": "Eat Light, Stay Bright!",  
+      "Low Fat": "No Fat, All Flavor!",  
+      "Low Sugars": "Sweetness Without the Sugar",  
+      "Vegan": "Plant-Based Perfection",  
+      "Vegetarian": "No Meat, No Problem!",  
+      "Easy": "No Sweat, Just Eat!",  
+      "Level Up": "Master the Kitchen",  
+      "Skilled": "Chef Mode: Activated"
+    }
+  }
+} 

@@ -1,13 +1,20 @@
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 import { passwordSchema, emailSchema } from '@/src/entities/user';
 
-const schema = z.object({
-  email: emailSchema,
-  password: passwordSchema,
-});
+function useSchema() {
+  const t = useTranslations('AuthPage.Form.ClientErrors');
 
-type FormValues = z.infer<typeof schema>;
+  const schema = z.object({
+    email: emailSchema(t),
+    password: passwordSchema(t),
+  });
+
+  return schema;
+}
+
+type FormValues = z.infer<ReturnType<typeof useSchema>>;
 
 const defaultFormValues: FormValues = {
   email: '',
@@ -15,4 +22,4 @@ const defaultFormValues: FormValues = {
 };
 
 export type { FormValues };
-export { schema, defaultFormValues };
+export { useSchema, defaultFormValues };

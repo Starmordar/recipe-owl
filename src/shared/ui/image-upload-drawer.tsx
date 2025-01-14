@@ -2,6 +2,7 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { Camera, Image as ImageIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import {
   Drawer,
@@ -22,21 +23,23 @@ interface ImageUploadDrawerProps extends PropsWithChildren {
 }
 
 function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawerProps) {
+  const t = useTranslations('RecipeFormPage.Form.Fields');
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
         <DrawerHeader className='sr-only'>
-          <DrawerTitle>Add Recipe Photo</DrawerTitle>
-          <DrawerDescription>Take a Picture or Choose from Gallery</DrawerDescription>
+          <DrawerTitle>{t('imageTitle')}</DrawerTitle>
+          <DrawerDescription>{t('imageDescription')}</DrawerDescription>
         </DrawerHeader>
 
         <ul className='my-4'>
           <li>
             <DrawerClose asChild>
               <DrawerActionButton onClick={onTakePhoto}>
-                <Camera className='h-5 w-5 opacity-60' /> Take a Picture
+                <Camera className='h-5 w-5 opacity-60' /> {t('takePictureAction')}
               </DrawerActionButton>
             </DrawerClose>
           </li>
@@ -44,7 +47,7 @@ function ImageUploadDrawer({ children, onTakePhoto, onUpload }: ImageUploadDrawe
           <li>
             <DrawerClose asChild>
               <DrawerActionButton onClick={onUpload}>
-                <ImageIcon className='h-5 w-5 opacity-60' /> Choose from Gallery
+                <ImageIcon className='h-5 w-5 opacity-60' /> {t('chooseFromGalleryAction')}
               </DrawerActionButton>
             </DrawerClose>
           </li>

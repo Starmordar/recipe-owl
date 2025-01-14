@@ -1,16 +1,21 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useRef } from 'react';
 
-const minuteItems = Array.from({ length: 60 }, (_, index) => ({
-  value: index,
-  label: `${index} min`,
-}));
+function getMinuteItems(t: ReturnType<typeof useTranslations>) {
+  return Array.from({ length: 60 }, (_, index) => ({
+    value: index,
+    label: `${index} ${t('minuteLabel')}`,
+  }));
+}
 
-const hourItems = Array.from({ length: 24 }, (_, index) => ({
-  value: index,
-  label: `${index} ${index === 1 ? 'hour' : 'hours'}`,
-}));
+function getHourItems(t: ReturnType<typeof useTranslations>) {
+  return Array.from({ length: 24 }, (_, index) => ({
+    value: index,
+    label: `${index} ${t('hourLabel', { hours: index })}`,
+  }));
+}
 
 interface WheelPickerProps {
   onChange: (field: 'hours' | 'minutes', value: number) => void;
@@ -19,6 +24,13 @@ interface WheelPickerProps {
 }
 
 function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerProps) {
+  const t = useTranslations('Common.TimePicker');
+
+  const minuteItems = useRef<ReturnType<typeof getMinuteItems> | null>(null);
+  if (minuteItems.current === null) minuteItems.current = getMinuteItems(t);
+  const hourItems = useRef<ReturnType<typeof getHourItems> | null>(null);
+  if (hourItems.current === null) hourItems.current = getHourItems(t);
+
   return (
     <div
       style={{ height: `${itemHeight * 3}px` }}
@@ -37,14 +49,14 @@ function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerPro
 
       <ItemWheel
         defaultValue={defaultValue.hours}
-        items={hourItems}
+        items={hourItems.current}
         itemHeight={itemHeight}
         onChange={value => onChange('hours', value)}
       />
 
       <ItemWheel
         defaultValue={defaultValue.minutes}
-        items={minuteItems}
+        items={minuteItems.current}
         itemHeight={itemHeight}
         onChange={value => onChange('minutes', value)}
       />

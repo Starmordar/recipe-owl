@@ -1,7 +1,8 @@
 'use client';
 
 import { ArrowLeft } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+
+import { useRouter } from '@/src/shared/i18n/routing';
 
 import { Button } from './button';
 

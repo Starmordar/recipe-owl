@@ -1,18 +1,24 @@
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 
 function AuthLegalSection() {
+  const t = useTranslations('AuthPage');
   return (
     <p className='text-center'>
-      By signing up you agree to the{' '}
-      <Link href={publicUrls.termsOfService} className='outer-link'>
-        Terms of Service
-      </Link>{' '}
-      and{' '}
-      <Link href={publicUrls.privacyPolicy} className='outer-link'>
-        Privacy Policy
-      </Link>
+      {t.rich('termsAgreementMessage', {
+        terms: chunk => (
+          <Link href={publicUrls.termsOfService} className='outer-link'>
+            {chunk}
+          </Link>
+        ),
+        policy: chunk => (
+          <Link href={publicUrls.privacyPolicy} className='outer-link'>
+            {chunk}
+          </Link>
+        ),
+      })}
     </p>
   );
 }

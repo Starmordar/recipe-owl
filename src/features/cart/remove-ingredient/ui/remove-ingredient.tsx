@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { useCart, updateCartItemCheckStatus } from '@/src/entities/cart';
 import { Checkbox } from '@/src/shared/ui/checkbox';
 
@@ -10,6 +12,7 @@ interface RemoveIngredientProps {
 }
 
 function RemoveIngredient({ cartItemIds, ingredientIds, defaultChecked }: RemoveIngredientProps) {
+  const t = useTranslations('CartPage');
   const { handleItemsUpdate } = useCart();
   const inputId = `ingredienIt: ${ingredientIds.toString()}`;
 
@@ -26,10 +29,10 @@ function RemoveIngredient({ cartItemIds, ingredientIds, defaultChecked }: Remove
         defaultChecked={defaultChecked}
         onClick={evt => evt.stopPropagation()}
         onCheckedChange={onCheckedChange}
-        aria-label={defaultChecked ? 'Uncheck item' : 'Check item'}
+        aria-label={defaultChecked ? t('uncheckIngredientAction') : t('checkIngredientAction')}
       />
       <label htmlFor={inputId} className='sr-only'>
-        Check item
+        {t('checkIngredientLabel')}
       </label>
     </div>
   );

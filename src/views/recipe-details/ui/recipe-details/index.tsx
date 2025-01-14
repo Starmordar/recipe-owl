@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
 import { validateRequest } from '@/src/shared/api/auth';
@@ -16,6 +17,7 @@ interface RecipeDetailsProps {
 
 async function RecipeDetails({ recipe }: RecipeDetailsProps) {
   const { user } = await validateRequest();
+  const t = await getTranslations('RecipeDetailsPage.General');
 
   return (
     <>
@@ -26,7 +28,7 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
 
       <section className='flex flex-col gap-y-3'>
         <div className='flex justify-between items-center'>
-          <h2 className='text-xl font-bold'>Ingredients</h2>
+          <h2 className='text-xl font-bold'>{t('ingredientsTitle')}</h2>
           <AddToCartAction recipe={recipe} userId={user?.id} />
         </div>
 
@@ -34,7 +36,7 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
       </section>
 
       <section className='flex flex-col gap-y-3'>
-        <h2 className='text-xl font-bold'>Method</h2>
+        <h2 className='text-xl font-bold'>{t('stepsTitle')}</h2>
         <RecipeMethod recipe={recipe} />
       </section>
     </>

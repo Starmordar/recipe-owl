@@ -1,4 +1,5 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 
 import { searchRecipes } from './search-recipes';
 import { searchSuggestions } from './search-suggestions';
@@ -8,10 +9,10 @@ const recipeQueries = {
   allKey: () => ['recipes'],
 
   searchTagsKey: () => [...recipeQueries.allKey(), 'search-tags'],
-  searchTags: (searchTerm: string) =>
+  searchTags: (searchTerm: string, t: ReturnType<typeof useTranslations>) =>
     queryOptions({
-      queryKey: [...recipeQueries.searchTagsKey(), searchTerm],
-      queryFn: () => searchTags(searchTerm),
+      queryKey: [...recipeQueries.searchTagsKey(), searchTerm, t],
+      queryFn: () => searchTags(searchTerm, t),
       placeholderData: prev => prev,
     }),
 

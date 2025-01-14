@@ -18,7 +18,7 @@ const UploadInput = forwardRef<HTMLInputElement, UploadInputProps>(
       {...fieldProps}
       className='hidden'
       type='file'
-      placeholder='Recipe Image'
+      placeholder=''
       accept={acceptedImageMimeTypes.join(', ')}
       onChange={onUpload}
       ref={ref}

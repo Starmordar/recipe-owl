@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { Accordion } from '@/src/shared/ui/accordion';
 import {
   Drawer,
@@ -18,14 +20,16 @@ import type { PropsWithChildren } from 'react';
 interface SettingsDrawerProps extends PropsWithChildren {}
 
 function SettingsDrawer({ children }: SettingsDrawerProps) {
+  const t = useTranslations('ProfilePage.SettingsDrawer');
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent className='h-[40%]'>
         <DrawerHeader className='sr-only'>
-          <DrawerTitle>System Settings</DrawerTitle>
-          <DrawerDescription>Update App Settings</DrawerDescription>
+          <DrawerTitle>{t('title')}</DrawerTitle>
+          <DrawerDescription>{t('description')}</DrawerDescription>
         </DrawerHeader>
 
         <div className='p-4'>

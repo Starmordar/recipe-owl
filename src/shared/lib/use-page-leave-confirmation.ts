@@ -1,7 +1,6 @@
-import { useRouter } from 'next/navigation';
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { useRouter as useBaseRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
-import type { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 interface UsePageLeaveConfirmationOptions {
   confirmationMessage: string;
@@ -14,32 +13,34 @@ function usePageLeaveConfirmation({
   shouldConfirm,
   navigationCallback,
 }: UsePageLeaveConfirmationOptions) {
-  const router = useRouter();
+  const baseRouter = useBaseRouter();
+  type RouterParams = Parameters<typeof baseRouter.push>;
 
   useEffect(() => {
     function getGuarded(
-      url: string,
-      options: NavigateOptions,
-      original: (href: string, options?: NavigateOptions) => void,
+      href: RouterParams[0],
+      options: RouterParams[1],
+      original: (href: RouterParams[0], options?: RouterParams[1]) => void,
     ) {
       navigationCallback?.();
 
-      if (!shouldConfirm) original(url, options);
-      else if (confirm(confirmationMessage)) original(url, options);
+      if (!shouldConfirm) original(href, options);
+      else if (confirm(confirmationMessage)) original(href, options);
     }
 
-    const originalPush = router.push;
-    const originalReplace = router.replace;
+    const originalPush = baseRouter.push;
+    const originalReplace = baseRouter.replace;
 
-    router.push = (url: string, options: NavigateOptions) => getGuarded(url, options, originalPush);
-    router.replace = (url: string, options: NavigateOptions) =>
-      getGuarded(url, options, originalReplace);
+    baseRouter.push = (href: RouterParams[0], options: RouterParams[1]) =>
+      getGuarded(href, options, originalPush);
+    baseRouter.replace = (href: RouterParams[0], options: RouterParams[1]) =>
+      getGuarded(href, options, originalReplace);
 
     return () => {
-      router.push = originalPush;
-      router.replace = originalReplace;
+      baseRouter.push = originalPush;
+      baseRouter.replace = originalReplace;
     };
-  }, [shouldConfirm, confirmationMessage, navigationCallback, router]);
+  }, [shouldConfirm, confirmationMessage, navigationCallback, baseRouter]);
 
   // useEffect(() => {
   //   function handleBeforeUnload(evt: BeforeUnloadEvent) {

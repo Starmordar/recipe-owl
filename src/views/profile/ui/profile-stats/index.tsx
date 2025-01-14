@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { Button } from '@/src/shared/ui/button';
 import { UserAvatar } from '@/src/shared/ui/user-avatar';
 
@@ -7,7 +9,9 @@ interface ProfileStatsProps {
   user: User;
 }
 
-async function ProfileStats({ user }: ProfileStatsProps) {
+function ProfileStats({ user }: ProfileStatsProps) {
+  const t = useTranslations('ProfilePage.Statistic');
+
   return (
     <div className='flex justify-self-start px-4 pb-2'>
       <div className='flex gap-x-3 items-center'>
@@ -17,15 +21,15 @@ async function ProfileStats({ user }: ProfileStatsProps) {
           <span className='text-xl font-bold'>{user.fullName}</span>
           <div className='flex gap-x-3'>
             <p className='font-medium'>
-              <span className='font-bold'>0</span> Following
+              <span className='font-bold'>0</span> {t('following')}
             </p>
             <p className='font-medium'>
-              <span className='font-bold'>0</span> Followers
+              <span className='font-bold'>0</span> {t('followers')}
             </p>
           </div>
 
           <Button className='self-start' size='xss' variant='outline'>
-            Edit Profile
+            {t('editProfileAction')}
           </Button>
         </div>
       </div>

@@ -1,16 +1,23 @@
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
-const schema = z.object({
-  ingredients: z.array(z.number()).refine(value => value.some(item => item), {
-    message: 'You have to select at least one ingredient.',
-  }),
-});
+function useSchema() {
+  const t = useTranslations('RecipeDetailsPage.AddToCartDrawer.ClientErrors');
 
-type FormValues = z.infer<typeof schema>;
+  const schema = z.object({
+    ingredients: z.array(z.number()).refine(value => value.some(item => item), {
+      message: t('selectAtLeastOneIngredient'),
+    }),
+  });
+
+  return schema;
+}
+
+type FormValues = z.infer<ReturnType<typeof useSchema>>;
 
 const defaultValues: FormValues = {
   ingredients: [],
 };
 
 export type { FormValues };
-export { schema, defaultValues };
+export { useSchema, defaultValues };

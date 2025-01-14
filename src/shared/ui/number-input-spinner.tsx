@@ -1,4 +1,5 @@
 import { Minus, Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import * as React from 'react';
 
 import { cn } from '@/src/shared/lib/classnames';
@@ -11,34 +12,38 @@ interface NumberInputSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerProps>(
-  ({ className, value, onValueChange, ...props }, ref) => (
-    <div ref={ref} className={cn('flex flex-row rounded-lg border w-fit', className)} {...props}>
-      <Button
-        variant='ghost'
-        size='xs'
-        className='w-9 h-8 p-0 rounded-r-none rounded-l-lg'
-        onClick={() => onValueChange(value - 1)}
-        disabled={value === 1}
-        aria-label='Decrease value'
-      >
-        <Minus className='w-5 h-5' />
-      </Button>
+  ({ className, value, onValueChange, ...props }, ref) => {
+    const t = useTranslations('Common.InputSpinner');
 
-      <div className='flex justify-center items-center h-8 w-7'>
-        <span className='text-base'>{value}</span>
+    return (
+      <div ref={ref} className={cn('flex flex-row rounded-lg border w-fit', className)} {...props}>
+        <Button
+          variant='ghost'
+          size='xs'
+          className='w-9 h-8 p-0 rounded-r-none rounded-l-lg'
+          onClick={() => onValueChange(value - 1)}
+          disabled={value === 1}
+          aria-label={t('decreaseAction')}
+        >
+          <Minus className='w-5 h-5' />
+        </Button>
+
+        <div className='flex justify-center items-center h-8 w-7'>
+          <span className='text-base'>{value}</span>
+        </div>
+
+        <Button
+          variant='ghost'
+          size='xs'
+          className='w-9 h-8 p-0 rounded-l-none rounded-r-lg'
+          onClick={() => onValueChange(value + 1)}
+          aria-label={t('increaseAction')}
+        >
+          <Plus className='w-5 h-5' />
+        </Button>
       </div>
-
-      <Button
-        variant='ghost'
-        size='xs'
-        className='w-9 h-8 p-0 rounded-l-none rounded-r-lg'
-        onClick={() => onValueChange(value + 1)}
-        aria-label='Increase value'
-      >
-        <Plus className='w-5 h-5' />
-      </Button>
-    </div>
-  ),
+    );
+  },
 );
 
 NumberInputSpinner.displayName = 'NumberInputSpinner';

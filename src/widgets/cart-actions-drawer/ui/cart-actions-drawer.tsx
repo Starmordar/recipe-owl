@@ -2,6 +2,7 @@
 
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { AlignJustify, Trash2, CircleX, Lock } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { useCart } from '@/src/entities/cart';
@@ -18,6 +19,7 @@ import type { PropsWithChildren } from 'react';
 interface CartActionsDrawerProps extends PropsWithChildren {}
 
 function CartActionsDrawer({ children }: CartActionsDrawerProps) {
+  const t = useTranslations('CartPage.ActionsDrawer');
   const { cartId, userId, isCartOwner, sharedCarts } = useCart();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -45,7 +47,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DialogTitle className='sr-only'>Action Buttons</DialogTitle>
+        <DialogTitle className='sr-only'>{t('title')}</DialogTitle>
 
         <ul className='my-4'>
           <li>
@@ -54,7 +56,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
               loading={isClearPending}
               loadingClassName='h-5 w-5'
             >
-              <CircleX className='h-5 w-5 opacity-60' /> Remove All Items
+              <CircleX className='h-5 w-5 opacity-60' /> {t('removeAllItemsAction')}
             </DrawerActionButton>
           </li>
           {isCartOwner && (
@@ -64,7 +66,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
                 loading={isDisablePending}
                 loadingClassName='h-5 w-5'
               >
-                <Lock className='h-5 w-5 opacity-60' /> Disable Sharing
+                <Lock className='h-5 w-5 opacity-60' /> {t('disableSharingAction')}
               </DrawerActionButton>
             </li>
           )}
@@ -75,7 +77,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
                 loading={isPending}
                 loadingClassName='h-5 w-5'
               >
-                <Trash2 className='h-5 w-5 opacity-60' /> Leave List
+                <Trash2 className='h-5 w-5 opacity-60' /> {t('leaveListAction')}
               </DrawerActionButton>
             </li>
           )}
@@ -83,7 +85,7 @@ function CartActionsDrawer({ children }: CartActionsDrawerProps) {
             <li>
               <SwitchCartDrawer onSelect={() => setIsDrawerOpen(false)}>
                 <DrawerActionButton>
-                  <AlignJustify className='h-5 w-5 opacity-60' /> Switch Lists
+                  <AlignJustify className='h-5 w-5 opacity-60' /> {t('switchListsAction')}
                 </DrawerActionButton>
               </SwitchCartDrawer>
             </li>

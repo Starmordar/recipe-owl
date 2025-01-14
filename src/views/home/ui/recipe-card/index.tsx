@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { type RecipePreview, RecipeTagsSection } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { cn } from '@/src/shared/lib/classnames';
 
 interface RecipeCardProps {

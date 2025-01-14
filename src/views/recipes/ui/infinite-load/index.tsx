@@ -1,6 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import { recipeQueries } from '@/src/entities/recipe';
@@ -13,6 +14,7 @@ interface InfiniteLoadProps extends PropsWithChildren {
 }
 
 function InfiniteLoad({ search, filters, children }: InfiniteLoadProps) {
+  const t = useTranslations('RecipesPage');
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const { data, fetchNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery(
@@ -41,7 +43,9 @@ function InfiniteLoad({ search, filters, children }: InfiniteLoadProps) {
       {data?.pages.map((recipes, i) => <RecipeCards key={i} recipes={recipes} />)}
 
       <div className='absolute bottom-10 h-0 w-0' ref={observerRef}></div>
-      <div className='text-lg'>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+      <div className='text-lg'>
+        {isFetching && !isFetchingNextPage ? t('loadingRecipesLabel') : null}
+      </div>
     </div>
   );
 }

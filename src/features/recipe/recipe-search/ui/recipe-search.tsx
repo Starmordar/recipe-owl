@@ -2,10 +2,10 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { filterCategories, recipeQueries, searchFilter } from '@/src/entities/recipe';
+import { useRouter } from '@/src/shared/i18n/routing';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 
 import { storeRecipeRecentSearches } from '../model/recent-searches';

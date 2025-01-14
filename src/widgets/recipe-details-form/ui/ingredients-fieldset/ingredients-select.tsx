@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useDebounce } from '@uidotdev/usehooks';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { ingredientQueries } from '@/src/entities/ingredient';
@@ -20,6 +21,7 @@ interface IngredientsSelectProps {
 function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelectProps) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(initialValue);
+  const t = useTranslations('RecipeFormPage.Form.Fields');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 100);
   const { data: ingredients } = useQuery(ingredientQueries.search(debouncedSearchTerm));
@@ -41,7 +43,7 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
       render={({ field }) => (
         <FormItem className='flex flex-col min-w-0 basis-2/3'>
           <Search
-            placeholder='Search for ingredients'
+            placeholder={t('ingredientNamePlaceholder')}
             data={ingredients ?? []}
             searchTerm={field.value}
             setSearchTerm={nextValue => handleSearch(nextValue, field.onChange)}

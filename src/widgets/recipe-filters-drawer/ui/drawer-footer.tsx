@@ -1,6 +1,7 @@
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
+import { useRouter } from '@/src/shared/i18n/routing';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 import { Button } from '@/src/shared/ui/button';
 import { DrawerClose } from '@/src/shared/ui/drawer';
@@ -14,6 +15,7 @@ interface FooterProps {
 }
 
 function Footer({ filters, setFilters, categoryIds }: FooterProps) {
+  const t = useTranslations('RecipesPage.FiltersDrawer');
   const { replace } = useRouter();
   const { valuesToPathname } = useValueToPathname();
 
@@ -31,13 +33,13 @@ function Footer({ filters, setFilters, categoryIds }: FooterProps) {
     <>
       <DrawerClose className='flex-1' asChild>
         <Button className='w-full' variant='outline' onClick={handleResetFilters}>
-          Clear Filters
+          {t('cancelAction')}
         </Button>
       </DrawerClose>
 
       <DrawerClose className='flex-1' asChild>
         <Button className='w-full' onClick={() => handleFiltersApply(filters)}>
-          Apply
+          {t('submitAction')}
         </Button>
       </DrawerClose>
     </>

@@ -1,6 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
 
@@ -32,6 +33,7 @@ function SearchSuggestions({
   setSearchTerm,
   setSelected,
 }: SearchSuggestionsProps) {
+  const t = useTranslations('RecipesPage.SearchInput');
   const [recent, setRecent] = useState(retrieveRecipeRecentSearches());
   const drawerRef = useRef<null | HTMLDivElement>(null);
 
@@ -65,7 +67,7 @@ function SearchSuggestions({
         ) : (
           <>
             <SearchOptions
-              title='Popular searches'
+              title={t('popularSearchesLabel')}
               options={popularSearches}
               onSearch={onSearchOption}
             />
@@ -73,7 +75,7 @@ function SearchSuggestions({
             {recent.length > 0 && <hr className='h-0.5 border-t-0 bg-muted' />}
             {recent.length > 0 && (
               <SearchOptions
-                title='Recent searches'
+                title={t('recentSearchesLabel')}
                 options={recent}
                 onSearch={onSearchOption}
                 renderAction={option => (

@@ -1,7 +1,8 @@
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
+import { Link } from '@/src/shared/i18n/routing';
 import { Button } from '@/src/shared/ui/button';
 
 import { AuthLegalSection } from '../auth-legal-section';
@@ -36,6 +37,7 @@ interface AuthSectionProps {
 }
 
 function AuthSection({ title, description, className }: AuthSectionProps) {
+  const t = useTranslations('AuthPage');
   return (
     <div className={className}>
       <div className='grid gap-1.5 p-4 text-center sm:text-left'>
@@ -45,7 +47,7 @@ function AuthSection({ title, description, className }: AuthSectionProps) {
 
       <div className='mx-6 mb-6'>
         <Link href={publicUrls.signIn}>
-          <Button className='relative w-full mb-2'>Sign In</Button>
+          <Button className='relative w-full mb-2'>{t('authAction')}</Button>
         </Link>
 
         <AuthLegalSection />

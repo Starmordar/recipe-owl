@@ -1,4 +1,6 @@
-import { RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
+import { useTranslations } from 'next-intl';
+
+import { RecipeAuthor, RecipeCookTime, type RecipeDetails } from '@/src/entities/recipe';
 import { hashColor } from '@/src/shared/lib/color';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
 import { ReadMoreText } from '@/src/shared/ui/read-more-text';
@@ -17,12 +19,8 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
 
       <div aria-hidden='true'></div>
       <RecipeSource source={recipe.source} />
+      <RecipeCookTime cookTime={recipe.cookTime} />
 
-      {recipe.cookTime && (
-        <p>
-          Time: <span className='font-semibold'>{recipe.cookTime}</span>
-        </p>
-      )}
       {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
     </div>
   );
@@ -33,16 +31,18 @@ interface RecipeTagsProps {
 }
 
 function RecipeTags({ tags }: RecipeTagsProps) {
+  const t = useTranslations();
+
   return (
     <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
-      Tags:
+      {t('RecipeDetailsPage.General.tagsLabel')}
       {tags.map(tag => (
         <div
           key={tag}
           style={{ borderColor: hashColor(tag) }}
           className='py-0.5 px-2.5 border rounded-lg'
         >
-          {tag}
+          {t(`RecipeTags.Items.${tag}`)}
         </div>
       ))}
     </div>
@@ -54,11 +54,12 @@ interface RecipeSourceProps {
 }
 
 function RecipeSource({ source }: RecipeSourceProps) {
+  const t = useTranslations('RecipeDetailsPage.General');
   if (!source) return null;
 
   return (
     <p className='relative flex gap-x-2 text-base'>
-      <span>Source: </span>
+      <span>{t('sourceLabel')}</span>
 
       {isValidURL(source) ? (
         <a

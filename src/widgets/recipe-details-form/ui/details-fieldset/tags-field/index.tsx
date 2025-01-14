@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { Button } from '@/src/shared/ui/button';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
 import { ToggleGroup, ToggleGroupItem } from '@/src/shared/ui/toggle-group';
@@ -12,6 +14,8 @@ interface TagsFieldProps {
 }
 
 function TagsField({ form }: TagsFieldProps) {
+  const t = useTranslations();
+
   return (
     <FormField
       control={form.control}
@@ -19,18 +23,16 @@ function TagsField({ form }: TagsFieldProps) {
       render={({ field }) => (
         <FormItem className='space-y-1'>
           <div className='flex justify-between items-center'>
-            <FormLabel>Tags</FormLabel>
+            <FormLabel>{t('RecipeFormPage.Form.Fields.tags')}</FormLabel>
 
             <TagsDrawer value={field.value} onChange={field.onChange}>
               <Button variant='ghost' className='text-primary text-base font-semibold px-0'>
-                Set Tags
+                {t('RecipeFormPage.Form.Fields.tagsAction')}
               </Button>
             </TagsDrawer>
           </div>
 
-          {field.value.length === 0 && (
-            <p>Tags help categorize your recipe and make it easier for others to find.</p>
-          )}
+          {field.value.length === 0 && <p>{t('RecipeFormPage.Form.Fields.tagsPlaceholder')}</p>}
 
           <FormControl>
             <ToggleGroup
@@ -47,7 +49,7 @@ function TagsField({ form }: TagsFieldProps) {
                   size='sm'
                   className='data-[state=on]:border-primary'
                 >
-                  {option}
+                  {t(`RecipeTags.Items.${option}`)}
                 </ToggleGroupItem>
               ))}
             </ToggleGroup>

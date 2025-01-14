@@ -190,11 +190,4 @@ function useToast() {
   };
 }
 
-const errorToast = {
-  variant: 'destructive',
-  title: 'Something went wrong.',
-  description: 'There was a problem with your request.',
-  duration: 2000,
-} as const;
-
-export { useToast, toast, errorToast };
+export { useToast, toast };

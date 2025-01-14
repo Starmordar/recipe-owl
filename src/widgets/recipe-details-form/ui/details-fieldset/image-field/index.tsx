@@ -2,6 +2,7 @@
 
 import { Camera, Pencil, Image as LucideImage } from 'lucide-react';
 import NextImage from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
@@ -17,6 +18,8 @@ interface ImageFieldProps {
 }
 
 function ImageField({ form }: ImageFieldProps) {
+  const t = useTranslations('RecipeFormPage.Form.Fields');
+
   const [selectedImage, setSelectedImage] = useState<string | null>(getInitialImage);
   const fileInputsRef = useRef<FileUploadHandles>(null);
 
@@ -70,7 +73,7 @@ function ImageField({ form }: ImageFieldProps) {
           <NextImage
             className='rounded-lg'
             src={selectedImage}
-            alt='Uploaded Image'
+            alt=''
             fill
             style={{ objectFit: 'cover' }}
           />
@@ -91,7 +94,7 @@ function ImageField({ form }: ImageFieldProps) {
 
               <div className='absolute bottom-6 mx-auto flex items-center gap-x-2'>
                 <Camera className='h-6 w-6 text-muted-foreground' />
-                <p className='text-muted-foreground'>Add Recipe Photo</p>
+                <p className='text-muted-foreground'>{t('imageTitle')}</p>
               </div>
             </div>
           </div>
