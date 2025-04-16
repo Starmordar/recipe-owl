@@ -7,7 +7,9 @@ import { cn } from '@/src/shared/lib/classnames';
 import { Button } from './button';
 
 interface NumberInputSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Value of the input */
   value: number;
+  /** Control for value update */
   onValueChange: (nextValue: number) => void;
 }
 
@@ -20,9 +22,10 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
         <Button
           variant='ghost'
           size='xs'
+          data-testid='decrease-action'
           className='w-9 h-8 p-0 rounded-r-none rounded-l-lg'
           onClick={() => onValueChange(value - 1)}
-          disabled={value === 1}
+          disabled={value <= 1}
           aria-label={t('decreaseAction')}
         >
           <Minus className='w-5 h-5' />
@@ -35,6 +38,7 @@ const NumberInputSpinner = React.forwardRef<HTMLDivElement, NumberInputSpinnerPr
         <Button
           variant='ghost'
           size='xs'
+          data-testid='increase-action'
           className='w-9 h-8 p-0 rounded-l-none rounded-r-lg'
           onClick={() => onValueChange(value + 1)}
           aria-label={t('increaseAction')}

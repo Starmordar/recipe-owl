@@ -11,6 +11,7 @@ import { RecipeTagsSummary } from './recipe-tags-summary';
 import type { RecipePreview } from '../model/types';
 
 interface RecipeCardProps {
+  /** Preview data of the recipe to be displayed in the card. */
   recipe: RecipePreview;
 }
 

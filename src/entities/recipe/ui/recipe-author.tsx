@@ -3,10 +3,10 @@ import { useTranslations } from 'next-intl';
 
 import { cn } from '@/src/shared/lib/classnames';
 
-import type { RecipeWithUser } from '@/src/entities/recipe';
-
 interface RecipeAuthorProps {
-  author: RecipeWithUser['user'];
+  /** The author's information containing their profile picture and full name */
+  author: { picture: string | null; fullName: string };
+  /** Size of the avatar in pixels */
   avatarSize?: number;
 }
 
@@ -25,7 +25,10 @@ function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
           alt=''
         />
       ) : (
-        <div className={cn(`h-[${cssSize}] w-[${cssSize}]`, 'rounded-full bg-primary')}></div>
+        <div
+          className={cn('rounded-full bg-primary')}
+          style={{ width: cssSize, height: cssSize }}
+        ></div>
       )}
 
       <p className='text-md'>

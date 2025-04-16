@@ -48,6 +48,7 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
                 !isExpanded && 'absolute right-0 bottom-0 pl-8',
               )}
               onClick={() => setIsExpanded(value => !value)}
+              role='button'
             >
               {isExpanded ? t('showLess') : t('showMore')}
             </span>
