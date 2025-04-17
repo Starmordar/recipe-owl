@@ -5,13 +5,16 @@ const config: StorybookConfig = {
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
+  "features": {
+    "viewportStoryGlobals": true,
+  },
   "addons": [
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
     "@storybook/addon-themes",
-    "@storybook/addon-a11y"
+    "@storybook/addon-a11y",
+    "@storybook/experimental-addon-test"
   ],
   "framework": {
     "name": "@storybook/experimental-nextjs-vite",
