@@ -52,6 +52,7 @@ function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerPro
         items={hourItems.current}
         itemHeight={itemHeight}
         onChange={value => onChange('hours', value)}
+        testId='hours-list'
       />
 
       <ItemWheel
@@ -59,6 +60,7 @@ function WheelPicker({ defaultValue, itemHeight = 54, onChange }: WheelPickerPro
         items={minuteItems.current}
         itemHeight={itemHeight}
         onChange={value => onChange('minutes', value)}
+        testId='minutes-list'
       />
     </div>
   );
@@ -69,9 +71,10 @@ interface ItemWheelProps {
   defaultValue: number;
   itemHeight: number;
   onChange: (value: number) => void;
+  testId: string;
 }
 
-function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps) {
+function ItemWheel({ items, defaultValue, itemHeight, testId, onChange }: ItemWheelProps) {
   const containerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -104,6 +107,7 @@ function ItemWheel({ items, defaultValue, itemHeight, onChange }: ItemWheelProps
   return (
     <ul
       ref={containerRef}
+      data-testid={testId}
       className='grow text-center overflow-y-scroll hide-scrollbar snap-y snap-mandatory'
     >
       <li style={{ height: `${itemHeight}px` }} className='snap-center'></li>

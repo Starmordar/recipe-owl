@@ -7,6 +7,7 @@ import * as React from 'react';
 import { cn } from '@/src/shared/lib/classnames';
 import { Button } from '@/src/shared/ui/button';
 import { Input, type InputProps } from '@/src/shared/ui/input';
+import { Label } from '@/src/shared/ui/label';
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
@@ -20,6 +21,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           type={showPassword ? 'text' : 'password'}
           className={cn('hide-password-toggle pr-10', className)}
           ref={ref}
+          aria-label='password-input'
           {...props}
         />
 

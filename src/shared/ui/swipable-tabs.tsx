@@ -109,6 +109,7 @@ function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) 
       <div
         {...bind()}
         ref={contentContainerRef}
+        data-testid='swipe-container'
         className='relative flex flex-grow overflow-x-hidden touch-none'
       >
         {initialWidth ? (
