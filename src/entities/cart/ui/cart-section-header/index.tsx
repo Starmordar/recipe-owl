@@ -1,4 +1,4 @@
-import { cloneElement, PropsWithChildren } from 'react';
+import { cloneElement, PropsWithChildren, type JSX } from 'react';
 
 import { CardTitle } from '@/src/shared/ui/card';
 

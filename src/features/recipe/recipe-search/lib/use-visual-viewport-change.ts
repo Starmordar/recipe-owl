@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
 interface UseVisualViewportChangeOptions {
-  drawerRef: RefObject<HTMLElement>;
+  drawerRef: RefObject<HTMLElement | null>;
 }
 
 function useVisualViewportChange({ drawerRef }: UseVisualViewportChangeOptions) {

@@ -3,7 +3,7 @@
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import { CheckCheck, GripVertical, Shuffle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { cloneElement, type PropsWithChildren, type ReactNode } from 'react';
+import { cloneElement, type PropsWithChildren, type ReactNode, type JSX } from 'react';
 
 import { Button, ButtonProps } from '@/src/shared/ui/button';
 

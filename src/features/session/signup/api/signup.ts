@@ -26,9 +26,9 @@ async function signUp(values: FromValues): Promise<{ error: string }> {
 
   const session = await lucia.createSession(userId, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
-  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
-  const redirectUrl = cookies().get(authRedirectUrlKey)?.value ?? publicUrls.home;
+  const redirectUrl = (await cookies()).get(authRedirectUrlKey)?.value ?? publicUrls.home;
   const locale = await getLocale();
   redirect({ href: redirectUrl, locale });
 }

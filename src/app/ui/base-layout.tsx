@@ -17,7 +17,7 @@ interface Props {
 
 function BaseLayout({ children, locale }: Props) {
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={cn('flex flex-col min-h-[100vh]', font.className)}>
         <ReactQueryClientProvider>
           <I18nProvider>
