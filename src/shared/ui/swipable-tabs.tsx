@@ -1,7 +1,7 @@
 'use client';
 
 import { useDrag } from '@use-gesture/react';
-import { m, useAnimationControls } from 'framer-motion';
+import { m, useAnimationControls } from 'motion/react';
 import React, { useRef, useState, ReactNode, useLayoutEffect } from 'react';
 
 import { Tabs, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';

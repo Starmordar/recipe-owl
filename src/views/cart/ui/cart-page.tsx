@@ -1,6 +1,12 @@
 import { getLocale } from 'next-intl/server';
 
-import { CartDetailsProvider, getSharedCarts, useCartDetails } from '@/src/entities/cart';
+import {
+  CartDetailsProvider,
+  getSharedCarts,
+  useCartDetails,
+  getCartByShareToken,
+  getOrCreateCart,
+} from '@/src/entities/cart';
 import { assignUserToSharedCart } from '@/src/features/cart/assign-user-to-shared-cart';
 import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
@@ -11,6 +17,17 @@ import { CartTabs } from './cart-tabs';
 
 interface CartPageProps {
   shareToken?: string;
+}
+
+function getCartDetails({
+  userId,
+  shareToken,
+}: {
+  userId: string;
+  shareToken: string | undefined;
+}) {
+  if (shareToken) return getCartByShareToken(shareToken);
+  return getOrCreateCart(userId);
 }
 
 async function CartPage({ shareToken }: CartPageProps) {
@@ -24,8 +41,7 @@ async function CartPage({ shareToken }: CartPageProps) {
     if (!isExists) redirect({ href: publicUrls.cart, locale });
   }
 
-  const { getCartDetails } = useCartDetails({ userId: user.id, shareToken });
-  const cartDetails = await getCartDetails();
+  const cartDetails = await getCartDetails({ userId: user.id, shareToken });
   if (cartDetails === null) redirect({ href: publicUrls.cart, locale });
 
   const sharedCarts = await getSharedCarts(user.id);

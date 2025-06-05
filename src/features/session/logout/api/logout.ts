@@ -15,7 +15,7 @@ async function signOut() {
 
   await lucia.invalidateSession(session.id);
   const sessionCookie = lucia.createBlankSessionCookie();
-  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 
   redirect({ href: publicUrls.signIn, locale });
 }

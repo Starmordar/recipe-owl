@@ -3,8 +3,7 @@
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "useUnknownInCatchVariables":true,
-
+    "useUnknownInCatchVariables": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,8 +22,9 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "target": "ES2017"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "scripts"]
 }

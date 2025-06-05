@@ -1,6 +1,6 @@
 'use client';
 
-import { LazyMotion } from 'framer-motion';
+import { LazyMotion } from 'motion/react';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 import { RecipeImage } from './recipe-image';

@@ -12,7 +12,7 @@ function useServerAction<P extends Array<unknown>, R>(
   const resolver = useRef<{
     resolve: (value?: R | PromiseLike<R>) => void;
     reject: (reason?: unknown) => void;
-  }>();
+  }>(undefined);
 
   async function runAction(...args: P): Promise<R | undefined> {
     startTransition(() => {

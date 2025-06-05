@@ -1,10 +1,13 @@
 import { CartPage } from '@/src/views/cart';
 
 interface PageProps {
-  searchParams: { shareToken?: string };
+  searchParams: Promise<{ shareToken?: string }>;
 }
 
-async function Page({ searchParams: { shareToken } }: PageProps) {
+async function Page(props: PageProps) {
+  const searchParams = await props.searchParams;
+  const { shareToken } = searchParams;
+
   return <CartPage shareToken={shareToken} />;
 }
 

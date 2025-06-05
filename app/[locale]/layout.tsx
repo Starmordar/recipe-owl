@@ -11,10 +11,13 @@ export async function generateMetadata() {
   return appMetadata(t);
 }
 
-async function LocaleLayout({
-  children,
-  params: { locale },
-}: Readonly<{ children: React.ReactNode; params: { locale: Locale } }>) {
+interface Props {
+  children: React.ReactNode;
+  params: Promise<{ locale: Locale }>;
+}
+
+async function LocaleLayout({ params, children }: Props) {
+  const { locale } = await params;
   if (!routing.locales.includes(locale)) notFound();
 
   return <BaseLayout locale={locale}>{children}</BaseLayout>;

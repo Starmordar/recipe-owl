@@ -2,7 +2,7 @@ import { validateRequest } from '@/src/shared/api/auth';
 
 import { AuthDrawer } from './auth-drawer';
 
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, JSX } from 'react';
 
 interface ProtectedDrawerProps extends PropsWithChildren {
   title: string;

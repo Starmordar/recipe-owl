@@ -1,6 +1,6 @@
 'use client';
 
-import { m, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { forwardRef } from 'react';
 

@@ -7,5 +7,5 @@ export interface NavbarItem {
 
   href: (() => string) | string;
   match?: (pathname: string) => boolean;
-  render: (user: User | null | undefined, className: string) => null | ReactElement;
+  render: (user: User | null | undefined, className: string) => null | ReactElement<unknown>;
 }

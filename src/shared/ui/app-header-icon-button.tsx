@@ -1,6 +1,6 @@
 'use client';
 
-import { cloneElement, forwardRef, PropsWithChildren } from 'react';
+import { cloneElement, forwardRef, PropsWithChildren, type JSX } from 'react';
 
 import { cn } from '@/src/shared/lib/classnames';
 import { Button, ButtonProps } from '@/src/shared/ui/button';

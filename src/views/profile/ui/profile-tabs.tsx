@@ -1,6 +1,6 @@
 'use client';
 
-import { LazyMotion } from 'framer-motion';
+import { LazyMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 

@@ -13,8 +13,8 @@ async function redirectToGoogleURL() {
   const url = await google.createAuthorizationURL(state, codeVerifier, { scopes });
   url.searchParams.set('access_type', 'offline');
 
-  cookies().set('google_oauth_state', state, cookiesOptions);
-  cookies().set('google_oauth_code_verifier', codeVerifier, cookiesOptions);
+  (await cookies()).set('google_oauth_state', state, cookiesOptions);
+  (await cookies()).set('google_oauth_code_verifier', codeVerifier, cookiesOptions);
 
   return Response.redirect(url);
 }
