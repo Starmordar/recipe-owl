@@ -19,7 +19,7 @@ function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Link href={publicUrls.recipe(recipe.id)} className='relative'>
       <TagsSection recipe={recipe} />
-      <div className='relative h-[25vh]'>
+      <div className='relative h-[20vh]'>
         <Image
           className='rounded-lg'
           src={recipe.imageUrl}
