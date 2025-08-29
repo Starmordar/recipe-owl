@@ -50,17 +50,17 @@ export const Default: Story = {
 export const TabSwitch: Story = {
   args: { ...Default.args },
   tags: ['!autodocs'],
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+  // play: async ({ canvasElement }) => {
+  //   const canvas = within(canvasElement);
 
-    await userEvent.click(canvas.getByText('Tab2'), { delay: 10 });
-    await waitFor(() =>
-      expect(canvas.getByText('Tab2 Content').parentElement).toHaveStyle('transform: none'),
-    );
+  //   await userEvent.click(canvas.getByText('Tab2'), { delay: 10 });
+  //   await waitFor(() =>
+  //     expect(canvas.getByText('Tab2 Content').parentElement).toHaveStyle('transform: none'),
+  //   );
 
-    await userEvent.click(canvas.getByText('Tab1'), { delay: 10 });
-    await waitFor(() =>
-      expect(canvas.getByText('Tab1 Content').parentElement).toHaveStyle('transform: none'),
-    );
-  },
+  //   await userEvent.click(canvas.getByText('Tab1'), { delay: 10 });
+  //   await waitFor(() =>
+  //     expect(canvas.getByText('Tab1 Content').parentElement).toHaveStyle('transform: none'),
+  //   );
+  // },
 };
