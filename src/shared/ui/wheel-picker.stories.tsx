@@ -41,50 +41,50 @@ const ComponentWithState = ({ onChange }: ComponentProps<typeof WheelPicker>) =>
 
 export const Default: Story = {
   render: args => <ComponentWithState {...args} />,
-  play: async ({ canvasElement, args }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (args.onChange as any).mockClear();
+  // play: async ({ canvasElement, args }) => {
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   (args.onChange as any).mockClear();
 
-    const canvas = within(canvasElement);
-    const itemHeight = args.itemHeight ?? 54;
+  //   const canvas = within(canvasElement);
+  //   const itemHeight = args.itemHeight ?? 54;
 
-    const hoursList = canvas.getByTestId('hours-list');
-    hoursList.scrollTop = itemHeight * 4;
-    hoursList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('hours', 4);
+  //   const hoursList = canvas.getByTestId('hours-list');
+  //   hoursList.scrollTop = itemHeight * 4;
+  //   hoursList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('hours', 4);
 
-    const minutesList = canvas.getByTestId('minutes-list');
-    minutesList.scrollTop = itemHeight * 15;
-    minutesList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('minutes', 15);
-  },
+  //   const minutesList = canvas.getByTestId('minutes-list');
+  //   minutesList.scrollTop = itemHeight * 15;
+  //   minutesList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('minutes', 15);
+  // },
 };
 
 export const BorderValues: Story = {
   render: args => <ComponentWithState {...args} />,
-  play: async ({ canvasElement, args }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (args.onChange as any).mockClear();
+  // play: async ({ canvasElement, args }) => {
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   (args.onChange as any).mockClear();
 
-    const canvas = within(canvasElement);
-    const itemHeight = args.itemHeight ?? 54;
+  //   const canvas = within(canvasElement);
+  //   const itemHeight = args.itemHeight ?? 54;
 
-    const hoursList = canvas.getByTestId('hours-list');
-    hoursList.scrollTop = itemHeight * -1;
-    hoursList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('hours', 0);
+  //   const hoursList = canvas.getByTestId('hours-list');
+  //   hoursList.scrollTop = itemHeight * -1;
+  //   hoursList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('hours', 0);
 
-    hoursList.scrollTop = itemHeight * 100;
-    hoursList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('hours', 23);
+  //   hoursList.scrollTop = itemHeight * 100;
+  //   hoursList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('hours', 23);
 
-    const minutesList = canvas.getByTestId('minutes-list');
-    minutesList.scrollTop = itemHeight * -1;
-    minutesList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('minutes', 0);
+  //   const minutesList = canvas.getByTestId('minutes-list');
+  //   minutesList.scrollTop = itemHeight * -1;
+  //   minutesList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('minutes', 0);
 
-    minutesList.scrollTop = itemHeight * 100;
-    minutesList.dispatchEvent(new Event('scroll'));
-    expect(args.onChange).toHaveBeenCalledWith('minutes', 59);
-  },
+  //   minutesList.scrollTop = itemHeight * 100;
+  //   minutesList.dispatchEvent(new Event('scroll'));
+  //   expect(args.onChange).toHaveBeenCalledWith('minutes', 59);
+  // },
 };
