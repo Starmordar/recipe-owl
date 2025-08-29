@@ -11,7 +11,8 @@
     "postinstall": "prisma generate",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.10.0",
