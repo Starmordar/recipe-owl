@@ -15,7 +15,7 @@ function RecipeAuthor({ author, avatarSize = 24 }: RecipeAuthorProps) {
   const cssSize = `${avatarSize}px`;
 
   return (
-    <div className='flex items-center gap-x-2'>
+    <div className='flex items-center gap-x-4'>
       {author.picture ? (
         <Image
           className='rounded-full'
