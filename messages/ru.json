@@ -168,11 +168,12 @@
 
       "tagsLabel": "Тэги:",
       "sourceLabel": "Источник:",
+      "watchVideo": "Смотреть видео",
       "timeLabel": "Время:",
+      "backLabel": "Назад",
 
       "ingredientsTitle": "Ингредиенты",
-      "ingredientsNameLabel": "Название",
-      "ingredientsAmountLabel": "Количество",
+      "ingredientsCount": "{count, plural, one {# ингредиент} few {# ингредиента} many {# ингредиентов} other {# ингредиента}}",
 
       "stepsTitle": "Метод"
     },
@@ -217,11 +218,14 @@
     },
 
     "Save": {
+      "save": "Сохранить",
+      "saved": "Сохранено",
       "requireAuthTitle": "Войдите, чтобы сохранить",
       "requireAuthText": "Чтобы сохранить ваши рецепты, войдите в систему или создайте новый аккаунт."
     },
   
     "ShareRecipe": {
+      "share": "Поделиться",
       "title": "Recipe OWL: Открой, Готовь, Делись – Мудрый выбор"
     }
   },

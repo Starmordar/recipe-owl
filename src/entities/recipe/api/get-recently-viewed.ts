@@ -23,7 +23,10 @@ async function getRecentlyViewed(userId: string): Promise<Array<RecipeBase>> {
   });
 
   const hits = searchResult?.body?.hits?.hits ?? [];
-  const recipeIds = hits.map(hit => hit._source.recipeId);
+
+  const recipeIds = hits
+    .map(hit => hit._source.recipeId)
+    .filter((id): id is number => typeof id === 'number');
   return prisma.recipe.findMany({ where: { id: { in: recipeIds } } });
 }
 

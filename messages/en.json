@@ -168,11 +168,12 @@
 
       "tagsLabel": "Tags:",
       "sourceLabel": "Source:",
+      "watchVideo": "Watch video",
       "timeLabel": "Time:",
+      "backLabel": "Back",
 
       "ingredientsTitle": "Ingredients",
-      "ingredientsNameLabel": "Name",
-      "ingredientsAmountLabel": "Amount",
+      "ingredientsCount": "{count, plural, one {# ingredient} other {# ingredients}}",
 
       "stepsTitle": "Method"
     },
@@ -217,11 +218,14 @@
     },
 
     "Save": {
+      "save": "Save recipe",
+      "saved": "Saved",
       "requireAuthTitle": "Log In to Save",
       "requireAuthText": "To save your recipes, please log in or create a new account."
     },
 
     "ShareRecipe": {
+      "share": "Share",
       "title": "Recipe OWL: Discover, Cook, Share – The Wise Way"
     }
   },

@@ -53,7 +53,8 @@ function SearchSuggestions({
   return (
     <RemoveScroll ref={drawerRef} forwardProps>
       <div
-        className='fixed inset-x-0 bg-card container overflow-y-auto z-10'
+        // From `lg` up the navigation is a rail on the left instead of a bar at the bottom.
+        className='fixed inset-x-0 bg-card container overflow-y-auto z-10 lg:bottom-0 lg:left-20 lg:!h-auto lg:w-auto'
         style={{
           top: `${heights.top}px`,
           height: `calc(100vh - ${heights.top + heights.bottom}px)`,

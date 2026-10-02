@@ -5,27 +5,28 @@ import { useTranslations } from 'next-intl';
 
 import { publicUrls } from '@/src/shared/config/url';
 import { useWebShare } from '@/src/shared/lib/use-web-share';
-import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
+import { Button } from '@/src/shared/ui/button';
 
 import { getShareInfo } from '../config/share-info';
 
-interface ShareRecipeActionProps {
+interface ShareRecipeButtonProps {
   recipeId: number;
 }
 
-function ShareRecipeAction({ recipeId }: ShareRecipeActionProps) {
+function ShareRecipeButton({ recipeId }: ShareRecipeButtonProps) {
   const t = useTranslations('RecipeDetailsPage.ShareRecipe');
   const { shareContent } = useWebShare({ shareData: getShareInfo(t) });
 
   return (
-    <HeaderIconButton
-      className='lg:gap-x-2 lg:px-3'
-      Icon={<Share2 />}
+    <Button
+      className='w-full gap-x-2 px-3 text-base'
+      variant='outline'
+      size='lg'
       onClick={() => shareContent(publicUrls.recipe(recipeId))}
     >
-      <span className='sr-only lg:not-sr-only'>{t('share')}</span>
-    </HeaderIconButton>
+      <Share2 className='h-5 w-5' /> {t('share')}
+    </Button>
   );
 }
 
-export { ShareRecipeAction };
+export { ShareRecipeButton };

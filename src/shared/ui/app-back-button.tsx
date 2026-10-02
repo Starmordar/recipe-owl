@@ -3,17 +3,28 @@
 import { ArrowLeft } from 'lucide-react';
 
 import { useRouter } from '@/src/shared/i18n/routing';
+import { cn } from '@/src/shared/lib/classnames';
 
 import { Button } from './button';
 
-interface AppBackButtonProps {
+import type { PropsWithChildren } from 'react';
+
+interface AppBackButtonProps extends PropsWithChildren {
   url?: string;
   replace?: boolean;
   goBack?: boolean;
   fallbackUrl: string;
+  className?: string;
 }
 
-function AppBackButton({ url, replace, goBack, fallbackUrl }: AppBackButtonProps) {
+function AppBackButton({
+  url,
+  replace,
+  goBack,
+  fallbackUrl,
+  className,
+  children,
+}: AppBackButtonProps) {
   const router = useRouter();
 
   function navigateBack() {
@@ -25,8 +36,14 @@ function AppBackButton({ url, replace, goBack, fallbackUrl }: AppBackButtonProps
   }
 
   return (
-    <Button onClick={navigateBack} size='icon-xs' variant='ghost' className='h-6 w-6'>
+    <Button
+      onClick={navigateBack}
+      size='icon-xs'
+      variant='ghost'
+      className={cn('h-6 w-6', className)}
+    >
       <ArrowLeft className='h-6 w-6' />
+      {children}
     </Button>
   );
 }
