@@ -171,8 +171,7 @@
       "timeLabel": "Time:",
 
       "ingredientsTitle": "Ingredients",
-      "ingredientsNameLabel": "Name",
-      "ingredientsAmountLabel": "Amount",
+      "ingredientsCount": "{count, plural, one {# ingredient} other {# ingredients}}",
 
       "stepsTitle": "Method"
     },

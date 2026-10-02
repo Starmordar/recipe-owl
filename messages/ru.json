@@ -171,8 +171,7 @@
       "timeLabel": "Время:",
 
       "ingredientsTitle": "Ингредиенты",
-      "ingredientsNameLabel": "Название",
-      "ingredientsAmountLabel": "Количество",
+      "ingredientsCount": "{count, plural, one {# ингредиент} few {# ингредиента} many {# ингредиентов} other {# ингредиента}}",
 
       "stepsTitle": "Метод"
     },

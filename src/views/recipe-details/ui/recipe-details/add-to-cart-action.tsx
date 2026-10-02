@@ -1,4 +1,4 @@
-import { CirclePlus } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { ProtectedDrawer } from '@/src/entities/session/server';
@@ -20,14 +20,14 @@ function AddToCartAction({ recipe }: AddToCartActionProps) {
       title={t('requireAuthTitle')}
       description={t('requireAuthText')}
       renderTrigger={() => (
-        <Button className='gap-x-3 text-base' variant='outline' size='xs'>
-          {t('trigger')} <CirclePlus className='h-5 w-5' />
+        <Button className='w-full gap-x-2 text-base' size='lg'>
+          <ShoppingCart className='h-5 w-5' /> {t('trigger')}
         </Button>
       )}
     >
       <AddRecipeToCartDrawer recipe={recipe}>
-        <Button className='gap-x-3 text-base' variant='outline' size='xs'>
-          {t('trigger')} <CirclePlus className='h-5 w-5' />
+        <Button className='w-full gap-x-2 text-base' size='lg'>
+          <ShoppingCart className='h-5 w-5' /> {t('trigger')}
         </Button>
       </AddRecipeToCartDrawer>
     </ProtectedDrawer>

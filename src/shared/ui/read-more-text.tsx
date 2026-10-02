@@ -9,10 +9,11 @@ import type { PropsWithChildren } from 'react';
 
 interface ReadMoreTextProps extends PropsWithChildren {
   className?: string;
+  clampClassName?: string;
 }
 
 const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
-  ({ className, children }, ref) => {
+  ({ className, clampClassName = 'line-clamp-5', children }, ref) => {
     const t = useTranslations('Common.ReadMoreText');
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +36,7 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
         className={cn(
           'relative text-base overflow-hidden bg-background',
           className,
-          !isExpanded && 'line-clamp-5',
+          !isExpanded && clampClassName,
         )}
       >
         <p>

@@ -26,7 +26,7 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
 
       <RecipeDetailsHeader recipe={recipe} />
 
-      <main className='page-container mt-2'>
+      <main className='flex flex-1 flex-col pb-6'>
         <RecipeDetails recipe={recipe} />
       </main>
     </>

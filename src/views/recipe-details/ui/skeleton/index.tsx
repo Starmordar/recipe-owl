@@ -1,31 +1,35 @@
 import { Skeleton } from '@/src/shared/ui/skeleton';
 
 function RecipeDetailsPageSkeleton() {
-  const ingredients = new Array<number>(10).fill(0);
+  const ingredients = new Array<number>(8).fill(0);
 
   return (
-    <>
-      <div className='h-11 w-full'></div>
+    <main className='flex flex-1 flex-col pb-6'>
+      <div className='md:container md:pt-16'>
+        <Skeleton className='w-full aspect-square max-h-[50vh] rounded-none md:aspect-video md:rounded-lg' />
+      </div>
 
-      <main className='page-container mt-2'>
-        <Skeleton className='h-8 w-[250px]' />
-        <Skeleton className='h-28' />
-
-        <Skeleton className='h-6 w-[100px]' />
-
-        <Skeleton className='h-[40vh] rounded-lg' />
-
-        <Skeleton className='h-9 mb-2 w-[200px]' />
-        <div className='flex flex-col gap-y-4'>
-          {ingredients.map((_, index) => (
-            <div key={index} className='flex justify-between'>
-              <Skeleton className='h-4 w-[65vw]' />
-              <Skeleton className='h-4 w-[20vw]' />
-            </div>
-          ))}
+      <div className='container flex flex-col gap-8 pt-4'>
+        <div className='flex flex-col gap-y-3'>
+          <Skeleton className='h-8 w-[250px]' />
+          <Skeleton className='h-5 w-[200px]' />
+          <Skeleton className='h-20' />
         </div>
-      </main>
-    </>
+
+        <div className='flex flex-col gap-y-3'>
+          <Skeleton className='h-7 w-[150px]' />
+
+          <div className='flex flex-col'>
+            {ingredients.map((_, index) => (
+              <div key={index} className='flex justify-between py-3'>
+                <Skeleton className='h-6 w-[55vw]' />
+                <Skeleton className='h-6 w-[20vw]' />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
 

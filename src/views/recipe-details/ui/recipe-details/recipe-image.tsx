@@ -8,16 +8,17 @@ interface RecipeImageProps {
 
 function RecipeImage({ recipe }: RecipeImageProps) {
   return (
-    <div className='relative h-[40vh]'>
-      <Image
-        className='rounded-lg'
-        src={recipe.imageUrl}
-        alt={recipe.title}
-        fill
-        sizes='(max-width: 768px) 100vw, 33vw'
-        style={{ objectFit: 'cover' }}
-        priority
-      />
+    <div className='md:container md:pt-16'>
+      <div className='relative w-full aspect-square max-h-[50vh] overflow-hidden md:aspect-video md:rounded-lg'>
+        <Image
+          src={recipe.imageUrl}
+          alt={recipe.title}
+          fill
+          sizes='(max-width: 768px) 100vw, 1200px'
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+      </div>
     </div>
   );
 }

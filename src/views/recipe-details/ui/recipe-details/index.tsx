@@ -21,24 +21,23 @@ async function RecipeDetails({ recipe }: RecipeDetailsProps) {
 
   return (
     <>
-      <section className='flex flex-col gap-y-4'>
+      <RecipeImage recipe={recipe} />
+
+      <div className='container flex flex-col gap-8 pt-4'>
         <RecipeDescription recipe={recipe} />
-        <RecipeImage recipe={recipe} />
-      </section>
 
-      <section className='flex flex-col gap-y-3'>
-        <div className='flex justify-between items-center'>
+        <section className='flex flex-col gap-y-3'>
           <h2 className='text-xl font-bold'>{t('ingredientsTitle')}</h2>
+
+          <RecipeIngredientsSection ingredients={recipe.ingredients} />
           <AddToCartAction recipe={recipe} userId={user?.id} />
-        </div>
+        </section>
 
-        <RecipeIngredientsSection ingredients={recipe.ingredients} />
-      </section>
-
-      <section className='flex flex-col gap-y-3'>
-        <h2 className='text-xl font-bold'>{t('stepsTitle')}</h2>
-        <RecipeMethod recipe={recipe} />
-      </section>
+        <section className='flex flex-col gap-y-4'>
+          <h2 className='text-xl font-bold'>{t('stepsTitle')}</h2>
+          <RecipeMethod recipe={recipe} />
+        </section>
+      </div>
     </>
   );
 }
