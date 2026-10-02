@@ -20,7 +20,11 @@ function SaveRecipeAction({ isSaved, recipeId }: SaveRecipeActionProps) {
     <ProtectedDrawer
       title={t('requireAuthTitle')}
       description={t('requireAuthText')}
-      renderTrigger={() => <HeaderIconButton Icon={<Bookmark />} />}
+      renderTrigger={() => (
+        <HeaderIconButton className='lg:gap-x-2 lg:px-3' Icon={<Bookmark />}>
+          <span className='sr-only lg:not-sr-only'>{t('save')}</span>
+        </HeaderIconButton>
+      )}
     >
       <SaveButton isSaved={isSaved} recipeId={recipeId} />
     </ProtectedDrawer>

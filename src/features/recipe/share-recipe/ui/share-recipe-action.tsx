@@ -18,7 +18,13 @@ function ShareRecipeAction({ recipeId }: ShareRecipeActionProps) {
   const { shareContent } = useWebShare({ shareData: getShareInfo(t) });
 
   return (
-    <HeaderIconButton Icon={<Share2 />} onClick={() => shareContent(publicUrls.recipe(recipeId))} />
+    <HeaderIconButton
+      className='lg:gap-x-2 lg:px-3'
+      Icon={<Share2 />}
+      onClick={() => shareContent(publicUrls.recipe(recipeId))}
+    >
+      <span className='sr-only lg:not-sr-only'>{t('share')}</span>
+    </HeaderIconButton>
   );
 }
 

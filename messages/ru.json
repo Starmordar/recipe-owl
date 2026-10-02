@@ -170,6 +170,7 @@
       "sourceLabel": "Источник:",
       "watchVideo": "Смотреть видео",
       "timeLabel": "Время:",
+      "backLabel": "Назад",
 
       "ingredientsTitle": "Ингредиенты",
       "ingredientsCount": "{count, plural, one {# ингредиент} few {# ингредиента} many {# ингредиентов} other {# ингредиента}}",

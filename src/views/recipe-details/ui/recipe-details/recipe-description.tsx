@@ -17,8 +17,8 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
   const description = recipe.description?.trim();
 
   return (
-    <section className='flex flex-col gap-y-3'>
-      <h1 className='relative text-2xl font-bold leading-tight break-words text-balance'>
+    <section className='flex flex-col gap-y-3 lg:gap-y-4'>
+      <h1 className='relative text-2xl font-bold leading-tight break-words text-balance lg:text-4xl lg:leading-tight'>
         {recipe.title}
         <ScrollMarker name='title' className='bottom-0 left-0' />
       </h1>
@@ -35,7 +35,7 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
         </ReadMoreText>
       )}
 
-      <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-sm text-muted-foreground'>
+      <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-sm text-muted-foreground lg:justify-start lg:gap-x-4'>
         <RecipeAuthor author={recipe.user} avatarSize={20} />
         <RecipeSource source={recipe.source} />
       </div>

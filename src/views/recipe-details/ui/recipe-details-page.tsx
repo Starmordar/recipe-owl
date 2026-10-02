@@ -28,7 +28,7 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
       <ScrollMarkerProvider>
         <RecipeDetailsHeader recipe={recipe} />
 
-        <main className='flex flex-1 flex-col pb-6'>
+        <main className='flex flex-1 flex-col pb-6 lg:pb-12'>
           <RecipeDetails recipe={recipe} />
         </main>
       </ScrollMarkerProvider>

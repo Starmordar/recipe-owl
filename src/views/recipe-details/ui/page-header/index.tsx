@@ -1,5 +1,6 @@
 import { EllipsisVertical } from 'lucide-react';
 import { headers } from 'next/headers';
+import { getTranslations } from 'next-intl/server';
 
 import { isRecipeSaved, SaveRecipeAction } from '@/src/features/recipe/save-recipe';
 import { ShareRecipeAction } from '@/src/features/recipe/share-recipe';
@@ -19,6 +20,7 @@ interface RecipeDetailsHeaderProps {
 
 async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
   const { user } = await validateRequest();
+  const t = await getTranslations('RecipeDetailsPage.General');
   const headersList = await headers();
   const referer = headersList.get('referer');
 
@@ -28,7 +30,15 @@ async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
   return (
     <HeaderBar
       title={recipe.title}
-      backButton={<AppBackButton goBack={!!referer} fallbackUrl={publicUrls.recipes} />}
+      backButton={
+        <AppBackButton
+          className='lg:-ml-3 lg:gap-x-2 lg:px-3 lg:text-muted-foreground'
+          goBack={!!referer}
+          fallbackUrl={publicUrls.recipes}
+        >
+          <span className='sr-only lg:not-sr-only'>{t('backLabel')}</span>
+        </AppBackButton>
+      }
     >
       <SaveRecipeAction recipeId={recipe.id} isSaved={isSaved} />
       <ShareRecipeAction recipeId={recipe.id} />

@@ -4,9 +4,10 @@ interface RecipeIngredientsSectionProps {
   ingredients: Array<RecipeDetails['ingredients'][number]>;
 }
 
+// From `lg` up a long list scrolls inside its pinned card, with the scrollbar in the card's padding.
 function RecipeIngredientsSection({ ingredients }: RecipeIngredientsSectionProps) {
   return (
-    <ul className='divide-y text-base'>
+    <ul className='divide-y text-base lg:-mr-3 lg:min-h-0 lg:overflow-y-auto lg:pr-3'>
       {ingredients.map(ingredient => (
         <li key={ingredient.id} className='flex items-baseline justify-between gap-x-4 py-3'>
           <span className='min-w-0 break-words'>{ingredient.name}</span>

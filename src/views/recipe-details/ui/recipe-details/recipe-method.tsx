@@ -29,7 +29,7 @@ function RecipeMethod({ recipe }: RecipeMethodProps) {
                 <Check className='hidden h-4 w-4' aria-hidden='true' />
               </span>
 
-              <p className='min-w-0 pt-0.5 leading-relaxed break-words peer-checked:text-muted-foreground'>
+              <p className='min-w-0 pt-0.5 leading-relaxed break-words peer-checked:text-muted-foreground lg:text-lg lg:leading-relaxed'>
                 {instruction}
               </p>
             </label>

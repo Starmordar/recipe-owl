@@ -170,6 +170,7 @@
       "sourceLabel": "Source:",
       "watchVideo": "Watch video",
       "timeLabel": "Time:",
+      "backLabel": "Back",
 
       "ingredientsTitle": "Ingredients",
       "ingredientsCount": "{count, plural, one {# ingredient} other {# ingredients}}",
