@@ -1,3 +1,3 @@
 export { isRecipeSaved } from './api/is-recipe-saved';
 
-export { SaveRecipeAction } from './ui';
+export { SaveRecipeAction, SaveRecipeButton } from './ui';

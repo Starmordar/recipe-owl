@@ -5,19 +5,13 @@ import { isRecipeSaved, SaveRecipeAction } from '@/src/features/recipe/save-reci
 import { ShareRecipeAction } from '@/src/features/recipe/share-recipe';
 import { validateRequest } from '@/src/shared/api/auth';
 import { publicUrls } from '@/src/shared/config/url';
-import { cn } from '@/src/shared/lib/classnames';
 import { AppBackButton } from '@/src/shared/ui/app-back-button';
 import HeaderIconButton from '@/src/shared/ui/app-header-icon-button';
 import { RecipeActionsDrawer } from '@/src/widgets/recipe-actions-drawer';
 
-import type { RecipeDetails } from '@/src/entities/recipe';
+import { HeaderBar } from './header-bar';
 
-// The header floats over the recipe image, so every button gets its own backdrop.
-const floatingButtons = cn(
-  '[&_button]:pointer-events-auto [&_button]:h-9 [&_button]:w-9 [&_button]:rounded-full',
-  '[&_svg]:h-5 [&_svg]:w-5',
-  '[&_button]:bg-background/90 [&_button]:shadow-sm [&_button]:ring-1 [&_button]:ring-border [&_button]:backdrop-blur',
-);
+import type { RecipeDetails } from '@/src/entities/recipe';
 
 interface RecipeDetailsHeaderProps {
   recipe: RecipeDetails;
@@ -32,22 +26,19 @@ async function RecipeDetailsHeader({ recipe }: RecipeDetailsHeaderProps) {
   const isCurrentUserOwner = user && user.id === recipe.user.id;
 
   return (
-    <header className='sticky top-0 z-50 -mb-14 h-14 w-full pointer-events-none'>
-      <div className={cn('container flex h-full items-center justify-between', floatingButtons)}>
-        <AppBackButton goBack={!!referer} fallbackUrl={publicUrls.recipes} />
+    <HeaderBar
+      title={recipe.title}
+      backButton={<AppBackButton goBack={!!referer} fallbackUrl={publicUrls.recipes} />}
+    >
+      <SaveRecipeAction recipeId={recipe.id} isSaved={isSaved} />
+      <ShareRecipeAction recipeId={recipe.id} />
 
-        <div className='flex gap-x-2'>
-          <SaveRecipeAction recipeId={recipe.id} isSaved={isSaved} />
-          <ShareRecipeAction recipeId={recipe.id} />
-
-          {isCurrentUserOwner && (
-            <RecipeActionsDrawer recipeId={recipe.id}>
-              <HeaderIconButton Icon={<EllipsisVertical />} />
-            </RecipeActionsDrawer>
-          )}
-        </div>
-      </div>
-    </header>
+      {isCurrentUserOwner && (
+        <RecipeActionsDrawer recipeId={recipe.id}>
+          <HeaderIconButton Icon={<EllipsisVertical />} />
+        </RecipeActionsDrawer>
+      )}
+    </HeaderBar>
   );
 }
 

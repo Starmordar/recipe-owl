@@ -4,6 +4,7 @@ import { getRecipeJsonLdSchema, getRecipeDetails, logRecipeView } from '@/src/en
 
 import { RecipeDetailsHeader } from './page-header';
 import { RecipeDetails } from './recipe-details';
+import { ScrollMarkerProvider } from './scroll-marker-provider';
 
 interface RecipeDetailsPageProps {
   recipeId: number;
@@ -24,11 +25,13 @@ async function RecipeDetailsPage({ recipeId }: RecipeDetailsPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <RecipeDetailsHeader recipe={recipe} />
+      <ScrollMarkerProvider>
+        <RecipeDetailsHeader recipe={recipe} />
 
-      <main className='flex flex-1 flex-col pb-6'>
-        <RecipeDetails recipe={recipe} />
-      </main>
+        <main className='flex flex-1 flex-col pb-6'>
+          <RecipeDetails recipe={recipe} />
+        </main>
+      </ScrollMarkerProvider>
     </>
   );
 }

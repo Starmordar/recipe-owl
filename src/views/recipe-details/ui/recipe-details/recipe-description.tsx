@@ -1,9 +1,13 @@
-import { BookOpen, Clock, ExternalLink, ShoppingBasket } from 'lucide-react';
+import { BookOpen, Clock, ExternalLink, Play, ShoppingBasket } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { parseCookTime, RecipeAuthor, type RecipeDetails } from '@/src/entities/recipe';
 import { isValidURL } from '@/src/shared/lib/is-valid-url';
 import { ReadMoreText } from '@/src/shared/ui/read-more-text';
+
+import { ScrollMarker } from '../scroll-marker-provider';
+
+const videoHosts = ['youtube.com', 'youtu.be', 'vimeo.com', 'tiktok.com', 'rutube.ru'];
 
 interface RecipeDescriptionProps {
   recipe: RecipeDetails;
@@ -14,7 +18,10 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
 
   return (
     <section className='flex flex-col gap-y-3'>
-      <h1 className='text-2xl font-bold leading-tight break-words text-balance'>{recipe.title}</h1>
+      <h1 className='relative text-2xl font-bold leading-tight break-words text-balance'>
+        {recipe.title}
+        <ScrollMarker name='title' className='bottom-0 left-0' />
+      </h1>
 
       <RecipeMeta recipe={recipe} />
       {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
@@ -28,7 +35,10 @@ function RecipeDescription({ recipe }: RecipeDescriptionProps) {
         </ReadMoreText>
       )}
 
-      <RecipeSource source={recipe.source} />
+      <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-sm text-muted-foreground'>
+        <RecipeAuthor author={recipe.user} avatarSize={20} />
+        <RecipeSource source={recipe.source} />
+      </div>
     </section>
   );
 }
@@ -41,7 +51,7 @@ function RecipeMeta({ recipe }: RecipeMetaProps) {
   const t = useTranslations('RecipeDetailsPage.General');
 
   return (
-    <div className='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground'>
+    <div className='flex items-center gap-x-4 text-sm text-muted-foreground'>
       {recipe.cookTime && (
         <p className='flex items-center gap-x-1.5'>
           <Clock className='h-4 w-4' aria-hidden='true' />
@@ -54,8 +64,6 @@ function RecipeMeta({ recipe }: RecipeMetaProps) {
         <ShoppingBasket className='h-4 w-4' aria-hidden='true' />
         {t('ingredientsCount', { count: recipe.ingredients.length })}
       </p>
-
-      <RecipeAuthor author={recipe.user} avatarSize={20} />
     </div>
   );
 }
@@ -90,8 +98,22 @@ function RecipeSource({ source }: RecipeSourceProps) {
 
   const link = getSourceLink(text);
 
+  if (link?.isVideo) {
+    return (
+      <a
+        className='inline-flex shrink-0 items-center gap-x-1.5 py-1.5 px-3 rounded-full border border-input font-medium text-foreground'
+        href={link.href}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <Play className='h-3.5 w-3.5' aria-hidden='true' />
+        {t('watchVideo')}
+      </a>
+    );
+  }
+
   return (
-    <p className='flex items-center gap-x-1.5 text-sm text-muted-foreground'>
+    <p className='flex min-w-0 max-w-full items-center gap-x-1.5'>
       <span className='sr-only'>{t('sourceLabel')}</span>
 
       {link ? (
@@ -121,7 +143,10 @@ function getSourceLink(source: string) {
 
   try {
     const url = new URL(/^https?:\/\//i.test(source) ? source : `https://${source}`);
-    return { href: url.href, hostname: url.hostname.replace(/^www\./, '') };
+    const hostname = url.hostname.replace(/^www\./, '');
+    const isVideo = videoHosts.some(host => hostname === host || hostname.endsWith(`.${host}`));
+
+    return { href: url.href, hostname, isVideo };
   } catch {
     return null;
   }

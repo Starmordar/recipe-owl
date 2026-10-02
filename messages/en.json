@@ -168,6 +168,7 @@
 
       "tagsLabel": "Tags:",
       "sourceLabel": "Source:",
+      "watchVideo": "Watch video",
       "timeLabel": "Time:",
 
       "ingredientsTitle": "Ingredients",
@@ -216,11 +217,14 @@
     },
 
     "Save": {
+      "save": "Save recipe",
+      "saved": "Saved",
       "requireAuthTitle": "Log In to Save",
       "requireAuthText": "To save your recipes, please log in or create a new account."
     },
 
     "ShareRecipe": {
+      "share": "Share",
       "title": "Recipe OWL: Discover, Cook, Share – The Wise Way"
     }
   },

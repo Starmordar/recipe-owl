@@ -16,6 +16,7 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
   ({ className, clampClassName = 'line-clamp-5', children }, ref) => {
     const t = useTranslations('Common.ReadMoreText');
     const containerRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLParagraphElement>(null);
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [isOveflowed, setIsOverflowed] = useState(false);
@@ -23,37 +24,29 @@ const ReadMoreText = forwardRef<HTMLDivElement, ReadMoreTextProps>(
     useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
 
     useLayoutEffect(() => {
-      if (!containerRef.current) return;
+      if (!textRef.current) return;
 
-      if (containerRef.current.scrollHeight > containerRef.current.clientHeight) {
+      if (textRef.current.scrollHeight > textRef.current.clientHeight) {
         setIsOverflowed(true);
       }
     }, []);
 
     return (
-      <div
-        ref={containerRef}
-        className={cn(
-          'relative text-base overflow-hidden bg-background',
-          className,
-          !isExpanded && clampClassName,
-        )}
-      >
-        <p>
+      <div ref={containerRef} className={cn('text-base', className)}>
+        <p ref={textRef} className={cn(!isExpanded && clampClassName)}>
           {children}
-
-          {isOveflowed && (
-            <span
-              className={cn(
-                'cursor-pointer text-primary bg-fade-to-bg pl-2',
-                !isExpanded && 'absolute right-0 bottom-0 pl-8',
-              )}
-              onClick={() => setIsExpanded(value => !value)}
-            >
-              {isExpanded ? t('showLess') : t('showMore')}
-            </span>
-          )}
         </p>
+
+        {isOveflowed && (
+          <button
+            type='button'
+            className='mt-0.5 text-primary'
+            aria-expanded={isExpanded}
+            onClick={() => setIsExpanded(value => !value)}
+          >
+            {isExpanded ? t('showLess') : t('showMore')}
+          </button>
+        )}
       </div>
     );
   },
