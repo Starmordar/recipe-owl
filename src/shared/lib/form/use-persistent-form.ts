@@ -1,17 +1,16 @@
 import { IDBPDatabase, openDB } from 'idb';
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { useRouter as useBaseRouter } from 'next/navigation';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface ObjectStore {
   name: string;
-  entryKey: string;
   params: IDBObjectStoreParameters;
 }
 
 interface UserPersistentFormOption {
   dbName: string;
   stores: { data: ObjectStore; files?: ObjectStore };
+  // Identifies the form, so a draft saved for one form is never restored into another.
+  draftKey: string;
 
   getDataFields: () => Record<string, unknown>;
   mapFields: (fields: Record<string, unknown>) => Record<string, unknown>;
@@ -20,26 +19,26 @@ interface UserPersistentFormOption {
 
 // Sometimes, the browser doesn't have enough time to store the entire file in IndexedDB before the page unloads.
 // To address this, file fields are saved while the user interacts with the app, and data fields are saved during the unload event.
+// The draft only has to survive a reload, so it's deleted once the user leaves the form within the app.
 function usePersistentForm({
   dbName,
   stores,
+  draftKey,
   getDataFields,
   mapFields,
   rehydrateFields,
 }: UserPersistentFormOption) {
-  const baseRouter = useBaseRouter();
   const [isRehydrating, setIsRehydrating] = useState(true);
 
   // Any async work within the "visibilitychange" event may be interrupted by a page refresh or transition to a frozen state.
   // To handle this, we use "idb" for saving data before the unload event and "idbPromise" for other transactions.
   const idbPromise = useRef<Promise<IDBPDatabase> | null>(null);
   const idb = useRef<IDBPDatabase | null>(null);
+  const unmountTimeout = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const idbRef = idb.current;
-
     async function openDBConnection() {
-      if (idb.current !== null) return;
+      if (idbPromise.current !== null) return;
 
       idbPromise.current = openDB(dbName, 1, {
         upgrade(db) {
@@ -56,10 +55,6 @@ function usePersistentForm({
     }
 
     openDBConnection();
-
-    return () => {
-      idbRef?.close();
-    };
   }, [dbName, stores]);
 
   useEffect(() => {
@@ -67,7 +62,7 @@ function usePersistentForm({
       if (!idb.current || !document.hidden) return;
 
       const tx = idb.current.transaction(stores.data.name, 'readwrite');
-      tx.store.put({ ...getDataFields(), id: stores.data.entryKey });
+      tx.store.put({ ...getDataFields(), id: draftKey });
       tx.commit();
     }
 
@@ -75,7 +70,7 @@ function usePersistentForm({
     return () => {
       document.removeEventListener('visibilitychange', onVisibilityChange);
     };
-  }, [stores, getDataFields]);
+  }, [stores, draftKey, getDataFields]);
 
   const deleteFiles = useCallback(async () => {
     const idb = await idbPromise.current;
@@ -83,28 +78,46 @@ function usePersistentForm({
 
     if (stores.files) {
       const tx = idb.transaction(stores.files.name, 'readwrite');
-      await Promise.all([tx.store.delete(stores.files.entryKey), tx.done]);
+      await Promise.all([tx.store.delete(draftKey), tx.done]);
     }
-  }, [stores]);
+  }, [stores, draftKey]);
 
   const clearStore = useCallback(async () => {
     const idb = await idbPromise.current;
     if (!idb) return;
 
     const tx = idb.transaction(stores.data.name, 'readwrite');
-    await Promise.all([tx.store.delete(stores.data.entryKey), tx.done]);
+    await Promise.all([tx.store.delete(draftKey), tx.done]);
 
     await deleteFiles();
-  }, [stores, deleteFiles]);
+  }, [stores, draftKey, deleteFiles]);
+
+  // Only the open form's draft is kept, so drafts left behind by other forms are deleted.
+  const deleteOtherDrafts = useCallback(async () => {
+    const idb = await idbPromise.current;
+    if (!idb) return;
+
+    const storeNames = stores.files ? [stores.data.name, stores.files.name] : [stores.data.name];
+    const tx = idb.transaction(storeNames, 'readwrite');
+
+    await Promise.all([
+      ...storeNames.map(async storeName => {
+        const store = tx.objectStore(storeName);
+        const keys = await store.getAllKeys();
+        await Promise.all(keys.filter(key => key !== draftKey).map(key => store.delete(key)));
+      }),
+      tx.done,
+    ]);
+  }, [stores, draftKey]);
 
   const getFieldsFromStore = useCallback(async () => {
     const db = await idbPromise.current;
     if (!db) return;
 
-    const dataFields = await db.get(stores.data.name, stores.data.entryKey);
+    const dataFields = await db.get(stores.data.name, draftKey);
     if (!stores.files) return mapFields(dataFields ?? {});
 
-    const fileFields = await db.get(stores.files?.name, stores.files.entryKey);
+    const fileFields = await db.get(stores.files?.name, draftKey);
 
     // If there are file fields but no data fields, it indicates the page was navigated via back/forward
     // and the "visibilitychange" event was not triggered. In this case, we need to reset the existing files.
@@ -114,10 +127,12 @@ function usePersistentForm({
     }
 
     return mapFields({ ...(dataFields ?? {}), ...(fileFields ?? {}) });
-  }, [mapFields, deleteFiles, stores]);
+  }, [mapFields, deleteFiles, stores, draftKey]);
 
   useEffect(() => {
     async function setInitialValues() {
+      await deleteOtherDrafts();
+
       const fields = await getFieldsFromStore();
       if (!fields || Object.keys(fields).length === 0) return setIsRehydrating(false);
 
@@ -126,7 +141,7 @@ function usePersistentForm({
     }
 
     setInitialValues();
-  }, [rehydrateFields, getFieldsFromStore]);
+  }, [rehydrateFields, getFieldsFromStore, deleteOtherDrafts]);
 
   const storeFiles = useCallback(
     async (files: Record<string, Blob | string>) => {
@@ -134,31 +149,24 @@ function usePersistentForm({
       if (!db || !stores.files) return;
 
       const tx = db.transaction(stores.files.name, 'readwrite');
-      await Promise.all([tx.store.put({ ...files, id: stores.files.entryKey }), tx.done]);
+      await Promise.all([tx.store.put({ ...files, id: draftKey }), tx.done]);
     },
-    [stores],
+    [stores, draftKey],
   );
 
-  useLayoutEffect(() => {
-    type RouterParams = Parameters<typeof baseRouter.push>;
-    const originalPush = baseRouter.push;
-    const originalReplace = baseRouter.replace;
-
-    baseRouter.push = function (href: RouterParams[0], options: RouterParams[1]) {
-      clearStore();
-      originalPush(href, options);
-    };
-
-    baseRouter.replace = function (href: RouterParams[0], options: RouterParams[1]) {
-      clearStore();
-      originalReplace(href, options);
-    };
+  // Leaving the form within the app (a link, the back button, the redirect after saving) unmounts it,
+  // while a reload or a discarded tab doesn't, so the draft is deleted on unmount.
+  // The deletion waits a tick because Strict Mode unmounts and immediately remounts the form in development.
+  useEffect(() => {
+    window.clearTimeout(unmountTimeout.current);
 
     return () => {
-      baseRouter.push = originalPush;
-      baseRouter.replace = originalReplace;
+      unmountTimeout.current = window.setTimeout(async () => {
+        await clearStore();
+        (await idbPromise.current)?.close();
+      });
     };
-  }, [baseRouter, clearStore]);
+  }, [clearStore]);
 
   return { isRehydrating, getFieldsFromStore, storeFiles };
 }
