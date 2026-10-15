@@ -29,7 +29,7 @@ function RecipeContent({ recipe }: RecipeContentProps) {
 
   return (
     <LazyMotion features={loadAnimationFeatures} strict>
-      <section className='relative md:container md:min-h-[28rem] lg:min-h-[32rem] md:grid md:border-b grid-cols-4 items-center'>
+      <section className='relative md:container md:grid md:grid-cols-2 md:items-center md:gap-x-8 md:pt-8 lg:max-w-6xl lg:gap-x-10 lg:px-8'>
         <RecipeImage
           ref={imageContainerRef}
           imageHeight={imageHeight}

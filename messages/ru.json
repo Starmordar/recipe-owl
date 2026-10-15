@@ -110,27 +110,13 @@
     "latestRecipesTitle": "Наши последние рецепты",
     "recentlyViewedTitle": "Недавно просмотренные",
     "popularThisWeekTitle": "Популярные рецепты на этой неделе",
+    "seeAllLinkLabel": "Смотреть все",
+    "seeAllLinkAreaLabel": "Все рецепты: {title}",
 
     "RecipeOfTheDay": {
       "title": "Рецепт дня",
       "readMoreLinkAreaLabel": "Узнайте больше о рецепте дня",
       "readMoreLinkLabel": "Давайте готовить!"
-    },
-
-    "QuickLinks": {
-      "title": "Быстрые ссылки для вас",
-
-      "Options": {
-        "Breakfast": "Завтрак",
-        "Pasta": "Паста",
-        "Chicken": "Курица",
-        "Salmon": "Лосось",
-        "Soup": "Суп",
-        "Bread": "Хлеб",
-        "Healthy": "Здоровое питание",
-        "Keto": "Кето",
-        "Salad": "Салат"
-      }
     }
   },
 
