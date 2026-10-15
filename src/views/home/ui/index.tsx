@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 
 import { LatestRecipes } from './latest-recipes';
-import { QuickLinks } from './quick-links';
 import { RecentlyViewed } from './recently-viewed';
 import { RecipeCategories } from './recipe-categories';
 import { RecipeOfTheDay } from './recipe-of-the-day';
@@ -13,13 +12,13 @@ function HomePage() {
     <main className='page-container px-0 overflow-x-hidden gap-0'>
       <RecipeOfTheDay />
 
-      <div className='flex flex-col gap-y-6 lg:gap-y-8 bg-background z-50 p-4 md:container md:py-8'>
+      <div className='flex flex-col gap-y-6 lg:gap-y-12 bg-background z-50 p-4 md:container md:py-8 lg:max-w-6xl lg:px-8'>
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
-          <LatestRecipes />
+          <RecentlyViewed />
         </Suspense>
 
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
-          <RecentlyViewed />
+          <LatestRecipes />
         </Suspense>
 
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
@@ -29,8 +28,6 @@ function HomePage() {
         <Suspense fallback={<RecipePreviewSectionSkeleton />}>
           <RecipeCategories />
         </Suspense>
-
-        <QuickLinks />
       </div>
     </main>
   );

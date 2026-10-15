@@ -1,12 +1,12 @@
 'use client';
 
+import { Clock } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { forwardRef } from 'react';
 
-import { RecipeAuthor, RecipeCookTime, RecipeTagsSummary } from '@/src/entities/recipe';
+import { parseCookTime, RecipeAuthor } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { Link } from '@/src/shared/i18n/routing';
-import { hashColor } from '@/src/shared/lib/color';
 import { Button } from '@/src/shared/ui/button';
 
 import type { RecipeWithUser } from '@/src/entities/recipe';
@@ -20,49 +20,45 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
 
   return (
     <>
-      <article className='hidden md:flex flex-col relative col-span-2 pr-4 lg:pr-8 py-6'>
-        <span className='text-lg mb-2'>{t('title')}</span>
+      <article className='hidden md:flex flex-col gap-y-3 lg:gap-y-4'>
+        <span className='text-sm font-semibold text-primary'>{t('title')}</span>
+        <h1 className='text-4xl lg:text-5xl font-bold break-words'>{recipe.title}</h1>
 
-        <div className='flex flex-col gap-y-4'>
-          <h1 className='md:text-4xl lg:text-5xl font-semibold md:font-bold'>{recipe.title}</h1>
-          <p className='text-lg break-words line-clamp-5'>{recipe.description}</p>
+        <RecipeMeta cookTime={recipe.cookTime} tags={recipe.tags} />
+        <p className='hidden lg:line-clamp-3 leading-normal break-words text-muted-foreground'>
+          {recipe.description}
+        </p>
 
-          <div className='flex flex-col gap-y-2 py-3'>
-            <RecipeCookTime cookTime={recipe.cookTime} />
-            {recipe.tags.length > 0 && <RecipeTags tags={recipe.tags} />}
-          </div>
-
-          <Link
-            href={publicUrls.recipe(recipe.id)}
-            className='self-start'
-            aria-label={t('readMoreLinkAreaLabel')}
-          >
-            <Button size='lg' className='text-base'>
-              {t('readMoreLinkLabel')}
-            </Button>
-          </Link>
-          <RecipeAuthor author={recipe.user} avatarSize={28} />
+        <div className='text-sm text-muted-foreground'>
+          <RecipeAuthor author={recipe.user} avatarSize={20} />
         </div>
+
+        <Link
+          href={publicUrls.recipe(recipe.id)}
+          className='self-start'
+          aria-label={t('readMoreLinkAreaLabel')}
+        >
+          <Button size='lg' className='text-base'>
+            {t('readMoreLinkLabel')}
+          </Button>
+        </Link>
       </article>
 
       <Link
         href={publicUrls.recipe(recipe.id)}
         aria-label={t('readMoreLinkAreaLabel')}
-        className='flex justify-center md:hidden'
+        className='relative block -mt-5 rounded-t-2xl bg-background md:hidden'
       >
-        <article
-          ref={ref}
-          className='relative transform -translate-y-10 -mb-6 md:transform-none lex flex-col p-4 min-w-96 mx-6 rounded-lg bg-orange-100 dark:bg-orange-400 z-100'
-        >
-          <div className='absolute top-4 right-4 z-10 text-sm flex gap-2'>
-            <RecipeTagsSummary tags={recipe.tags} />
-          </div>
+        <article ref={ref} className='flex flex-col gap-y-2 px-4 pt-5 pb-2'>
+          <span className='text-sm font-semibold text-primary'>{t('title')}</span>
+          <h1 className='text-2xl font-bold leading-tight break-words text-balance'>
+            {recipe.title}
+          </h1>
 
-          <span className='text-base'>{t('title')}</span>
+          <RecipeMeta cookTime={recipe.cookTime} tags={recipe.tags} />
 
-          <div className='flex flex-col gap-y-4 mt-2'>
-            <h1 className='text-3xl font-semibold'>{recipe.title}</h1>
-            <RecipeAuthor author={recipe.user} avatarSize={28} />
+          <div className='text-sm text-muted-foreground'>
+            <RecipeAuthor author={recipe.user} avatarSize={20} />
           </div>
         </article>
       </Link>
@@ -72,25 +68,33 @@ const RecipeInfo = forwardRef<HTMLDivElement, RecipeInfoProps>(({ recipe }, ref)
 
 RecipeInfo.displayName = 'RecipeInfo';
 
-interface RecipeTagsProps {
+interface RecipeMetaProps {
+  cookTime: string | null;
   tags: Array<string>;
 }
 
-function RecipeTags({ tags }: RecipeTagsProps) {
+function RecipeMeta({ cookTime, tags }: RecipeMetaProps) {
   const t = useTranslations();
+  if (!cookTime && tags.length === 0) return null;
 
   return (
-    <div className='flex flex-wrap gap-x-1.5 gap-y-2 items-center'>
-      {t('RecipeDetailsPage.General.tagsLabel')}
-      {tags.map(tag => (
-        <div
-          key={tag}
-          style={{ borderColor: hashColor(tag) }}
-          className='py-0.5 px-2.5 border rounded-lg'
-        >
-          {t(`RecipeTags.Items.${tag}`)}
-        </div>
-      ))}
+    <div className='flex flex-wrap items-center gap-x-3 gap-y-2 text-sm'>
+      {cookTime && (
+        <p className='flex items-center gap-x-1.5 text-muted-foreground'>
+          <Clock className='h-4 w-4' aria-hidden='true' />
+          {t('RecipeDetailsPage.General.cookTime', { ...parseCookTime(cookTime) })}
+        </p>
+      )}
+
+      {tags.length > 0 && (
+        <ul className='flex flex-wrap gap-1.5'>
+          {tags.map(tag => (
+            <li key={tag} className='py-0.5 px-2.5 rounded-full bg-[#EAF3DE] text-[#27500A]'>
+              {t(`RecipeTags.Items.${tag}`)}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

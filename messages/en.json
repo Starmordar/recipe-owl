@@ -110,27 +110,13 @@
     "latestRecipesTitle": "Our Latest Recipes",
     "recentlyViewedTitle": "Recently Viewed",
     "popularThisWeekTitle": "Popular Recipes This Week",
+    "seeAllLinkLabel": "See all",
+    "seeAllLinkAreaLabel": "See all recipes: {title}",
 
     "RecipeOfTheDay": {
       "title": "Recipe of the Day",
       "readMoreLinkAreaLabel": "Read more about Recipe of the Day",
       "readMoreLinkLabel": "Let's cook!"
-    },
-
-    "QuickLinks": {
-      "title": "Quick Links For You",
-
-      "Options": {
-        "Breakfast": "Breakfast",
-        "Pasta": "Pasta",
-        "Chicken": "Chicken",
-        "Salmon": "Salmon",
-        "Soup": "Soup",
-        "Bread": "Bread",
-        "Healthy": "Healthy",
-        "Keto": "Keto",
-        "Salad": "Salad"
-      }
     }
   },
 

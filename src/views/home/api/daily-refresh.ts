@@ -22,6 +22,7 @@ import { recipeCategoryGroups } from '../config/recipe-category-groups';
 import type { AggregationResult } from '@/src/shared/api/elastic/types';
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
+const minCategoryRecipes = 3;
 
 // ================== Daily Recipe Categories ===================
 async function getRecipesByTag(tag: string, limit = 15): Promise<Array<RecipePreview>> {
@@ -39,9 +40,21 @@ async function chooseDailyRecipeCategories() {
   const recipeCategories: Array<RecipeCategory> = [];
 
   for (const { categories } of recipeCategoryGroups) {
-    const category = categories[randomIndex(categories.length)];
-    const recipesByCategory = await getRecipesByTag(category.tag);
-    recipeCategories.push({ title: category.title, tag: category.tag, recipes: recipesByCategory });
+    // Try the group's categories in random order until one has enough recipes for a carousel.
+    const candidates = [...categories];
+
+    while (candidates.length > 0) {
+      const [category] = candidates.splice(randomIndex(candidates.length), 1);
+      const recipesByCategory = await getRecipesByTag(category.tag);
+      if (recipesByCategory.length < minCategoryRecipes) continue;
+
+      recipeCategories.push({
+        title: category.title,
+        tag: category.tag,
+        recipes: recipesByCategory,
+      });
+      break;
+    }
   }
 
   const data = JSON.stringify(recipeCategories);
