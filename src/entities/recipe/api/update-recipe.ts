@@ -19,6 +19,12 @@ async function updateRecipe(recipeId: number, formData: FormData): Promise<Recip
   const { user } = await validateRequest();
   invariant(user, 'An authorized user is required');
 
+  const existingRecipe = await prisma.recipe.findFirst({
+    where: { id: recipeId, createdById: user.id },
+    select: { id: true },
+  });
+  invariant(existingRecipe, 'Only the recipe author can update it');
+
   const image = formData.get('image');
   invariant(image, 'Expected a image file parameter');
 
