@@ -27,7 +27,11 @@ function RecipeForm({ form, onSubmit }: RecipeFormProps) {
 
   return (
     <Form {...form}>
-      <form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form
+        id='recipe-form'
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='space-y-8 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] lg:items-start lg:gap-x-12 lg:gap-y-12 lg:space-y-0'
+      >
         <DetailsFieldset form={form} />
         <IngredientsFieldset form={form} />
         <StepsFieldset form={form} />

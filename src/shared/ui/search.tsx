@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { cn } from '@/src/shared/lib/classnames';
 import {
   Command,
   CommandInput,
@@ -24,6 +25,7 @@ interface SearchProps {
   showSearch?: boolean;
   showClear?: boolean;
   allowFocus?: boolean;
+  inputClassName?: string;
 }
 
 function Search({
@@ -37,6 +39,7 @@ function Search({
   showSearch,
   showClear,
   allowFocus,
+  inputClassName,
 }: SearchProps) {
   function handleValueChange(value: string) {
     setSearchTerm(value);
@@ -59,7 +62,7 @@ function Search({
     <React.Fragment>
       <Command onKeyDown={() => {}} className='overflow-visible bg-transparent'>
         <CommandInput
-          className='h-[2.35rem]'
+          className={cn('h-[2.35rem]', inputClassName)}
           placeholder={placeholder}
           value={searchTerm}
           onValueChange={handleValueChange}

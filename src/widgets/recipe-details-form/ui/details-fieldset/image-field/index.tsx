@@ -1,10 +1,11 @@
 'use client';
 
-import { Camera, Pencil, Image as LucideImage } from 'lucide-react';
+import { Camera, Pencil } from 'lucide-react';
 import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
+import { cn } from '@/src/shared/lib/classnames';
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { ImageUploadDrawer } from '@/src/shared/ui/image-upload-drawer';
 
@@ -49,7 +50,12 @@ function ImageField({ form }: ImageFieldProps) {
   }
 
   return (
-    <div className='relative flex w-full h-[40vh] bg-muted rounded-lg'>
+    <div
+      className={cn(
+        'relative flex w-full aspect-[4/3] rounded-2xl overflow-hidden md:aspect-video lg:aspect-[4/3]',
+        !selectedImage && 'border border-dashed border-muted-foreground/40 bg-muted/50',
+      )}
+    >
       <FormField
         control={form.control}
         name='image'
@@ -70,13 +76,7 @@ function ImageField({ form }: ImageFieldProps) {
 
       {selectedImage ? (
         <>
-          <NextImage
-            className='rounded-lg'
-            src={selectedImage}
-            alt=''
-            fill
-            style={{ objectFit: 'cover' }}
-          />
+          <NextImage src={selectedImage} alt='' fill style={{ objectFit: 'cover' }} />
 
           <ImageUploadDrawer onTakePhoto={handleTriggerTakePhoto} onUpload={handleTriggerUpload}>
             <div className='absolute bottom-3 right-3 cursor-pointer'>
@@ -88,16 +88,14 @@ function ImageField({ form }: ImageFieldProps) {
         </>
       ) : (
         <ImageUploadDrawer onTakePhoto={handleTriggerTakePhoto} onUpload={handleTriggerUpload}>
-          <div className='flex w-full justify-center items-center cursor-pointer'>
-            <div className='flex w-full justify-center items-center'>
-              <LucideImage className='h-28 w-28 opacity-50' strokeWidth={1} />
-
-              <div className='absolute bottom-6 mx-auto flex items-center gap-x-2'>
-                <Camera className='h-6 w-6 text-muted-foreground' />
-                <p className='text-muted-foreground'>{t('imageTitle')}</p>
-              </div>
-            </div>
-          </div>
+          <button
+            type='button'
+            className='flex w-full flex-col items-center justify-center gap-y-1 px-4 text-center'
+          >
+            <Camera className='mb-1 h-7 w-7 text-primary' aria-hidden='true' />
+            <span className='font-medium'>{t('imageTitle')}</span>
+            <span className='text-sm text-muted-foreground'>{t('imageDescription')}</span>
+          </button>
         </ImageUploadDrawer>
       )}
     </div>

@@ -1,8 +1,9 @@
+import { X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { Button } from '@/src/shared/ui/button';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/src/shared/ui/form';
-import { ToggleGroup, ToggleGroupItem } from '@/src/shared/ui/toggle-group';
+
+import { OptionalHint } from '../optional-hint';
 
 import { TagsDrawer } from './drawer';
 
@@ -21,39 +22,49 @@ function TagsField({ form }: TagsFieldProps) {
       control={form.control}
       name='tags'
       render={({ field }) => (
-        <FormItem className='space-y-1'>
-          <div className='flex justify-between items-center'>
-            <FormLabel>{t('RecipeFormPage.Form.Fields.tags')}</FormLabel>
+        <FormItem className='space-y-2'>
+          <div className='flex items-baseline justify-between gap-x-4'>
+            <FormLabel>
+              {t('RecipeFormPage.Form.Fields.tags')} <OptionalHint />
+            </FormLabel>
 
             <TagsDrawer value={field.value} onChange={field.onChange}>
-              <Button variant='ghost' className='text-primary text-base font-semibold px-0'>
+              <button
+                type='button'
+                className='shrink-0 -my-2 py-2 text-sm font-medium text-primary'
+              >
                 {t('RecipeFormPage.Form.Fields.tagsAction')}
-              </Button>
+              </button>
             </TagsDrawer>
           </div>
 
-          {field.value.length === 0 && <p>{t('RecipeFormPage.Form.Fields.tagsPlaceholder')}</p>}
+          {field.value.length === 0 && (
+            <p className='text-sm text-muted-foreground'>
+              {t('RecipeFormPage.Form.Fields.tagsPlaceholder')}
+            </p>
+          )}
 
-          <FormControl>
-            <ToggleGroup
-              value={field.value}
-              onValueChange={field.onChange}
-              type='multiple'
-              variant='outline'
-              className='flex flex-wrap justify-start gap-2'
-            >
-              {field.value.map(option => (
-                <ToggleGroupItem
-                  key={option}
-                  value={option}
-                  size='sm'
-                  className='data-[state=on]:border-primary'
-                >
-                  {t(`RecipeTags.Items.${option}`)}
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          </FormControl>
+          {field.value.length > 0 && (
+            <FormControl>
+              <ul className='flex flex-wrap gap-2'>
+                {field.value.map(option => (
+                  <li key={option}>
+                    <button
+                      type='button'
+                      className='flex items-center gap-x-1 py-1 pl-3 pr-2 rounded-full text-sm bg-[#EAF3DE] text-[#27500A]'
+                      aria-label={t('RecipeFormPage.Form.Fields.removeTagAction', {
+                        tag: t(`RecipeTags.Items.${option}`),
+                      })}
+                      onClick={() => field.onChange(field.value.filter(value => value !== option))}
+                    >
+                      {t(`RecipeTags.Items.${option}`)}
+                      <X className='h-3.5 w-3.5' aria-hidden='true' />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </FormControl>
+          )}
           <FormMessage />
         </FormItem>
       )}

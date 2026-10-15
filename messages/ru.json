@@ -325,6 +325,8 @@
         "tags": "Тэги",
         "tagsAction": "Добавить тэги",
         "tagsPlaceholder": "Тэги помогают классифицировать рецепт и сделать его более доступным для поиска.",
+        "removeTagAction": "Убрать тэг: {tag}",
+        "optional": "Необязательно",
 
         "ingredientsTitle": "Ингредиенты",
         "ingredientNamePlaceholder": "Поиск ингредиентов",

@@ -51,6 +51,7 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
         droppableId='steps'
         draggableId='steps'
         isDraggable={isDraggable}
+        className='gap-y-2.5'
         onDragField={handleDragField}
         renderField={({ field, index }) => <StepField form={form} field={field} index={index} />}
         renderAction={({ dragHandleProps, index }) => (
@@ -64,17 +65,15 @@ function StepsFieldset({ form }: StepsFieldsetProps) {
         )}
       />
 
-      <div className='flex justify-center mt-2'>
-        <Button
-          className='text-base'
-          variant='ghost'
-          type='button'
-          onClick={() => append({ description: '' })}
-        >
-          <Plus className='h-6 w-6 mr-2' />
-          {t('addStepAction')}
-        </Button>
-      </div>
+      <Button
+        className='w-full gap-x-2 border-dashed border-muted-foreground/40 text-base text-muted-foreground'
+        variant='outline'
+        type='button'
+        onClick={() => append({ description: '' })}
+      >
+        <Plus className='h-5 w-5' aria-hidden='true' />
+        {t('addStepAction')}
+      </Button>
     </fieldset>
   );
 }

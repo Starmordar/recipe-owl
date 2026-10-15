@@ -53,6 +53,7 @@ function IngredientsSelect({ form, fieldIndex, initialValue }: IngredientsSelect
             showSearch={false}
             showClear={false}
             allowFocus
+            inputClassName='text-base'
           />
           <FormMessage />
         </FormItem>
