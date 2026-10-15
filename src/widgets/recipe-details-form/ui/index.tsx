@@ -44,6 +44,7 @@ function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
   const { isRehydrating, storeFiles } = usePersistentForm({
     dbName,
     stores: dbStores,
+    draftKey: recipe ? `recipe-${recipe.id}` : 'new-recipe',
     rehydrateFields,
     getDataFields,
     mapFields,
