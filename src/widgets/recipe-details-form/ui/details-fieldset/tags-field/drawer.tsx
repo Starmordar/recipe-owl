@@ -64,6 +64,7 @@ function TagsDrawer({ value, onChange, children }: TagsDrawerProps) {
                 setSelected={() => {}}
                 open={false}
                 setOpen={() => {}}
+                inputClassName='text-base'
               />
             </div>
 

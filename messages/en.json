@@ -325,6 +325,8 @@
         "tags": "Tags",
         "tagsAction": "Set Tags",
         "tagsPlaceholder": "Tags help categorize your recipe and make it easier for others to find.",
+        "removeTagAction": "Remove tag: {tag}",
+        "optional": "Optional",
 
         "ingredientsTitle": "Ingredients",
         "ingredientNamePlaceholder": "Search for ingredients",

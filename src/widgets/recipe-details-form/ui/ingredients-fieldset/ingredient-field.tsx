@@ -29,7 +29,11 @@ function IngredientField({ form, field, index }: IngredientFieldProps) {
         render={({ field }) => (
           <FormItem className='basis-1/3'>
             <FormControl>
-              <Input placeholder={t('ingredientQuantityPlaceholder')} {...field} />
+              <Input
+                className='text-base'
+                placeholder={t('ingredientQuantityPlaceholder')}
+                {...field}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

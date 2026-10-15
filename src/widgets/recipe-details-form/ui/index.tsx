@@ -70,7 +70,7 @@ function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
         dataChanged={form.formState.isDirty}
       />
 
-      <main className='page-container'>
+      <main className='page-container lg:max-w-6xl lg:px-8'>
         <RecipeForm form={form} onSubmit={onSubmit} />
       </main>
     </>

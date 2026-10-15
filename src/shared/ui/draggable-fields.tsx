@@ -1,10 +1,11 @@
 'use client';
 
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
-import { CheckCheck, GripVertical, Shuffle } from 'lucide-react';
+import { GripVertical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cloneElement, type PropsWithChildren, type ReactNode, type JSX } from 'react';
 
+import { cn } from '@/src/shared/lib/classnames';
 import { Button, ButtonProps } from '@/src/shared/ui/button';
 
 import type { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
@@ -25,6 +26,7 @@ interface DraggableFieldsProps<Field extends FieldArrayWithId> {
   isDraggable: boolean;
   droppableId: string;
   draggableId: string;
+  className?: string;
 
   onDragField: (result: DropResult) => void;
   renderField: (props: FieldProps<Field>) => ReactNode;
@@ -36,6 +38,7 @@ function DraggableFields<Field extends FieldArrayWithId>({
   isDraggable,
   droppableId,
   draggableId,
+  className,
   onDragField,
   renderField,
   renderAction,
@@ -48,7 +51,7 @@ function DraggableFields<Field extends FieldArrayWithId>({
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className='flex flex-col gap-y-4'
+              className={cn('flex flex-col gap-y-4', className)}
             >
               {fields.map((field, index) => {
                 return (
@@ -63,7 +66,7 @@ function DraggableFields<Field extends FieldArrayWithId>({
                         key={field.id}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
-                        className='flex items-center gap-2'
+                        className='flex items-start gap-2'
                       >
                         {renderField({ field, index })}
                         {renderAction({ dragHandleProps: provided.dragHandleProps, index })}
@@ -92,26 +95,16 @@ function DraggableFieldsHeader({ title, isDraggable, setIsDraggable }: Draggable
   const t = useTranslations('Common.DraggableFields');
 
   return (
-    <div className='flex justify-between'>
-      <legend className='text-lg font-semibold'>{title}</legend>
+    <div className='flex items-baseline justify-between gap-x-4'>
+      <legend className='text-xl font-bold lg:text-2xl'>{title}</legend>
 
-      <Button
-        className='gap-x-2 text-base'
-        size='xs'
-        variant='outline'
+      <button
+        className='shrink-0 -my-2 py-2 text-sm font-medium text-primary'
         type='button'
         onClick={() => setIsDraggable(!isDraggable)}
       >
-        {isDraggable ? (
-          <>
-            {t('actionDone')} <CheckCheck className='h-5 w-5' />
-          </>
-        ) : (
-          <>
-            {t('actionReorder')} <Shuffle className='h-5 w-5' />
-          </>
-        )}
-      </Button>
+        {isDraggable ? t('actionDone') : t('actionReorder')}
+      </button>
     </div>
   );
 }
@@ -133,7 +126,7 @@ function DraggableAction({
   Icon,
 }: DraggableActionProps) {
   const buttonProps = {
-    className: 'rounded-full',
+    className: 'mt-1.5 shrink-0 rounded-full text-muted-foreground',
     variant: 'ghost',
     size: 'icon-xs',
     type: 'button',
@@ -143,11 +136,11 @@ function DraggableAction({
     <>
       {isDraggable ? (
         <Button {...buttonProps} {...dragHandleProps}>
-          <GripVertical className='h-6 w-6' />
+          <GripVertical className='h-5 w-5' />
         </Button>
       ) : (
         <Button disabled={disabled} onClick={onAction} {...buttonProps}>
-          {cloneElement(Icon, { className: 'h-6 w-6' })}
+          {cloneElement(Icon, { className: 'h-5 w-5' })}
         </Button>
       )}
     </>

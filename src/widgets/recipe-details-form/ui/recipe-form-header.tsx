@@ -14,7 +14,7 @@ function RecipeFormHeader({ isPending, dataChanged, title, prevUrl }: RecipeForm
   const t = useTranslations('RecipeFormPage');
 
   return (
-    <AppHeaderClient prevUrl={prevUrl} replacePrevUrl>
+    <AppHeaderClient prevUrl={prevUrl} replacePrevUrl className='lg:max-w-6xl lg:px-8'>
       <div className='flex justify-between grow items-center ml-5'>
         <h1 className='text-lg font-semibold leading-none'>{title}</h1>
 
