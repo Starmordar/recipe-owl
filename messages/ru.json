@@ -121,9 +121,12 @@
   },
 
   "RecipesPage": {
-    "loadingRecipesLabel": "Загрузка...",
     "emptySearchResultsTitle": "Рецепты не найдены",
     "emptySearchResultsText": "Мы не смогли найти рецепты, соответствующие вашему запросу.",
+
+    "allRecipesTitle": "Все рецепты",
+    "filteredRecipesTitle": "Подходящие рецепты",
+    "searchResultsTitle": "Результаты по запросу «{search}»",
 
     "SearchInput": {
       "placeholder": "Поиск Recipe OWL",

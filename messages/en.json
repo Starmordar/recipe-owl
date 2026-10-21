@@ -121,9 +121,12 @@
   },
 
   "RecipesPage": {
-    "loadingRecipesLabel": "Fetching...",
     "emptySearchResultsTitle": "No Recipes Found",
     "emptySearchResultsText": "We couldn't find any recipes that match your search.",
+
+    "allRecipesTitle": "All recipes",
+    "filteredRecipesTitle": "Matching recipes",
+    "searchResultsTitle": "Results for “{search}”",
 
     "SearchInput": {
       "placeholder": "Search Recipe OWL",
