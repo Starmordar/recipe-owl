@@ -17,7 +17,7 @@ function ProfileHeader({ user }: ProfileHeaderProps) {
   if (!user) return null;
 
   return (
-    <AppHeader>
+    <AppHeader className='lg:max-w-6xl lg:px-8'>
       <div className='flex gap-x-3 items-center'></div>
       <div className='flex gap-x-3'>
         <ShareProfile user={user} />

@@ -4,10 +4,11 @@ import { useDrag } from '@use-gesture/react';
 import { m, useAnimationControls } from 'motion/react';
 import React, { useRef, useState, ReactNode, useLayoutEffect } from 'react';
 
+import { cn } from '@/src/shared/lib/classnames';
 import { Tabs, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
 
 interface Tab {
-  title: string;
+  title: ReactNode;
   content: ReactNode;
 }
 
@@ -16,6 +17,8 @@ interface SwipableTabsProps {
   tabs: Record<string, Tab>;
   loader?: ReactNode;
   options?: { swipeThreshold?: number };
+  triggerClassName?: string;
+  contentClassName?: string;
 }
 
 interface TriggerSwipeAnimationOptions {
@@ -24,7 +27,14 @@ interface TriggerSwipeAnimationOptions {
   offsetX?: number;
 }
 
-function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) {
+function SwipableTabs({
+  defaultTab,
+  tabs,
+  loader,
+  options,
+  triggerClassName,
+  contentClassName,
+}: SwipableTabsProps) {
   const [currentTab, setCurrentTab] = useState(defaultTab);
   const controls = useAnimationControls();
 
@@ -74,6 +84,19 @@ function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) 
     setInitialWidth(containerWidth);
   }, []);
 
+  // Tab offsets are in pixels, so move the tabs again when the container width changes
+  useLayoutEffect(() => {
+    const container = contentContainerRef.current;
+    if (!container) return;
+
+    const observer = new ResizeObserver(() =>
+      triggerSwipeAnimation({ stop: true, animate: false }),
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function triggerSwipeAnimation({ animate, stop, offsetX }: TriggerSwipeAnimationOptions) {
     const containerWidth = contentContainerRef.current?.offsetWidth ?? 0;
     const animationFn = animate ? controls.start : controls.set;
@@ -100,7 +123,7 @@ function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) 
     >
       <TabsList className='inline-flex h-10 items-center text-muted-foreground w-full justify-start rounded-none border-b bg-transparent p-0'>
         {Object.keys(tabs).map(tab => (
-          <TabsTrigger key={tab} className='flex-1' value={tab}>
+          <TabsTrigger key={tab} className={cn('flex-1', triggerClassName)} value={tab}>
             {tabs[tab].title}
           </TabsTrigger>
         ))}
@@ -118,7 +141,10 @@ function SwipableTabs({ defaultTab, tabs, loader, options }: SwipableTabsProps) 
             return (
               <m.div
                 key={tab}
-                className='absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4'
+                className={cn(
+                  'absolute inset-0 overflow-x-hidden px-4 pt-2 pb-4',
+                  contentClassName,
+                )}
                 initial={{ x: (i - currentTabIndex.current) * initialWidth }}
                 custom={i}
                 animate={controls}

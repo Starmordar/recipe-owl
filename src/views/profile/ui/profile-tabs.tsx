@@ -25,11 +25,11 @@ function ProfileTabs({ savedRecipes, createdRecipes, user }: ProfileTabsProps) {
   const tabs = useMemo(
     () => ({
       saved: {
-        title: t('savedRecipes'),
+        title: <TabTitle title={t('savedRecipes')} count={savedRecipes.length} />,
         content: <SavedRecipes recipes={savedRecipes} />,
       },
       created: {
-        title: t('createdRecipes'),
+        title: <TabTitle title={t('createdRecipes')} count={createdRecipes.length} />,
         content: <CreatedRecipes recipes={createdRecipes} />,
       },
     }),
@@ -41,8 +41,28 @@ function ProfileTabs({ savedRecipes, createdRecipes, user }: ProfileTabsProps) {
 
   return (
     <LazyMotion features={loadAnimationFeatures} strict>
-      <SwipableTabs tabs={tabs} loader={<ProfileTabsSkeleton />} defaultTab='saved' />
+      <SwipableTabs
+        tabs={tabs}
+        loader={<ProfileTabsSkeleton />}
+        defaultTab='saved'
+        triggerClassName='md:flex-none'
+        contentClassName='px-0 pt-4'
+      />
     </LazyMotion>
+  );
+}
+
+interface TabTitleProps {
+  title: string;
+  count: number;
+}
+
+function TabTitle({ title, count }: TabTitleProps) {
+  return (
+    <>
+      {title}
+      <span className='ml-1.5 text-sm font-medium text-muted-foreground'>{count}</span>
+    </>
   );
 }
 

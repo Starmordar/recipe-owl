@@ -13,27 +13,25 @@ function ProfileStats({ user }: ProfileStatsProps) {
   const t = useTranslations('ProfilePage.Statistic');
 
   return (
-    <div className='flex justify-self-start px-4 pb-2'>
-      <div className='flex gap-x-3 items-center'>
-        <UserAvatar src={user.picture} height={92} width={92} />
+    <section className='flex items-center gap-x-4'>
+      <UserAvatar src={user.picture} height={80} width={80} fallbackClassName='h-20 w-20' />
 
-        <div className='flex flex-col gap-y-2 self-start'>
-          <span className='text-xl font-bold'>{user.fullName}</span>
-          <div className='flex gap-x-3'>
-            <p className='font-medium'>
-              <span className='font-bold'>0</span> {t('following')}
-            </p>
-            <p className='font-medium'>
-              <span className='font-bold'>0</span> {t('followers')}
-            </p>
-          </div>
+      <div className='flex min-w-0 flex-col gap-y-1'>
+        <h1 className='text-xl md:text-2xl font-semibold break-words line-clamp-2'>
+          {user.fullName}
+        </h1>
 
-          <Button className='self-start' size='xss' variant='outline'>
-            {t('editProfileAction')}
-          </Button>
-        </div>
+        <p className='text-sm text-muted-foreground'>
+          <span className='font-semibold text-foreground'>0</span> {t('following')}
+          {' · '}
+          <span className='font-semibold text-foreground'>0</span> {t('followers')}
+        </p>
+
+        <Button className='mt-1 self-start rounded-full' size='xs' variant='outline'>
+          {t('editProfileAction')}
+        </Button>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -271,7 +271,10 @@
 
       "createdRecipes": "Created",
       "emptyCreatedRecipesTitle": "No created recipes yet",
-      "emptyCreatedRecipesText": "You haven't created any recipes."
+      "emptyCreatedRecipesText": "You haven't created any recipes.",
+
+      "browseRecipesAction": "Browse recipes",
+      "createRecipeAction": "Add a recipe"
     },
 
     "ShareProfile": {

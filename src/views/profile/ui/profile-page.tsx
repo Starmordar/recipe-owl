@@ -20,8 +20,12 @@ async function ProfilePage() {
   return (
     <>
       <ProfileHeader user={user} />
-      <ProfileStats user={user} />
-      <ProfileTabs user={user} savedRecipes={savedRecipes} createdRecipes={createdRecipes} />
+
+      {/* The tabs scroll on their own, so the page keeps no bottom padding below them. */}
+      <main className='page-container lg:max-w-6xl lg:px-8 pt-2 md:pt-4 pb-0'>
+        <ProfileStats user={user} />
+        <ProfileTabs user={user} savedRecipes={savedRecipes} createdRecipes={createdRecipes} />
+      </main>
     </>
   );
 }

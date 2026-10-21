@@ -271,7 +271,10 @@
 
       "createdRecipes": "Созданные",
       "emptyCreatedRecipesTitle": "Созданных рецептов пока нет",
-      "emptyCreatedRecipesText": "Вы еще не создали ни одного рецепта."
+      "emptyCreatedRecipesText": "Вы еще не создали ни одного рецепта.",
+
+      "browseRecipesAction": "Смотреть рецепты",
+      "createRecipeAction": "Добавить рецепт"
     },
 
     "ShareProfile": {
