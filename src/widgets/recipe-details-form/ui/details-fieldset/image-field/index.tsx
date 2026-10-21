@@ -9,6 +9,8 @@ import { cn } from '@/src/shared/lib/classnames';
 import { FormControl, FormField, FormItem, FormMessage } from '@/src/shared/ui/form';
 import { ImageUploadDrawer } from '@/src/shared/ui/image-upload-drawer';
 
+import { shrinkImage } from '../../../lib/shrink-image';
+
 import { FileInputs, FileUploadHandles } from './file-inputs';
 
 import type { FormValues } from '../../../model/schema';
@@ -23,6 +25,7 @@ function ImageField({ form }: ImageFieldProps) {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(getInitialImage);
   const fileInputsRef = useRef<FileUploadHandles>(null);
+  const latestFile = useRef<File | null>(null);
 
   function getInitialImage() {
     const initialImage = form.getValues('image') || null;
@@ -30,15 +33,20 @@ function ImageField({ form }: ImageFieldProps) {
     return URL.createObjectURL(initialImage);
   }
 
-  function handleFileUpload(
+  async function handleFileUpload(
     event: React.ChangeEvent<HTMLInputElement>,
     onChange: (...value: Array<unknown>) => void,
   ) {
     const file = event.target.files?.[0] ?? null;
     if (file === null) return;
 
+    latestFile.current = file;
     onChange(file);
     setSelectedImage(URL.createObjectURL(file));
+
+    // Shrinking a large photo takes a moment, so the original is shown meanwhile.
+    const image = await shrinkImage(file);
+    if (latestFile.current === file) onChange(image);
   }
 
   function handleTriggerUpload() {

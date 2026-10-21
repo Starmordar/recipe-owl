@@ -353,7 +353,8 @@
       },
 
       "ServerErrors": {
-        "unexpectedError": "There was a problem with your request."
+        "unexpectedError": "There was a problem with your request.",
+        "recipeTooLarge": "The recipe is too large to save. Try a smaller photo."
       }
     },
 
