@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { RecipeCardMeta } from '@/src/entities/recipe';
 import { publicUrls } from '@/src/shared/config/url';
 import { Link } from '@/src/shared/i18n/routing';
 import {
@@ -9,8 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/src/shared/ui/carousel';
-
-import { RecipeCardMeta } from '../recipe-card';
 
 import type { RecipeBase } from '@/src/entities/recipe';
 

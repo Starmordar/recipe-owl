@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { RecipeCard } from '@/src/entities/recipe';
 import { Link } from '@/src/shared/i18n/routing';
 import { cn } from '@/src/shared/lib/classnames';
 import {
@@ -10,8 +11,6 @@ import {
   CarouselPrevious,
 } from '@/src/shared/ui/carousel';
 import { Skeleton } from '@/src/shared/ui/skeleton';
-
-import { RecipeCard } from './recipe-card';
 
 import type { RecipePreview } from '@/src/entities/recipe';
 

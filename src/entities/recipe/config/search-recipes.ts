@@ -7,6 +7,8 @@ const tagsCategories = ['Mood', 'Cuisine', 'Nutrition', 'Complexity', 'Time'];
 const quickFilterCategories = [ingredientsCategory, ...tagsCategories];
 const filterCategories = [ingredientsCategory, onlySavedCategory, ...tagsCategories];
 
+const searchPageSize = 10;
+
 export {
   searchFilter,
   ingredientsCategory,
@@ -14,4 +16,5 @@ export {
   quickFilterCategories,
   tagsCategories,
   filterCategories,
+  searchPageSize,
 };

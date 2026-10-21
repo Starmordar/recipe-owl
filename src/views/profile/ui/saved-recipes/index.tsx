@@ -14,7 +14,12 @@ function SavedRecipes({ recipes }: SavedRecipesProps) {
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4'>
       {recipes.map(recipe => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
+        <RecipeCard
+          key={recipe.id}
+          recipe={recipe}
+          className='aspect-[4/3]'
+          imageSizes='(max-width: 768px) 50vw, 33vw'
+        />
       ))}
     </div>
   );

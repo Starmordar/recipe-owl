@@ -8,6 +8,7 @@ import {
   ingredientsCategory,
   quickFilterCategories,
 } from '@/src/entities/recipe';
+import { cn } from '@/src/shared/lib/classnames';
 import { useValueToPathname } from '@/src/shared/lib/use-value-to-pathname';
 import { Button } from '@/src/shared/ui/button';
 import {
@@ -60,7 +61,11 @@ function RecipeFiltersDrawer() {
         {sortedCategoriesByCount.map(tag => (
           <Button
             key={tag}
-            className='relative text-base rounded-3xl py-1 gap-x-2 font-semibold'
+            className={cn(
+              'rounded-full gap-x-1.5',
+              filterValues[tag]?.length > 0 &&
+                'border-primary bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary',
+            )}
             variant='outline'
             size='xs'
             onClick={() => filterCategoryClick(tag)}
@@ -68,7 +73,7 @@ function RecipeFiltersDrawer() {
             {t(`RecipeTags.Categories.${tag}`)}
 
             {filterValues[tag]?.length > 0 && (
-              <span className='flex justify-center items-center w-5 h-5 text-accent bg-foreground rounded-full text-sm font-medium'>
+              <span className='flex justify-center items-center min-w-4 h-4 px-1 text-primary-foreground bg-primary rounded-full text-xs'>
                 {filterValues[tag]?.length}
               </span>
             )}

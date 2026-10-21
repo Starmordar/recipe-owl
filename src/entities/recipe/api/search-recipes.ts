@@ -3,7 +3,7 @@
 import { elastic, type ElasticSearchResult } from '@/src/shared/api/elastic';
 
 import { elasticIndexName } from '../config/elastic-index-name';
-import { ingredientsCategory, tagsCategories } from '../config/search-recipes';
+import { ingredientsCategory, searchPageSize, tagsCategories } from '../config/search-recipes';
 
 import type { ElasticRecipe, RecipeSearchResult } from '../model/types';
 
@@ -11,8 +11,6 @@ type Filters = Record<string, string | Array<string> | undefined>;
 
 const sourceFields = ['title', 'imageUrl', 'cookTime', 'tags'] as const;
 type SearchResult = ElasticSearchResult<Pick<ElasticRecipe, (typeof sourceFields)[number]>>;
-
-const PAGE_SIZE = 10;
 
 async function searchRecipes(
   searchTerm: string,
@@ -25,8 +23,8 @@ async function searchRecipes(
       query: getSearchFilter(searchTerm, filters),
       _source: sourceFields,
       sort: [{ _score: 'desc' }, { createdAt: 'asc' }],
-      size: PAGE_SIZE,
-      from: PAGE_SIZE * from,
+      size: searchPageSize,
+      from: searchPageSize * from,
     },
     pretty: true,
   });
