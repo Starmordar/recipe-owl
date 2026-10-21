@@ -1,36 +1,23 @@
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useTransition } from 'react';
 
+// Runs a server action inside a transition, so isPending stays true until the action settles.
+// Every call gets its own promise, so an earlier result or error never leaks into a later call.
 function useServerAction<P extends Array<unknown>, R>(
   action: (...args: P) => Promise<R>,
 ): [(...args: P) => Promise<R | undefined>, boolean] {
-  const [result, setResult] = useState<R>();
-  const [error, setError] = useState<unknown>();
-
-  const [finished, setFinished] = useState(false);
-
   const [isPending, startTransition] = useTransition();
-  const resolver = useRef<{
-    resolve: (value?: R | PromiseLike<R>) => void;
-    reject: (reason?: unknown) => void;
-  }>(undefined);
 
-  async function runAction(...args: P): Promise<R | undefined> {
-    startTransition(() => {
-      action(...args)
-        .then(setResult)
-        .catch(setError)
-        .finally(() => setFinished(true));
+  function runAction(...args: P): Promise<R | undefined> {
+    return new Promise((resolve, reject) => {
+      startTransition(async () => {
+        try {
+          resolve(await action(...args));
+        } catch (error) {
+          reject(error);
+        }
+      });
     });
-
-    return new Promise((resolve, reject) => (resolver.current = { resolve, reject }));
   }
-
-  useEffect(() => {
-    if (!finished) return;
-
-    if (error) resolver.current?.reject(error);
-    else resolver.current?.resolve(result);
-  }, [result, error, finished]);
 
   return [runAction, isPending];
 }

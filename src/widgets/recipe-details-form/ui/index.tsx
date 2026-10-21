@@ -24,7 +24,8 @@ interface RecipeProps {
 
 function RecipeDetailsForm({ title, prevUrl, recipe }: RecipeProps) {
   const { form, onSubmit, isPending } = useRecipeForm(getFormProps());
-  const imageField = form.getValues('image');
+  // Watched, so the draft also gets the shrunk photo that replaces the picked one.
+  const imageField = form.watch('image');
 
   const mapFields = useCallback((values: Record<string, unknown>) => {
     return dbDataToFormValues(values, allowedFields);
